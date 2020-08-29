@@ -1,0 +1,89 @@
+\documentclass[class=article,crop=false]{standalone} 
+\usepackage{amsmath, amsfonts, amsthm, amssymb, graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+	
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{coro}{Corollary}
+\newtheorem{prop}{Proposition}
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand\qedsymbol{}
+
+\theoremstyle{remark} 
+\newtheorem{case}{Case}
+
+\newcommand{\rr}{\ensuremath{\mathbb{R}}}
+\newcommand{\zz}{\ensuremath{\mathbb{Z}}}
+\newcommand{\qq}{\ensuremath{\mathbb{Q}}}
+\newcommand{\nn}{\ensuremath{\mathbb{N}}}
+\newcommand{\ff}{\ensuremath{\mathbb{F}}}
+
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\pdfsuppresswarningpagegroup=1
+
+
+\begin{document}
+\section{Heat conduction problem}
+Consider a rod with length $L$.
+\[
+\rho c \frac{\partial T}{\partial t} =k \frac{\partial^2 T}{\partial x^2} 
+.\] 
+Where $\rho$ is the density,  $c$ is the heat capacity, and  $k$ is the heat conductivity.
+Initial condition: $T(x,t)|_{t=0}=f(x)$\\
+Boundary conditions: $T(x,t)|_{x=0}=T_0$, $T(x,t)|_{x=L}=T_0$
+
+We want to nondimensionalize the problem to reduce complexity:
+Let $\alpha=\frac{k}{\rho c}$ be the thermal diffusivity, $\overline{x}=\frac{x}{L}$, $U=\frac{T-T_0}{T_r}$, so $x=\overline{x}L$, $T=UT_r + T_0$.
+
+\begin{align*}
+	\frac{\partial UT_r + T_0}{\partial t} &= \alpha \frac{\partial^2 UTr+T_0}{\partial {\overline{x}L}^2}  \\
+	T_r \frac{\partial U}{\partial t} &= \frac{T_r \alpha}{L^2} \frac{\partial^2 U}{\partial x^2}  \\
+	\frac{\partial U}{\partial \frac{t \alpha}{L^2}} &= \frac{\partial^2 U}{\partial {\overline{x}}^2} 
+\end{align*}
+
+Let $\tau=\frac{t \alpha}{L^2}=\frac{t}{t_{ref}}$, so $t_{ref}=\frac{L^2}{\alpha}$, and we obtain:
+\[
+	\frac{\partial U}{\partial \tau} = \frac{\partial^2 U}{\partial {\overline{x}}^2} 
+.\] 
+
+\begin{align*}
+	U(\overline{x},\tau)|_{\tau=0} &= \frac{f(x)-T_0}{T_r} := F(x) \\
+	U(\overline{x},\tau)|_{\overline{x}=0} &= 0 \\
+	U(\overline{x},\tau)|_{\overline{x}=1} &= 0
+\end{align*}
+
+\[
+U(\overline{x},\tau)=\sin(\pi\overline{x}) e^{-t\pi^2}
+.\]
+
+Make a grid in the $\overline{x}-\tau$ plane.
+Let $k=\Delta \tau$, $h=\Delta \overline{x}$.
+Using finite difference approximation:
+\[
+	\frac{U_{i,j+1}-U_{ij}}{k} = \frac{U_{i+1,j}-2U_{ij} + U_{i-1,j}}{h^2}
+.\] 
+the LHS is the forward difference in time, and the RHS is the central difference in space.
+\begin{align*}
+	U_{i,j+1}&= U_{ij} +\frac{k}{h^2}(U_{i+1,j}-2U_{ij} +U_{i-1,j}) \\
+		 &= (1-2r) U_{ij}  + r(U_{i+1,j}+U_{i-1,j}) 
+\end{align*}
+where $r=\frac{k}{h^2}=\frac{\Delta \tau}{\Delta x^2}$.
+
+Set $r=\frac{1}{4}$, $\Delta x = 0.2$, then $k = 0.01$. 
+Set $r=1$,  $\Delta x = 0.2$, then  $k = 0.04$. Starts to fall apart a little bit.
+Set $r=2.5$,$\Delta x = 0.2$, then $k=0.1$. Results violate physics.
+
+\subsection{Crank-Nicolson Method}
+We can fix the problem above by using an implicit method. We want to average $\frac{\partial^2 U}{\partial {x}^2} $ at time  $j$ and $j+1$. Three points in the past and three points in the future.
+ \begin{align*}
+	 \frac{U_{i,j+1} -U_{ij} }{k} = \frac{1}{2} \left(  \frac{U_{i+1,j} - 2 U_{ij} + U_{i-1,j}}{h^2} +   \frac{U_{i+1,j+1} - 2 U_{i,j+1} + U_{i-1,j+1}}{h^2}  \right)  \\
+	 -r U_{i+1,j+1}+(2+2r) U_{i,j+1} - r U_{i-1,j+1} = r U_{i+1,j} + (2-2r) U_{ij} + r U_{i-1,j}   	 	
+\end{align*}
+
+This is much more stable.
+Symmetry gives us two equations for two unknowns.
+\end{document}

@@ -1,0 +1,66 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\subsection{Hyperbolic functions}
+\begin{itemize}
+	\item $\cosh( )(x )+\sinh( )(x )=e^{x} \text{ and } \cosh( )(x )-\sinh( )(x )=e^{-x} $ 
+	\item $\cosh( )(x )^2-\sinh( )(x )^2=1$
+	\item \ldots
+\end{itemize}
+
+\subsection{Series}
+There are three ways to diverge: 1. goes to $\infty$ 2. goes to $-\infty$ 3. oscillates.\\
+
+\subsubsection{Convergence}
+\begin{itemize}
+	\item divergent test: if $\lim_{ n \to \infty} a_n \neq 0$, then the series $\sum_{ n=0}^{\infty} a_n$ diverges. 
+	\item Geometric Series: Note that if $ |r|<1 $, then  $\sum_{ n=0}^{\infty} a r^{n=\frac{1}{1-r}}$ and diverges otherwise.
+	\item Direct Comparison Test: suppose $0 \leq a_n \leq \b_n \forall n \geq 0$, then $0 \leq \sum_{ n=0}^{\infty} a_n \leq \sum_{ n=0}^{\infty} b_n $ and if $\sum_{ n=0}^{\infty} b_n$ converges then $\sum_{ n=0}^{\infty} a_n$ converges. Likewise for divergence.
+\end{itemize}
+Geometric series:
+\begin{prf}
+\begin{align*}
+	s_N &= a + ar+ ar^2 + \ldots + ar^{N-1} \\
+	s_N r &= ar + ar^2+\ldots+ ar^{N} \\
+	s_N - s_N r &= a - ar^{N} = a(1-r^{N)}\\
+	s_N &= \frac{a(1-r^{N}}{1-r} \\
+	\lim_{ N \to \infty} s_N &= \lim_{ N \to \infty} \frac{a(1-r^{N)}}{1-r} = \frac{a}{1-r} \text{ iff |r|<1} 
+\end{align*}
+\end{prf}
+
+\begin{eg}[Absolutely convergent test]
+\begin{prf}
+Using the comparison test, we have
+$0 \leq a_n + |a_n| \leq 2|a_n| \implies 0 \leq \sum_{ n=0}^{\infty} (a_n+|a_n|) \leq \sum_{ n=0}^{\infty} 2|a_n|$. Since $\sum_{ n=0}^{\infty} |a_n|$ converges, there exists some finite number $L$ such that $\sum_{ n=0}^{\infty} |a_n|=L$, which implies $\sum_{ n=0}^{\infty} 2|a_n| = 2L$ so $\sum_{ n=0}^{\infty} 2|a_n|$ converges. Thus, $\sum_{ n=0}^{\infty} (a_n+|a_n|)$ converges by comparison test. Finally,
+\[
+	\sum_{ n=0}^{\infty} a_n = \sum_{ n=0}^{\infty} (a_n+|a_n|) - \sum_{ n=0}^{\infty} |a_n|
+.\] 
+Since both terms on the RHS are finite, their difference is finite and therefore the original series converges.
+\end{prf}
+\end{eg}
+
+\begin{note}[]
+	$\left| \sum_{ n=0}^{\infty} a_n \right| \leq \sum_{ n=0}^{\infty} |a_n| $ doesn't guarantee convergence because it can be oscillating divergence.
+\end{note}
+
+\subsubsection{Rearrangement}
+\begin{itemize}
+	\item The real numbers possesses a property known as the \emph{communitive property of addition} which states that the order in which we form a finite sum doesn't matter.
+	\item Given a series $\sum_{ n=1}^{\infty} a_n$ with partial sums $(s_N)$, if we formulate the sum in a different order then this results in a different series and is known as a \emph{rearrangement} of the original series.
+\end{itemize}
+
+\begin{thm}[]
+Let $ \sum a_n$ be a series of real numbers which converges but not absolutely. Suppose $-\infty \leq \alpha\leq \beta \leq \infty$. Then there exists rearrangements of the original series, say, $\sum \hat{\alpha}_n$ and $\sum \hat{\beta}_n$, such that
+\[
+\sum_{ n=1}^{\infty} \hat{\alpha}_n \text{ and } \sum_{ n=1}^{\infty} \hat{\beta}_n \text{ where } -\infty\leq \alpha \leq \beta \leq \infty  
+.\] 
+\end{thm}
+
+\subsubsection{Ratio test}
+Suppose $\lim_{ n \to \infty} \left| \frac{a_{n+1}}{a_n} =R \right| $. If $R<1$, then the series  $\sum_{ n=0}^{\infty} a_n$ converges absolutely, if $R>1$ then the series diverges and if  $R=1$ the it's inconclusive.\\
+
+Use ratio test to determine the convergence of Taylor series, which is "radius of convergence".
+
+
+\end{document}

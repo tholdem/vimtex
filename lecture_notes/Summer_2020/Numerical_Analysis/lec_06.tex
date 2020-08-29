@@ -1,0 +1,100 @@
+\documentclass[class=article, crop=false]{standalone} 
+\usepackage{amsmath, amsfonts, amsthm, amssymb, graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+	
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{coro}{Corollary}
+\newtheorem{prop}{Proposition}
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand\qedsymbol{}
+
+\theoremstyle{remark} 
+\newtheorem{case}{Case}
+
+\newcommand{\rr}{\ensuremath{\mathbb{R}}}
+\newcommand{\zz}{\ensuremath{\mathbb{Z}}}
+\newcommand{\qq}{\ensuremath{\mathbb{Q}}}
+\newcommand{\nn}{\ensuremath{\mathbb{N}}}
+\newcommand{\ff}{\ensuremath{\mathbb{F}}}
+
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\pdfsuppresswarningpagegroup=1
+
+
+\begin{document}
+\section{Taylor expansion for multivariable functions}
+
+$f(x+dx,y+dy,z+dz) = [e^{(dx \frac{\partial}{\partial x} + dy \frac{\partial}{\partial y} + dz \frac{\partial}{\partial z})}] f(x,y,z) $ 
+\section{1st order ODE IVP}
+\subsection{Euler's Method}
+$y'=f(x,y),y(a)=y_a, a \leq x \leq b$. 
+Divide $[a,b]$ into equal parts,  $h=\frac{b-a}{n} $, so for each step, we have $x_i$ and $x_{i+1}$.
+
+Then
+\[
+	\int_{x_i}^{x_{i+1}} \frac{dy}{dx}dx= \int_{x_i}^{x_{i+1}} f(x,y(x) )dx  
+.\] 
+Then approximately we get
+\[
+	y_{i+1}=y_i + f(x_i,y_i) \cdot h
+.\] 
+Using Taylor's expansion, we can get
+\[
+	y(x+h) =y(x) +\frac{h}{1!}y'(x) +\frac{h^2}{2!}y''(x) + \ldots \approx y(x) + h y'(x) = y(x)+h f(x,y)   
+.\]
+which gives us the same thing.
+The error is $\mathcal{O}(h) $.
+
+\subsection{Higher order Taylor method}
+We know that $y^{(n)}=f^{(n-1)}(x_i,y_i) $. 
+Let $T^{(n)}(x_i,y_i) = \sum_{k=1}^n  \frac{h^{k-1}}{k!} f^{(k-1)}(x_i,y_i)$. 
+Then we can write $w_{i+1} = w_i + h T^{(n)}(x_i,y_i) $.
+
+\subsection{Runge-Kutta Methods}
+Taylor needs to compute the derivative of the function.
+We can do something similar to Gaussian quadrature, to find the ideal points so it is equivalent as evaluating the slope.
+Consider
+\[
+	w_{i+1}=w_i + h [a \cdot f(x_i+\alpha,w_i+\beta) ]
+.\] 
+When $ n =2$,
+\begin{equation*}
+\begin{split}
+	T^{(2)}(x,y) &= f(x,y) +\frac{h}{2}f'(x,y)\\
+		     &= f(x,y)  + \frac{h}{2} \left[  \frac{\partial f}{\partial x} \frac{\partial x}{\partial x} + \frac{\partial f}{\partial y} \frac{\partial y}{\partial x}  \right] \\
+		     & = f(x,y) + \frac{h}{2} [f_x (x,y) \frac{\partial x}{\partial x} + f_y (x,y) f(x,y)    ]
+\end{split}
+\end{equation*}
+and
+\[
+	a f(x+\alpha,y+\beta) = a [f(x,y) + \alpha f_x + \beta f_y] + \ldots
+.\] 
+Now we compare and get $a=1,a \cdot  \alpha = \frac{h}{2}, a \cdot \beta = \frac{h}{2}f(x,y)$. Therefore,
+\[
+	w_{i+1} = w_i + h f(x_i+\frac{h}{2},w_i + \frac{h}{2}f(x_i,w_i) ) 
+.\] 
+Now the local truncation error is $\mathcal{O}(h^2) $.
+This is called 2nd order R-K method, or midpoint method. It uses the slope at the midpoint.
+
+In general, there is no one magic location that gives you the equivalence of 4th order Taylor. We need four.
+
+When $n=4$
+\begin{equation*}
+\begin{split}
+	k_1 &= h f(x_i,w_i)\\ 
+	k_2 & = h f(x_i+\frac{h}{2},w_i + \frac{k_1}{2}) \\
+	k_3 & = h f(x_1 + \frac{h}{2},w_i + \frac{k_2}{2}) \\
+	k_4 & = h f(x_i + h, w_i+k_3)\\
+	w_{i+1} &= w_i + \frac{1}{6}(k_1+2k_2+2k_3+k_4) 
+\end{split}
+\end{equation*}
+The local truncation error is $\mathcal{O}(h^4) ) $.
+
+\section{Extrapolation}
+\section{Higher order}
+\end{document}

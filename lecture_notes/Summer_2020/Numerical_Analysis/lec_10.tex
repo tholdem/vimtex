@@ -1,0 +1,124 @@
+\documentclass[class=article, crop=false]{standalone} 
+\usepackage{amsmath, amsfonts, amsthm, amssymb, graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+	
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{coro}{Corollary}
+\newtheorem{prop}{Proposition}
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand\qedsymbol{}
+
+\theoremstyle{remark} 
+\newtheorem{case}{Case}
+
+\newcommand{\rr}{\ensuremath{\mathbb{R}}}
+\newcommand{\zz}{\ensuremath{\mathbb{Z}}}
+\newcommand{\qq}{\ensuremath{\mathbb{Q}}}
+\newcommand{\nn}{\ensuremath{\mathbb{N}}}
+\newcommand{\ff}{\ensuremath{\mathbb{F}}}
+
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\pdfsuppresswarningpagegroup=1
+
+
+\begin{document}
+\section{Matrices}
+\subsection{Round-off error}
+Ill-conditioned: if the columns are almost dependent. A small change in the RHS can yield drastically different solutions as an almost parallel line shifted.
+
+If $\gamma$ is the angle between two linear equations, then
+\[
+\tan \gamma = \frac{a_{11}a_{22}-a_{12}a_{21}}{a_{11}a_{12}+a_{21}a_{22}}
+.\] 
+
+As this quantity $\to 0$, $\gamma \to 0$.
+
+Symptoms of ill-conditioned: 
+\begin{itemize}
+	\item if $|det A|<< \max|a_{ij}| or \max|b_i|$
+	\item poor approximation solutions with small residuals
+	\item elements of $A^{-1}$ are large compared to elements of 
+\end{itemize}
+Signs of well-conditioned: |diagonal elements|>>|off-diagonal elements|
+
+To tackle this problem:
+\begin{itemize}
+	\item want the largest coefficient in all rows to be comparable, rescale the rows
+	\item rearrange the rows to place the largest elements on diagonal
+\end{itemize}
+
+\subsection{Gauss-Seidel Method}
+\begin{align*}
+	x_i &= \frac{b_i}{a_{ii}} \\
+	&\ldots\\
+	x_i^* &=  \frac{b_i -\sum_{j=1,j \neq i}^{ n} a_{ij} x_j }{a_{ii}}\\
+	x_i* &= \frac{b_i-\sum_{ j=1}^{ i-1} a_{ij} x_j^* -\sum_{ j=i+1}^{ n} a_{ij} x_j^* }{a_{ii}}
+\end{align*}
+\subsection{Residuals}
+\begin{align*}
+	r&= b-Ax \\
+	r_i&= b_i - \sum_{ j=1}^{ n} a_{ij} x_j\\
+	   &= b_i - \sum_{ j=1}^{ i-1}  a_{ij} x_j - a_{ii}x_i - \sum_{ j=i+1}^{ n} a_{ij} x_j \\
+	   &=  b_i - a_{ii}x_i - (\sum_{ j=1}^{ i-1} a_{ij} x_j*  + \sum_{ j=i+1}^{ n} a_{ij} x_j) \\
+	   &= a_{ii} x_i^* - a_{ii} x_i \\
+	x_i^* &= x_i + \frac{r_i}{a_{ii} }
+\end{align*}
+\subsection{Relaxation Methods}
+
+\[
+	x_i^* = x_i + \omega \frac{r_i}{a_{ii}}
+.\] 
+where $\omega$ is the relaxation constant. If $0<\omega<1$, it is under-relaxation; if $\omega>1$, it is over-relaxation.
+Some systems do not converge unless we use $0<\omega<1$.
+When using systems to solve PDEs can use over-relaxation to speed up convergence.
+
+
+\subsection{Matrix Inversion}
+
+\subsubsection{Iterative Method}
+
+For the problem $x \cdot a = 1$, we can solve it using Newton's method on $f(x)=\frac{1}{x}-a=0$. Then we have 
+\[
+	x_{i+1}=x_i(2-ax_i)
+.\] 
+
+Can we extend this finding to matrices?
+Yes but it's only guaranteed to converge if all eigenvalues of $I-Ax$ $ |\lambda_i| <1 $.
+\[
+	X_{i+1}=X_i(2I-AX_i)
+.\]
+This $X_i$ will eventually give us $A^{-1}$. The error is also $\mathcal{O}(h^2)$, for each entry.
+
+\subsection{Eigenvalues and Eigenvectors}
+The set of all eigenvalues are called spectrum. And $|\lambda_{\max}|$ is called the spectral radius.
+
+\subsubsection{Gershgorin Theorem}
+Let $\lambda$ be an eigenvalue of an arbitrary matrix $A = (a_{ij}) $. Then
+\[
+	|a_{ii}-\lambda|\leq \sum_{j=1,j\neq i}^n |a_{ij} |
+.\] 
+The eigenvalues lie in the union of the Gershgorin disks (Gershgorin domain) centered at the diagonal entries with radius of the sum of the off-diagonal entries of that row.
+
+\subsubsection{Collatz Theorem}
+Let $A=(a_{ij}) $ be a real square matrix with positive elements, and $x$ be any real vector with positive components, $y$ be the components of $y=Ax$. Then the closed interval bounded by $\left| \frac{y_i}{x_i} \right|_{\min} $ and $\left| \frac{y_i}{x_i} \right|_{\max} $ contains at least an eigenvalue of $A$.
+
+\subsubsection{Rayleigh Quotient}
+Given a real symmetric matrix $A$, a real and non-zero vector $x$, compute
+\begin{align*}
+	x_i&=Ax_{i-1}\\
+	m_i &= x_i^{T} x_i TODO
+\end{align*}
+Then $q=\frac{m_i}{m_{i-1}}=\frac{x_{i-1}^{T}x_i}{x_{i-1}^{T} x_{i-1}} TODO$ is an approximate to an eigenvalue of $A$. 
+And the error $\epsilon=q-\lambda$ is 
+\[
+	|\epsilon| \leq \sqrt{\frac{m_2}{m_0}-q^2}= \sqrt{\frac{x_i^{T}x_i}{x_{i-1}^{T}x_{i-1}}-\frac{x_{i-1}^{T}x_i}{x_{i-1}^{T}x_{i-1}}} TODO 
+.\] 
+
+Why does it work?
+Multiplying lots of $A$s makes $x_{i-1}$ starting to look like $v_1$, so the Rayleigh quotient gives $\lambda_1$. 
+\end{document}

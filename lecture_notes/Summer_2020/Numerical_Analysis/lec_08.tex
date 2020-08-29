@@ -1,0 +1,71 @@
+\documentclass[class=article, crop=false]{standalone} 
+\usepackage{amsmath, amsfonts, amsthm, amssymb, graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+	
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{coro}{Corollary}
+\newtheorem{prop}{Proposition}
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand\qedsymbol{}
+
+\theoremstyle{remark} 
+\newtheorem{case}{Case}
+
+\newcommand{\rr}{\ensuremath{\mathbb{R}}}
+\newcommand{\zz}{\ensuremath{\mathbb{Z}}}
+\newcommand{\qq}{\ensuremath{\mathbb{Q}}}
+\newcommand{\nn}{\ensuremath{\mathbb{N}}}
+\newcommand{\ff}{\ensuremath{\mathbb{F}}}
+
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\pdfsuppresswarningpagegroup=1
+
+
+\begin{document}
+\section{Project: Cooling of Flat Plate}
+
+\[\eta = \frac{y}{\sqrt{\frac{V_x}{U_\infty}} }\]
+Does heat diffuse faster than momentum? High viscosity $\implies$ low heat diffusivity, high momentum diffusivity.
+\[
+	G(\eta)=\frac{t-t_\infty}{t_w-t_\infty}
+.\] 
+We can transform the PDEs into two coupled ODEs.
+\[
+	F'''+\frac{1}{2}F F''=0, F(0)=0, F'(0)=0, F'(\infty)=1
+.\] 
+\[
+	G'' + \frac{P_r F G')}{2} =0, G(0)=1,G(\infty)=0
+.\] 
+where \[
+P_r = \frac{V}{\alpha}
+.\]
+This is a boundary value problem, not an IVP. We need to convert it to an IVP.
+
+Using the garden hose technique, we adjust the value of $f''(0)$ until  $F'(\infty) \to 1$. Then we can transform a third-order ODE into a system of three first order ODEs. 
+
+Let $P_r=5$, guess $F''(0)=0.332057, G'(0)=-0.576689$,  use step size of 0.1 with $\eta$ from 0 to 10 (a number large enough to be considered as infinity), 
+
+\begin{equation*}
+\begin{split}
+	F&= y_1 \\
+	F'&= y_1'=y_2 \\
+	F''&= y_2'=y_3 \\
+	F'''&= y_3'=\frac{1}{2}F F'' \\
+	G&= y_4 \\
+	G'&= y_4'=y_5 \\
+	G''&=y_5'=\frac{1}{2}P_r F G'
+\end{split}
+\end{equation*}
+where $y_1(0)=0,y_2(0)=0,y_3(0)=332057, y_4(0)=1,y_5(0)=0.576689$.
+
+We need $F'(10) \to 1, G'(10) \to 0$ by adjusting $F''(0),G''(0)$. And notice that F''(0) is positive, G'(0) is negative  and bounded regardless of $P_r$.
+
+Plot $F(\eta),G(\eta)$ vs  $\eta$, and  $\eta$ vs  $P_r$.
+
+
+\end{document}

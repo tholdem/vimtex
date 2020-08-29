@@ -1,0 +1,97 @@
+\documentclass[class=article, crop=false]{standalone} 
+\usepackage{amsmath, amsfonts, amsthm, amssymb, graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+	
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{coro}{Corollary}
+\newtheorem{prop}{Proposition}
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand\qedsymbol{}
+
+\theoremstyle{remark} 
+\newtheorem{case}{Case}
+
+\newcommand{\rr}{\ensuremath{\mathbb{R}}}
+\newcommand{\zz}{\ensuremath{\mathbb{Z}}}
+\newcommand{\qq}{\ensuremath{\mathbb{Q}}}
+\newcommand{\nn}{\ensuremath{\mathbb{N}}}
+\newcommand{\ff}{\ensuremath{\mathbb{F}}}
+
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\pdfsuppresswarningpagegroup=1
+
+
+\begin{document}
+\section{Project 2}
+\begin{align*}
+	k &= B e^{-\frac{E}{RT}} \\
+	\frac{dA_f}{dt}&=-k A_f e^{-\frac{E}{RT}} \qquad T=T(t)
+\end{align*}
+\subsection{Non-adiabotic explosion}
+\begin{align*}
+	\frac{dE}{dt} &= \frac{dQ}{dt}-S \qquad S=H(T-T_0) \\
+	C_N \frac{dT}{dt} &=  -k \frac{dA_f}{dt}-H(T-T_0) \qquad T(0)=T_0 \\
+\end{align*}
+where the LHS is the increase in internal energy, first term of RHS is the rate of heat release, and the last term is the rate of heat loss.
+Define $\hat{T}=\frac{T}{T_0}=1+\epsilon \theta$, $\tau=\frac{t}{t_r}$, so that $\hat{T}(0)=1$. $\epsilon = \frac{T_0 R}{E}$. 
+
+\[
+\frac{d\theta}{d\tau}=e^{\theta} - \frac{\theta}{\delta}
+.\] 
+where $\delta \propto \frac{1}{H}$.
+
+Let $\tau=\delta \sigma$ and we obtain
+\[
+	\frac{d\theta}{d\sigma} = \delta e^{\theta} - \theta \qquad \theta(0)=0
+.\] 
+The more heat is lost to the environment, the more delay there is for the explosion time. We can do this to prevent explosion for forever. It's called a fizzle.
+
+If $\delta e^{\theta}>\theta$, then $\theta$ always grows exponentially with time.
+If $\delta e^{\theta} < \theta$, then $\theta$ converges.
+At osculation point, both the magnitude and slope are equal:
+\begin{align*}
+	\delta^* e^{\theta^*} &= \theta^* \\
+	\delta^* e^{\theta^*} &= 1 \\
+\end{align*}
+If $\delta > \frac{1}{e}$, explosion; If $\delta<\frac{1}{e}$, fizzle.
+
+\begin{itemize}
+	\item $\theta << 1$ and $\sigma<<1$: we can use taylor expansion on $e^{\theta}$,giving
+		\begin{align*}
+			\frac{d \theta}{d\sigma}&=\delta(1+\theta+\frac{\theta^2}{2}+\ldots)-\theta\\
+						& \approx \delta + (\theta-1) \delta\\
+			\theta & = \frac{\delta}{\delta-1} (e^{(\delta-1)\sigma}-1)\\ 
+		 \end{align*}
+	 \item $\sigma \to \infty$ and $\theta \to \theta_\infty$, so $\frac{d\theta}{d\sigma}<<1$
+		 \begin{align*}
+		 	\frac{d\theta}{d\sigma}&\approx \theta \\
+			\frac{e^{\theta_f}}{\theta_f}&=   \\
+		 \end{align*}
+	\item we can swap independent and dependent variables to avoid a stiff problem using RK4, solve for $\sigma$
+		\[
+			\sigma=\frac{1}{\delta-1}\ln \left[ \frac{\theta+\frac{\delta}{\delta-1}}{\frac{\delta}{\delta-1}} \right] 
+		.\]
+		This is zero divide by zero, so we need to use L'Hopital's Rule with respect to $\delta$ and get
+		\[
+			\theta=\sigma \text{ early solution}
+		.\]
+	\item $\theta \to \infty$ and $\sigma \to \sigma_t$:
+	\begin{align*}
+		\frac{d \theta}{d\sigma}&\approx \delta e^{\theta} \\
+		-e^{-\theta} &= \delta \sigma + C, \text{let } C=- \delta \sigma_e \\
+		\sigma&= \sigma_e - \frac{e^{-\theta}}{\delta} \text{ explosion limit solution}\\
+	\end{align*}
+	We still need to find $\sigma_e$
+	\begin{align*}
+		\frac{d\sigma}{d\theta}&= \frac{1}{\delta e^{\sigma}-\theta} \\
+		\int \frac{d\sigma}{d\theta}&= \int_{ \theta_0}^{ \theta}   \\
+		&= \int_{ 0}^{ \th\eta} \frac{dx}{\delta e^{x}-x}   \\
+		\sigma - 0&=   \int_{ 0}^{ \th\eta} \frac{dx}{\delta e^{x}-x} \\
+	\end{align*}
+\end{itemize}
+\end{document}

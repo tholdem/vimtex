@@ -1,0 +1,81 @@
+\documentclass[class=article, crop=false]{standalone} 
+\usepackage{amsmath, amsfonts, amsthm, amssymb, graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+	
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{coro}{Corollary}
+\newtheorem{prop}{Proposition}
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand\qedsymbol{}
+
+\theoremstyle{remark} 
+\newtheorem{case}{Case}
+
+\newcommand{\rr}{\ensuremath{\mathbb{R}}}
+\newcommand{\zz}{\ensuremath{\mathbb{Z}}}
+\newcommand{\qq}{\ensuremath{\mathbb{Q}}}
+\newcommand{\nn}{\ensuremath{\mathbb{N}}}
+\newcommand{\ff}{\ensuremath{\mathbb{F}}}
+
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\pdfsuppresswarningpagegroup=1
+
+
+\begin{document}
+\section{Direct method}
+Consider
+\[
+	\int_{-1}^1 f(x)dx = a f(-1) +b f(0) +c f(1)   
+.\] 
+Now pretend $f(x)=1,x,x^2,\ldots$, keep plugging in the next order until we get inconsistency. Then we obtain the same coefficient as Simpson's rule.
+
+But we don't have to stick with $x=-1,0,1$. If we let  $x=-\frac{2}{3,0,\frac{2}{3}}$, then we get something different.
+
+We can generalize even further. Consider
+\[
+	\int_{-1}^1 f(x) \sin \frac{\pi}{2}x dx =  a f(-1) +b f(0) +c f(1)
+.\] 
+Repeat the same procedure and we obtain the weighted values.
+
+Transforming integrals:
+Let $t = \frac{2x-a-b}{b-a}$, hence
+\[
+	\int_a^b f(x) dx = \int_{-1}^1 f\left( \frac{t(b-a)+a+b}{2} \right) \frac{b-a}{2} dt 
+.\] 
+
+\section{Gaussian Quadrature}
+We want to find:
+\[
+	\int_{-1}^1 f(x)dx = \sum_{i=1}^n c_i f(x_{i}) 
+.\] 
+$c_i and x_{i}$ give us $2n$ parameters to choose, so the polynomial is at most  $2n-1$ degree.
+
+\subsection{Legendre Polynomials}
+They are orthogonal with respect to the inner product $\int_{-1}^1 P(x)P_n(x)dx $, where $P_n(x)$ is the nth Legendre polynomial.
+
+Example:
+\[
+\int_0^1 e^{(-x^2)}dx = \frac{1}{2}\int_{-1}^1 e^{(-\frac{t+1}{2})^2}dt
+.\] 
+This is a lot less work than Simpson's.
+
+Advantage: good accuracy\\
+Disadvantage: uneven spacing, so if we don't know $f(x)$ there might be too much interpolation.
+
+\section{Improper Integrals}
+
+Consider the integration of functions with a singularity at $x=a$ (left endpoint) of the form:
+ \[
+	 f(x) = \frac{g(x) }{(x-a)^{p}} 
+.\] 
+where $g(x) $ is continuous on $[a,b]$. And we want $\int_a^b f(x) $. Note this converges iff $0<p<1$. 
+
+For right singularity, you can just flip the expression. For middle singularity, break it into two parts.
+
+If infinity appears, change variable to $t=\frac{1}{x}$.
+\end{document}

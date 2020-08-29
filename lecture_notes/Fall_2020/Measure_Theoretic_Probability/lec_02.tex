@@ -1,0 +1,132 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Measures}
+\begin{defn}[Measurable Space]
+	Let $\Omega$ be a non-empty set, $\mathcal{F}$ be a $\sigma$-field on $\Omega$. $(\Omega,\mathcal{F})$ is a \allbold{measurable space}. 
+\end{defn}
+
+\begin{defn}[Measure]
+	A \allbold{measure} on this space is a function $\mu: \mathcal{F} \to [0,\infty]$ with the properties:
+	\begin{enumerate}[label=(\roman*)]
+		\item  $\mu(\O)=0$
+		\item $A_1,A_2,\ldots \in \mathcal{F}$, disjoint $\implies \mu\left( \bigcup_{n= 1}^{\infty} A_n \right) = \sum_{ n=1}^{\infty} \mu(A_n)$ (countable additivity)
+	\end{enumerate}
+\end{defn}
+
+\begin{defn}[Probability Measure]
+	Let $(\Omega,\mathcal{F})$ be a measurable space. A \allbold{probability measure} is a function $P: \mathcal{F} \to [0,1]$ and has $P(\Omega) =1$.
+
+\end{defn}
+\begin{notation}
+	$\mu=$ general measure, $P=$ probability measure,  $\lambda=$ Lebesgue measure.
+\end{notation}
+
+\begin{note}
+\begin{enumerate}
+	\item countable additivity $\implies$ finite additivity: if $A_1,\ldots,A_n \in \mathcal{F}$ disjoint. $\mu\left( \bigcup_{i= 1}^{ n} A_i \right) = \sum_{ i=1}^{ n} \mu(A_i)$.
+	\item For any $A\in \mathcal{F}$, $1=P(\Omega)=P(A \cup A^{c}) = P(A) + P(A^{c}) \implies P(A^{c})=1-P(A)$.
+	\item If $A,B \in \mathcal{F}$ and $A \subset B$, then $P(A) \leq P(B)$. Since $B=A \cup (B \setminus A) = A \cup (B \cap A^{c})$ which are disjoint.
+	\item A measure is "countably subadditive". \emph{i.e.}: $A_1,\ldots \in \mathcal{F}$ are not necessarily disjoint, 
+		\[
+			\mu\left( \bigcup_{n= 1}^{\infty} A_n  \right) \leq \sum_{ n=1}^{\infty} \mu(A_n)
+		.\] 
+\end{enumerate}
+\begin{prf}
+\begin{align*}
+	\mu\left( \bigcup_{n= 1}^{\infty} A_n \right) &= \mu(A_1 \cup \ldots) \\
+						      &= \mu(A_1 \cup (A_2 \setminus A_1) \cup (A_3 \setminus A_2 \setminus A_1) \ldots) \\
+						      &= \mu(A_1) + \mu(A_2 \setminus A_1) + \ldots \qquad  \text{(countable additivity)}  \\
+						      &\leq \mu(A_1) + \mu(A_2) + \ldots  \\
+\end{align*}
+\end{prf}
+\end{note}
+
+\begin{defn}[Probability space]
+	Let $(\Omega,\mathcal{F})$ be a measurable space. Let $P$ be a probability measure on  $(\Omega,\mathcal{F})$. The triple $(\Omega,\mathcal{F},P)$ is called a \allbold{probability space}.
+\end{defn}
+\begin{eg}[]
+	$\Omega=[0,1]$, $\mathcal{F}=\mathcal{B}([0,1]) =$ all Borel sets on $[0,1]$. Let $P =$ Lebesgue measure. Then $(\Omega,\mathcal{F},P)$ is a probability space.  
+\end{eg}
+
+\section{Existence and Uniqueness of Measures}
+
+Let $\Omega$ be a non-empty set. Let $\mathcal{F}_0$ be a field on $\Omega$. Let $\mathcal{F} = \sigma(\mathcal{F}_0)$. Suppose $P$ is a probability measure on  $\mathcal{F}_0$. $(P(\bigcup_{n= 1}^{\infty} A_n) = \sum_{ n=1}^{\infty} P(A_n)$ only holds if $\bigcup_{n= 1}^{\infty} A_n \in \mathcal{F}_0$, disjointed.
+
+Let's extend $P$ from  $\mathcal{F}_0$ to $\mathcal{F}$.
+
+\begin{defn}[Outer measure $P^* $]
+	The \allbold{outer measure} is defined as 
+	\[
+		P^* (A) = \inf\left\{\sum_{ n=1}^{\infty} P(A_n): A_n \in \mathcal{F}_0, A \subset \bigcup_{n= 1}^{\infty} A_n\right\} \qquad \text{for any} A \in \mathcal{F} 
+	\]
+\end{defn}
+\begin{note}[]
+This is well-defined since there exists at least one cover $A \subset  \bigcup_{n= 1}^{\infty} A_n$ \emph{i.e.}:  $A_1 = \Omega, A_n=\O$ for $n \geq 2$.
+\end{note}
+
+\subsection{Properties of $P^* $}
+\begin{enumerate}
+	\item $P^* (\O)=0$. Pf: Take $A_n=\O$, $P(A_n)=0$. The infimum cannot go lower than 0.
+	\item For any $A \subset  B$, $P^*(A) \leq P^* (B)$ (monotone). Pf: Any cover of $B$ is a cover of $A$.
+	\item For any  $A \in \mathcal{F}_0$, $P^* (A) \leq P(A)$. Pf: Take $A_1=A, A_n=\O$ for $n\geq 2$. 
+	\item "countable subadditivity":  \emph{i.e.} for any $A_1,\ldots,A_n \in \mathcal{F}$ 
+		\[
+			P^* \left( \bigcup_{n= 1}^{\infty} A_n \right) \leq \sum_{ n=1}^{\infty} P^* (A_n)
+		.\]
+\begin{prf}
+	Let $A=\bigcup_{n= 1}^{\infty} A_n$. Then we want to prove that $P^* (A) \leq \sum_{ n=1}^{\infty} P^* (A_n)$. 
+	For each $A_n$, $P^* (A_n) = \inf\{ \sum_{ k=1}^{\infty} P(A_{n_k}): A_{n_k} \in \mathcal{F}_0 \text{ and } A_n \subset \bigcup_{k=1}^{\infty} A_{n_k} \}$. Take any particular sequence that covers $A_n$. 
+	\[
+		A_n \subset \bigcup_{k= 1}^{\infty} A_{n_k}^*  
+	.\] 
+	Given $\epsilon>0$, by the definition of infimum, $\sum_{ k=1}^{\infty} P(A_{n_k}^* ) < P^* (A_n)+ \epsilon$.
+	Do this with $\epsilon_n=\frac{\epsilon}{2^{n}}$.
+	\[
+		\sum_{ k=1}^{\infty} P(A_{n_k}^* ) < P^* (A_n) + \frac{\epsilon}{2^{n}}
+	.\] 
+	Sum both sides over $n$:
+	 \begin{align*}
+		 \sum_{ n=1}^{\infty} \sum_{ k=1}^{\infty} P(A_{n_k}^*) &< \sum_{ n=1}^{\infty} P^* (A_n) + \epsilon \\
+		 \sum_{n,k} P(A_{n_k}^* ) &< \sum_{ n=1}^{\infty} P^*(A_n) +\epsilon
+	\end{align*}
+	Note that $A_n \subset \bigcup_{k= 1}^{\infty} A_{n_k}^*  \implies A := \bigcup_{n= 1}^{\infty} A_n \subset \bigcup_{n,k} A_{n_k}^*$. Therefore, $ P(A) \leq P\left(\bigcup_{n,k} A_{n_k}^*\right) \leq \sum_{n,k} P(A_{n_k}^* )$ by monotone and countable subadditivity of $P$. 
+	By Property 3 pf $P^*$, $P^*(A) \leq P(A)$. Putting all together, we obtain
+\begin{align*}
+	P^*(A) &\leq P(A)  \\
+	       &\leq \sum_{ n=1}^{\infty} \sum_{ k=1}^{\infty} P(A_{n_k})  \\
+	       &< \sum_{ n=1}^{\infty} \left( P^*(A_n) + \frac{\epsilon}{2^{n}}\right) \\
+	       &= \sum_{ n=1}^{\infty} P^*(A_n) + \epsilon\\
+\end{align*}
+Let $\epsilon \to 0$, then $P^* (A) \leq \sum_{ n=1}^{\infty} P^*(A_n)$.
+\end{prf}
+\end{enumerate}
+
+
+\begin{defn}[Inner measure]
+\[
+	P_*(A) := 1 - P^* (A^{c})
+.\] 
+\end{defn}
+
+\begin{note}[]
+	The inner and outer measures agree if $P^*(A^{c})=1-P^* (A)$. We proceed in defining $P$ for  $A \in \mathcal{F}$ as $P^* $ whenever this holds.
+\end{note}
+
+Consider all sets for which $p^* (A^{c})=1-P^* (A)$ and ..
+\[
+	\mathcal{M} := \{A \subset  \Omega: P^* (A \cap E) + P^* (A^{c} \cap E) = p^* (E) \forall  E \subset  \Omega\}
+.\] 
+Fact: $P^* (\Omega) = 1$.
+If we take $E=\Omega$, then we obtain the agreement. $\mathcal{M}$ is the collection of $P^* $-measurable sets.
+
+\begin{note}[]
+For any $A,E \subset \Omega$, 
+\[
+	P^* (E) = P^* ((A \cap E) \cup (A^{c} \cap E))
+	\leq P^* (A \cap E) + P^* (A^{c} \cap E) \qquad \text{count add} 
+.\] 
+So $\mathcal{M}$ can be defined equivalently as $\mathcal{M}=\{A \subset \Omega: P^* (A \cap E) + P^* (A^{c} \cap E \leq p*(E) \forall  E \subset  \Omega\}$
+\end{note}
+\end{document}

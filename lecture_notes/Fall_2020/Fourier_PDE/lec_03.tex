@@ -1,0 +1,57 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\subsubsection{Polar Coordinates}
+$P(r,\theta)=P(x,y)$
+\subsubsection{Spherical Coordinates}
+$P(\rho,\theta,\phi)=P(x,y,z)$\\
+
+\begin{defn}[Vector Field]
+	Let $E$ be a subset of $\rr^3$. A \allbold{vector field} on $\rr^3$ if function $F$ that assigns to each point  $(x,y,z)$ in $E$ a three dimensional vector $F(x,y,z)$.
+\end{defn}
+\begin{defn}[Divergence]
+	Let $F(x,y,z)=\langle P(x,y,z),Q(x,y,z),R(x,y,z) \rangle$ be a vector field on $\rr^3$ and suppose the partial derivatives exist,
+	\[
+		\nabla \cdot F = \langle \partial x, \partial y, \partial z \rangle \cdot \langle P,Q,R \rangle
+	.\] 
+\end{defn}
+\begin{thm}[Divergence Theorem]
+	Let $E$ be a simple solid region and let $\partial E$ be the boundary surface of $E$, given with positive orientation. Let $F$ be a vector field then
+	 \[
+		 \int \int \int_E \nabla \cdot F dV = \int \int_{\partial E} F \cdot \allbold{n} dS 
+	.\]
+	This is a high dimensional version of the FTC
+	\[
+		\int_{ a}^{ b} \frac{d}{dx} F(x) dx = F(b) - F(a) = -1 \cdot F(a) + 1 \cdot F(b) 
+	.\] 
+\end{thm}
+\begin{note}[]
+The LHS of the divergence theorem, we have the integral of a derivative in the region $E$ and the RHS involves the contribution of the original function only on the boundary of the region $E$ in the outward normal direction.
+\end{note}
+
+\subsubsection{ODE}
+\\
+\begin{defn}[General solution]
+	A \allbold{general solution} of a linear ODE of order $N$ is a function  $y(x)$ such that
+	 \begin{itemize}
+		 \item $y(x)$ can be differentiated at least  $N$ times.
+		 \item  $y(x)$ and its first  $N$ derivatives satisfy the DE at all  $x$ in the domain of the equation.
+		 \item $y(x)$ contains exactly $N$ free constants. 
+	\end{itemize}
+\end{defn}
+
+\subsubsection{Superposition}
+\begin{eg}[Function space]
+	The function space $C^n(\rr)$ consisting of all functions $f(x)$ that have  $n$ continuous derivatives defined on  $\rr$ is a vector space under the usual operations of function addition and scalar multiplication of functions.
+\end{eg}
+
+\begin{eg}[]
+	For any $y \in C^1(\rr)$ and non-zero constant $\alpha$, define $L[y]=y'+\alpha y$, then $L: C^1(\rr) \to C^0(\rr)$ is a linear operator.
+\end{eg}
+\begin{thm}[Superposition Principle]
+	Suppose $v_1,v_2,\ldots,v_n$ are individual solutions to the homogeneous linear equation $L[v]=0$ then so is any linear combination  $c_1 v_1+c_2v_2+\ldots+c_n v_n$ where $c_i \in \rr$.
+\end{thm}
+
+
+\end{document}

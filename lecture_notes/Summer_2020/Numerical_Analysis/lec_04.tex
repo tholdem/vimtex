@@ -1,0 +1,82 @@
+
+\documentclass[class=article, crop=false]{standalone} 
+\usepackage{amsmath, amsfonts, amsthm, amssymb, graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+	
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{coro}{Corollary}
+\newtheorem{prop}{Proposition}
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand\qedsymbol{}
+
+\theoremstyle{remark} 
+\newtheorem{case}{Case}
+
+\newcommand{\rr}{\ensuremath{\mathbb{R}}}
+\newcommand{\zz}{\ensuremath{\mathbb{Z}}}
+\newcommand{\qq}{\ensuremath{\mathbb{Q}}}
+\newcommand{\nn}{\ensuremath{\mathbb{N}}}
+\newcommand{\ff}{\ensuremath{\mathbb{F}}}
+
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\pdfsuppresswarningpagegroup=1
+
+
+\begin{document}
+\section{Integration}
+\subsection{Trapezoidal Rule}
+We can build a degree one Lagrange polynomial for every two points.
+\begin{equation*}
+\begin{split}
+	A_1&=\frac{h}{2}(f_0+f_1)\\
+	\ldots	
+\end{split}
+\end{equation*}
+\subsection{Simpson's Rule}
+Now use every three points for Lagrange polynomial.
+\[
+	P_2 = \frac{(x-x_1) (x-x_2) }{(x_0-x_1)(x_0-x_2) }f_0 + \frac{(x-x_0) (x-x_2) }{(x_1-x_0)(x_1-x_2) }f_1 + \frac{(x-x_0) (x-x_1) }{(x_2-x_0)(x_2-x_1) }f_2
+.\] 
+We can use substitution $s = \frac{x-x_1}{h}$, so the equation simplifies to:
+ \[
+	 P_2 = \frac{1}{2}s(s-1) f_0 - (s+1) (s-1) f_1 + \frac{1}{2}(s+1) s f_2
+.\] 
+After integration we obtain
+\[
+	A_1 = \frac{h}{3} (f_0+ 4 f_1 +f_2) 
+.\]
+\[
+	\int_a^b f(x)dx = \frac{h}{3}[f_0+4f_1+2f_2+4f_3+\ldots+2 f_{n-2} + 4 f_{n-1} + f_n]
+.\] 
+
+
+\subsection{Newton-Cotes}
+After substitution $s = \frac{x-x_0}{h}$, and resetting $x=s$, consider
+\[
+	\int_0^1 f(x)dx = a f(0)  + b f(1)  
+.\] 
+Expand $f(x) $ as 
+\[
+	f(x) =f(0) + x f'(0) + \frac{x^2}{2}f''(0) + \ldots 
+.\]
+Integrate this expansion from 0 to 1, and expand $f(1) $, we can solve for $a,b$, we obtain  $a=b=\frac{1}{2}$.
+This leads to the trapezoidal rule.
+
+Similarly, consider
+\[
+	\int_{-1}^1 f(x) dx=a f(-1) + b f(0) + c f(1)  
+.\] 
+By doing the "grand accounting" again, we obtain the Simpson's rule, with error of $\mathcal{O}(h^5) $proportional to the 4th derivatives.
+
+\subsection{Example}
+Consider:
+\[
+\int_0^1 e^{(-x^2)}dx
+.\]
+
+\end{document}

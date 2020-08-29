@@ -1,0 +1,80 @@
+\documentclass[class=article, crop=false]{standalone} 
+\usepackage{amsmath, amsfonts, amsthm, amssymb, graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+	
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{coro}{Corollary}
+\newtheorem{prop}{Proposition}
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand\qedsymbol{}
+
+\theoremstyle{remark} 
+\newtheorem{case}{Case}
+
+\newcommand{\rr}{\ensuremath{\mathbb{R}}}
+\newcommand{\zz}{\ensuremath{\mathbb{Z}}}
+\newcommand{\qq}{\ensuremath{\mathbb{Q}}}
+\newcommand{\nn}{\ensuremath{\mathbb{N}}}
+\newcommand{\ff}{\ensuremath{\mathbb{F}}}
+
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\pdfsuppresswarningpagegroup=1
+
+
+\begin{document}
+\section*{Chapter 4 Numerical Derivatives}
+
+Using Taylor's expansion:
+\begin{equation*}
+\begin{split}
+	f'(x) &= \frac{f(x+h)-f(x)-\frac{h^2}{2}f''(x) - \ldots}{h}\\ 
+	&= \frac{f(x+h)-f(x)}{h} + \mathcal{O}(h) 
+\end{split}
+\end{equation*}
+This is the \textbf{forward difference}.
+
+Now try with $f(x-h) $:
+\[
+	f'(x) = \frac{f(x)-f(x-h)  }{h}+\mathcal{O}(h)  
+.\] 
+Now subtracting forward and backward differences:
+\begin{equation*}
+\begin{split}
+	f(x+h) -f(x-h) &=2hf'(x) + \frac{h^3}{3}f'''(x) \\ 
+	f'(x)&=\frac{1}{2h}(f(x+h) -f(x-h) )+ \mathcal{O}(h)  
+\end{split}
+\end{equation*}
+This is the \textbf{central difference}.
+
+Now consider the second derivatives by adding the forward and backward differences.
+ \[
+	 f''(x) = \frac{f(x+h)+f(x-h) -2f(x)  }{h} + \mathcal{O}(h^4) 
+.\] 
+
+Using three-point Lagrange Polynomials: see lecture notes. Differences are just a weighted average. Errors are all $\mathcal{O}(h^3)$.
+
+For second derivative using Lagrange polynomials, we obtain similar answer as from Taylor. But for third derivatives, Lagrange wouldn't work anymore because all three differences are zero now.
+
+Midpoint for 2nd derivatives from book:
+\[
+f'' \left(x_{0}\right)=\frac{1}{h^{2}}\left[f\left(x_{0}-h\right)-2 f\left(x_{0}\right)+f\left(x_{0}+h\right)\right]-\frac{h^{2}}{12} f^{(4)}(\xi) \]
+for some $\xi,$ where $x_{0}-h<\xi<x_{0}+h$
+
+Taylor Matching for forward difference:
+\begin{equation*}
+\begin{split}
+	f'(x) &= af(x+h) +bf(x)\\
+	      &=a[f(x) +hf'(x)+\frac{h^2}{2}f''(x) + \ldots]\\
+	      &+b[f(x) ]
+\end{split}
+\end{equation*}
+Trying to match/cancel them as much as possible, going down the derivatives of the function.
+
+
+
+\end{document}

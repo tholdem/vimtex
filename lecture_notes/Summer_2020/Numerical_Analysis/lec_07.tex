@@ -1,0 +1,82 @@
+\documentclass[class=article, crop=false]{standalone} 
+\usepackage{amsmath, amsfonts, amsthm, amssymb, graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+	
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{coro}{Corollary}
+\newtheorem{prop}{Proposition}
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand\qedsymbol{}
+
+\theoremstyle{remark} 
+\newtheorem{case}{Case}
+
+\newcommand{\rr}{\ensuremath{\mathbb{R}}}
+\newcommand{\zz}{\ensuremath{\mathbb{Z}}}
+\newcommand{\qq}{\ensuremath{\mathbb{Q}}}
+\newcommand{\nn}{\ensuremath{\mathbb{N}}}
+\newcommand{\ff}{\ensuremath{\mathbb{F}}}
+
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\pdfsuppresswarningpagegroup=1
+
+
+\begin{document}
+\section{Multi-step Methods}
+\subsection{Adams-Bashforth 3-step}
+\[
+	y_{i+1} = y_i + h [a f(x_{i},y_{i})+b f(x_{i-1},y_{i-1}) +c f(x_{i-2},y_{i-2})]   
+.\] 
+Using Taylor's series expansion on two previous points, -h and -2h away from $x_{i}$,
+\[
+y_{i+1} = y_i + h y_{i}' +\frac{h^2}{2} y_{i}''' + \frac{h^3}{6} + \ldots
+.\] 
+\[
+	f(x_{i-1},y_{i-1}) = y_{i}' - h y_{i}'' + \frac{h^2}{2} y_{i}'' - \frac{h^3}{6} y_{i}'''+\ldots
+.\]
+\[
+	f(x_{i-2},y_{i-2}) = y_{i}'-2h y_{i}'' + 2h^2 yi''' -\frac{4}{3}h^3 y_{i}''''
+.\] 
+
+Plugging back into the first equation, we obtain
+\begin{equation*}
+\begin{split}
+	h:& y_{i}'=a y_{i}'+6y_{i}'+cy_{i}'\\
+	h^2:& \frac{1}{2}y_{i}'' = -b y_{i}''-2 c y_{i}''\\
+	h^3:& \frac{1}{6}y_{i}''' = \frac{b}{2}y_{i}'''+ 2c y_{i}'''\\
+	h^4:& \frac{1}{24} = \ldots \text{ error}  
+\end{split}
+\end{equation*}
+And the grand accounting gives us the coefficients.
+\[
+	y_{i+1} = y_{i} + \frac{h}{12}[23f(x_{i},y_{i})-16 f(x_{i-1},y_{i-1}) +5 f(x_{i-2},y_{i-2})]  
+.\] 
+Let $\phi =  \frac{h}{12}[23f(x_{i},y_{i})-16 f(x_{i-1},y_{i-1}) +5 f(x_{i-2},y_{i-2})]   $.
+The local truncation error is $\tau_{i+1}(h) = \frac{y_{i+1}-y_{i}}{h} - \frac{\phi}{h}$ and is $\mathcal{O}(h^3) $.
+
+\subsection{Adams-Moulton Methods 2-step}
+We can also let
+\[
+	y_{i+1} = y_{i} + h [a f(x_{i+1},y_{i+1}) + b f(x_{i},y_{i} + c f(x_{i-1},y_{i-1}) ]
+.\]
+Note that this uses two old and one new points. Adams-Bashforth only uses old points. "Step" refers to old points only.
+
+\subsection{Predictor-Corrector Method/Modified Euler Method}
+We would like to use explicit method to find implicit solution.
+\[
+	y_{i+1}* = y_{i} + h f(x_{i},y_{i}) \\ 
+	y_{i+1} = y_{i} + \frac{h}{2} [f(x_{i},y_{i})+f(x_{i+1},y_{i+1}*)] 
+.\] 
+Average the slopes between two points.
+
+\subsection{Generating seed values}
+Suppose $y'=y+x$. If  $x$ is small, then $\frac{y'}{y} \approx 1$ and $y(0)=0$, whose solution is $y=0$, but this solution violated our assumptions.
+If $y$ is small, we get $y = \frac{x^2}{2}$. Since $x>> y=\frac{x^2}{2}$ for $|x|<<1$, so we can approximate  $y \approx \frac{x^2}{2}$
+
+
+\end{document}

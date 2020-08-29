@@ -1,0 +1,114 @@
+\documentclass[class=article, crop=false]{standalone} 
+\usepackage{amsmath, amsfonts, amsthm, amssymb, graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+	
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{coro}{Corollary}
+\newtheorem{prop}{Proposition}
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand\qedsymbol{}
+
+\theoremstyle{remark} 
+\newtheorem{case}{Case}
+
+\newcommand{\rr}{\ensuremath{\mathbb{R}}}
+\newcommand{\zz}{\ensuremath{\mathbb{Z}}}
+\newcommand{\qq}{\ensuremath{\mathbb{Q}}}
+\newcommand{\nn}{\ensuremath{\mathbb{N}}}
+\newcommand{\ff}{\ensuremath{\mathbb{F}}}
+
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\pdfsuppresswarningpagegroup=1
+
+
+
+\begin{document}	 
+\section{Bisection}
+\section{Fixed point}
+\[
+	e_n = r- x_n = g(r) - g(x_{n-1}) = (r-x_{n-1})g'(\xi) = e_{n-1}g'(\xi) \approx e_{n-1}g'(r)
+.\] 
+where $\zeta \in (x_n{n-1},r)$.
+\[
+	g(r) = g(x_{n-1}) + (r-x_{n-1})g'(x_{n-1}) + \ldots
+.\] 
+\[
+.\] 
+This is linear convergence.
+
+\[
+	\frac{e_{n+2}}{e_{n+1}} \approx \frac{e_{n+1}}{e_n}
+.\] 
+
+\section{Secant Method}
+$p_{n+1} = p_n - \frac{f( _{n+1})( p_{n+1} - p_n)}{f( p_{n+1}) -f( p_n)  }$
+
+"False Position"
+
+\subsection{"Sins"}
+\begin{itemize}
+	\item Do not subtract numbers that has very small differences
+	\item Do not divide with a piece of "garbage"
+	\item Do not set stopping criterion to equal 0, use $\epsilon$
+\end{itemize}
+
+\section{Newton's Method}
+\[
+	p_{n+1} = p_n - \frac{f(p_{n})}{f'(p_n)}
+.\]
+Problems with this method:
+\begin{itemize}
+	\item As  $p_n \to p*$, $f(p_n) \to 0$ . So the convergence gets slower.
+	\item really small slope near the r
+	\item local minimum
+	\item inflection point
+\end{itemize}
+Convergence:
+\[
+	e_n = \frac{f''(\xi)}{2f'(r)}e_{n-1}^2 \approx \frac{f''(r)}{2f'(r)}e_{n-1}^2
+.\] 
+If $e_{n+1}/e_n^\alpha = \lambda$, we call $\alpha$ the order of convergence.
+
+Aitken's $Delta^2$ Method
+
+Steffensen's Method
+\begin{itemize}
+	\item Pick $p_0$
+	\item $p_1= g(p_0)$
+	\item $p_2=g(p_1)$
+	\item compute $\hat{p_0}$ 
+	\item $p_0=\hat{p_0}$ 
+	repeat
+\end{itemize}
+
+If denominator $p_{n+2}-2p_{n+1}+p_n \approx 0$, then let $p_0=p_2$ in the next iteration instead.
+
+Consider $f(x)=ax^2+bx+c$. If $b^2 >> 4ac$ then error occurred in two roots might differ significantly. To compute the "small" root more accurately, we multiply the root equation by 1 using the conjugate.
+Assume $b>0$, the small root should be computed by
+\[
+	x=\frac{2c}{b+(b^2-4ac)^{ .5}}
+.\] 
+
+Instead of using secant, wouldn't it be better to use a parabola?
+Try $s(x)=a(x-x_2)^2+b(x-x_2)+c  $ 
+\[
+	f_0=a(x_0-x_2)^2+b(x_0-x_2)+c
+	f_1=\ldots
+	f_2=c
+.\] 
+Now we want the root $s(x_3)=0 $ that is closer to $x_2$, which is the "small" root.
+\[
+	x_3-x_2=-\frac{2c}{b+sgn(b)\sqrt{b^2-4ac}}
+.\] 
+This is cubic convergence.
+
+\[
+	p(x)=(x-z)[( x-z)Q_1(x)+R_1 ]+R_0 
+.\] 
+$R_0=p(z) $
+\end{document}

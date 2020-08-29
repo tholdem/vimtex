@@ -1,0 +1,48 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Complex Numbers}
+\subsection{Cartesian Coordinates}
+$a+bi, a,b \in \rr, i^2=-1$
+It is convenient to visualize it on a plane. 
+For equivalence, $c+di=e+fi \implies c=e,d=f$.
+ \[
+(a+bi)(c+di)=ac+bic+adi+bidi=(ac-bd)+(ad+bc)i
+.\]
+Complex number multiplication is distributive, commutative, and associative.
+In division, simplify denominator using complex conjugate.
+\[
+	\frac{a+bi }{c+di } = \frac{(a+bi)(c-di)}{(c+di)(c-di)} = \frac{(ac+bd)+(bc-ad)i}{c^2+d^2}	
+.\] 
+\subsection{Polar Coordinates}
+\begin{align*}
+	e^{i\theta}&=\cos \theta + \sin \theta\\
+		  re^{i\theta} &= r\cos\theta + r\sin\theta \\
+\end{align*}
+\begin{align*}
+	(r_1 e^{i\theta_1})(r_2e^{i\theta_2})&= r_1r_2e^{i(\theta_1+\theta_2)} \\
+\end{align*}
+\begin{align*}
+	\frac{r_1e^{i\theta_1}}{r_2e^{i\theta_2}}&= \frac{r_1}{r_2} e^{i(\theta_1-\theta_2)}\\
+\end{align*}
+Multiplication is easier in exponential form.
+\[
+r_1e^{i\theta_1}=r_2e^{i\theta_2} \implies r_1=r_2, \theta_1-\theta_2=2k\pi, k \in \zz
+.\] 
+
+Does $x^{5}=12817$ have a real root? Use the horizontal line test. Yes, every real number has a unique odd number root.\\
+
+Every nonzero complex number has precisely $n$ complex roots. The root is evenly spaced around the circle centered at the origin with such radius.
+
+Example:
+Find all solutions of  $z^2=i$.\\
+Let's use the exponential form:
+\begin{align*}
+	\left( re^{i\theta} \right)^2&=i  \\
+ \left( r^2e^{2i\theta} \right) &= 1e^{i\frac{\pi}{2}} \\
+\end{align*}
+So we require: $r^2=1$ and $2\theta-\frac{\pi}{2}=2k\pi$. Since there are only two roots, we increment $k$ once. So $k=0,1$.
+
+\end{document}
+

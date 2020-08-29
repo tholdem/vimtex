@@ -1,0 +1,77 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\subsection{Binary Operations}
+\begin{defn}[Identity]
+	A binary structure $(S,*)$ has an \allbold{identity} $e \in S$ if 
+	\[
+	e*x=x=x*e \quad \forall x \in S
+	.\] 
+\end{defn}
+\begin{defn}[Inverse]
+	If $e$ is the identity for $(S,*)$, then  $y$ is the  \allbold{inverse} for $x$ if
+	 \[
+	x*y=e=y*x
+	.\] 
+\end{defn}
+\begin{thm}[]
+An identity is unique if it exists.
+\end{thm}
+\begin{prf}
+	Suppose not, $e$ and  $e'$ are both identities for  $(S,*)$.
+	 \begin{align*}
+		e*e'&= e' \\
+		e*e'&= e
+	\end{align*}
+	Hence $e=e'$
+\end{prf} 
+
+\begin{thm}[]
+	Inverses if it exists it is unique if $(S,*)$ is associative.
+\end{thm}
+\begin{prf}
+Suppose not, $y$ and $y'$ are both inverses for  $x$. 
+ \begin{align*}
+	 (y*x)*y' &= y*(x*y')\\
+	 e*y' &= y*e \\
+	 y'&= y \\
+\end{align*}
+\end{prf}
+
+\begin{eg}[]
+$\{ 1,2,3,4,5,6\} $ under $\times_7$, inverse of $3$? 5.
+\end{eg}
+
+\begin{defn}[Binary operation]
+	A \allbold{binary operation} of a set $S$ is a function  $*: S \times S \to S$ 
+\end{defn}
+\begin{eg}[]
+$S=\zz$, $*=$ subtraction. 
+\end{eg}
+
+Three things that could go wrong with binary operations (due to definition of function):
+\begin{itemize}
+	\item not in $S$
+	\item no ambiguity
+	\item no gaps
+\end{itemize}
+How many binary operations are there on the $S=\{a,b,c\}$? $3^{9}$.
+In general, for an $n$-element set it is  $n^{n^2}$.
+
+\begin{defn}[Binary structure]
+	A \allbold{binary structure} $(S,*)$ is a set with a binary operations, $*$, on  $S$.
+\end{defn}
+
+\begin{thm}
+Composition of functions is associative.
+\end{thm}
+
+Consider $(\cc,\tim\O)$. Let's reduce this operation to $\qq$.
+If $a*b$ is still in $\qq$, then $*$ induces an operation on  $\qq$.
+
+\begin{eg}[]
+	$(\zz,+)$ integers under addition. It's closed for even numbers but not for odd numbers.
+\end{eg}
+\end{document}
+

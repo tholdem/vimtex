@@ -1,0 +1,86 @@
+\documentclass[class=article, crop=false]{standalone} 
+\usepackage{amsmath, amsfonts, amsthm, amssymb, graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+	
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{coro}{Corollary}
+\newtheorem{prop}{Proposition}
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\renewcommand\qedsymbol{}
+
+\theoremstyle{remark} 
+\newtheorem{case}{Case}
+
+\newcommand{\rr}{\ensuremath{\mathbb{R}}}
+\newcommand{\zz}{\ensuremath{\mathbb{Z}}}
+\newcommand{\qq}{\ensuremath{\mathbb{Q}}}
+\newcommand{\nn}{\ensuremath{\mathbb{N}}}
+\newcommand{\ff}{\ensuremath{\mathbb{F}}}
+
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\pdfsuppresswarningpagegroup=1
+
+\begin{document}
+\section{Horner's Method} 
+\begin{equation*}
+\begin{split}
+	P(x)&=(x-z)Q_0(z)+R_0 \\
+	    &=(x-z) [b_nx^{n-1}+ \ldots +b_1] +b_0\\
+	   a_n x^n + \ldots + a_0  &=(b_n x^n + b_{n-1}x^{b-1}+ \ldots +b_1 x )- z(b_n x^{n-1} + \ldots+b_1 )) +b_0 \\
+\end{split}
+\end{equation*}
+\begin{equation*}
+\begin{split}
+	b_n&=a_n\\
+	b_{n-1}&=a_{n-1}+zb_n\\
+	\ldots\\
+	b_1&=a_1+z b_2\\
+	b_0 &=a_0
+\end{split}
+\end{equation*}
+Let $b_{n+1}=0$\\
+Do this again
+\begin{equation*}
+\begin{split}
+	c_n&=b_n\\
+	\ldots\\
+	c_1&=b_1+z c_2
+\end{split}
+\end{equation*}
+Let $c_{n+1}=0$, $c_k=b_k+z c_{k+1} $.\\
+
+Root deflation: roots found in the end suffer more from numerical errors.\\
+
+\section{Chapter 3 Interpolation: Lagrange Polynomials}
+
+Let 
+\[
+	P(x) = \sum_{k=1}^n  P_k(x) = \sum_{k=0}^n L_{n,k} f(x_k)     
+.\] 
+where
+\[
+L_{n,k} =  \frac{ (x-x_0)(x-x_1)\ldots(x-x_{k-1})(x-x_{k+1}\ldots (x-x_{n}))}{(x_k -x_0)\ldots (x_k-x_{k-1})(x_k-x_{k+1}) (x_k-x_{n})))} 
+.\] 
+\[
+	e=\frac{f^{n+1}(\xi)}{n+1}! (x-x_0)(x-x_1)\ldots(x-x_n)      
+.\] 
+
+\section{Neville's Method}
+
+\section{Cubic Spline}
+Linear doesn't work because it's not smooth at the junctions.
+Quadratic misses one condition for the 6 parameters.
+Cubic is the sweet spot where 8 parameters have 8 reasonable conditions.
+Conditions for two consecutive cubic polynomials:
+\begin{itemize}
+	\item matches function values at two end points, for both functions
+	\item matches each other's values at the middle point 
+	\item matches derivatives at the middle point
+	\item matches 2nd derivatives at the overlapped points
+\end{itemize}
+\end{document}
