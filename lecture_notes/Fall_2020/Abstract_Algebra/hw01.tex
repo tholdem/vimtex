@@ -14,14 +14,130 @@
 \end{problem}
 
 \begin{problem}[1.31]
-	
+Given the small set, we would like to find the solution exhaustively:\\
+If $x=0$,  $0+_{7} 0 = 0 \neq 3$.\\
+If $x = 1$, $1 +_{7} 1 = 2 \neq 3$.\\
+If $x = 2$, $2 +_{7} 2 = 4 \neq 3$.\\
+If $x = 3$, $3 +_{7} 3 = 6 \neq 3$.\\
+If $x = 4$, $4 +_{7} 4 = 1 \neq 3$.\\
+If $x = 5$, $5 +_{7} 5 = 3$.\\
+If $x = 6$, $6 +_{7} 6 = 5 \neq 3$.\\
+We have covered all cases of $x \in \zz_7$, and have found that $x=5$ is the only solution.
 \end{problem}
-
+\begin{problem}[1.32]
+Again using exhaustive search:\\
+If $x=0$,  $0+_{7} 0 +_{7} 0  = 0 \neq 5$.\\
+If $x=1$,  $1+_{7} 1 +_{7} 1  = 3 \neq 5$.\\
+If $x=2$,  $2+_{7} 2 +_{7} 2  = 6 \neq 5$.\\
+If $x=3$,  $3+_{7} 3 +_{7} 3  = 2 \neq 5$.\\
+If $x=4$,  $4+_{7} 4 +_{7} 4  = 5$.\\
+If $x=5$,  $5+_{7} 5 +_{7} 5  = 1 \neq 5$.\\
+If $x=6$,  $6+_{7} 6 +_{7} 6  = 4 \neq 5$.\\
+Hence, $x=4$ is the only solution.
+\end{problem}
 \begin{problem}[1.35]
-
+Due to isomorphism, we know that $\zeta \times \zeta = \zeta^2$ is isomorphic to $5+_{8}5 = 2$. Repeating this process yields:
+\begin{align*}
+	5+_{8} 5 = 2 \qquad \zeta^2 & \leftrightarrow 2\\
+	2+_{8} +5 = 7 \qquad \zeta^3 & \leftrightarrow 7\\
+	7 +_{8} 5 = 4 \qquad \zeta^{4} & \leftrightarrow 4\\
+	4 +_{8} 5 = 1 \qquad \zeta^{5} & \leftrightarrow 1\\
+	1+_{8} 5 = 6 \qquad \zeta^{6} & \leftrightarrow 6\\
+	6+_{8} 5 = 3 \qquad \zeta^{7} & \leftrightarrow 3\\
+	3 +_{8} 5 = 0 \qquad \zeta^{0} &\leftrightarrow 0\\
+	0+_{8} 5 = 5 \qquad  \zeta^{1} & \leftrightarrow 5\\	
+\end{align*}
 \end{problem}
 
 \begin{problem}[1.37]
 Because $\zeta \leftrightarrow 4$ implies that $\zeta \times \zeta \leftrightarrow 4 +_{8} 4 = 0$, and $\zeta \times  \zeta \times \zeta \leftrightarrow 4+_{8} 4+_{8} 4 = 4$. And since isomorphism requires an one-to-one mapping between $U_6$ and $\rr_6$, yet both $\zeta$ and $\zeta^3$ map to $4$, the mapping cannot be one-to-one and therefore isomorphism doesn't exist.
 \end{problem}
+\begin{problem}[2.1]
+Table 2.26 tells us that $b*d=e$,  $c*c=b$, and 
+ \begin{align*}
+	 [(a*c)*e]*a &= [c*e] * a\\
+	 &= a*a \\
+	 &= a \\
+\end{align*}
+\end{problem}
+
+\begin{problem}[2.5]
+For $*$ to be commutative, we require the table to be symmetric about the diagonal. Note that answers are bolded.
+\begin{table}[htpb]
+	\centering
+	\begin{tabular}{c||c|c|c|c}
+		*&a&b&c&d\\
+		\hline\hline
+		a&a&b&c&\allbold{d}\\ 
+	        \hline
+		b&b&d&\allbold{a}&c\\
+		\hline
+		c&c&a&d&b\\
+		\hline
+		d&d&\allbold{c}&\allbold{b}&a  
+	\end{tabular}
+\end{table}
+\end{problem}
+\begin{problem}[2.6]
+The missing entries represents $d*a, d*b, d*c,$ and $d*d$. Since we have the complete information of how the operation is defined among pairs consisting of the other three elements, we can replace  $d$ with the other elements. Notice that there is only one such pair that engendered  $d$:  $c*b=d$. Now let's consider each entry and apply associativity:\\
+\[
+	d*a=(c*b)*a=c*(b*a)=c*b=d
+.\] 
+\[
+	d*b=(c*b)*b=c*(b*b)=c*a=c
+.\] 
+\[
+	d*c=(c*b)*c=c*(b*c)=c*c=c
+.\] 
+\[
+	d*d= (c*b)*d=c*(b*d)=c*d=d
+.\] 
+Hence, the missing entires are
+\begin{table}[htpb]
+	\centering
+	\begin{tabular}{c||c|c|c|c}
+		\hline
+		d&d&c&c&d
+	\end{tabular}
+\end{table}
+
+\end{problem}
+\begin{problem}[2.7]
+~\begin{enumerate}[label=\arabic*)]
+	\item Commutativity:
+		Let $a=1$,$b=2$, it is easy to see that $a*b=1-2\neq 2-1=b*a$. Hence $*$ is not commutative.
+	\item Associativity:
+		Let  $a=1,b=2,c=3$. Since  $(a*b)*c=(a-b)-c=(1-2)-3=-4$ and  $a*(b*c)=a-(b-c)=1-(2-3)=2$, clearly  $(a*b)*c\neq a*(b*c)$ so $*$ is not associative.
+\end{enumerate}
+\end{problem}
+\begin{problem}[2.8]
+~\begin{enumerate}[label=\arabic*)]
+	\item Commutativity: Given $a,b \in \qq$, we have $a*b=ab+1=ba+1=b*a$ since scalar multiplication is commutative. Hence $*$ is commutative.
+	\item  Associativity: Let $a=1,b=\frac{1}{2},c=\frac{1}{3}$, $(a*b)*c=\left( 1 \times \frac{1}{2}+ 1 \right) \times \frac{1}{3} + 1 = \frac{3}{2}$ and $a*(b*c)=1\times \left( \frac{1}{2} \times \frac{1}{3}+ 1 \right) + 1 = \frac{13}{6}$. Hence $(a*b)*c \neq a*(b*c)$ and $*$ is not associative.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[2.24]
+~\begin{enumerate}[label=\alph*)]
+	\item True. Consider $S_0=\{a\}$. Since $*$ is a binary operation on any arbitrary set, it is defined on  $S_0$ as well. It follows that  $a*a \in S_0$. Since there is only one element in $S_0$, this forces  $a*a=a$. 
+	\item True. Since  $*$ is a commutative binary operation on $S$, given  $a,b,c \in S$, we know that $b*c \in S$, and thus $a*(b*c)=(b*c)*a$ by commutativity.
+	\item False. Consider $S$ as the set of all  $3 \times 3$ permutation matrices and $*$ is the matrix multiplication, which we know is associative but not commutative. Let  $a=\begin{pmatrix} 0 & 1 & 0\\ 1 & 0 & 0\\ 0 & 0 & 1\\ \end{pmatrix} $, $b=\begin{pmatrix} 0&0&1\\0&1&0\\1&0&0 \end{pmatrix} $, and $c=\begin{pmatrix} 1&0&0\\0&0&1\\0&1&0 \end{pmatrix} $. LHS yields:
+		\[
+			a*(b*c) = \begin{pmatrix} 0 & 1 & 0\\ 1 & 0 & 0\\ 0 & 0 & 1\\ \end{pmatrix} \begin{pmatrix} 0&1&0\\0&0&1\\1&0&0 \end{pmatrix} = \begin{pmatrix} 0&0&1\\0&1&0\\1&0&0 \end{pmatrix}  
+		.\]
+	However, the RHS yields:
+	\[
+		(b*c)*a=  \begin{pmatrix} 0&1&0\\0&0&1\\1&0&0 \end{pmatrix} \begin{pmatrix} 0 & 1 & 0\\ 1 & 0 & 0\\ 0 & 0 & 1\\ \end{pmatrix} = \begin{pmatrix} 1&0&0\\0&0&1\\0&1&0 \end{pmatrix} 
+	.\]
+	LHS and RHS do not equal so the statement is false.
+	\item False. The more abstract math gets the less important numbers are\ldots
+	\item False. It should be for all $a,b \in S$.
+	\item True. It is easy to see that given $S_0=\{a\} $, $a*a=a*a=a$, and  $(a*a)*a=a*a=a=a*(a*a)$.
+	\item True. Because at least one includes exactly one.
+	\item True. Because at most one includes exactly one.
+	\item True. Because binary operation is a function and can only have one output.
+	\item False. As above.
+\end{enumerate}
+\end{problem}
 \end{document}
+

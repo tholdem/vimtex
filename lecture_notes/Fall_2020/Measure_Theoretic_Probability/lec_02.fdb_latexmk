@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1598664296 "lec_02.tex" "lec_02.pdf" "lec_02" 1598664297
-  "../preamble.tex" 1598415101 6224 d0ea4c0d9179a7f26520f2262324ea75 ""
-  "/dev/null" 1597948344 0 d41d8cd98f00b204e9800998ecf8427e ""
+["pdflatex"] 1600547577 "lec_02.tex" "lec_02.pdf" "lec_02" 1600547578
+  "../preamble.tex" 1599891970 6252 56e62dca27c21c54f87a496841d015df ""
+  "/dev/null" 1600401934 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/home/jaden/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/home/jaden/texlive/2020/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/home/jaden/texlive/2020/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
@@ -239,9 +239,9 @@
   "/home/jaden/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1595795025 4853996 58cb3b4067393b38db27b849d3569783 ""
   "/home/jaden/texlive/2020/texmf-var/web2c/pdftex/pdflatex.fmt" 1595795065 2441041 dd9ed3945248a7350b74f55c82b4774a ""
   "/home/jaden/texlive/2020/texmf.cnf" 1595795018 455 5b996dcaa0eb4ef14a83b026bc0a008c ""
-  "lec_02.aux" 1598664297 1178 6ba02840ea73b5debc556ec0ae05ed64 "pdflatex"
-  "lec_02.tex" 1598664295 6379 03d76a3c113d967952eba17866ad3611 ""
+  "lec_02.aux" 1600547578 1267 161611474e19826dd7433a54347dcc3a "pdflatex"
+  "lec_02.tex" 1600547577 7015 95d9b9ecbc770b00c11e4a0be2ba51e8 ""
   (generated)
-  "lec_02.aux"
   "lec_02.pdf"
+  "lec_02.aux"
   "lec_02.log"

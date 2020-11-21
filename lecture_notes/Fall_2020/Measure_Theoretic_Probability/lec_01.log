@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.7.26)  20 AUG 2020 13:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.7.26)  3 SEP 2020 12:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -777,14 +777,7 @@ Package zref Info: New property: mdf@pagevalue on input line 895.
 \c@prop=\count335
 \c@theorem=\count336
 \c@corollary=\count337
-) (./lec_01.aux
-
-LaTeX Warning: Label `' multiply defined.
-
-
-LaTeX Warning: Label `' multiply defined.
-
-)
+) (./lec_01.aux)
 \openout1 = `lec_01.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
@@ -845,68 +838,58 @@ LaTeX Font Info:    Trying to load font information for U+stmry on input line 3.
  (/home/jaden/texlive/2020/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 6.
+(mdframed)              on input line 21.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 8.
+(mdframed)              on input line 28.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 9.
+(mdframed)              on input line 35.
 
 
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 10.
+(Font)              using `U/stmry/m/n' instead on input line 36.
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 11.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 12.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 15.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 18.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 20.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 22.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 24.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 26.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 27.
+(mdframed)              on input line 37.
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--45
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 52--57
+
+ []
+
 [1
 
-{/home/jaden/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./lec_01.aux)
+{/home/jaden/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 62.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 64.
+ [2] (./lec_01.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-
-LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
  22689 strings out of 480906
- 453567 string characters out of 5907779
- 700713 words of memory out of 5000000
- 37799 multiletter control sequences out of 15000+600000
- 545825 words of font info for 63 fonts, out of 8000000 for 9000
+ 453514 string characters out of 5907779
+ 698527 words of memory out of 5000000
+ 37796 multiletter control sequences out of 15000+600000
+ 547703 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,10n,102p,841b,958s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/home/jaden/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on lec_01.pdf (1 page, 135156 bytes).
+ 88i,10n,102p,841b,956s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/home/jaden/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/home/jaden/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb>
+Output written on lec_01.pdf (2 pages, 166386 bytes).
 PDF statistics:
- 64 PDF objects out of 1000 (max. 8388607)
- 47 compressed objects within 1 object stream
+ 78 PDF objects out of 1000 (max. 8388607)
+ 58 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

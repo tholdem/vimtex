@@ -1,0 +1,97 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+
+\section{Review}
+\subsection{2nd order ODE}
+\begin{eg}[]
+Solve \[
+\frac{d^2 y}{d {x }^2} = \lambda y
+.\] 
+The general solution is:
+\[
+	y(x) = c_1 e^{\sqrt{\lambda} x} + c_2 e^{-\sqrt{\lambda} x}
+.\]
+Or we can write it as:
+\[
+	y(x)= c_1 \cosh(\sqrt{\lambda} x  ) + c_2 \sinh(\sqrt{\lambda} x  )
+.\] 
+\begin{note}[]
+Hyperbolic functions have easy derivatives and nice for initial conditions.
+\end{note}
+\end{eg}
+
+\begin{defn}[linear independence]
+	The functions $y_1(x),\ldots,y_n(x)$ are \allbold{linearly independent} if 
+	\[
+		c_1 y_1(x) + c_2 y_2(x) + \ldots + c_n y_n(x) = 0 \implies c1=c2=\ldots=c_n=0
+	.\] 
+\end{defn}
+\subsection{The complex plane}
+The \emph{modulus} of a complex number $a+bi$ is
+ \[
+|z| = \sqrt{z \cdot \overline{z} } = \sqrt{a^2+b^2}  
+.\] 
+\subsection{Euler's formula}
+
+~\begin{prf}
+\begin{align*}
+	e^{x} &= \sum_{ n=0}^{\infty} \frac{x^{n}}{n!} \\
+	e^{i\theta} &= 1 + i\theta + \frac{(i\theta)^2}{2!} + \ldots\\
+	&= 1 + i\theta + \frac{-\theta^2}{2!} + \frac{-i\theta^3}{3!} + \frac{\theta^{4}}{4!} + \ldots \\
+	&= (1-\frac{\theta^2}{2!}+\frac{\theta^{4}}{4!}-\ldots) + i(\theta - \frac{\theta^3}{3!} + \ldots)\\
+	&= \cos(\theta ) + i \sin(\theta )
+\end{align*}
+\end{prf}
+\begin{note}[]
+$\left| e^{i\theta} \right| = 1$ so it's on the unit circle. Moreover,
+\[
+	z=a+ib=\rho \cos(\theta ) + i\rho \sin(\theta ) = \rho e^{i\theta}
+.\] 
+where $\rho=\sqrt{a^2+b^2} $ and $\tan(\theta) = \frac{b}{a}$.
+\end{note}
+
+\newpage
+
+\section{Fourier Series and Orthogonal Vectors (ch.1 + 2)}
+\begin{defn}[L2 inner product]
+	Let $f(x)$ and  $g(x)$ be continuous functions defined on  $[a,b]$, we defined the  \allbold{$L^2$-inner product} on $[a,b]$ to be 
+	 \[
+		 \langle f,g \rangle = \int_{ a}^{ b} f(x)g(x)dx
+	.\] 
+	with the corresponding $L^2$ norm,
+	\[
+		\norm{f}_2 = \sqrt{\langle f,f \rangle} = \left( \int_{ a}^{ b} f^2(x) dx  \right)^{\frac{1}{2}}  
+	.\] 
+\end{defn}
+\begin{defn}[Fourier basis]
+Suppose $-\pi\leq z \leq \pi$, the \allbold{Fourier basis} is defined as 
+\[
+	\{1,\cos(z), \sin(z ),\cos(2z ),\sin(2z ),\ldots\}
+.\] 
+This is an infinite, mutually orthogonal basis of the vector space of continuous functions on $[-\pi,\pi]$.
+\end{defn}
+
+\begin{defn}[projection]
+Suppose $\{\vec{e}_1, \vec{e}_2 \ldots \} $ are an orthogonal basis, then $v_i = \frac{\langle \vec{v},\vec{e}_i   \rangle}{\norm{\vec{e}_i}^2 }$.
+\end{defn}
+
+\begin{defn}[Fourier series]
+	Suppose $f(z)$ is defined on  $[-\pi,\pi]$ and is in "the proper space of functions" (see Ch.5 notes) then $f(z)$ has a Fourier series is of the form
+	 \[
+		 f(z)=a_0 + \sum_{ n=1}^{\infty} a_n \cos(nz ) + \sum_{ n=1}^{\infty} b_n \sin(nz )
+	.\]
+	where 
+	\[
+		b_n = \frac{\langle f(z),\sin(nz ) \rangle}{\norm{\sin(nz )}_2^2 } = \frac{1}{\pi} \int_{ -\pi}^{ \pi} f(z)\sin(nz )dz \text{ for } n=1,2,\ldots 
+	.\]
+	\[
+		a_n = \frac{\langle f(z),\cos(nz ) \rangle}{\norm{\cos(nz )}_2^2 } = \frac{1}{\pi} \int_{ -\pi}^{ \pi} f(z)\cos(nz ) dz \text{ for } n=1,2,\ldots 
+	.\]
+	\[
+		a_0 = \frac{\langle f(z),1 \rangle}{\norm{1}_2^2 }= \frac{1}{2\pi} \int_{ -\pi}^{ \pi} f(z) dz 
+	.\] 
+\end{defn}
+
+\end{document}

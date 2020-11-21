@@ -1,0 +1,178 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 8}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[14.5]
+	It suffices to find the index of the subgroup. Let $ G=\zz_2 \times \zz_4$, $ N = \langle (1,1) \rangle$. Then the index is just $ |G|/|N| $. That is,
+	\[
+	|G / N| = \frac{8}{ \lcm \left( \frac{2}{\gcd ( 1,2) }, \frac{4}{\gcd ( 1,4) } \right) } = \frac{8}{4} = 2
+	.\] 
+\end{problem}
+\begin{problem}[14.6]
+	Let $ G = \zz_{12} \times \zz_{18}$, $ N = \langle (4,3) \rangle$. Then
+	\[
+	|G/ N| = \frac{12 \times 18}{ \lcm \left( \frac{12}{\gcd ( 4,12), \frac{18}{ \gcd ( 3,18) } } \right)  } = \frac{12 \times 18}{ \lcm \left( 3,6 \right) } = 36 
+	.\] 
+\end{problem}
+
+\begin{problem}[14.11]
+	Let $ a = (2,1)$,  $ G=\zz_3 \times \zz_6$, $ N = \langle (1,1) \rangle$. First the elements of $ N$ are
+	 \[
+		 N = \{(0,0),(1,1),(2,2),(0,3),(1,4)\} 
+	.\] 
+	By theorem, the order of the coset $ a+N$ is the smallest positive integer $ n$ such that $ na \in N$ or infinity. Let's check:
+	\begin{align*}
+		2(2,1) &= (1,2) \not\in N\\
+		3(2,1) &= (0,3) \in N
+	\end{align*}
+	Hence by theorem, $ |G /N|=3$.
+\end{problem}
+\begin{problem}[14.12]
+	Let $ a = (3,1)$,  $ G=\zz_4 \times \zz_4$, $ N = \langle (1,1) \rangle$. The elements of $ N$ are
+	 \[
+		 N = \{(0,0),(1,1),(2,2),(3,3)\} 
+	.\]
+	Again we check:
+	\begin{align*}
+		2(3,1)=(2,2) \in N
+	\end{align*}
+	Hence by theorem, $ |G /N| = 2$.
+\end{problem}
+
+\begin{problem}[4.23]
+\begin{enumerate}[label=\alph*)]
+	\item True. By theorem 14.4.
+	\item True. By a theorem from class.
+	\item True. $\iota_g(x)= gxg^{-1} = g g^{-1} x = ex=x$ by commutativity.
+	\item True. Because if $ G$ is finite, its normal subgroups are also finite, so the index is finite.
+	\item True. 
+	\item False.  $ \zz$ is torsion-free, but $ \zz / 3 \zz = \zz_3$, where each element of $ \zz_3$ has finite order and is thus a torsion group.
+	\item True. By theorem from class.
+	\item False. Counterexamples are $ GL_n(\rr) / SL_n(\rr) \simeq R^* $ and $ D_4 / \{\rho_0,\rho_2\} \simeq V_4 $. Both are abelian.
+	\item Since $ \zz_n \coloneqq \zz / n \zz$ has order $ n$.
+	\item False.  $ \rr / n \rr \simeq \rr$, which has infinite order. It is also not isomorphic to $ \zz$ and thus not cyclic.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[15.1]
+	Let $ G= \zz_2 \times \zz_4, N = \langle (0,1) \rangle$. By Theorem 15.8, $ N$ is a normal subgroup of $ G$. Then
+	\[
+	|G /N| = |G| / |N| = \frac{2 \times 4}{\frac{4}{\gcd ( 1,4) } } = \frac{8}{4}= 2
+	.\] 
+	Since there is only one group of order 2, $ G / N \simeq \zz_2$.
+\end{problem}
+
+\begin{problem}[15.2]
+	Let $G = \zz_2 \times \zz_4$, $ N = \langle (0,2) \rangle$. Since $ G$ is abelian and  $ N\leq G$, $ N$ is a normal subgroup of $ G$. Then
+	\[
+	|G/ N| = |G| / |N| = \frac{8}{\frac{4}{\gcd ( 2,4) } } = \frac{8}{2} = 4
+	.\] 
+	It remains to determine if this is $ \zz_4$ or $ V_4$. Let's show that it is not cyclic. Notice for $ n=0,1$ and  $ m=0,1,2,3$, we can represent an arbitrary coset in the quotient group as $ (n,m)+ N$. Then let's find the order of  $ (n,m)+N$ (ignoring the trivial case when $ (n,m) \in N$ ):
+	\begin{align*}
+		2(n,m) &= (n+_{ 2} n, m+_{ 4} m )\\
+		       &= (2n \mod 2, 2m \mod 4) \\
+		       &=  
+		       \begin{cases}
+			       (0,0) \text{ if } m \text{ is even}\\
+			       (0,2) \text{ if } m \text{ is odd}  
+		       \end{cases}
+		       \in N
+	\end{align*}
+	Thus, $ |(n,m)+N|$ is at most 2. But to be a generator of  $ G / N$ it requires order 4. Therefore, there is no generator in the quotient group, proving it is not cyclic. Then it must be  $ V_4$.
+\end{problem}
+\begin{problem}[15.3]
+	Let $ G= \zz_2 \times \zz_4, N= \langle (1,2) \rangle$. Then
+	 \[
+		 N = \{(0,0), (1,2)\} 
+	.\] 
+	$ G$ is abelian and $ N\leq G$, therefore $ N \trianglelefteq G$.
+	\[
+	|G /N|  = |G| / |N| = \frac{8}{ \lcm \left( \frac{2}{\gcd ( 1,2) },\frac{4}{\gcd ( 2,4) } \right) } = \frac{8}{2} = 4
+	.\] 
+	Let $ g= (1,1) \not\in N, \in G$. Notice
+	\begin{align*}
+		2(1,1)&=(0,2) \not\in N\\
+		3(1,1)&= (1,3) \not\in N \\
+		4(1,1)&= (0,0) \in N 
+	\end{align*}
+	Hence $ |g+ N| =4$ and  $ g$ is a generator of  $ G /N$. Thus  $ G/ N$ is cyclic and isomorphic to $ \zz_4$.
+\end{problem}
+
+\begin{problem}[15.6]
+	Let $ G=H \times K= \zz \times \zz$ and $ N=\langle (0,1) \rangle$. Notice $ N=\{(0,k):k \in K\} $. By theorem 15.8, $ N \trianglelefteq G$, and $ G / N \simeq H= \zz$.
+\end{problem}
+\begin{problem}[15.13]
+	By table, we see that $ Z(D_4) = \{e, (1\ 3)(2\ 4) \} $ or $ \{\rho_0, \rho_2\} $.
+
+	For $ C(D_4)$, we want to find the smallest normal subgroup with abelian quotient. $ D_4$ has the following normal subgroups:
+	\begin{align*}
+		D_4 \text{ of order }8: &D_4 /D_4 \simeq \{e\}, \text{ abelian}\\
+		\{e\} \text{ of order 1}: & D_4 /\{e\} \simeq D_4 , \text{ nonabelian}\\
+		Z(D_4) \text{ of order 2}: & D_4 /Z(D_4) \simeq V_4, \text{ abelian}\\
+		\{ \text{ rotations } \} \text{ of order 4}: & D_4 / \{ \text{ rotations } \} \simeq\zz_2, \text{ abelian}    
+	\end{align*}
+	Clearly, the smallest normal subgroup with abelian quotient is $ Z(D_4)$. So $ C(G) = Z(D_4)$.
+\end{problem}
+\begin{problem}[15.19]
+~\begin{enumerate}[label=\alph*)]
+	\item True. By theorem 15.9, if $ a$ is a generator of  $ G$, then  $ aN$ is a generator of  $ G /N$.
+	\item False.  $ S_n /A_n \simeq \zz_2$, but $ S_n$ is non-cyclic.
+	\item False. Let $ x = \frac{1}{2}$, then $ 2x =1\in \zz$, so $ |x+\zz|=2$.
+	\item True. Given $ n \in \zz^+$, choose $ x=\frac{1}{n}$ which is well-defined. Then $ nx = n\frac{1}{n}=1 \in \zz$, so $ |x+\zz|=n$.
+	\item False. To find all elements in $ \rr /\zz$ of order 4, let $ x$ be a representative of any element, then $| x+\zz | =4 \iff 4x = a \in \zz$, where $ \gcd(a,4)=1$. Thus $ x$ needs to satisfy  $ x=\frac{a}{4}$ where $ \gcd(a,4)=1$ to be a representative of an element of order 4. To see how many such elements exist, let $ y+\zz$ be a different element where $ y=\frac{b}{4}, \gcd(b,4)=1$. Since  $ x+\zz \neq y+\zz \iff x-y \not\in \zz$, we have
+		\begin{align*}
+			x-y &\not\in \zz\\
+			a-b &\not\in 4\zz\\
+			a-b \mod 4 &\neq 0\\
+			a \mod 4 +_{ 4} (-b \mod 4) &\neq 0\\
+			a \mod 4 &\neq b \mod 4\\
+			p &\neq q \in \zz_4
+		\end{align*}
+		Where $ p=a \mod 4, q=b \mod 4$. Since $ p,q \in \zz_4$, and $ \gcd(a,4)=\gcd(b,4)=1 \implies \gcd(p,4)=\gcd(q,4)=1$,  we see that there are only 2 distinct elements we can choose from $ \zz_4$, namely 1 and 3, to form distinct cosets of order 4. So it is not infinite.
+	\item True. $C(G) = \{e\} \implies aba^{-1}b ^{-1} = e \implies ab(ba)^{-1}=e \implies ab=ba \ \forall \ a,b \in G$.
+	\item False. $ \{e, (1\ 3)(2\ 4)\} \not \supseteq D_4 $.
+	\item False. Let $ G$ be an abelian simple group. Then it only has two subgroups,  $ \{e\} $ and itself. $ G / \{e\}= G $ is abelian, and $ G / G =\{e\} $ is abelian.  Clearly $ \{e\} $ is the smallest normal subgroup that has abelian quotient, thus $ C(G) = \{e\} $.
+	\item True. Let $ G$ be an nonabelian simple group, then by argument above,  $ G / \{e\} = G $ is nonabelian, so the only candidate left is $ G$. Thus,  $ C(G)=G$.
+	\item False.  $ |A_5| = 5!$ is not prime order, yet $ A_5$ is finite and simple. 
+\end{enumerate}
+\end{problem}
+\begin{problem}[15.22]
+Let $ g: \rr \to \rr$ such that $ g \not\in K$. For $ |g+K|=2 $ we need  $ 2g \in K$. This implies that $ 2g $ is continuous, so it follows that  $ g$ is continuous, contradicting our assumption that  $ g \not\in K$. Hence, no such element exists.
+\end{problem}
+
+\begin{problem}[15.23]
+	Let $ g: \rr \to \rr$ such that $ g \not\in K^* $. For $ |g+K|=2$ we need  $ g^2 \in K^* $. Consider
+	 \begin{equation*}
+		 g(x)=
+	\begin{cases}
+		1, & x \geq 0\\
+		-1, & x<0\\
+	\end{cases}
+	\not\in K^* 
+	\end{equation*}
+However,
+\begin{equation*}
+	g^2(x)=
+\begin{cases}
+	1, & x\geq 0\\
+	1, & x<0
+\end{cases}
+=1 \ \forall \ x \in \rr \implies  g^2 \in K^* 
+\end{equation*}
+\end{problem}
+\begin{problem}[15.30]
+~\begin{enumerate}[label=\alph*)]
+	\item By definition of abelian group, every element commutes, hence $ Z(G)=G$.
+	\item Since  $ Z(G) \trianglelefteq G$, and $ G$ is simple, the center is either  $ \{e\} $ or $ G$. Since  $ G$ is nonabelian, it must be that  $ Z(G)=\{e\} $.
+\end{enumerate}
+\end{problem}
+\begin{problem}[15.31]
+~\begin{enumerate}[label=\alph*)]
+	\item If $ G$ is abelian, then we know  $ G /\{e\} = G $ is abelian, and clearly $ \{e\} $ is the smallest normal subgroup with abelian quotient. $ C(G)=\{e\} $.
+	\item If $ G$ is nonabelian, since  $ G$ is simple, the only candidate left is  $ G$, where $ G /G = \{e\} $ is abelian. So  $C(G)=G $.
+\end{enumerate}
+\end{problem}
+\end{document}

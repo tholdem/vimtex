@@ -1,0 +1,62 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{note}
+	Let $ A$ be a set. Then  $ S_A$: symmetric group on  $ A$. 
+
+	Elements of  $ S_A$ are permutations of  $ A$. Operation: composition of functions.  $ S_n$: symmetric group on  $ n$ "letters". This is  $ S_A$ where  $ A=\{1,\ldots,n\} $. $ S_n$ has order $ n!$. \\
+
+	$ S_n$ is nonabelian if  $ n \geq 3$.
+\end{note}
+\begin{thm}[Cayley]
+Every group of order $ n$ is  isomorphic to a subgroup of $ S_n$.
+\end{thm}
+
+\begin{eg}[]
+$ S_4$ is a nonabelian group of order  24. Does $ S_4$ have a subgroup isomorphic to  $ V_4$. Yes!
+\end{eg}
+
+\begin{eg}[]
+What about $ \zz_4$? Yes.
+\end{eg}
+
+\begin{eg}[8.4]
+$ S_5$. The two-row notation gives:
+ \[
+	 \sigma = \begin{pmatrix} 1&2&3&4&5\\4&2&5&3&1 \end{pmatrix} 
+\] 
+where the first row is the input and the second row is the output. 
+\[
+	\tau = \begin{pmatrix} 1&2&3&4&5\\3&5&4&2&1 \end{pmatrix} 
+.\]
+Then
+\[
+	\sigma \tau = \begin{pmatrix} 1&2&3&4&5\\4&2&5&3&1 \end{pmatrix}  \begin{pmatrix} 1&2&3&4&5\\3&5&4&2&1 \end{pmatrix} = \begin{pmatrix} 1&2&3&4&5\\5&1&3&2&4 \end{pmatrix} 
+.\]
+
+Note that we go from right to left.
+\end{eg}
+
+See iPad. There are $ 2n$ choices where  $ n$ is number of vertices.
+
+\begin{defn}[dihedral group]
+	The \allbold{dihedral group} $ D_n$ (or $ D_{2n}$ ) of order $ 2n$ consists of the $ 2n$ symmetries of a regular  $ n$-gon, under the composition of maps. (This can be regarded as a subgroup of  $ S_n$).
+\end{defn}
+
+See iPad for a fact of geometry: two reflections is equivalent to a rotation.
+
+\begin{claim}[]
+If $ \alpha$ is an acute angle, then reflections will not commute.
+\end{claim}
+
+\begin{thm}[]
+For $n \geq 3 $,  $ D_n$ is a nonabelian group of  order $ 2n$.
+\end{thm}
+
+Is there a nonabelian group of order $ 2020$? Yes  $ D_{1010}$.
+
+\begin{claim}[]
+The identity is a rotation, not a reflection. Rotation makes a subgroup since rotation composite rotation is still a rotation, but reflection does not. Also the determinant of both rotation and identity is 1, but that of reflection is $ -1$.
+\end{claim}
+\end{document}

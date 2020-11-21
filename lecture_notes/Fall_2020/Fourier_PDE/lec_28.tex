@@ -1,0 +1,107 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{remark}
+~\\
+Wave Equation: we have the same eigenvalue problem as heat equation. The time domain problem has a negative sign which leads to oscillating terms in time.
+
+Laplace Equation: Same eigenvalue problem. The time domain problem has positive sign so we obtain hyperbolic functions in order to easily solve the coefficients.
+\end{remark}
+
+\subsection{different PDE domain}
+\begin{enumerate}[label=\arabic*)]
+	\item Inside the disc of radius $ R$. Then $ 0<r<R, \theta_0<\theta\leq \theta_0 + 2\pi$. Physical boundary is $ r=R$.
+	\item Outside the disc of radius  $ R$. Then  $ R<r<\infty, \theta_0< \theta\leq \theta_0 + 2\pi$. Physical boundary: $ r=R$.
+	\item Annulus: $ R_i<r<R_o, \theta_0<\theta\leq \theta_0 + 2\pi$. Physical boundaries: $ r=R_i, r=R_o$.
+	\item Pie shaped sector: $ 0<r<R, \theta_1 < \theta \leq \theta_2$. Physical boundary: $ r=R, \theta = \theta_1, \theta=\theta_2$.
+\end{enumerate}
+
+\begin{eg}[circular disc]
+	Suppose $ \Delta u = \frac{1}{r} \frac{\partial }{\partial r} \left( r \frac{\partial v}{\partial r}  \right) + \frac{1}{r^2} \frac{\partial^2 v}{\partial { \theta}^2} $ on the domain $ D=\{(r,\theta)|0\leq r \leq R, -\pi<\theta\leq \pi\} $.
+
+	\begin{note}[]
+		$ r=0,r=\infty$ are \allbold{singular points} of the coordinate system for $ \Delta u=0$ but \emph{not} of the physical system.  For physical reasons it is reasonable to assume boundedness at the origin: $ |v(0, \theta)|< \infty$.
+	\end{note}
+	By periodicity we can assume continuity on the derivatives at the boundaries $ \theta=\pm \pi$.
+
+	\begin{claim}[]
+	The set of functions that satisfy the \emph{boundedness condition} or the \emph{periodicity conditions} form a vector space.  
+	\end{claim}
+\subsection{separation of variables}
+Consider
+\begin{equation*}
+\begin{cases}
+	\text{PDE: } \Delta u=0 & 0<r<R, \theta \in (-\pi,\pi) \\
+	\text{BCs: }  v(R,\theta) = f(\theta) &  \\
+\end{cases}
+\end{equation*}
+Assume $ v(r,\theta) = F(\theta)G(r) \neq 0$. Then we obtain
+\begin{equation*}
+\begin{cases}
+	F''(\theta)&= -\lambda F(\theta) \\
+	F(-\pi)&=F(\pi)\\
+	F'(-\pi) &= F'(\pi) \\
+\end{cases}
+\qquad r^2G''(r)+rG'(r)-\lambda G(r)=0
+\end{equation*}
+\subsection{F-equation}
+The same eigenvalue problem. Only $ \lambda>0$ is nontrivial, so
+\[
+	F_n(\theta)=A_n \sin(\sqrt{\lambda_n} \theta  )+ B_n\cos(\sqrt{\lambda_n}\theta  ) 
+\] 
+where $ \lambda_n=n^2,n=1,2,\ldots$, since $ L=\pi$.
+\subsection{G-equation}
+Plug in $ \lambda=n^2$, we have
+\[
+	r^2G''(r)+rG'(r)-n^2G(r)=0
+.\] 
+Let $ G(r)=r^{p}$. Then we get
+\[
+	r^2 p(p-1)r^{p-2} + r p r^{p-1}-n^2 r^2 = 0
+.\] 
+After cancellation, we obtain
+\[
+p=\pm n,n=1,2,\ldots
+.\]
+If $ n\neq 0$, then  $ r_1=r^{n}, r_2=r^{-n}$. So by superposition, we get 
+\[
+	G(r)=c_1 r^{n} + c_2 r^{-n}
+.\] 
+The boundedness condition yields,
+\[
+	|G(0)|<\infty \implies c_2 =0 \implies G_n(r)=c_1 r^{n}, n=1,2,\ldots
+\]
+Because $ r=0$ makes the second term undefined.
+
+If $ n=0$, then
+ \[
+	 r^2G''(r)+rG'(r)=0 \implies rG''(r)+G'(r)=0 \implies \frac{d}{dr} (r G'(r))=0 \implies rG'(r)=C_1
+.\] 
+Finally note that 
+\[
+	rG'(r)=C_1 \implies G'(r)=\frac{C_1}{r} \implies G(r)=C_1 \ln(r)+ C_2
+.\] 
+Boundedness again forces $ C_1 =0 \implies G_0(r)=C_2$.
+
+\begin{note}[]
+If the domain is Annulus we would keep both terms. Also if the BCs aren't so nice we might have to use periodicity condition.
+\end{note}
+
+Now the general solution is
+\begin{align*}
+	v(r,\theta) &= a_0 + \sum_{ n= 1}^{\infty} a_n r^{n} \cos(n \theta ) + b_n r^{n} \sin(n \theta )\\
+		    &= a_0 + \sum_{ n= 1}^{\infty} A_n \left( \frac{r}{R} \right)^{n} \cos(n\theta  ) + B_n \left( \frac{r}{R}\right) ^{n} \sin(n \theta )   \\
+\end{align*}
+where $ A_n = a_n R^{n}, B_n = b_n R^{n}$. 
+Now using the BCs:
+\[
+	f(\theta) = v(R,\theta)= a_0 + \sum_{ n= 1}^{\infty} A_n \cdot 1 \cdot \cos(n \theta)+ B_n \cdot 1 \cdot \sin(n \theta ) 
+.\] 
+which is a F.S.! So,
+\[
+	a_0 = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(\theta) d\theta  , \quad  a_n =\frac{1}{\pi} \int_{-\pi}^{\pi} f(\theta) \cos(n \theta ) d\theta, \quad  b_n=\frac{1}{\pi} \int_{-\pi}^{\pi} f(\theta) \sin(n\theta ) d\theta   
+.\] 
+\end{eg}
+
+\end{document}

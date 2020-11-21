@@ -1,0 +1,33 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{eg}[]
+	Given $(\rr,+), (\rr^{+},\times )$, and $\phi:(\rr,+) \to (\rr^d{+},\times )$, and $\phi(a) = e^{a} $. Show that $\phi$ is an isomorphism.
+
+\begin{prf}
+\begin{enumerate}[label=\arabic*)]
+	\item The inverse of $\phi(a) = e^{a} $ is $\ln$: given $x \in \rr$ and $y \in \rr^{+}$, $e^{\ln x} = x$ and $\ln(e^{y}) = y$.
+	\item we want to show that $ \phi(a*b) = \phi(a) *' \phi(b)  $. Given $a,b \in \rr$,
+		\begin{align*}
+			e^{a+b} = e^{a} \times e^{b}
+		\end{align*}
+\end{enumerate}
+\end{prf}
+\end{eg}
+\begin{note}[]
+It is really hard to show that two structures are isomorphic! It's also hard to show that two are not isomorphic. Unless the two have obvious different structural properties. 
+\end{note}
+
+\begin{eg}[]
+	Is there an isomorphism $\phi:(\qq,+) \to (\rr,+)$? No! We can't find a bijection between a countably infinite set and an uncountably infinite set.
+\end{eg}
+\begin{eg}[]
+	$(\rr^* , \times )$ and $(\cc^* , \times )$. Is there an isomorphism? They have the same cardinality, both associative, commutative, with identity 1.
+
+\begin{prf}
+	Suppose such $\phi$ exists. Consider $x * x * x * x = e$ and $y *' y*' y*' y = e'$. In this case, $\phi$ sends solutions of $x^{4}=1$ in $\rr*$ to solutions of $y^{4}=1$ in $\cc^* $. However, there are only two solutions in the real but four solutions in the complex. Since the identity has to be preserved, yet the solutions cannot be bijective. By contradiction, no bijection exists.
+\end{prf}
+\end{eg}
+
+\end{document}

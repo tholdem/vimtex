@@ -1,0 +1,87 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{eg}[]
+	Let $ L=10$cm,  $ k=1$ cm$ ^2$/sec (copper) and $ t=0.35$sec and use the first 8 terms.
+	 \[
+		 u(x,0.35) \approx \frac{400}{\pi} \sum_{ p= 1}^{ 8} \frac{1}{2p-1} e^{-[(2p-1) \frac{\pi}{10}]^2 0.35} \sin \left( \frac{(2p-1) \pi x}{10 } \right) 
+	.\] 
+	See lecture slide for graph.
+
+	In this case, $ \overline{u}(x)=0$ and for each $ x$,
+	 \[
+		 u(x,t) \to 0 \text{ as } t \to \infty 
+	.\] 
+\begin{note}[]
+	Recall $ \Phi = -K_0 \frac{\partial u}{\partial x} $. Consider the $ x$-term in  $ u_n(x,t)$
+\begin{align*}
+	\left[ \sin \left( \frac{ n\pi x}{ L} \right)  \right]' = n \cdot \frac{\pi}{L} \cos \left( \frac{ n\pi x}{ L} \right)  
+\end{align*}
+Thus the derivative wrt $ x$ is proportional to $ n$ and  $ \Phi$. That is, as $n $ increases, the derivative increases, and the heat flux (loss) increases. So the slowest decaying term is when $ n$ is smallest,  \emph{i.e.} $ n=1$. 
+\end{note}
+
+Establishing that the slowest decaying term (dominant term) is at $ n=1$ and for large  $ t$, we can use the  $ n=1$ term (called the "first Fourier mode") as an approximation
+	 \[
+		 u(x,t) \approx B_1 \sin \left( \frac{ \pi x}{ L} \right) e^{-( \frac{ \pi}{L} )^2 kt} 
+	.\] 
+	and we can use this for long term temperature prediction.
+So for this problem we use the approximation:
+\[
+	u(x,t) \approx \frac{400}{\pi} \sin \left( \frac{ \pi x}{ L} \right) e^{-( \frac{ \pi}{L} )^2 kt} 
+.\] 
+to analyze the dynamics of the temperature when $ t $ grows. We expect $ u(x,t) \to 0 $ as $ t \to \infty$. See lecture slides for graph. 
+\end{eg}
+
+\begin{eg}[estimating cooling time]
+How long will it take for the maximum absolute temperature of the rod to be less than $ \frac{1}{10}$ the initial maximum absolute temperature?
+
+We wish to find $ t$  such that 
+\[
+	\max_{0<x<L} |u(x,t)| \leq \frac{1}{10} \max_{0<x<L} |f(x)|
+.\]
+
+Using the first Fourier mode approximation obtained above, recall there is an upper bound (in fact it's the least upper bound/supremum)
+\[
+	|u(x,t)| \leq \frac{400}{\pi} e^{-(\frac{\pi}{L})^2 kt}
+.\] 
+Hence this upper bound is greater or equal to the maximum (in this case they are in fact equal). Thus it suffices to find $ t$  such that 
+\[
+	\frac{400}{\pi} e^{-(\frac{\pi}{L})^2 kt} \leq \frac{1}{10} \cdot 100 = 10
+.\] 
+Solving this inequality yields
+\[
+	t \geq \frac{L^2}{k}\frac{1}{\pi^2} \ln \left( \frac{40}{\pi} \right) 
+.\] 
+\end{eg}
+
+
+\newpage
+\section{Insulated Rods}
+
+Consider the following BVP:
+\begin{equation*}
+\begin{cases}
+	\text{ PDE: }& \frac{\partial u}{\partial t} = k \frac{\partial^2 u}{\partial { x}^2},\qquad  0<x<L,t>0 \\
+	\text{ BC: } & \frac{\partial u}{\partial x}(0,t)=0= \frac{\partial u}{\partial x} (L,t), \qquad  t>0\\
+	\text{ IC: } & u(x,0) = f(x), \qquad  0 \leq x \leq L\\ 
+\end{cases}
+\end{equation*}
+
+Recall Fourier's Law of Heat Conduction regarding the heat flux
+\[
+\Phi=-K_0 \frac{\partial u}{\partial x} 
+.\] 
+So here the BCs imply that there is no heat flow at the ends of the rod, \emph{i.e.} the rod is insulated on all sides.
+
+Since there is no external source of heat, we expect this BVP to have a steady state solution.
+
+Hence we can assume the solution has the form
+\[
+	u(x,t) = \overline{u}(x) + v(x,t)
+.\] 
+
+In fact, we can skip this decomposition step because the BVP already gives us a nice vector space due to the homogeneous BCs. And $ \lambda =0$ case will give us the steady-state solution anyway.
+
+
+\end{document}

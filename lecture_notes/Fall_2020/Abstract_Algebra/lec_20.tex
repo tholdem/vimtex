@@ -1,0 +1,105 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+Midterm 1: HW 1-4. Midterm 2: HW 5-9.
+
+VERY IMPORTANT: the easiest example of nonnormal subgroup: $ G=S_3$, and $ H$ has order 2,  \emph{i.e.} $ H= \{e, \{1\ 2\} \} $.
+
+True: any subgroup of an abelian group is normal.
+False: any abelian subgroup of a group is normal. The example above!
+
+The group $ G$ and the trivial subgroup are normal.
+
+Any subgroup of index 2 is normal.
+
+The kernel of a homomorphism is normal.
+
+False: subgroup of index 3 is normal. The example above again!
+
+True: $ 3 \zz \trianglelefteq \zz$ because $ \zz$ is abelian.
+
+\begin{note}[]
+$ H \trianglelefteq G$ is equivalent to:
+\begin{itemize}
+	\item $ gH = Hg$ for all  $ g \in G$. The left/right cosets containing $ g$. Because  $ e$ is in  $ H$. 
+	\item  $ gHg^{-1}=H$ for all $ g \in G$. $ gHg^{-1} = \{ghg^{-1}: h \in H\} $.
+		\begin{claim}
+			$ gHg^{-1}$ is a subgroup of $ G$ (even if  $ H$ is not normal).
+		\end{claim}
+		\begin{prf}
+		It is clearly a subset. 
+
+		Identity: since $ e \in H$, $ geg^{-1} = g g^{-1} = e \in gHg^{-1}$.
+
+		Closure: $ g h_1 g^{-1} g h_2 g^{-1} = g h_1h_2 g^{-1} \in g H g^{-1}$.
+
+		Inverse: $ (g h g^{-1})^{-1} = ghg^{-1} \in gHg^{-1}$.
+
+		\end{prf}
+
+\begin{eg}[]
+	$ G=S_3, H= \{e, (1\ 2) \} $. Let $ g=(1\ 2\ 3)$.
+	 \[
+		 gHg^{-1}= \{(1\ 2\ 3)e(1\ 3\ 2), (1\ 2\ 3)(1\ 2)(1\ 3\ 2)\} =\{e, (2\ 3)\} \neq H
+	.\] 
+\end{eg}
+This is a subgroup of $ S_3$, this proves that it is not normal.
+
+This form is called \allbold{conjugation}. We conjugated $ H$ by  $ g$ to get  $ gHg^{-1}$. This might not give us the same subgroup but it would have the same order.
+
+Then $ gH=Hg \iff gH g^{-1}=H g g^{-1} =H$.
+\item $ ghg^{-1} \in H$  for all $ g \in G$, $ h \in H$. This is very useful if everything else doesn't work.
+
+	Warning: this only checks that a known subgroup is normal. It doesn't prove that something is a subgroup.
+
+	Recall last time we tried to put a group structure on the (left) cosets of $ H$ in  $ G$. That is,
+	 \[
+		 (xH)*(yH) = xyH
+	.\] 
+	However, this is not well-defined unless $ y^{-1} h y \in H$ for all $ y \in G, h \in H$. Let $ y=g^{-1}$, then $ ghg^{-1} \in H \ \forall \ h \in H, g \in G$.
+
+	\begin{eg}[not well-defined function]
+		$ f\left( \frac{a}{b} \right) =a $ is not well-defined because by choosing different representations we get different answers.
+	\end{eg}
+\end{itemize}
+\end{note}
+
+\begin{defn}[quotient group]
+	Let $ G$ be a group and  $ N \trianglelefteq G$. We define a new group, $ G / N$ (read $ G \mod N$), where $ G / N$ is the set of cosets of $ N$ in  $ G$, and the operation is $ (xN)*(yN)=xyN$.
+\end{defn}
+\begin{intuition}
+	$ N$ is normal guarantees that if we choose different elements from the same cosets, we would get answers in another same coset.
+\end{intuition}
+To show that the quotient group is indeed a group, 
+\begin{prf}
+~\begin{enumerate}[label=(\roman*)]
+	\item identity: $ eH = N$ so that  $ (eN)*(xN) = exN=xN=(xN)*(eN)$.
+	\item inverses:  $ (xN)*(x^{-1}N) = x x^{-1} N = N = (x^{-1}N)*(xN)$.
+	\item associativity: $ (xN)*(yN)*(zN)= (xyN)*(zN) = xyzN =x(yz)N = (xN)*((yN)*(zN))$ by associativity in  $ G$.
+\end{enumerate}
+\end{prf}
+\begin{eg}[]
+$ G= \zz, N = 6 \zz$. Note $ N$ is normal because it is a subgroup of an abelian group. Then $ G / N = \zz / 6 \zz$ is the definition of the integers mod 6, $ \zz_6$. It follows that $ \zz_6$ is a group and $ +_{ n} $ is associative.
+\[
+G /N = \{ 0+ 6 \zz, 1+ 6 \zz, \ldots, 5+6 \zz\} 
+.\] 
+Then an example is
+\[
+	(3+6 \zz)+ (5 + 6 \zz) = 8+  6 \zz = 2 + 6 \zz
+.\] 
+This is because $ 8-2 \in 6 \zz$, so $ 8+ 6 \zz = 2 + 6 \zz$.
+\end{eg}
+
+\begin{thm}[fundamental homomorphsim theorem (1st isomorphism theorem]
+Let $ \phi: G \to H $ be a homomorphism. Then $ \ker \phi \trianglelefteq G$ and $ \im \phi \leq H$, and
+\[
+G / \ker \phi \simeq \im \phi
+.\] 
+Furthermore, an isomorphism is given by 
+ \[
+	\psi: g( \ker \phi) \to \phi(g) 
+.\]
+\end{thm}
+WARNING: the input of $ \psi$ is coset. So we need to prove that it is a function first. 
+\end{document}

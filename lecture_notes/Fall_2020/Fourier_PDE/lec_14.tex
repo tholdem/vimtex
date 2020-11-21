@@ -1,0 +1,91 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{intuition}
+	The PDE and BCs allow us to form a vector space of solutions to the homogeneous equation.
+\end{intuition}
+
+The \allbold{time domain problem} is 
+\[
+	G'(t)=-\lambda k G(t) \implies \int \frac{1}{G(t)} G'(t) dt = \int -\lambda k\ dt \implies \ln|G(t)|=-\lambda kt + C_1
+.\]
+which finally yields the general solution
+\[
+	G(t) = Ce^{-\lambda k t}, C \in \rr
+.\]
+
+Physically we expect that $ \lambda>0$ (because since boundary condition is 0 we expect temperature to decay as time goes on). Now the boundary conditions give:
+\[
+	u(0,t)=0 \implies F(0) G(t) = 0 \implies F(0) = 0
+.\] 
+Because otherwise , if $ G(t)=0 \implies u(x,t)=F(x)G(t)=0$ which is a trivial solution that violates our separation assumption. Similarly $ u(L,t)=0 \implies F(L)=0$. Thus the \allbold{boundary value problem} (or \emph{eigenvalue problem)} can be formulated as
+\begin{equation*}
+\begin{cases}
+	\frac{d^2 F}{d { x }^2} =-\lambda F(x) \\
+	F(0) = 0 = F(L)\\
+\end{cases}
+\end{equation*}
+To solve this ODE, let $ F(x)=e^{rx}$, so
+\[
+	F''(x)=-\lambda F(x) \implies r^2e^{rx}=-\lambda e^{rx} \implies r^2=-\lambda
+.\] 
+and the last equation is the characteristic equation. We claim that $ \lambda \leq 0$ gives the trivial solution $ F(x)=0$. 
+\begin{prf}
+\begin{case}[1]
+	If $ \lambda = 0$, then $ r=0$ with repeated roots. Let  $ F(x) = C_1 e^{0} + C_2 x e^{0} \implies F(x) = C_1+C_2x$. Since $ 0=F(0)=C_1$, $ 0=F(L) =C_2 L \implies C_2=0$. Hence $ F(x)=0$ which is the trivial solution.
+\end{case}
+\begin{case}[2]
+	Similarly when $ \lambda<0$ also gives us the trivial solution. (See homework).
+\end{case}
+\end{prf}
+
+The only interesting case is $ \lambda >0$. Let's solve the BVP:
+$ r^2 = -\lambda$ then we have purely imaginary roots $ r_{1,2}=\pm i \sqrt{\lambda} $ and by Euler's Formula, we have
+\[
+	e^{r_1 x} = e^{i \sqrt{\lambda} x }= \cos( \sqrt{\lambda} x)+ i \sin(\sqrt{\lambda} x )
+.\] 
+and
+\[
+e^{r_2 x} =e^{-i \sqrt{\lambda}x }= \cos(\sqrt{\lambda}x  ) - i\sin(\sqrt{\lambda}x  )
+.\]
+Then the general solution can be any linear combination of these functions. We can now convert them to the wave form:
+\[
+\frac{e^{i\sqrt{\lambda} x}+e^{-i\sqrt{\lambda} x}}{2}= \cos(\sqrt{\lambda} x )
+.\] 
+and
+\[
+\frac{e^{i\sqrt{\lambda} x}- e^{-i\sqrt{\lambda} x}}{2i} = \sin(\sqrt{\lambda}x  )
+.\] 
+So a general solution of the ODE is
+\[
+	F(x) = C_1 \cos(\sqrt{ \lambda} x ) + C_2 \sin(\sqrt{\lambda} x )
+.\] 
+The boundary conditions give
+\[
+	F(0) = 0 \implies C_1 = 0 \text{ and } F(L)=0 = C_2 \sin(\sqrt{\lambda}L  ) 
+.\] 
+Since $ C_2 \neq 0$ (or it would be trivial solution), this implies
+\[
+	\sin(\sqrt{\lambda} L ) = 0 \implies \sqrt{\lambda}L = n \pi \implies \sqrt{\lambda} =\frac{n \pi}{L} \implies \lambda = \left( \frac{n\pi}{L} \right)^2  = \lambda_n, \text{ for } n=\pm 1,\pm 2,\ldots   
+.\]
+Note $ n$ should not be 0 since it would give $\lambda =0 $. Since sine is an odd function, for $ n = 1,2,3,\ldots $ we can write $ F_n(x) = C_2 \sin(\frac{n\pi x}{L} )$. Thus we have the \emph{product solution}
+\[
+	u_n(x,t)=F_n(x)G_n(t)=B_n \sin \left( \frac{ n\pi x}{ L} \right) e^{-\left( \frac{n\pi}{L} \right)^2 kt} \text{ for } n=1,2,3,\ldots 
+.\] 
+and some constants $ B_n$. 
+
+Now by superposition principle, the solution of the homogeneous PDE (if it converges) is the linear combination of the product solutions,
+\[
+	u(x,t)=\sum_{ n= 1}^{\infty} B_n \sin \left( \frac{ n\pi x}{ L} \right) e^{-\left( \frac{n\pi}{L} \right)^2 kt} \text{ for some constants } B_n 
+.\] 
+and now using the initial condition to determine $ B_n$. Note that we have an orthogonal basis of sines. This allows us to use the projection formula to find $ B_n$. When $ t=0$, we get a  \allbold{Fourier Sine Series} (FSS), thus by projection formula (f(x) inner product with a sine basis vector):
+\[
+	f(x)=u(x,0)=\sum_{ n= 1}^{\infty} B_n \sin \left( \frac{ n\pi x}{ L} \right) \implies B_n = \frac{2}{L} \int_{0}^{L} f(x) \sin \left( \frac{ n\pi x}{ L} \right) dx
+.\]
+Note that the domain is only from 0 to $ L$, and the odd extension of $f(x)$ makes the whole integrand odd, allowing us to simply multiply by 2 using symmetry. That is, the solution of the heat equation assuming convergence is
+\[
+	u(x,t)=\sum_{ n= 1}^{\infty} \left( \frac{2}{L} \int_{0}^{L} f(x) \sin \left( \frac{ n\pi x}{ L} \right) dx  \right) \sin \left( \frac{ n\pi x}{ L} \right) e^{-\left( \frac{n\pi}{L} \right)^2 kt }
+.\]
+Note that the exponentially decaying term guarantees the convergence. 
+\end{document}

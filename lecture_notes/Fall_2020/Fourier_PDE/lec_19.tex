@@ -1,0 +1,102 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\newpage
+\section{Thin Circular Ring}
+The wire is circular with circumference $ 2L$ and insulated. The radius is therefore $ r=\frac{L}{\pi}$. If the wire is thin enough then we assume the temperature is constant along the cross sections of the wire and satisfies the following BVP:
+\begin{equation*}
+\begin{cases}
+	\text{PDE: }& \frac{\partial u}{\partial t} = k \frac{\partial^2 u}{\partial { x}^2} , \qquad \qquad \qquad  \qquad \qquad  \qquad  -L<x<L, t>0\\
+	\text{ BCs: }& u(-L,t)  = u(L,t), \frac{\partial u}{\partial x} (-L,t) = \frac{\partial u}{\partial x} (L,t), \qquad  t>0 \\
+	\text{ IC: }& u(x,0)=f(x), \qquad \qquad \qquad \qquad \qquad \qquad   -L \leq x \leq L \\
+\end{cases}
+\end{equation*}
+The BCs here assume that at the ends, the temperature is continuous and the flux is also continuous.
+
+Due to the circular nature, $ u(x_0,t) = u(x_0+2L,t) \ \forall \ x_0 \in [-L,L]$. Then we can define $ u(x,t) \ \forall \ x \in \rr$.
+
+Do the PDE and BCs form a vector space? See homework, where we check linearity. Yes, so we can try separable of variables $ u(x,t)=F(x) \cdot G(t) \neq 0$. We turn this into a time domain problem and an eigenvalue problem.
+
+\begin{note}[]
+As before we have
+\[
+	\frac{1}{k} \frac{G'(t)}{G(t) } = \frac{F''(x)}{F(x) } =-\lambda \implies G'(t) = -\lambda kG(t) \text{ and } F''(x) = - \lambda F(x) 
+.\] 
+Then BCs respectively becomes
+\begin{align*}
+	F(-L)=F(L) \text{ and } F'(-L)=F'(L) 
+\end{align*}
+\end{note}
+
+\begin{enumerate}[label=\arabic*)]
+	\item \emph{time domain problem: } $ G(t) = C e^{-\lambda kt}, C \in \rr$.
+	\item \emph{eigenvalue problem: }
+~\begin{case}[]
+$ \lambda < 0$, again we get the trivial solution.
+\end{case}
+\begin{case}[]
+$ \lambda =0$, then
+\[
+	F''(x) = 0 \implies F(x) = Ax + B 
+.\] 
+Then the BC $ F(-L) = F(L) \implies A=0$. Therefore, $ F(x) = B, B \in \rr$. The other BC is trivial and redundant in this case.
+\end{case}
+\begin{case}[]
+$ \lambda>0$, we solve the characteristic equation as before and obtain
+\[
+	F(x), c_1 \cos(\sqrt{\lambda} x) + c_2 \sin(\sqrt{\lambda} x )
+.\] 
+Then the BC $ F(-L) = F(L)$ yields
+ \[
+c_1 \cos(-\sqrt{\lambda} L ) + c_2 \sin( -\sqrt{\lambda}L  ) = c_1\cos(\sqrt{\lambda}L  ) + c_2 \sin(\sqrt{\lambda} L ) \implies 2c_2 \sin(\sqrt{\lambda}L  )=0
+.\] 
+This implies either $ c_2 =0 $ or $ \sqrt{\lambda}L = n \pi $ for $ n = \pm 1, \pm 2,\ldots$ Applying the other BC $ F'(-L)=F'(L)$, as above we get
+ \[
+c_1 \sin(\sqrt{\lambda} L )=0
+.\] 
+This implies either $ c_1 =0$ or $ \sqrt{\lambda} L = n\pi $ for $ n=\pm 1, \pm 2,\ldots$ Recall that we do not want $ c_1=0$ and $ c_2 =0$, \emph{i.e.} the trivial solution, so we require either $ c_1 \neq 0$ or $ c_2 \neq 0$. This means that both the cosine and sine terms survive in the general solution.
+
+Moreover, we get $ \lambda_n= \left( \frac{n\pi}{L } \right)^2 $ for $ n=1,2\ldots$ 
+
+\end{case}
+Hence by superposition principle, the general solution is
+\[
+	u(x,t) = a_0 + \sum_{ n= 1}^{\infty} a_n \cos \left( \frac{ n\pi x}{ L} \right) e^{-( \frac{ n\pi}{L} )^2 kt} + \sum_{ n= 1}^{\infty} b_n \sin \left( \frac{ n\pi x}{ L} \right) e^{-( \frac{ n\pi}{L} )^2 kt} 
+.\] 
+The coefficients $ a_0, a_n, b_n$ are obtained just as before using projection.
+\begin{note}
+Suppose $ f(x)$ is odd, then  $ a_0, a_n = 0$, and $ b_n = \frac{2}{L} \int_{0}^{L} f(x) \sin \left( \frac{ n\pi x}{ L} \right)  $, just like in FSS. Similar with even $ f(x)$. 
+\end{note}
+
+Now for large but finite time, we can again approximate our temperature prediction using the slowest decaying exponential term, which includes both sine and cosine terms when $ n=1$:
+ \[
+	 u(x,t) \approx \frac{1}{2L} \int_{-L}^{L} f(x) dx + \left[ a_1 \cos \left( \frac{ \pi x}{ L} \right) + b_1 \sin \left( \frac{ \pi x}{ L} \right)  \right] e^{-( \frac{ \pi}{L} )^2 kt} 
+.\] 
+And the steady-state solution ($ t \to \infty$) is just
+\[
+	\overline{u}(x) = a_0
+.\] 
+\end{enumerate}
+
+How are the FSS, FCS, and FS related?
+\begin{defn}[]
+	Note that for any function $ f(x)$, we have
+	 \[
+		 f(x)=\frac{1}{2}[f(x) + f(-x)] + \frac{1}{2} [f(x)- f(-x)]
+	.\] 
+\begin{enumerate}[label=\arabic*)]
+\item Define the \allbold{even part} of $ f(x)$ to be  $ f_e(x) = \frac{1}{2} [f(x)+f(-x)]$, then $ f_e(-x)=f_e(x)$.
+\item Define the  \allbold{odd part} of $ f(x)$ to be  $ f_o(x) = \frac{1}{2} [f(x) - f(-x)]$, then $ f_o(-x) = - f_o(x)$.
+\item The  $ \text{ F.S.} [ f]( x) $ equals the FCS of $ f_e(x)$ plus the FSS of  $ f_o(x)$. That is
+\end{enumerate}
+ \[
+\text{ F.S.} [ f]( x) = a_0 + \sum_{ n= 1}^{\infty} a_n \cos \left( \frac{ n\pi x}{ L} \right) e^{-( \frac{ n\pi}{L} )^2 kt} + \sum_{ n= 1}^{\infty} b_n \sin \left( \frac{ n\pi x}{ L} \right) e^{-( \frac{ n\pi}{L} )^2 kt} 
+.\] 
+\end{defn}
+\begin{note}[]
+	The even and odd parts of $ f(x)$ is NOT the even and odd extension of  $ f(x)$!
+\end{note}
+
+This concludes our discussion of the heat equation, for now.
+\end{document}

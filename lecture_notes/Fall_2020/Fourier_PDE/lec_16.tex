@@ -1,0 +1,97 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+For the convergence of the partials, take the time partial of the solution and use the heat equation to get the 2nd space partial:
+\begin{align*}
+	\frac{\partial u}{\partial t} (x,t) &= \sum_{ n= 1}^{\infty} B_n \cdot -k \left( \frac{n \pi }{L} \right)^2 \sin \left( \frac{ n\pi x}{ L} \right) \cdot  e^{-( \frac{ n\pi}{L} )^2 kt}   \\
+	\frac{\partial^2 u}{\partial { x}^2} &= \sum_{ n= 1}^{\infty} B_n \cdot -\left( \frac{n \pi}{L} \right)^2 \sin \left( \frac{ n\pi x}{ L} \right) e^{-( \frac{ n\pi}{L} )^2 kt}   \\
+\end{align*}
+They have the general form
+\[
+	\sum_{ n= 1}^{\infty} \tilde{B}_n n^2 \sin \left( \frac{ n\pi x}{ L} \right) e^{-C t( n )^2 } 
+.\]
+For some constant $ C>0$ and $ \tilde{ B}_n$. Since  $ t>0$
+ \[
+n\geq 1 \implies n^2 \geq n \implies Ctn^2 \geq Ct n \implies e^{Ctn^2} \geq e^{Ctn} \implies e^{-CTn^2} \leq e^{-Ctn}
+.\] 
+So by triangle inequality we have
+\[
+\sum_{ n= 1}^{\infty} \left| \tilde{ B}_n n^2 \sin \left( \frac{ n\pi x}{ L} \right) e^{-Ctn^2}  \right| \leq \sum_{ n= 1}^{\infty} |\tilde{ B}_n | \cdot  n^2 \cdot 1 \cdot  e^{-Ctn}
+.\] 
+And if $ \tilde{ B}_n $ is bounded by some $ M>0$, then we have
+ \[
+\sum_{ n= 1}^{\infty} \left| \tilde{ B}_n n^2 \sin \left( \frac{ n\pi x}{ L} \right) e^{-Ctn^2}  \right| \leq \sum_{ n= 1}^{\infty} Mn^2 e^{-Ctn}
+.\] 
+So it suffices to show that the RHS converges to show the convergence of the partials. This has been done in the homework using the ratio test. Hence the partials converge! 
+
+\subsection{Interpret Solution}
+
+\begin{thm}[convergence of a series solution of the heat equation]
+For $ t>0$, if there exists a constant  $ M>0$  such that $ |B_n|\leq M \ \forall \ n$, then
+\[
+\sum_{ n= 1}^{\infty} B_n \sin \left( \frac{ n\pi x}{ L} \right) e^{-( \frac{ n\pi}{L} )^2 kt} 
+\]
+converges absolutely for each $ x \in [0,L]$.
+\end{thm}
+\begin{prf}
+Note that given any $ n$,
+ \[
+\left| B_n \sin \left( \frac{ n\pi x}{ L} \right) e^{-( \frac{ n\pi}{L} )^2 kt}  \right| \leq |B_n| \cdot  1 \cdot e^{-( \frac{ n\pi}{L} )^2 kt} \leq M e^{-( \frac{ n\pi}{L} )^2 kt} 
+.\]
+so given any $ N>0$, we have
+ \[
+	 0< \sum_{ n= 1}^{ N} \left| B_n \sin \left( \frac{ n\pi x}{ L} \right) e^{-( \frac{ n\pi}{L} )^2 kt}  \right| \leq \sum_{ n= 1}^{ N} M e^{-( \frac{ n\pi}{L} )^2 kt} 
+.\] 
+and taking the limit $ N \to \infty$ yields
+\[
+0 < \sum_{ n= 1}^{\infty} \left| B_n \sin \left( \frac{ n\pi x}{ L} \right) e^{-( \frac{ n\pi}{L} )^2 kt}  \right| \leq \sum_{ n= 1}^{\infty} M e^{-( \frac{ n\pi}{L} )^2 kt} 
+.\] 
+by Order Limit Theorem.
+
+Now again $ n \geq 1 \implies n^2 \geq n$ and since $ \left( \frac{\pi}{L} \right)^2 kt >0 $,
+\[
+e^{-( \frac{ n\pi}{L} )^2 kt} \leq e^{-( \frac{ \pi}{L} )^2 ktn} 
+.\] 
+and since this holds for any $ n$, 
+ \[
+	 0< \sum_{ n= 1}^{\infty} M e^{-( \frac{ n\pi}{L} )^2 kt} \leq \sum_{ n= 1}^{\infty} M e^{-( \frac{ \pi}{L} ) ktn} =  \sum_{ n= 1}^{\infty} M \left[{e^{-( \frac{ \pi}{L} ) kt}}\right]^{n} < \infty 
+.\] 
+The last step comes from convergence of Geometric series:
+Note $ e^{(\frac{\pi}{L})kt} > e^{0} = 1$, so the inverse is $ <1$.
+Then
+\begin{align*}
+	\sum_{ n= 1}^{\infty} M e^{-( \frac{ \pi}{L} )^2 ktn} &= \sum_{ n= 1}^{\infty} M e^{-( \frac{ \pi}{L} ) kt} \left[e^{-( \frac{ \pi}{L} ) kt}\right]^{n-1}  \\
+	&= \sum_{ n= 1}^{\infty} a \cdot  r^{n-1} \\
+	&= \frac{a}{1-r} \\
+	&= \frac{M e^{-( \frac{ \pi}{L} ) kt} }{1- e^{-( \frac{ \pi}{L} ) kt} } < \infty
+\end{align*}
+
+Therefore, by direct comparison test, the Fourier sine series converges absolutely on $ [0,L]$.
+\end{prf}
+
+\begin{note}[]
+	For the heat equation if we start with reasonable data then the solution is almost guaranteed to converge. The assumption of $ |B_n| < M$ needs to hold. And since $ B_n$ is a definite integral, and its boundedness only depends on $ f(x)$. As long as  $ f(x)$ is "nice",  \emph{i.e.} piecewise continuous with no crazy spikes, then it converges.
+\end{note}
+
+\begin{eg}[]
+\begin{equation*}
+\begin{cases}
+	\text{ PDE: } \frac{\partial u}{\partial t} = k\frac{\partial^2 u}{\partial { x}^2} , & 0<x<L,t>0 \\
+	\text{ BC: } u(0,t)=0=u(L,t), & t>0\\
+	\text{ IC:} u(x,0) = 100, & 0\leq x\leq L  \\
+\end{cases}
+\end{equation*}
+
+\begin{align*}
+	\frac{2}{L} \int_{0}^{L} 100 \sin \left( \frac{ n\pi x}{ L} \right) dx &= \frac{200}{L} \cdot  - \cos \left( \frac{ n\pi x}{ L} \right) \frac{L}{n \pi} \bigg |_{x=0}^{x=L} \\
+	&= -\frac{200}{n\pi} \left[ \cos(n\pi  ) -1 \right]  \\
+	&= -\frac{200}{n\pi} \left[ (-1)^{n} -1 \right] \\
+	&= \frac{400}{n \pi} \text{ if n is odd} 
+\end{align*}
+So all even terms vanish, then $ B_n$ is a decreasing sequence. So  $ |B_n|\leq M = \frac{400}{n\pi}$ for all $ n\geq 1$.  Thus for  $ t>0$,  $ u(x,t)$ is absolutely convergent for each  $ x$. The series solution has the form:
+ \[
+	 u(x,t) = \frac{400}{\pi} \sum_{ p= 1}^{\infty} \frac{1}{2p-1} e^{-( \frac{ (2p-1)\pi}{L} )^2 kt} \sin \left( \frac{ (2p-1)\pi x}{ L} \right) 
+.\] 
+\end{eg}
+\end{document}

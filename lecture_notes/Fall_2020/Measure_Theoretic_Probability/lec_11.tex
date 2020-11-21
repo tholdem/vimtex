@@ -1,0 +1,52 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{thm}[]
+	$ X_n \xrightarrow{ a.s.} X \implies  X_n \xrightarrow{ p}  X$.
+\end{thm}
+\begin{note}[]
+Almost surely is the strongest convergence.
+\end{note}
+\begin{prf}
+	Define $ A_n = \{|X_n - X| \geq \epsilon \ i.o.\}. $Using the inequality of the limsup and liminfs to show $ \lim_{ n \to \infty} P(A_n) = 0$ which is convergence in probability.
+\end{prf}
+\begin{eg}[The converse is false]
+	Let $ \Omega=[0,1], \mathcal{F}=\mathcal{B}[0,1], P=$Lebesgue measure. Define:
+	\begin{align*}
+		X_1(\omega) &= \omega + I_{[0,1]}{(\omega)}\\
+		X_2(\omega) &= \omega + I_{[0,\frac{1}{2}]}{(\omega)} \\
+	X_3(\omega) &= \omega + I_{[\frac{1}{2},1]}{(\omega)} \\
+	X_5(\omega) &= \omega + I_{[\frac{1}{3},\frac{2}{3}]}{(\omega)} \\
+X_6(\omega) &= \omega + I_{[\frac{2}{3},1]}{(\omega)} \\
+		\ldots
+	\end{align*}
+	Clearly for all $ \epsilon>0$, $ P(|X_n -X|> \epsilon) \to 0$. On the other hand, there is no $ \omega \in [0,1]$ such that $ X_n(\omega) \to X(\omega) = \omega$. For example, $ \omega=\frac{1}{4}$, $ X_1(\frac{1}{4}) = \frac{1}{4}+1 = \frac{5}{4}$. $ X_2(\frac{1}{4}) = \frac{1}{4}+1 = \frac{5}{4}$. $ X_3(\frac{1}{4}) = \frac{1}{4} +0 = \frac{1}{4}$\ldots So it alternates between $ \frac{1}{4}$ and $ \frac{5}{4}$.
+\end{eg}
+
+\begin{defn}[expected value]
+	For a simple r.v. $ X(\omega)=\sum_{ i= 1}^{ n} x_i I_{A_i}(\omega)$ (assume $ x_i$ are distinct and $ A_1,\ldots,A_n$ are disjoint and partition $ \Omega$). Define the \allbold{expected value} of $ X$ as
+	 \[
+		 E[X] = \sum_{ i= 1}^{ n} x_i P(A_i)
+	.\] 
+\end{defn}
+\begin{property}
+	~\begin{enumerate}[label=\arabic*)]
+		\item $ X=0$ a.s.  $ P(X=0)=1$. Then  $ E[X]=0$. Prove using indicators.
+		\item For nonnegative $ X$, \emph{i.e.} $ X \geq 0 \ a.s.$ Then $ E[X]\geq 0$.
+		\item  For nonnegative $ X$ and  $ E[X]=0$, then  $ X=0$ a.s.
+		\item It is a linear operator:  $ E[aX+bY] = aE[X]+bE[Y]$.
+		\item  nonnegative $ X \implies E[X \cdot I_{\{X>0\} }] = E[X]$ 
+		\item $ X=Y$ a.s. ($ P(\{\omega: X(\omega)=Y(\omega)\} )=1$) $ \implies E[X]=E[Y]$.
+		\item $ X\leq Y \ a.s. \implies E[X]\leq E[Y]$.
+		\item $ |E[X]|\leq E[|X|]$ (special case of Jensen's inequality).
+	\end{enumerate}
+\end{property}
+\begin{defn}[uniformly bounded]
+	The sequence $ (X_n)$ is \allbold{uniformly bounded} if there exists a finite constant  $ M$  such that $ |X_n(\omega)| \leq M \ \forall \ \omega \in \Omega$ and $ \ \forall \ n$ . 
+\end{defn}
+\begin{thm}[]
+	$ X_n \xrightarrow{ p}  X$ and $ (X_n) $ uniformly bounded implies $ \lim_{ n \to \infty} E[X_n]=E[X]$.
+\end{thm}
+
+\end{document}

@@ -1,0 +1,54 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+Every subgroup of $ \zz$ is cyclic. Because every subgroup of a cyclic group is cyclic. For Problem 13.18, since $ 5 \in \ker \phi$, $ \ker \phi$ is cyclic, $ 5 $ as the smallest positive integer is a generator.
+
+Red flags: inputs to $ \psi$ are cosets (equivalent classes). We worry that if we call  $ g \ker \phi$ by a different name, will the output be different?
+\begin{prf}[FHT]
+	Let's first show that $ \psi$ is well-defined.
+
+Let $ K = \ker \phi, k \in K$. To give $ \psi: gK \mapsto \phi(g)  $ a different name, we can write
+\begin{align*}
+	\psi: (gk) K &\mapsto \phi(gk) \\
+	&= \phi(g) \phi(k) \text{ since } \phi \text{ is a homomorphism}    \\
+	&= \phi(g) e_H = \phi(g)  
+\end{align*}
+So a different name gives us the same answer! 
+
+To prove bijectivity, we are going to show that $ \psi$ is injective and surjective.
+
+Injective: $ \psi (g_1 K) = \psi(g_2 K) \implies \phi(g_1) = \phi(g_2) \implies$ 
+\begin{align*}
+	\phi(g_1^{-1} g_2) &= \phi(g_1^{-1}) \phi(g_2)\\ 
+			   &= \phi(g_1)^{-1} \phi(g_2)\\ 
+			   &= e_H
+\end{align*}
+Thus, $ g_1^{-1} g_2 \in K \iff g_1K=g_2K$.
+
+Surjective: Take $ y \in \im \phi$, then $ y=\phi(x)$ for some $ x \in G$ by definition of image. Then choose $ \psi (xK) = \phi(x)= y $.
+
+It remains to show that $ \psi$ is a homomorphism:
+\begin{align*}
+	\psi (xK *_{G / K} yK) &= \psi (xyK) \\
+		       &= \phi(xy) \\
+		       &= \phi(x) *_H \phi(y) \\
+		       &= \psi(xK) *_H \psi(yK) 
+\end{align*}
+Therefore, $ \psi$ is an isomorphism.
+\end{prf}
+
+Why are quotient groups useful?
+
+Answer: to construct things, \emph{i.e.} $ \zz_6$. Also to conceptualize certain complicated construction more easily.
+\begin{eg}[]
+
+What is this group?
+$ GL_n ( \rr) / SL_n( \rr)$. Let $ \phi: GL_n ( \rr) \to \rr^* $ be the determinant map. Then $ \im \phi = \rr^* $ since it's surjective. $ \ker \phi = SL_n ( \rr)$. Then the 1st isomorphism theorem states, $ G / \ker \phi \simeq \im \phi, GL_n ( \rr) / SL_n ( \rr) \simeq \rr^* $. There is also an isomorphism $ g SL_n ( \rr) \mapsto \det g$.  
+\end{eg}
+
+\begin{eg}[]
+	In $ D_4$, $ \{\rho_0, \rho_2\} $ is a normal subgroup. The cosets are $ \{\rho_1, \rho_3\}, \{\rho_1, \rho_3\} , \{\mu_1, \mu_2\}, \{\delta_1, \delta_2\}  $. Because $\rho_2$ commutes with everything, and $ \rho_0$ does nothing. Then $ (\rho_1 N)*(\mu_1 N) = \rho_1 \mu_1 N = \delta_1 N$. This is a group of order 4. We can look at the diagonal to identify if it's $ V_4$. So $ D_4 / N \simeq V_4$. 
+\end{eg}
+
+\end{document}

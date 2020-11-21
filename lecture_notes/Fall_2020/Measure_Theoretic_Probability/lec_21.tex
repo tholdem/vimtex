@@ -1,0 +1,162 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+
+\section*{Integrals for General Measurable Functions}
+
+Consider $ f: \Omega \to [-\infty, \infty]$. Write $ f=f^{+} - f^{-}$ where $ f^{+} = \max\{f,0\}$ and $ f^{-}= -\min \{f,0\} $.
+\begin{note}
+~\begin{enumerate}[label=\arabic*)]
+	\item $ f^{+}, f^{-} \geq 0$.
+	\item $ |f| = f^{+}+ f^{-}$.
+\end{enumerate}
+\end{note}
+
+\begin{defn}[integrable]
+	$ f: \Omega \to [-\infty,\infty]$ is \allbold{integrable} if $ f^{+}, f^{-}$ are integrable. In this case,
+	\[
+	\int_{A} f\ d \mu = \int_A f^{+}\ d \mu - \int_{  A} f^{-} \ d  \mu 
+	.\] 
+\end{defn}
+
+\begin{note}
+$ f^{\pm}$ integrable $ \implies $ $ f^{\pm}$ measurable $ \implies f$ is measurable. 
+\end{note}
+
+\begin{thm}
+Suppose $ f$ is measurable. Then  $ f$ is integrable if and only if  $ |f|$ is integrable.
+\end{thm}
+
+\begin{prf}
+	($ \implies$): Suppose $ f$ is integrable, then  $ \int  f^{+} \ d  \mu < \infty$ and $ \int  f^{-} \ d  \mu <\infty$ so $ \int  |f| \ d  \mu = \int  f^{+} \ d  \mu + \int  f^{-} \ d  \mu < \infty$.
+
+	$ (\impliedby)$: Suppose $ |f|$ is integrable, then  $ |f|$ is measurable. Write $ f^{+}= \frac{1}{2}(f+ |f|) \implies f^{+}$ is measurable. Moreover, 
+	\[
+	f^{+}\leq |f| \implies \int  f^{+} \ d  \mu  \leq \int  |f| \ d  \mu <\infty 
+	.\] 
+	So $ f^{+}$ is integrable. Likewise $ f^{-}$ is integrable. So $ f=f^{+}-f^{-}$ is integrable.
+\end{prf}
+
+\begin{claim}
+If $ f,g$ are measurable, then
+ \begin{enumerate}[label=\arabic*)]
+	 \item $\min \{f,g\} , \max \{f,g\} $ are measurable. Think $ \{\omega: \max(f(\omega),g(\omega)) \leq x\} $.
+	\item $ -f$ is measurable.
+\end{enumerate}
+\end{claim}
+
+\begin{remark}
+Billingsley defines the integral as 
+\[
+	\int f d \mu = \sup \sum_{ i= 1}^{\infty} \left[ \inf_{A_i} f  \right]  \mu (A_i)
+.\] 
+where the sup is taken of all finite partitions of $ \Omega$ into $ \mathcal{F}$-sets $ A_i$.
+\end{remark}
+
+\subsection*{Adventure in "Almost Everywhere" Properties}
+
+~\begin{defn}[almost everywhere]
+A property holds \allbold{almost everywhere} if it holds for all sets except for possible some sets of measure zero. 
+\end{defn}
+
+\begin{enumerate}[label=\arabic*)]
+	\item $ f=0$ a.e.  $ \implies \int f d \mu = 0$ (need $ f$ measurable).
+	\item  $ f=g$ a.e.  $ \implies \int f \ d \mu = \int g \ d \mu$.
+	\item $ f\leq g$ a.e.,  $ f,g$ measurable  $ \implies \int f \ d \mu \leq \int g\ d \mu$.
+	\item Suppose $ f$ is integrable and  $ \int_{  A}  f \ d  \mu \geq 0$ for every $ A \in \mathcal{F}$. Then $ f \geq 0$ a.e.
+		 \begin{prf}
+			 Let $ B = \{\omega: f(\omega) < 0\} $. We want to show that $ \mu(B)=0$. Then we have
+			 \begin{equation*}
+				 I_{B}(\omega) = 
+			 \begin{cases}
+				 0 & \text{ if } f(\omega)\geq 0\\
+				 f(\omega) & \text{ if } f(\omega)<0 
+			 \end{cases}
+			 \end{equation*}
+			 So $ f(\omega) I_{B}(\omega) \leq f(\omega)$. Since $ f(\omega) I_B $ is non-positive, we have
+			 \begin{align*}
+				 nf(\omega) I_{B}(\omega) &\leq f(\omega) \ \forall \ n \in \nn \\
+				 \int n f I_B\ d \mu &\leq \int f\ d\mu\\
+				 \int_B f\ d\mu &\leq \frac{1}{n} \int f\ d\mu  
+			 \end{align*}
+			 Taking $ n \to \infty$, we have $ \int_B f d \ \mu \leq 0$.
+			 Since by assumption, $ \int_B f \ d \mu \geq 0$, we have $ \int_B f\ d \mu = 0$. And since we define $ f(\omega)<0 \ \forall \ \omega \in B$, it must be that $ \mu(B) = 0 \implies f\geq 0$ a.e.
+		\end{prf}
+\end{enumerate}
+
+\section*{20: Random Variables}
+
+$ (\Omega,\mathcal{F},P)$.
+
+\begin{defn}[random variable]
+A \allbold{random variable} is a measurable function $ X: \Omega \to \rr$. 
+\end{defn}
+
+\begin{defn}[random vector]
+A \allbold{random vector} $ X$ is a measurable function $ X: \Omega \to \rr^{k}$. It necessarily has the form
+\[
+	X(\omega)=(X_1(\omega),\ldots,X_k(\omega))
+.\] 
+\end{defn}
+
+\begin{claim}
+$ X$ is a random vector if and only if each  $ X_i$ is measurable.
+\end{claim}
+
+\begin{thm}[20.1]
+	Let $ X=(X_1,\ldots,X_k)$ be a random vector.
+	\begin{enumerate}[label=(\roman*)]
+		\item $ \sigma(X) = \sigma(X_1,\ldots,X_k)$ consists precisely of the sets $ \{\omega: X(\omega) \in H\} \ \forall \ H \in \mathcal{B}(\rr^{k})$.
+		\item A r.v. $ Y$ is measurable wrt  $ \sigma(X)$ if and only if there exists a measurable $ f: \rr^{k} \to \rr$ such that $ Y(\omega) = f(X_1(\omega),\ldots,X_k(\omega)) \ \forall \ \omega \in \Omega$. 
+	\end{enumerate}
+\end{thm}
+
+\begin{note}
+This is Theorem 5.1 but with general random variables.
+\end{note}
+
+\begin{prf}
+~\begin{enumerate}[label=(\roman*)]
+	\item same as 5.1 by defining $ \mathcal{G}= \{X^{-1}(H): H \in \mathcal{B}( \rr^{k})\} $ and show equivalence.
+	\item ($ \impliedby$) Suppose there exists a measurable $ f: \rr^{k} \to \rr$ such that $ Y(\omega) = f(X(\omega)) \ \forall \ \omega \in \Omega$. Then by Theorem 13.1 (ii), composite measurable function is measurable $ \implies Y$ measurable wrt $ \sigma(X)$.
+
+		$ (\implies)$: Suppose $ Y: \Omega \to \rr$ is measurable wrt $ \sigma(X)$. Consider the following cases:
+		\begin{case}[1]
+			$ Y$ is simple, \emph{i.e.} $ Y(\omega) = \sum_{ i= 1}^{ n} a_i I_{A_i}$ where $ A_i$s are disjoint. We want to find a $ f$ measurable $ \mathcal{B}(\rr^{k})$ such that $ Y(\omega) = f(X(\omega)) \ \forall \ \omega \in \Omega$. 
+
+			$ Y$ is measurable wrt  $ \sigma(X)$ implies that
+			\[
+				A_i = Y^{-1}(\{a_i\} ) \in \sigma(X)
+			.\]
+			By part (i) of this theorem, we know $ A_i $ has the form
+			 \[
+				 A_i = \{\omega: X(\omega) \in H_i\} \text{ for some } H_i \in \mathcal{B}(\rr^{k}) 
+			.\] 
+			Now let's define $ f:\rr^{k} \to \rr$ to be
+				\[
+					f(x) = \sum_{ i= 1}^{ n} a_i I_{H_i}(x)
+				.\]
+				Note that $ f$ is measurable (since the inverse image would give us $ H_i$ or $ \O$, both in $ \mathcal{ B}(\rr^{k})$). Therefore,
+				\begin{align*}
+					f(X(\omega)) &= \sum_{ i= 1}^{ n} a_i I_{H_i}(X(\omega))\\
+						     &= \sum_{ i= 1}^{ n} a_i I_{A_i}(\omega) \\
+						     &= Y(\omega)
+				\end{align*}
+		\end{case}
+		\begin{case}[2]
+			$ Y$ is simple. Then we want to approximate  $ Y$ with simple functions  $ Y_n$, \emph{i.e.} $ 0\leq Y_n(\omega) \nearrow Y(\omega)$ if $ Y(\omega) \geq 0$ and $ 0\geq Y_n(\omega) \searrow Y(\omega)$ if $ Y(\omega) < 0$ (see details in Theorem 13.5). We can use Case 1 to find measurable $ f: \rr^{k} \to \rr$ such that $ f_n(X(\omega)) = Y_n(\omega) \ \forall \ \omega \in \Omega$.
+
+			Now consider the set $ A = \{x: f_n(x) \text{ converges} \} $. Then by the theorem right after 13.4 ($ A = \{\liminf_{  n} f_n(x) = \limsup_{  n} f_n(x)\} $ where LHS and RHS are both measurable), we know $ A \in \mathcal{B}(\rr^{k})$. Let's define $ f: \rr^{k} \to \rr$ as
+			\begin{equation*}
+				f(x)=
+			\begin{cases}
+				\lim_{ n \to \infty} f_n(x) & ,x \in A\\
+				0 & , x \not\in A\\
+			\end{cases}
+			\end{equation*}
+			Note that $ f = \left( \lim_{ n \to \infty} f_n \right) \cdot I_A = \lim_{ n \to \infty} (f_n \cdot  I_A)$. Since $ f_n, I_A$ are measurable, $ f_n \cdot I_A$ is also measurable, and the limit is also measurable by 13.4. Thus we showed that $ f$ is measurable and thus $ f(X(\omega)) = Y(\omega)$ is what we seek.
+		\end{case}
+\end{enumerate}
+\end{prf}
+\end{document}

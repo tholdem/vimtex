@@ -1,0 +1,117 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+
+\begin{note}[]
+	The BCs in this problem is the \allbold{Von Neumann condition}, which gives rise to FCS. The BCs from a previous problem with no derivatives is the \allbold{Dirichlet condition}, which gives rise to FSS.  
+\end{note}
+\begin{note}[]
+	In the case when PDE and BCs already form a vector space, we don't need to solve for steady-state and transient solutions separately because the eigenvalue problem at $ \lambda = 0$ case gives the steady-state solution. Let's directly use $ u(x,t)=F(x)G(t) \neq 0$ and apply separation of variables.
+\end{note}
+Then the time domain problem is
+	\[
+		G'(t)=-\lambda kG(t)
+	.\] 
+	And the solution is again $ G(t) = Ce^{-\lambda kt}, C \in \rr$. The boundary value problem is:
+\begin{equation*}
+\begin{cases}
+	\frac{d^2 F}{d {x }^2} = -\lambda F(x)\\
+	F'(0)=0=F'(L)\\
+\end{cases}
+\end{equation*}
+This is equivalent to the eigenvalue problem:
+\begin{case}[]
+$ \lambda <0$ we get trivial solution.
+\end{case}
+\begin{case}[]
+$ \lambda =0$, then
+\[
+	F''(x) =0 \implies F(x) = Ax+B
+.\] 
+and the BCs yields $ A=0$ thus  $ F(x)=B, B \in \rr$.
+\begin{note}[]
+We didn't get trivial solution here because it is the Von Neumann condition, as opposed to the Dirichlet condition from before.
+\end{note}
+\end{case}
+\begin{case}[]
+$ \lambda >0$, this is the same as before, we have
+\[
+	F(x) = c_1 \cos(\sqrt{\lambda }x  ) + c_2 \sin(\sqrt{\lambda } x )
+.\] 
+And apply BCs:
+\[
+	0=F'(0) \implies c_2 = 0 \implies F(x) = c_1 \cos(\sqrt{\lambda} x )
+.\] 
+\[
+	0 = F'(L) \implies \sin(\sqrt{\lambda} L ) = 0 \implies \sqrt{\lambda} = \frac{n\pi}{L } \text{ for }  n=\pm 1, \pm 2,\ldots  
+.\]
+which implies $ \lambda_n =\left( \frac{n\pi}{L } \right)^2 $ for $ n=1,2,\ldots$.
+
+Now we have $ u_n(x,t) = a_n \cos \left( \frac{ n\pi x}{ L} \right) e^{-( \frac{ n\pi}{L} )^2 kt} $ for $ n=1,2,\ldots$. The superposition principle asserts that the solution of the homogeneous PDE (if it converges) is the linear combination of all $ u_n(x,t)$. That is,
+\[
+	u(x,t) = A_0 + \sum_{ n= 1}^{\infty} A_n \cos \left( \frac{ n\pi x}{ L} \right) e^{-( \frac{ n\pi}{L} )^2 kt} 
+\] 
+for some constants $ A_n$. Now we apply the IC to find these constants. Since we have orthogonal cosine basis, it is in fact a Fourier Consine Series (FCS): 
+ \[
+	 f(x) = u(x,0)=A_0 +\sum_{ n= 1}^{\infty} A_n \cos \left( \frac{ n\pi x}{ L} \right) 
+ .\] 
+ we use the projection formula for the case $ t=0$ to find the coefficients of this basis:
+ \[
+	 A_0 = \frac{1}{L} \int_{0}^{L} f(x) dx 
+ .\] 
+ and
+ \[
+	 A_n = \frac{2}{L}\int_{0}^{L} f(x) \cos \left( \frac{ n\pi x}{ L} \right) dx 
+ .\]
+\end{case}
+
+\begin{thm}[convergence]
+For $ t>0$, if there exists a constant  $ 0<M< \infty$ such that $ |A_n|\leq M$, for all $ n$, then
+ \[
+A_0 + \sum_{ n= 1}^{\infty} A_n \cos \left( \frac{ n\pi x}{ L} \right) e^{-( \frac{ n\pi}{L} )^2 kt} 
+\] 
+converges absolutely for each $ x \in [0,L]$
+\end{thm}
+Therefore, our final solution is
+\[
+	u(x,t) = \frac{1}{L}\int_{0}^{L} f(x) dx + \sum_{ n= 1}^{\infty} \left( \frac{2}{L} \int_{0}^{L} f(x) \cos \left( \frac{ n\pi x}{ L} \right) dx   \right)   \cos \left( \frac{ n\pi x}{ L} \right) e^{-( \frac{ n\pi}{L} )^2 kt} 
+.\] 
+and note that when $ t \to \infty$, we obtain the steady state solution.
+
+For large but finite time, we can use the slowest decaying term to approximate the solution
+\[
+	u(x,t) = A_0 + A_1 \cos \left( \frac{ \pi x}{ L} \right) e^{-( \frac{ \pi}{L} )^2 kt} 
+.\]
+
+\subsection{Fourier Cosine Series}
+What does it represent?
+\begin{defn}[even extension]
+\begin{enumerate}[label=\arabic*)]
+	\item Define the \allbold{even extension} of $ f(x)$ to be
+		 \begin{equation*}
+			 f_{even}(x)=
+		\begin{cases}
+			f(x), & \text{ if }0<x<L\\
+			f(-x), & \text{ if } -L<x<0 
+		\end{cases}
+		\end{equation*}
+		Then $ f_{even}(-x)=f_{even}(x)$ for any $ x \in (-L,L)$.
+	\item If $ f(x)$ is piecewise smooth then  $ f(x)$ has a Fourier series representation and if  \[
+			f(x) = A_0 + \sum_{ n= 1}^{\infty} A_n \cos \left( \frac{ n\pi x}{ L} \right) , \text{ for } 0<x<L 
+	.\] 
+	Then note that the RHS is continuous, even, and $ 2L$-periodic. Thus the Fourier cosine series of  $ f(x)$ represents the periodoc extension of the (adjusted) even extension of  $ f(x)$ that is
+	 \[
+	A_0 + \sum_{ n= 1}^{\infty} A_n \cos \left( \frac{ n\pi x}{ L} \right) = \tilde{ \overline{f}}_{even}( x) 
+	.\] 
+\item in general, FCS$[f](x) = \text{ F.S.} [ f_{even}]( x)  $.
+\end{enumerate}
+\end{defn}
+\begin{eg}[]
+	See lecture notes for figures of FCS.
+\end{eg}
+
+
+
+\end{document}
+

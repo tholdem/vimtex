@@ -1,0 +1,109 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+How large is the signal propagation speed $ c =\sqrt{\frac{T_0}{\delta A}} $?
+
+The time required to complete one cycle, $ T_1 = \frac{2L}{c}$. So
+\[
+\omega_1 = \frac{1}{T_1} = \frac{c}{2L} \implies c = 2L \omega_1 = 106.9 \text{ m/sec} 
+.\]
+Then for $ n$th harmonics,  $c = n \cdot \omega_1 = n \cdot 106.9 $ m/sec.
+
+\newpage
+\section{d'Alembert's solution to the wave equation}
+
+We want to use trigonometric identity to transform the solution.
+
+Recall
+\[
+	\sin(a )\cos(b ) = \frac{1}{2}[\sin(a+b )+ \sin(a-b )] \text{ and } \sin(a )\sin(b ) = \frac{1}{2} [\cos(a-b) -\cos(a+b ) ] 
+.\] 
+Applying this to the solution and we obtain
+\begin{align*}
+	& \qquad A_n \sin \left( \frac{ n\pi x}{ L} \right) \cos \left( \frac{ n\pi c t}{ L} \right) + B_n \sin \left( \frac{ n\pi x}{ L} \right) \sin \left( \frac{ n\pi c t}{ L} \right) \\
+	&= \frac{A_n}{2} \left( \sin\left( \frac{n\pi}{L }(x+ct) \right) + \sin\left( \frac{n\pi}{L} (x-ct) \right)  \right) + \frac{B_n}{2} \left( \cos\left( \frac{n\pi}{L }(x-ct) \right) - \cos\left( \frac{n\pi}{L }(x+ct) \right)   \right)  \\
+																						  &= f(x+ct) + g(x-ct) 
+\end{align*}
+
+Let's introduce the natural variables
+\[
+y=x+ct \text{ and } z=x-ct \text{ for } c>0 \implies x=\frac{y+z}{2 }, t=\frac{y-z}{2c }
+.\] 
+Note that any point $ (x,t) \in \rr\times [0,\infty)$ can be written as a point $ (y,z) \in \rr^2$.
+\begin{intuition}
+	$ y,z$ represent two lines in the  $ x,t$ plane and their intersection gives us  $ (x,t)$.
+\end{intuition}
+We want to solve the wave equation in terms of these new variables so we need to write the wave equation in terms of $ (y,z)$. Note this is not $ u(y,z)$, as we can see from the counterexample below.
+\begin{eg}[]
+	Let $ u(x,t) = x \cdot t$. Then
+	\begin{align*}
+		u(x,t) &= \left( \frac{y+z}{2 } \right) \left( \frac{y-z}{2c } \right)   \\
+		&= \frac{y^2 - z^2}{4c } \\
+		&\neq u(y,z) = yz  \\
+	\end{align*}
+\end{eg}
+
+Rewrite $ u(x,t)= v(y,z)$, then by Chain Rule,
+ \[
+	 \frac{\partial u}{\partial x} = \frac{\partial v}{\partial x} (y,z) = \frac{\partial v}{\partial y} \cdot \frac{\partial y}{\partial x} + \frac{\partial v}{\partial z} \cdot \frac{\partial z}{\partial x} = v_y + v_z
+.\]
+In general, for any function $ f(y,z)$, we have  $ \frac{\partial f}{\partial x} = f_y+ f_z$.
+
+Again by Chain Rule,
+\begin{align*}
+	\frac{\partial^2 u}{\partial { x}^2} &= \frac{\partial }{\partial x} \frac{\partial u}{\partial x}  \\
+					     &= \frac{\partial }{\partial x} (v_y + v_z)  \\
+					     &= [v_{yy}+ v_{yz}] + [v_{zy}+ v_{zz}]\\
+					     &=  \frac{\partial^2 v}{\partial { u}^2} + 2 \frac{\partial^2 v}{\partial { y} \partial z} + \frac{\partial^2 v}{\partial { z}^2}  
+\end{align*}
+the combining is due to Clairaut's Theorem. Similarly,
+\[
+	\frac{\partial u}{\partial t} = c(v_y - v_z)
+.\] 
+and
+\[
+	\frac{\partial^2 u}{\partial { t}^2} = c^2 \left( \frac{\partial^2 v}{\partial { y}^2} - 2 \frac{\partial^2 v}{\partial { y} \partial z} + \frac{\partial^2 v}{\partial { z}^2}  \right) 
+.\] 
+Now plug them into the wave equation and we can rewrite it after cancellation as
+\[
+4 c^2 \frac{\partial^2 v}{\partial { y} \partial z} =  0
+.\]
+We keep $ c^2$ there because it contains useful information about the problem. This is a much simpler equation to solve! Note $ \frac{\partial }{\partial y} v_z = 0$ implies that $ v_z$ constant with respect to $ y$. That is,
+ \[
+	 \frac{\partial }{\partial y} \left( \frac{\partial v}{\partial z}  \right) =0 \implies \frac{\partial v}{\partial z} = f'(z)
+.\]
+Integrating both sides wrt $ z$, we have
+ \[
+	 v(y,z) = f(z) + C_1(y)
+.\] 
+Note that the constant is only wrt $ z$, so it can be a function of  $ y$.
+
+Now doing the same thing wrt  $ y$, we obtain
+ \[
+	 v(y,z) = g(y) + C_2(z)
+.\] 
+By term matching, we obtain
+\[
+	v(y,z) = f(z) + g(y)
+.\] 
+Plugging back $ x,t$, we obtain
+ \[
+	 v(y,z) = u(x,t) = f(x-ct)+ g(x+ct)
+.\] 
+We can use the BCs and ICs to determine $ f(z), g(y)$. This is the  \allbold{d'Alembert's solution to the traveling wave equation}.
+
+\begin{defn}[traveling waves]
+\begin{enumerate}[label=\arabic*)]
+	\item The function $ f(x-ct)$ is a waveform that moves to the right with velocity $ c>0$ and is called a \allbold{traveling wave}.
+	\item Likewise, the function $ g(x+ct)$ is a traveling wave moving to the left with velocity  $ -c$.
+\end{enumerate}
+\end{defn}
+
+\begin{note}[]
+~\begin{enumerate}[label=\arabic*)]
+	\item This solution is the general solution of the 1D wave equation as long as the 2nd derivatives are continuous. So we don't need to deal with convergence issues.
+	\item For the Fourier Series solution of the wave equation, it can be shown that in order for the series for $ \partial^2_x u(x,t)$ to converge for $ t \geq 0$, we need  $ U''(x)$ to have a convergent series at  $ t=0$. Then if the initial data, that is  $ U(x)$ and  $ V(t)$, are smooth enough then the Fourier series solution is the solution to the BVP.
+\end{enumerate}
+\end{note}
+\end{document}

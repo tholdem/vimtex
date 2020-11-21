@@ -1,0 +1,91 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Isomorphism}
+\begin{defn}[isomorphism]
+	Let $(S,*)$ and $(S',*')$ be binary structures. An \allbold{isomorphism} $\phi$ from $(S,*)$ to $(S',*')$ is a function
+	$\phi:S\to S'$ such that
+	\begin{enumerate}[label=(\roman*)]
+		\item $\phi$ is a bijection
+		\item $\phi(x*y) = \phi(x) *' \phi(y)  $
+	\end{enumerate}
+\end{defn}
+
+\begin{defn}[isomorphic]
+	$(S,*)$ and  $(S',*')$ are called \allbold{isomorphic} if there exists an isomorphism between them. 
+\end{defn}
+\begin{remark}
+Isomorphism indicates an equivalence relationship and is symmetric. The isomorphism of the other way around is just the inverse of $\phi$.
+\end{remark}
+\begin{eg}[3.2]
+\begin{table}[htpb]
+	\centering
+	\begin{tabular}{c||c|c|c}
+		*& \# & \$ & \&\\
+		\hline\hline
+		\#& \& & \# & \$\\
+		\hline
+		\$ & \# & \$ & \&\\
+		\hline
+		\& & \$ & \& & \#
+	\end{tabular}
+\end{table}
+\$ is the identity.  \# is the inerse of \&.  \$ is self-inve. $*$ is commutative.   
+\end{eg}
+
+\begin{eg}[3.3]
+\begin{table}[htpb]
+	\centering
+	\begin{tabular}{c||c|c|c}
+		*& x & y & z\\
+		\hline\hline
+		x& x & y & z\\
+		\hline
+		y & y & z & x\\
+		\hline
+		z & z & x & y
+	\end{tabular}
+\end{table}
+\end{eg}
+Let's find an isomorphism between these two structures. Try:
+\[
+	\phi:\# \mapsto y, \$ \mapsto x,\&\mapsto z
+.\] 
+It works. Identity needs to map to identity.\\
+
+So what structural properties does isomorphism preserve?
+\begin{defn}[structural property]
+	A \allbold{structural property} is a property preserved by isomorphism. 
+\end{defn}
+\begin{note}[]
+e.g. "having 4 elements", "being commutative", "having an identity",\ldots
+\end{note}
+\begin{thm}[]
+	If $\phi:(S,*) \to (S',*')$ is an isomorphism and $e$ is the identity of  $(S,*)$, then  $\phi(e) $ is the identity of $(S',*')$.
+\end{thm}
+\begin{prf}
+Let $y \in S'$, we need to show that $\phi(e) *' y = y*' \phi(e) $. Since $\phi$ is a bijection, $\quad \exists x \in S $ s.t. $\phi(x)=y $. 
+\begin{align*}
+	\phi(e)*'y&= \phi(e) *'\phi(x)   \\
+		  &= \phi(ex)   \\ 
+		  &= \phi(x)  \\
+		  &= y \\
+\end{align*}
+Similarly for the other way.
+\end{prf}
+
+Example 3.6 doesn't have an identity, but 3.3 has an identity. Hence there doesn't exist an isomorphism between the two structures. Also 3.6 is not commutative but 3.3 is. We know that 3.3 is associative because it is isomorphic to integers mod 3.\\
+
+\begin{note}[]
+	To prove if a function is a isomorphism. First we prove it's a bijection by either finding a pair of inverses or prove both one-to-one and onto. Then we prove the second property.
+\end{note}
+
+\begin{eg}[]
+	Show that $(\rr,+)$ and $(\rr^+,\times)$ are isomorphic.
+\end{eg}
+\begin{intuition}
+	We need to map $0 \to 1$ and we need to map $+ \to \times $. Exponential is a good way to do that.
+\end{intuition}
+
+\end{document}

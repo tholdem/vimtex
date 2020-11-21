@@ -1,0 +1,155 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{eg}[evaluation homomorphism]
+	Let $ R= \{f: \rr \to \rr\}$ with pointwise addition and multiplication. Let $a \in \rr$, define $ \phi_a: R \to \rr$ and $ \phi_a(f(x))=f(a)$. This is a ring homomorphism.
+	\[
+		\phi_a(f(x)+g(x))= (f+g)(a) = f(a)+g(a)=\phi_a(f(x))+\phi_a(g(x))
+	\] 
+By pointwise addition. Similarly,
+\[
+	\phi_a(f(x)g(x))= fg(a)= f(a)g(a)= \phi_a(f(x)) \phi_a(g(x))
+.\] 
+
+Suppose $ a=2$, so  $ \phi_2 : f(x) \mapsto f(2)$.
+\end{eg}
+
+\begin{defn}[]
+$ \phi: R \to S$ is a homomorphism of rings. Then
+\[
+	\ker \phi = \{ r \in R: \phi(r)=0\} 
+.\] 
+and
+\[
+	\im \phi= \{s \in S: \phi(r)=s \text{ for some }r \} 
+.\] 
+\end{defn}
+
+\begin{note}[]
+Direct product of rings follows intuitively from that of groups. The projection map is again a homomorphism.
+\end{note}
+
+\begin{defn}[unit]
+Let $ R$ be a ring with identity. A \allbold{unit} in $ R$ is an element with a multiplicative inverse. 
+\end{defn}
+\begin{eg}[]
+In $ \zz_{12}$, 7 is a unit because $ 7\times 7=1 \mod 12$. The units are $ \{1,5,7,11\} $, coprimes of 12.
+
+In $ \zz_7$, 3 is a unit. $ 3 \times 5= 1 \mod 7$. 
+
+In $ \zz$, the units are $ \{1,-1\} $. Warning: the answer to "what are the units" is usually not $ \pm 1$. This is true for  $ \zz$.
+
+In $ \qq$, the units are all NONZERO elements.
+\end{eg}
+
+\begin{note}[]
+$ 0$ is NEVER a unit. Because  by Theorem 18.8, $ u0=0u=0 \neq 1$ by definition of multiplicative identity.
+\end{note}
+
+\begin{thm}[]
+	The units, $ U(R)$ of  $ R$, form a group under multiplication.
+\end{thm}
+\begin{prf}
+\begin{enumerate}[label=(\roman*)]
+	\item closure: If $ u$ and  $ v$ are units, so is  $ uv$. The inverse of  $ uv$ is $ v^{-1}u^{-1}$.
+	\item associativity: definition of $ \times _R$.
+	\item identity: $ I_R$ is a unit. It is its own inverse.
+	\item inverses: If  $ u$ is a unit, so is  $ u^{-1}$.
+\end{enumerate}
+\end{prf}
+\begin{defn}[division ring]
+A \allbold{division ring} is one in which every nonzero element is a unit. 
+\end{defn}
+\begin{defn}[fields]
+	A \allbold{field} is a commutative division ring. 
+\end{defn}
+\begin{eg}[]
+$ \qq, \rr, \cc, \zz_p$.
+\end{eg}
+\begin{eg}[division ring not field]
+	$ \mathbb{H}$ real quaternions. They are like complex numbers but worse. Complex numbers are a vector space of dimension 2 over the reals. Quaternions are dimensional 4, $ \{a+bi+cj+dk: a,b,c,d \in \rr\} $ with basis $ \{1,i,j,k\} $, where $ i^2=j^2=k^2=-1$. This is not commutative, similar to cross-product. The inverse comes from conjugation.
+\end{eg}
+
+What is the additive order of $ 1_R$? We know distributivity laws might be involved.
+ \begin{eg}[]
+	 Let $ F$ be a field, and let  $ 1_F$ be the multiplicative identity. Could  $ 1_F$ have additive order 6?
+
+	 No. Suppose  $ 1_F+1_F+1_F+1_F+1_F+1_F = 0_F \implies (1_F + 1_F)\times (1_F+1_F+1_F) = 0_F$. In a field, if $ xy=0$, then  $ x=0$ or  $ y=0$.
+	  \begin{prf}
+	 Suppose $ x \neq 0$, we will show that  $ y=0$.  This implies $ x$ has a multiplicative inverse,  $ x^{-1}$. Then
+	 \begin{align*}
+		 xy&=0\\
+		 x^{-1}(xy) &= x^{-1} 0 =0\\
+		 (x^{-1} x)y &= 0 \\
+		 1_R y &= 0 \\
+		 y&= 0 \\
+	 \end{align*}
+	 \end{prf}
+	 Therefore, $ 1_F+1F=0$ or  $ 1_F+1_F+1_F=0$. So we found a smaller number for the order! 
+\end{eg}
+
+\begin{defn}[characteristic of a field]
+	Let $ n$ be the additive order of  $ 1_F$. If  $ n$ finite,  the characteristic of $ F$ is  $ n$. If  $ n$ is infinite, the characteristic of  $ F$ is 0.
+\end{defn}
+
+\begin{thm}[]
+	The characteristic of a field is either 0 or a prime.
+\end{thm}
+\begin{eg}[]
+	Extreme example: $ \zz_2 $ is field. 
+\end{eg}
+\begin{eg}[zero divisors]
+	In $ M_2(\rr)$. $ \begin{pmatrix} 1&0\\0&0 \end{pmatrix} \begin{pmatrix} (0&0\\0&1 \end{pmatrix}  = \begin{pmatrix} 0&0\\0&0 \end{pmatrix} $ 
+	In $ \zz_{10}, 4\times 5=0$.
+\end{eg}
+\begin{defn}[zero divisors]
+Let $ R$ be a ring and  $ x,y \in R$. If $ xy=0$ but  $ x\neq 0$ and  $ y\neq 0$, we call  $ x,y$  \allbold{zero divisors.} 
+\end{defn}
+
+\begin{defn}[integral domain]
+An \allbold{integral domain} is a commutative ring with identity that has no zero divisors. 
+\end{defn}
+\begin{eg}[]
+$ \zz$.
+\end{eg}
+
+\begin{eg}[unrelated]
+	$ \mathbb{H}$. Then  $ \{1,-1,i,-i,j,-j,k,-k\} $ under $ \times $ form a group. Then the order of its elements are:
+\begin{align*}
+	1:&1\\
+	-1:&2\\
+	i:&4\\
+	-i:&4\\
+	j:&4\\
+	-j:&4\\
+	k:&4\\
+	-k:&4\\
+\end{align*}
+But for $ D_4$, the reflections have order 2, and rotations have order $ 1,4,2,4$. Element order is a structural property. $ Q_8$ is not abelian, but every subgroup is normal.
+
+So the complete list of groups of order 8 is: $ \zz_2 \times \zz_2 \times \zz_2, \zz_4 \times \zz_2, \zz_8, D_4, Q_8 $.
+
+\begin{eg}[complete list of groups with order 1 to 15]
+Note that prime orders only have $ \zz_{p}$. Orders of $ p^2$ only has $ \zz_{p^2}$ and $ \zz_p \times \zz_p$.
+\begin{align*}
+	1:& \{e\} \\
+	2:&\zz_2\\
+	3:&\zz_3\\
+	4:& \zz_4, V_4\\
+	5:& \zz_5\\
+	6:& \zz_6, S_3 \simeq D_3\\
+	7:& \zz_7\\
+	8:& \text{ described above }\\
+	9:& \zz_9, \zz_3 \times \zz_3\\
+	10:& \zz_{10}, D_5\\
+	11:& \zz_{11}\\
+	12:& \zz_{12}, \zz_2 \times \zz_6, D_6, A_4, T\\
+	13:& \zz_{13}\\
+	14:& \zz_{14}, D_7\\
+	15:& \zz_{15}\\
+\end{align*}
+\end{eg}
+
+\end{eg}
+\end{document}

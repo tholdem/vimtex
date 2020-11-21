@@ -1,0 +1,146 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\subsection{Mean Value Property}
+
+Note that 
+ \[
+	 v(r,\theta)= a_0 + \sum_{ n= 1}^{\infty} a_n \left( \frac{r}{R} \right)^{n}  \cos(n \theta ) + b_n \left( \frac{r}{R} \right)^{n} \sin(n\theta ) 
+.\] 
+implies that the temperature at the center is an average of the temperature at the boundary: \[ v(0, \theta) = a_0 = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(\theta) d\theta .\]
+
+For any fixed $ 0< \tilde{R} < R$, suppose  $ w(r,\theta)$ satisfies
+\begin{equation*}
+\begin{cases}
+	\text{PDE: } \Delta w=0,  & 0<r<\tilde{R}, \theta \in (-\pi,\pi) \\
+	\text{BCs: } w( \tilde{R},\theta) = g(\theta) & \\
+\end{cases}
+\end{equation*}
+Then the solution is almost identical:
+\[
+	w(r,\theta) = A_0 + \sum_{ n= 1}^{\infty} A_n \left( \frac{r}{\tilde{R}} \right)^{n} \cos(n\theta ) + B_n \left( \frac{r}{\tilde{R}} \right) ^{n} \sin(n\theta )
+.\] 
+where for $ n\geq 1$, we have
+ \[
+	 A_n = \frac{1}{\pi} \int_{-\pi}^{\pi} g(\theta) \cos(n\theta )  d\theta \text{  and  } B_n = \frac{1}{\pi} \int_{-\pi}^{\pi} g(\theta) \sin(n \theta ) d\theta 
+.\]
+And note that
+\[
+	\frac{1}{2\pi} \int_{-\pi}^{\pi} g(\theta) d\theta = A_0 = w(0,\theta)= \frac{1}{2\pi} \int_{-\pi}^{\pi} f(\theta) d\theta 
+.\] 
+So every circle of radius $ 0<\tilde{R}<R$ centered at  $ r=0$ has the same average temperature as the circle of radius  $ r=R$.
+
+\begin{thm}[Mean Value Theorem for Laplace's Equation]
+	The temperature at any point $ x_0$ is the average of the temperature along any circle of radius $ \tilde{R}>0$ lying inside the domain and centered at  $ x_0$.
+\end{thm}
+\begin{prf}
+	Sketch: Suppose $ \Delta u=0$ in domain $ D$ and suppose  $ x_0$ is in domain $ D$, then  $ \Delta u = 0$ on any circle centered at $ x_0$ and within $ D$, thus solving this Laplacian "subproblem" shows that  $ x_0$ is the average of the temperature along any circle lying inside $ D$ and centered at  $ x_0$ (like we showed above).
+\end{prf}
+\begin{thm}[Maximum Principle for Laplace's Equation]
+	In steady state, assuming no sources, the temperature cannot attain its maximum in the interior unless the temperature is constant everywhere (In other words, the extrema values are achieved on the boundary).
+\end{thm}
+
+~\begin{prf}
+Sketch:	Suppose the temperature is not constant and that the maximum occurs at a point $ P$ in the domain. Now since  $ u(P)$ is the average temperature of all the points on any circle centered at  $ P$, it cannot be larger than any temperature on the circle (since it's an average) thus we have a contradiction. Thus the maximum temperature occurs on the boundary.
+\end{prf}
+
+\begin{claim}[]
+	If $ \Delta u=0$ on an open region then $ u$ is  $ \mathcal{ C}^{\infty}$ in the open region.
+\end{claim}
+\begin{prf}
+	Assume the standard solution with $ v(R,\theta)=f(\theta)$. Suppose $ f(\theta)$ is piecewise smooth $ -\pi<\theta\leq \pi$ then there exists a finite number $ M>0$  such that 
+	\[
+		|a_0|\leq \frac{1}{2\pi} \int_{-\pi}^{\pi} |f(\theta)| d\theta   \leq \frac{M}{2}, |a_n|\leq M, |b_n|\leq M
+	.\] 
+Notice:
+\begin{itemize}
+	\item if $ r=R$, then the F.S. converges to  $ \frac{1}{2} (f(\theta^{+})+f(\theta^{-}))$.
+	\item if $ r=0$, then  $ v=0$.
+	\item If  $ 0<r<R$, then we want to show it converges absolutely.
+\end{itemize}
+
+Since $ 0< \frac{r}{R}<1$,
+\begin{align*}
+	\sum_{ n= 1}^{\infty} \left| a_n\left( \frac{r}{R} \right)^{n} \cos(n\theta )  \right| + \left| b_n \left( \frac{r}{R} \right)^{n} \sin(n\theta ) \right| &\leq \sum_{ n= 1}^{\infty} \left[ M\left( \frac{r}{R} \right)^{n} + M \left( \frac{r}{R} \right)^{n}  \right] \\
+																				  &= \sum_{ n= 1}^{\infty} 2M\left( \frac{r}{R} \right)^{n}  \\
+																				  &= \frac{2M (r /R)}{1-(r /R) } \\
+																				  &= \frac{2Mr}{R-r } \\
+\end{align*}
+Therefore, $ v(r,\theta)$ converges absolutely for each $ r \in (0,R)$.
+\end{prf}
+
+\subsubsection{Derivative}
+Differentiation gives:
+\[
+	\frac{\partial v}{\partial \theta} = -\sum_{ n= 1}^{\infty} a_n \left( \frac{r}{R} \right)^{n} \cdot n \cdot \sin(n\theta ) + b_n\left( \frac{r}{R} \right)^{n} \cdot n \cdot \cos(n \theta )
+.\] 
+
+Since $ \left( \frac{r}{R} \right)^{n} = e^{n \ln( r /R)} = e^{-n |\ln( r /R)|}$ so
+\[
+	\sum_{ n= 1}^{\infty} \left| a_n \left( \frac{r}{R} \right)^{n} n \sin(n\theta ) + b_n \left( \frac{r}{R} \right)^{n} n \cos(n \theta )  \right| \leq \sum_{ n= 1}^{\infty} 2M \frac{n}{e^{n |\ln(r /R)|}}
+.\] 
+By Ratio test, the series converges absolutely. This means that the derivative converges uniformly and thus we can swap differentiation and infinite sum by term-by-term differentiation theorem. This result applies to all orders of derivatives.
+
+
+\begin{thm}[general solution of annulus]
+	If $ v(R_i, \theta)=f_i (\theta), v(R_{o}, \theta)=f_{o}(\theta)$, then the general solution over an annulus is
+	\begin{align*}
+		v(r, \theta) &= [a_0 + A_0 \ln(r)] + \sum_{ n= 1}^{\infty} \left( \frac{r}{R_{o}} \right)^{n} [a_n \cos(n\theta )+b_n \sin(n\theta )] \\
+			     &\qquad + \sum_{ p= 1}^{\infty} \left( \frac{R_i}{r} \right)^{p} [A_p \cos(p\theta )+ B_p \sin(p\theta )] 
+	\end{align*} 
+\end{thm}
+\begin{note}[]
+This solution encompasses the cases of completely inside the disk and outside the disk.
+\end{note}
+
+\subsection{Uniqueness of Solutions}
+
+\subsubsection{Uniqueness of Laplacian's equation}
+Suppose $ u_1(x,y), u_2(x,y)$ both satisfy the PDE and BCs. Let $ v(x,y) = \tilde{v}(r,\theta) = u_1-u_2$. Notice
+\[
+	\Delta v= \Delta u_1 - \Delta u_2 = 0 - 0 =0 \text{ and } \tilde{v}(R,\theta)=\tilde{u}_1(R,\theta)-\tilde{u}_2(R,\theta) = f(\theta)-f(\theta)=0 
+.\] 
+Thus, $ \tilde{u}$ satisfies the above PDE and BCs. Note that the Maximum Principle states that the maximum and minimum of  $ v(x,y)=\tilde{v}(r,\theta)$ occur on the boundary but  $ \tilde{v}(R,\theta)=0$ so $ \tilde{v}=0 \implies u_1=u_2$.
+
+\begin{thm}[Uniqueness of Heat Equation]
+	Suppose $ u_1(x,t), u_2(x,t)$ are $ \mathcal{ C}^2$ solutions of the problem
+	\begin{equation*}
+	\begin{cases}
+		\text{PDE: }  u_t = k u_{x x} & 0<x<L, t>0 \\
+		\text{BCs: } u(0,t) = a(t), u(L,t)=b(t)  & t>0 \\
+		\text{ICs: } u(x,0)=f(x) & 0 \leq x \leq L \\
+	\end{cases}
+	\end{equation*}
+	where $ a(t),b(t), f(x)$ are given  $ \mathcal{ C}^2$ functions when $ u_1(x,t)=u_2(x,t)$ for all $ x \in [0,L], t\geq 0$.
+\end{thm}
+\begin{prf}
+	Sketch: Let $ v(x,t)=u_1(x,t)-u_2(x,t)$. Define
+	\[
+		F(x) = \int_{0}^{L} |v(x,t)|^2 \ dt \geq 0
+	.\] 
+	By using integration by parts, we can show that $ F'(x)\leq 0$ and since  $ F(0)=0, F(t)\geq 0$, this is only possible if  $ F(t)=0 \implies v(x,t)=0 \implies u_1(x,t)=u_2(x,t)$.
+\end{prf}
+\begin{thm}[Uniqueness of Wave Equation]
+	Suppose $ u_1(x,t), u_2(x,t)$ are $ \mathcal{ C}^2$ solutions of the problem
+	\begin{equation*}
+	\begin{cases}
+		\text{PDE: }  u_t = c^2 u_{x x} & 0<x<L, t>0 \\
+		\text{BCs: } u(0,t) = a(t), u(L,t)=b(t)  & t>0 \\
+		\text{ICs: } u(x,0)=U(x), u_t(x,0)=V(x) & 0 \leq x \leq L \\
+	\end{cases}
+	\end{equation*}
+	where $ a(t),b(t), U(x), V(x)$ are given  $ \mathcal{ C}^2$ functions when $ u_1(x,t)=u_2(x,t)$ for all $ x \in [0,L], t\geq 0$.
+\end{thm}
+
+\newpage
+\begin{prf}
+Sketch: Define \emph{Lyapunov functional} as 
+\[
+	H(t) = int_{x=0}^{x=L} [c^2 \cdot  v_{x}^2(x,t) + v_{t}^2(x,t) ] \ dx
+.\] 
+Then we can show that $ H'(t) = 0 $ and since  $ H(0)=0$, then it must be that  $ H(t)=0 \implies v_{t}(x,t)\implies v(x,t) = \int_0^t v_t (x,s) \ dx \implies u_1(x,t)=u_2(x,t)$.
+\end{prf}
+
+
+\end{document}

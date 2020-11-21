@@ -1,0 +1,114 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+
+\begin{intuition}
+	We transform the double integral to triple integral using divergence theorem so we can combine them under the same domain of $ \allbold{ x} $. Now we want to replace flux with temperature function.
+\end{intuition}
+
+\begin{defn}[Laplacian]
+For 3D, the \allbold{Laplacian} is defined as 
+	\[
+\nabla ^2 u = \Delta u = u_{xx}+u_{yy}+u_{zz}
+.\] 
+\end{defn}
+
+
+Recall Fourier's Law says heat flows from hot to cold in the direction where the temperature differences are the greatest and $ \nabla u$ represents the direction of greatest temperature increases, so
+\[
+	\vv{ \phi}=-K_0 \cdot  \nabla u \implies \nabla \cdot \vv{ \phi}( \allbold{x} ) = \nabla \cdot (-K_0 \nabla u) = -K_0 \cdot \Delta u
+.\] 
+
+Then
+\[
+	c( \allbold{x} )\rho ( \allbold{x}) \frac{\partial }{\partial t} u( \allbold{x},t ) -K_0 \Delta u - Q( \allbold{x},t )=0
+.\] 
+Thus \allbold{the heat equation with internal source of energy} is
+\[
+	c( \allbold{x} )\rho ( \allbold{x}) \frac{\partial }{\partial t} u( \allbold{x},t ) =K_0 \Delta u + Q( \allbold{x},t )
+.\] 
+Assuming $ Q=0$ and the thermal coefficients are constant, we get
+\begin{thm}[3D heat equation]
+ \[
+\frac{\partial u}{\partial t} = k \Delta u 
+.\] 
+where $k=\frac{K_0}{c \rho}= $ "thermal diffusivity", with initial condition $ u( \allbold{x},0 )= f ( \allbold{x} )$ and boundary condition $ u( \allbold{x} ,t)= T( \allbold{x},t )$ for $ \allbold{x} \in \partial R $.
+\end{thm}
+\subsection{Steady State}
+
+~\begin{thm}[Laplace's Equation]
+Consider the heat equation with internal source of energy defined above, then if $ u_t=0$ this gives  \allbold{Poisson's Equation}, $ \Delta u = -\frac{Q}{K_0}$, and if $ Q=0$ this yields  \allbold{Laplace's Equation}:
+\[
+\Delta u = \frac{\partial^2 u}{\partial { x}^2} + \frac{\partial^2 u}{\partial { y}^2} + \frac{\partial^2 u}{\partial { z}^2} =0
+.\] 
+\end{thm}
+
+\begin{thm}[Laplace's Equation in Cylindrical Coordinates]
+Let $  x= r \cos(\theta ), y=r \sin(\theta ), z=z$ then using the Chain Rule, 
+\[
+	\Delta u = \frac{1}{r} \frac{\partial }{\partial r} \left( r \frac{\partial u}{\partial r}  \right) + \frac{1}{r^2} \frac{\partial^2 u}{\partial { \theta}^2}  + \frac{\partial^2 u}{\partial { z}^2} 
+.\] 
+\end{thm}
+
+\begin{thm}[Spherical]
+\[
+	\Delta u = \frac{1}{\rho^2} \frac{\partial }{\partial \rho} \left( \rho^2 \frac{\partial u}{\partial \rho}  \right)+ \frac{1}{\rho^2 \sin(\phi )} \frac{\partial }{\partial \phi} \left( \sin(\phi )\frac{\partial u}{\partial \phi}  \right) + \frac{1}{\rho^2 \sin^2(\phi )} \frac{\partial^2 u}{\partial { \phi}^2}  
+.\] 
+\end{thm}
+
+\newpage
+\section{Solving the Heat Equation}
+~\begin{defn}[the Heat Operator]
+\begin{enumerate}[label=\arabic*)]
+	\item Define the \allbold{heat operator} as 
+		\[
+			L(u) = \frac{\partial u}{\partial t} -k \frac{\partial^2 u}{\partial { x}^2} 
+		.\] 
+		for any $ u(x,t)$ in the appropriate function space (once differentiable in $ t$ and twice differentiable in  $ x$).
+		Then $ L(u)$ is a linear operator.
+	\item The set of functions that satisfy the boundary conditions $ u(0,t)=0=u(L,t)$ form a vector space. That is, if  $ u_i$ satisfy these boundary condition for $ i=1,2$ and if $ u_3(x,t)=c_1 u_1(x,t)+ c_2 u_2(x,t)$ then $ u_3(0,t)=0=u_3(L,t) $ for any $ c_1,c_2 \in \rr$.
+\end{enumerate}
+\begin{note}[]
+	The set of function that satisfy the initial condition $ u(x,0)=f(x) \neq 0$ does NOT form a vector space.
+\end{note}
+\end{defn}
+
+\subsection{Separation of Variables}
+Consider the following boundary value problem, there are three pieces of the full story:
+\begin{equation*}
+\begin{cases}
+	\text{ PDE:} \qquad  \frac{\partial u}{\partial t} =k\frac{\partial^2 u}{\partial { x}^2} , & 0<x<L,t>0\\
+	\text{ BC:} \qquad  u(0,t)=0=u(L,t), & t>0\\
+	\text{ IC:} \qquad  u(x,0) = f(x), & 0\leq x \leq L 
+\end{cases}
+\end{equation*}
+
+\begin{intuition}
+	We will take the non-zero part of the boundary conditions into the steady-state ODE, so that the PDE forms a vector space and becomes easier to solve.
+\end{intuition}
+Typically we would assume $ u(x,t)= \overline{u}(x) + v(x,t)$ but in this case $ \overline{u}(x)=0$, so we apply separation of variables directly to $ u(x,t)$. Assume (separable functions wrt $ t$ and  $ x$): $ u(x,t)=F(x) \cdot G(t) \neq 0$ then
+\[
+	\frac{\partial u}{\partial t} =k\frac{\partial^2 u}{\partial { x}^2} \implies F(x) \frac{d G}{d t} = k \frac{d^2 F}{d { x }^2} G(t) \implies \frac{1}{k} \cdot \frac{G'(t)}{G(t)} = \frac{F''(x)}{F(x)}
+.\] 
+For this to satisfy, the ratio must be a constant.
+\begin{prf}
+We aim to show that the derivative of LHS wrt $ t$ is zero for all $ t$. Note that
+\[
+	\frac{d }{d t} \left( \frac{1}{k} \cdot  \frac{G'(t)}{G(t)} \right) = \frac{d }{d t} \left( \frac{F''(x)}{F(x)} \right) =0
+.\]
+and likewise for the RHS
+\[
+	\frac{d }{d x} \left( \frac{F''(x)}{F(x)} \right) =0 
+.\] 
+Together 0 derivative everywhere implies a constant function:
+\[
+	\frac{1}{k} \cdot  \frac{G'(t)}{G(t)}=\frac{F''(x)}{F(x)}=-\lambda
+.\] 
+where $ \lambda$ is some constant. 
+\end{prf}
+Now consider the differential equations
+\[
+	G'(t)=-\lambda k G(t) \text{ and } F''(x) = -\lambda F(x) 
+.\] 
+\end{document}

@@ -1,0 +1,80 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+A soliton in a conduit can be described by the following PDE:
+\begin{equation}
+	A_t + (A^2)_z - \left( A^2 \left( \frac{A_t}{A } \right)_z  \right)_z =0 	
+\end{equation}
+where the function $ A(z,t)$ describes the non-dimensionalized cross-sectional area of the wave at location $ z$ and time  $ t$. Furthermore, the PDE satisfies the following boundary conditions:
+\begin{align}
+	\lim_{ z \to \pm \infty} A(z,t) &= 1 \\
+	\lim_{ z \to \pm \infty} A_z(z,t) &= 0 \\
+	\lim_{ z \to \pm \infty} A_{zz} (z,t) &= 0 \\
+	A(0,t)=a, A'(0,t)&=0
+\end{align}
+
+Since we know that the soliton is a traveling wave in the $ +z$ direction, we can convert this PDE into an ODE using change of variables $ \zeta = z-ct$, where $ c$ is an unknown constant that represents traveling speed. Thus we let $ A(z,t) = f(\zeta)$ and by using the Chain rule we obtain the following boundary value problem:
+\begin{align}
+	-cf'+ (f^2)' - (f^2(-cf^{-1}f')')' &= 0 \\
+	\lim_{ \zeta \to \pm \infty} f(\zeta) &= 1 \\
+	\lim_{ \zeta \to \pm \infty} f'(\zeta) &= 0 \\
+	\lim_{ \zeta \to \pm \infty} f'' (\zeta) &= 0 \\
+	f(0)=a, f'(0)&=0 \label{eq:ic}
+\end{align}
+where the prime notation is short for $ \frac{d}{d \zeta}$.
+
+We aim to reduce this ODE to first order. Notice since all terms on LHS are derivatives with respect to $ \zeta$, we can integrate both sides with respect to $ \zeta$ and obtain
+\begin{equation}
+\begin{split}
+	-cf + f^2 - f^2(-cf^{-1}f')' &= D\\
+	-cf + f^2 - cf^2 f^{-2} f' + cf^2 f^{-1} f''&= D \\
+	-cf + f^2 - cf' + cf f''&= D \\
+\end{split}
+\end{equation}
+We can find $ D$ by letting $ \zeta \to \infty$ and applying the BCs:
+\begin{equation}
+\begin{split}
+	-c + 1 - 0 + 0 &= D \\
+	D &= 1- c \\
+\end{split}
+\end{equation} 	
+Then the ODE becomes
+\begin{equation}
+	-cf + f^2 - cf' + cf f''= 1-c 
+\end{equation}
+
+To obtain first order ODE, we need to multiply the integrating factor $ f^{-3} f'$ on both side and integrate:
+\begin{equation}
+\begin{split}
+	-cf^{-2}f' + f^{-1}f' - cf^{-3}f'^2+ cf^{-2}f'f'' &= (1-c)f^{-3}f' \\
+	cf^{-1} + \ln f + \frac{1}{2} c f^{-2}f'^2 &= \frac{1}{2}(c-1) f^{-2} + B 
+\end{split}
+\end{equation}
+Again we take $ \zeta \to \infty$ and apply the BCs to find the constant $ B$:
+\begin{equation}
+\begin{split}
+	c+ 0 + 0 &= \frac{1}{2}(c-1) + B \\
+	B &= \frac{1}{2}(c+1) \\
+\end{split}
+\end{equation}	
+
+And the ODE becomes:
+\begin{equation}
+\begin{split}
+	cf^{-1} + \ln f + \frac{1}{2} c f^{-2}f'^2 &= \frac{1}{2}(c-1) f^{-2} + \frac{1}{2} (c+1) \\
+	cf + f^2 \ln f + \frac{1}{2} c f'^2 &= \frac{1}{2} (c-1) + \frac{1}{2} (c+1)f^2 \\
+\end{split}
+\end{equation}
+
+It remains to find the constant $c $ using the \cref{eq:ic}. At $ \zeta = 0$:
+\begin{equation}
+\begin{split}
+	cf(0) + f(0)^2 \ln f(0) + \frac{1}{2} c f(0)'^2 &= \frac{1}{2} (c-1) + \frac{1}{2} (c+1)f(0)^2 \\
+	ca + a^2 \ln a + 0 &= \frac{1}{2} (c-1) + \frac{1}{2}(c+1) a^2 \\
+	ac - \frac{1}{2} c -\frac{1}{2} a^2 c &= -\frac{1}{2} + \frac{1}{2}a^2 - a^2 \ln a  \\
+	(2a - 1 - a^2) c&= -1 + a^2 - 2a^2 \ln a \\
+	c &= \frac{a^2 - 2a^2 \ln a -1}{2a - a^2 -1 } \\
+\end{split}
+\end{equation}
+\end{document}

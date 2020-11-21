@@ -1,0 +1,90 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{eg}[Fourier Series]
+\begin{align*}
+	f(z) &= a_0 + \sum_{ n=1}^{\infty} a_n \cos(nz) + \sum_{ n=1}^{\infty} b_n \sin(nz )   \\
+\end{align*}
+To find $a_8$, 
+\begin{align*}
+	f(z) \cos(8t ) &=  a_0 \cos(8z )+\sum_{ n=1}^{\infty} a_n \cos(nz )\cos(8z )+ \sum_{ n=1}^{\infty} \sin(nz ) \cos(8z ) \\
+	\int_{ -\pi}^{ \pi} f(z) \cos(8z )dz &=  a_0 \int_{ -\pi}^{ \pi} \cos(8z ) dz + \sum_{ n=1}^{\infty} a_n \int_{ -\pi}^{ \pi} \cos(nz )\cos(8z )dz + \sum_{ n=1}^{\infty} b_n \int_{ -\pi}^{ \pi} \sin(nz )\cos(8z ) dz   \\
+	\int_{ -\pi}^{ \pi} f(z) \cos(8z )dz &= 0 + a_8 \int_{ -\pi}^{ \pi} \cos^{2}(8z) dz + 0\\
+\end{align*}
+So we can solve for $a_8$.
+\end{eg}
+
+\subsection{Taylor vs Fourier}
+Taylor:
+\begin{enumerate}[label=\arabic*)]
+	\item T.S.$[f](z) = \sum_{ n=0}^{\infty} c_n(z-a)^{n}$ where $c_n=\frac{f^{(n)}(a)}{n!}$
+	\item $f(z)$ is analytic at the point  $z$ iff $f(z)=$T.S. $[f](z)$
+	\item RoC might be small
+	\item need to be differentiable
+	\item the basis is not orthogonal
+\end{enumerate}
+Fourier:
+\begin{enumerate}[label=\arabic*)]
+	\item F.S.$[f](z) = a_0 + \sum_{ n=1}^{\infty} a_n \cos(nz) + \sum_{ n=1}^{\infty} b_n \sin(nz ), -\pi\leq z \leq \pi$.
+	\item If it converges for $z \in [-\pi,\pi]$ then it converges for all $z \in (-\infty,\infty)$.
+	\item coefficients are found by integration which is a much weaker assumption.
+	\item basis is orthogonal.
+	\item $\tilde{f}_M(z)$ is the truncated Fourier series after $M$ terms.
+\end{enumerate}
+\begin{eg}[]
+	$f(z)=|z|, \pi\leq z \leq \pi$
+	\[
+		b_n=\frac{1}{\pi} \int_{ -\pi}^{ \pi} f(z) \sin(nz ) dz = \frac{1}{\pi} \int_{ -\pi}^{ \pi} |z|\sin(nz )dz = \frac{1}{\pi}\cdot 0 = 0  
+	.\] 
+\[
+a_0 = \frac{1}{2\pi} \int_{ -\pi}^{ \pi} |z| dz = \frac{1}{2\pi} \left[ \int_{ -\pi}^{0} -z dz + \int_{ 0}^{ \pi} z dz   \right]  = \frac{\pi^2}{2\pi} = \frac{\pi}{2}
+.\] 
+Using integration by parts, we can show for even and odd values of $n \geq 1$ that 
+ \[
+	 a_n=a_{2m} = 0 \text{ and } a_n = a_{2m-1} = -\frac{4}{\pi(2m-1)^2} 
+.\] 
+\[
+	\text{F.S.} [f](z) = \frac{\pi}{2} -\frac{4}{\pi} \sum_{ m=1}^{\infty} \frac{1}{(2m-1)^2}\cos [(2m-1)z] = \frac{\pi}{2} - \frac{4}{\pi} \cos(z ) - \frac{4}{9\pi}\cos(3z ) - \ldots
+.\] 
+Convergence:
+ \begin{align*}
+	 \left| \frac{\pi}{2} \right| + \frac{4}{9\pi} |\cos(3z)| + \ldots &\leq \frac{\pi}{2} + \frac{4}{\pi} + \frac{4}{9\pi} + \ldots\\
+									   &= \frac{\pi}{2} + \frac{4}{\pi} \sum_{ m=1}^{\infty} \frac{1}{(2m-1)^2} 
+ \end{align*}
+So the series is absolutely convergent. \\
+
+We can use the integral test to bound the error term. 
+\begin{align*}
+	|\text{F.S.} [f](z) -\tilde{f}_M (z) | &= \left| -\frac{4}{\pi} \sum_{ n=M}^{\infty} \frac{1}{(2m-1)^2} \cos([2n-1]z ) \right| \\
+	&\leq \frac{4}{\pi} \sum_{ n=M}^{\infty} \frac{1}{(2n-1)^2} \\
+	&\leq \frac{4}{\pi} \int_{M}^{\infty} \frac{1}{(2x-1)^2} dx 
+\end{align*}
+ 
+\end{eg}
+
+\newpage
+\section{Chapter 3}
+\begin{defn}[Periodicity]
+	Suppose $g(z)$ is defined for all real numbers, if there exists a number  $p>0$ such that 
+	 \[
+		 g(z) = g(z+p), \quad \forall z \in \rr
+	.\] 
+	then $g(z)$ is said to be a  \allbold{periodic function}. 
+\end{defn}
+\begin{note}[]
+~\begin{enumerate}[label=\arabic*)]
+	\item If $g(z)$ is periodic then it has many periods $p,2p,\ldots$ we use the shortest period $p>0$.
+	\item if  $g_1(z)$ and $g_2(z)$ have period $p$ then so does  $h(z) = ag_1(z) \pm bg_2(z) $ for any $a,b \in \rr$
+	\item constant function is trivially periodic for any $p>0$
+\end{enumerate}
+\end{note}
+
+All Fourier basis vectors are at least $2\pi$-periodic.
+\\
+What does a Fourier series of a function represent?
+\begin{defn}[periodic extension]
+	Let $f(z)$ be a function defined on $[-L,L]$ such that  $ f(-L) = f(L)$. Define the \allbold{periodic extension}  of $f(z)$ to be the unique periodic function  $\tilde{f}(z)$ of period $2L$ such that  $\tilde{f}(z) = f(z)$, for  $-L\leq z \leq L$.
+\end{defn}
+
+\end{document}

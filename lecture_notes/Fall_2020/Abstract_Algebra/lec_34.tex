@@ -1,0 +1,110 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+
+\begin{eg}[]
+	$ R[x,y]$ is a polynomial ring over  $ R$ in two commuting indeterminates,  $ x$ and  $ y$ that satisfies
+	\[
+		(x^{i} y^{j}) (x^{k} y^{l}) = x^{i+k} y ^{j+l}
+	\] and distributivity.
+
+	\begin{note}[]
+	Noncommutative indeterminates version is denoted $ R\langle x,y \rangle$.
+	\end{note}
+
+	We can thin of $ R[x,y]$ as  $ (R[x])[y]$ or as  $ (R[y])[x]$. For example, in  $ \zz[x,y]$:
+	\begin{align*}
+		5+6y-3xy^2+2x^3y-7x^2y^2+4x \in \zz[x,y]\\
+		(5+4x)+ (6+2x^3)y-(3x+7x^2)y^2 \in (\zz[x])[y]\\
+		(5+6y) + (4-3y^2)x - (7y^2)x^2 + 2y(x^3) \in (\zz[y])[x]\\
+	\end{align*}
+\end{eg}
+
+\begin{thm}[]
+	$ R=F[x]$,  $ F$ is a field, $ f(x), g(x) \in F[x]$. There exist unique $ q(x), r(x) \in F[x]$ such that 
+	\[
+		f(x) = q(x)g(x) + r(x)
+	\] 
+	where either $ r(x) =0$ or deg$r <$ deg$g $.
+\end{thm}
+
+\begin{prf}
+Uniqueness: Suppose
+\begin{align*}
+	q_1(x)g(x) + r_1(x) &= q_2 (x) g(x) + r_2(x) \\
+	(q_1(x) - q_2(x)) g(x)&= r_2(x) - r_1(x) \\
+\end{align*}
+Notice the LHS is zero polynomial or has degree $ \geq $deg$g $, and the RHS is either zero polynomial or has degree  $ <$ deg$g $. The only way they can equal is to be both zero polynomial. Thus they are unique. 
+\end{prf}
+
+\begin{thm}[Factor Theorem]
+	$ f(x) \in F[x], a \in F$. $ a$ is a root of  $ f(x) $ if and only if  $ (x-a)$ is a factor of  $ f(x)$. That is,
+	 \[
+		 f(x) = (x-a)h(x), h(x) \in F[x]
+	.\] 
+	We have $ \deg f = 1 + \deg h$.
+\end{thm}
+
+\begin{prf}
+	Use division algorithm with $ f(x)$ and with  $ g(x)=x-a$:
+	 \[
+		 f(x)=q(x)(x-a) + r(x)
+	.\] 
+	where $ r(x) =0$ or  $ \deg r< \deg (x-a)$ which means $ r(x)$ is a nonzero constant.
+
+	Thus we get
+	 \[
+		 f(x) = q(x)(x-a)+c
+	.\] 
+	Consider $ \phi_{a}: F[x] \to F$. So
+	\begin{align*}
+		\phi_a(f(x))& = \phi_a (q(x)(x-a)+c)\\
+		f(a)&= q(a)(a-a) + c \\
+	\end{align*}
+	There are two cases.
+	\begin{case}[]
+		$ c=0$, then  $ f(a)=0$ and  $ f(x) = q(x)(x-a)$.
+	\end{case}
+	\begin{case}[]
+		$ c\neq 0$, then  $ f(a) \neq 0$ and  $ f(x)= q(x)(x-a) + c$. Here  $ a$ is not a root and  $ c$ is a nonzero remainder.
+	\end{case}
+\end{prf}
+
+\begin{coro}[23.6]
+	Let $ F$  be a field and $ F^* $ be its group of units. Any finite subgroup of $ F^* $ is cyclic. 
+\end{coro}
+\begin{prf}[]
+	Let $ G$ be a finite subgroup of  $ F^* $. Then $ G \simeq \zz_{d_1} \times \ldots\times \zz_{d_r}$, where $ d_i$ are prime powers. Let $ m= \lcm \left( d_1,\ldots,d_r \right)  $, thus $ m\leq d_1 \cdot  \ldots \cdot d_r$. In $ \zz_{d_i}, a_i^{d_i} = 1 \implies a_i^{m} = 1$ because $ d_i /m$. This means $ a^{m} =1$ for any $ a \in G$. So every element is a root of $ x^{m}-1 \in F^*[x]$, and there are at most $ m$ such roots by factor theorem and induction. Since $ d_1 \cdot  \ldots \cdot d_r$ is the order of $ G$ and every element of  $ G$ is such root, and there are at most  $ m$ of them in  $ F^*$, we have $ d_1 \cdot \ldots \cdot  d_r \leq m$. Hence, $ m = d_1 \cdot  \ldots \cdot  d_r$. Since the $ d_i$ are relatively prime, then the direct product is cyclic.
+\end{prf}
+
+
+\begin{note}[important special case]
+	If $ F$ is a finite field, then  $ F^* $ is cyclic. For example, $\zz_{11}^* $ is cyclic of order 10. Q2 Section 20. 
+
+	2 is a generator for $ \zz_{11}^* $. Since $ \zz_{11}^* \simeq (\zz_{10},+_{ 10} )$. Then the possible orders of elements are 1,2,5,10. Since 2 is not order 1,2,5, it must be order 10. Thus 2 is a primitive root.
+
+	How many generators does $ \zz_{10}$ have? 1,3,7,9. They are pairs of inverses. So we start from 2 and find them: $ 2 \to 8 \to 7 \to 6$. 8 is cube of 2, 7 is inverse of cube, 6 is inverse of 2.
+
+\end{note}
+\begin{eg}[23.4]
+	$ x^{4}+ 3x^3+2x+4 \in \zz_5[x]$. We can see that $ 1$ is a root of  $ f(x) \in \zz_5$. To factor, we can do it by tacking the easy terms first. But this isn't always feasible.
+
+	We get $ (x-1)(x^3+4x^2-x+1)$. Now does $ x^3 + 4x^2 + 4x + 1$ have any roots in $ \zz_5$? We can find them exhaustively. So $ 1$ is a root, and we get $ (x-1)(x-1)(x+1)$. So 
+	 \[
+		 f(x) = (x-1)^3 (x+1)
+	.\]
+\end{eg}
+
+\begin{defn}[irreducible]
+	Let $ R$ be a ring with  $ 1$.  $ f(x) \in R[x]$ is \allbold{irreducible} if 
+	\begin{enumerate}[label=(\roman*)]
+		\item $ f(x)$ is not zero or a unit.
+		\item  If $ f(x) = g(x)h(x)$ then either $ g(x)$ or  $ h(x)$ is a unit. 
+	\end{enumerate}
+\end{defn}
+
+\begin{note}[]
+	$ 3x+3 \in \zz[x]$ is not irreducible, since units in $ \zz$ are $ \pm 1$ so we can factor  $ 3(x+1)$. This works because  $ \zz$ is not a field. 
+\end{note}
+\end{document}

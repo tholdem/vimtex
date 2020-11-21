@@ -1,0 +1,123 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\newpage
+\section{Solve A Wave Equation}
+\begin{equation*}
+\begin{cases}
+	\text{PDE: } \frac{\partial^2 u}{\partial { t}^2} = c^2 \frac{\partial^2 u}{\partial { x}^2}  & 0<x<L, t>0 \\
+	\text{BCs: } u(0,t)=0=u(L,t) & t>0 \\
+	\text{ICs: } u(x,0)=U(x), \frac{\partial u}{\partial t} (x,0) = V(x) & 0 \leq x \leq L \\
+\end{cases}
+\end{equation*}
+
+We need to verify solutions that satisfy PDE and BCs form a vector space in order to use superposition principle. That is, we want to show that
+\[
+	W=\{u(x,t) \text{ is defined on } (x,t) \in (0,L) \times (0,\infty) \text{ that satisfies PDE and BCs} \} 
+\] 
+forms a vector space.
+
+\begin{prf}
+	Notice that $V= \{f:[0,L] \to \rr\} $ is a vector space. We wish to show that $ W$ is a subspace of  $ V$. 
+
+	Given $ u_1, u_2 \in W$, then consider $ u_3(x,t) = a u_1(x,t) + b u_2(x,t)$ and note that partial derivatives are linear, we have
+\begin{align*}
+	\frac{\partial^2 u_3}{\partial { t}^2} &= \frac{\partial^2 }{\partial { t}^2} (a u_1 + b u_2)\\
+	a \frac{\partial^2 u_1}{\partial { t}^2} + b \frac{\partial^2 u_2}{\partial { x}^2} &= a c^2 \frac{\partial^2 u_1}{\partial { x}^2} + b c^2 \frac{\partial^2 u_2}{\partial { x}^2}\\
+											    &= c^2 (a \frac{\partial^2 u_1}{\partial { x}^2} + b \frac{\partial^2 u_2}{\partial { x}^2} ) 
+\end{align*}
+So the PDE condition is satisfied. Then $ u_3(0,t) = a u_1(0,t) + b u_2(0,t) = 0+0=0$ and $ u_3(L,t) = a u_1(L,t) + u_2(L,t) = 0+0=0$.
+
+So the BCs condition is satisfied. Finally, since piecewise smooth functions are closed under addition and scalar multiplication, we have shown that $ u_3(x,t) \in W \subseteq V$. Hence $ W \leq V$. 
+\end{prf}
+
+Now we assume separation of variables, $ u(x,t) = F(x)G(t) \neq 0$, then the second partial derivatives are 
+ \[
+	 F(x)G''(t)= c^2F''(x)G(t) \implies \frac{1}{c^2} \frac{G''(t)}{G(t) }= \frac{F''(x)}{F(x) } = -\lambda
+.\] 
+Notice that the eigenvalue problem is the same as the heat equation. Then the BCs become
+\[
+	u(0,t)=0 \implies F(0)G(t)=0 \implies F(0)=0
+.\] 
+and
+\[
+	u(L,t) = 0 \implies F(L)G(t) = 0 \implies F(L) = 0
+.\]
+Thus the time domain problem and eigenvalue problem become
+\[
+	G''(t)=-\lambda c^2 G(t)
+.\] 
+and
+\begin{equation*}
+\begin{cases}
+	&F''(x) = -\lambda F(x),	\\
+	& F(0)=0=F(L).\\
+\end{cases}
+\end{equation*}
+
+\subsection{Eigenvalue Problem}
+
+\begin{case}[]
+$ \lambda < 0$, then the general solution is
+\[
+	F(x) = c_1 e^{-\sqrt{\lambda}x } + c_2 e^{\sqrt{\lambda}x }
+.\] 
+Applying the BCs,
+\[
+	F(0) = 0 \implies c_2= -c_1 \text{ and } F(L) = 0 \implies c_1 = c_2 =0 
+.\]
+because $ e^{-\sqrt{\lambda} L } - e^{\sqrt{\lambda} L} \neq \iff \lambda \neq 0$. Hence this case yields the trivial solution. 
+\end{case}
+\begin{case}[]
+$ \lambda = 0$ also yields trivial solution as before.
+\end{case}
+\begin{case}[]
+$ \lambda >0$, by the exact same procedure as before, we obtain $ \sqrt{\lambda}  =\frac{n \pi }{L } $ and 
+\[
+	F_n(x) = c_2 \sin \left( \frac{ n\pi x}{ L} \right) \text{ for } n =1,2,\ldots 
+.\] 
+\end{case}
+\subsection{Time-Domain Problem}
+Similarly as above, we can obtain the general solution of $ G(t)$
+\[
+	G_n(t) = d_1 \cos(\sqrt{\lambda_n}ct  )+ d_2 \sin(\sqrt{\lambda_n}ct  ) \text{ for }n=1,2,\ldots 
+.\] 
+\subsection{General Solution}
+Therefore,
+\[
+	u_n(x,t) = F_n(x)G_n(t) = \tilde{ A}_n \sin \left( \frac{ n\pi x}{ L} \right) \cos \left( \frac{ n\pi c t}{ L} \right) + \tilde{ B}_n \sin \left( \frac{ n\pi x}{ L} \right) \sin \left( \frac{ n\pi c t}{ L} \right) \text{ for } n=1,2,\ldots  
+.\]
+Now by superposition principle, the general solution is
+\[
+	u(x,t) = \sum_{ n= 1}^{\infty} a_n \cdot u_n(x,t) = \sum_{ n= 1}^{\infty} A_n \sin \left( \frac{ n\pi x}{ L} \right) \cos \left( \frac{ n\pi c t}{ L} \right) + B_n \sin \left( \frac{ n\pi x}{ L} \right) \sin \left( \frac{ n\pi c t}{ L} \right) 
+.\]
+Now applying the ICs to find the coefficients:
+\[
+	U(x) = u(x,0) = \sum_{ n= 1}^{\infty} A_n \sin \left( \frac{ n\pi x}{ L} \right) 
+.\] 
+This is just FSS. Applying the projection formula,
+\[
+	A_n = \frac{2}{L} \int_{0}^{L}  U(x) \sin \left( \frac{ n\pi x}{ L} \right) dx 
+.\] 
+The other IC requires us to do term-by-term differentiation:
+\[
+	\frac{\partial u}{\partial t} = \sum_{ n= 1}^{\infty} A_n\left(-\frac{n \pi c}{L } \right) \sin \left( \frac{ n\pi x}{ L} \right) \sin \left( \frac{ n\pi c t}{ L} \right) + B_n \left( \frac{n \pi c}{L } \right) \sin \left( \frac{ n\pi x}{ L} \right) \cos \left( \frac{ n\pi c t}{ L} \right) 
+.\]
+Therefore, the other IC also yields a FSS,
+\[
+	V(x) = u_t(x,0) = \sum_{ n= 1}^{\infty} B_n\left( \frac{n \pi c}{ L} \right) \sin \left( \frac{ n\pi x}{ L} \right)  
+.\]
+By projection,
+\[
+	B_n = \frac{2}{n \pi c} \int_{0}^{L} V(x) \sin \left( \frac{ n\pi x}{ L} \right) dx 
+.\] 
+\subsection{Convergence}
+Note that the wave equation doesn't have an exponentially-decaying term as the heat equation. We have a spatial wave and a temporal wave. Thus, the convergence depends on how $ A_n, B_n$ behave as $ n \to \infty $, which in turn depends on the initial position and velocity.
+
+While this is a drawback of the FS solution of the wave equation, it motivates d'Alembert's solution using traveling waves:
+\[
+	u(x,t) = f(x-ct) + g(x + c t).
+.\] 
+
+\end{document}

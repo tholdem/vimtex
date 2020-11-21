@@ -1,0 +1,133 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 3}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[1]
+~\\	
+$ (\implies)$: Given $ \epsilon > 0$, since almost surely convergence implies convergence in probability,  $ Z_n \xrightarrow{ a.s} Z \implies \lim_{ n \to \infty} P(|Z_n - Z|\geq \epsilon) =0 $. That is, there exists $ n \in \nn$ such that 
+	\[
+		P(|Z_k - Z|\geq \epsilon, k\geq n)< \epsilon
+	.\] 
+	Taking the complement yields
+\begin{align*}
+	P((|Z_k - Z|\geq \epsilon, k \geq n)^{c}) &> 1- \epsilon\\
+	P(|Z_k - Z|< \epsilon, n\leq k)&> 1- \epsilon\\
+	P(|Z_k - Z|< \epsilon, n\leq k\leq m)&> 1- \epsilon \ \forall \ m \geq n\\
+\end{align*}	
+The last step follows from that if the statement is true for all $ k \geq n$, then it's true for a subset of such  $ k$ where  $ n \leq k \leq m$ for all $ m \geq n$.
+
+$ (\impliedby)$: Suppose for every $ \epsilon>0$ there exists an $ n$  such that 
+\[
+	P(|Z_k -Z| < \epsilon, n\leq k\leq m)> 1 - \epsilon
+\] 
+for all $ m \geq n$. By taking $ n \to \infty$, it will cover the $ n$ required by any arbitrarily small $ \epsilon$, so we can let $ \epsilon \to 0$ and obtain
+\[
+	P(\lim_{ n \to \infty} Z_n = Z) \geq 1 
+.\] 
+Since  $ P$ is a probability measure,  $ P(\lim_{ n \to \infty} Z_n = Z) \leq 1$. Hence, 
+\[
+P(\lim_{ n \to \infty} Z_n = Z) = 1 
+\] 
+which is the definition of almost sure convergence.
+\end{problem}
+
+\begin{problem}[2]
+$ ( \subseteq )$: We wish to show that 
+\[
+	\mathcal{G} = \{(H \cap A) \cup (H^{c} \cap B), A,B \in \mathcal{F}\} 
+\]
+is a $\sigma$-field containing $ \mathcal{F} \cup \{H\} $.
+
+
+First, notice that given $ F \in \mathcal{F}$, \[ F = \Omega \cap F= (H \cup H^{c}) \cap F= (H \cap F) \cup (H^{c} \cap F)  \in \mathcal{G}.\] Moreover, since $ \O, \Omega \in \mathcal{F}$, \[H = (H \cap \Omega) \cup (H^{c} \cap \O) \in \mathcal{G}.\] Thus, $ \mathcal{F} \cup \{H\} \subseteq \mathcal{G}$.  
+
+Now let's show that $ \mathcal{G}$ is a $\sigma$-field.
+\begin{enumerate}[label=(\roman*)]
+	\item Take $ A=B=\Omega \in \mathcal{F}$, we have
+		\[
+			(H \cap \Omega) \cup (H^{c} \cap \Omega) = H \cup H^{c} = \Omega \in \mathcal{G}
+		.\] 
+	\item Given $ S \in \mathcal{G}$, we know there exist $ A,B \in \mathcal{F}$ such that $ S=(H \cap A) \cup (H^{c} \cap B)$. Then the complement is
+		\begin{align*}
+			S^{c} &= ((H \cap A) \cup (H^{c} \cap B) )^{c}\\
+			      &= (H \cap A)^{c} \cap (H^{c} \cap B)^{c}\\
+			      &= (H^{c} \cup A^{c}) \cap (H \cup B^{c}) \\
+			      &= (H^{c} \cap H) \cup (H^{c} \cap B^{c}) \cup (A^{c} \cap H) \cup (A^{c} \cap B^{c}) \\
+			      &= (H \cap A^{c}) \cup (H^{c} \cap B^{c}) \cup ((H \cup H^{c}) \cap  (A^{c} \cap B^{c}))   \\
+			      &=  (H \cap A^{c}) \cup (H^{c} \cap B^{c}) \cup (H \cap (A^{c} \cap B^{c} )) \cup (H^{c} \cap (A^{c} \cap B^{c}))  \\
+			      &= (H \cap (A^{c} \cup (A^{c} \cap B^{c})) \cup (H^{c} \cap (B^{c} \cup (A^{c} \cap B^{c})) \\
+			      &= (H \cap A^{c}) \cup (H^{c} \cap B^{c}) \in \mathcal{G}\\
+		\end{align*}
+	\item Given a sequence $ G_1,G_2,\ldots \in \mathcal{G}$, we can express $ G_n$ as $ (H \cap A_n) \cup (H^{c} \cap B_n)$ for some sequence of $ (A_n),(B_n) \subseteq \mathcal{F}$. Then we have
+		\begin{align*}
+			\bigcup_{ n =1}^{\infty} G_n &= \bigcup_{ n =1}^{\infty} (H \cap A_n) \cup (H^{c} \cap B_n) \\
+						     &= \bigcup_{ n =1}^{\infty} (H \cap A_n) \cup \bigcup_{ n =1}^{\infty} (H^{c} \cap B_n) \\
+						     &= \left(H \cap \bigcup_{ n =1}^{\infty} A_n \right) \cup \left(H^{c} \cap \bigcup_{ n =1}^{\infty} B_n \right) \\
+		\end{align*}
+\end{enumerate}
+Hence, we show that $ \mathcal{G}$ is a $\sigma$-field containing $ \mathcal{F} \cup \{H\} $. Since $ \sigma(\mathcal{F} \cap \{H\}) $ is the smallest $\sigma$-field containing $ \mathcal{F} \cup \{H\} $, we prove that $ \sigma(\mathcal{F} \cup  \{H\} ) \subseteq \mathcal{G}$, hence its elements must have such form.
+
+$ ( \supseteq )$: Given $ G \in \mathcal{G}$, let's show that $ G \in \sigma(\mathcal{F} \cup \{H\}) $. By definition of $ \mathcal{G}$, there exists $ A,B \in \mathcal{F}$ such that $ G= (H ^{c} \cap A) \cup (H^{c} \cap B)$.
+
+\begin{align*}
+	(H \cap A) \cup (H^{c} \cap B) &= ((H \cup H^{c}) \cap (H \cup B)) \cap ((A \cup H^{c}) \cap (A \cup B))\\
+				       &= (H \cup B) \cap (H^{c} \cup A) \cap (A \cup B)  \\
+\end{align*}
+Since $ H, H^{c}, A, B \in \sigma(\mathcal{F} \cup \{H\} )$, their unions and intersections are also in it. Thus, $ G \in \sigma(\mathcal{F} \cup \{H\} )$ and $ \mathcal{G} \subseteq \sigma(\mathcal{F} \cup \{H\} )$.
+
+By double-containment, we show that $ \sigma(\mathcal{F} \cup \{H\} ) = \mathcal{G}$.
+\end{problem}
+
+\begin{problem}[3]
+
+	Recall that $ \mu(A \cup B) = \mu((A \cup B) \setminus (A \cap B)) + \mu(A \cap B)$ by finite additivity. Moreover, $ \mu(A), \mu(B) \leq \mu(A \cup B)$ and $ \mu(A), \mu(B) \geq \mu(A \cap B)$ by monotonicity. Thus, $\mu(A) - \mu(B) \leq \mu(A \cup B) - \mu(A \cap B), \mu(B) -\mu(A) \leq \mu(A \cup B) - \mu(A \cap B) \implies |\mu(A)-\mu(B)| \leq \mu(A \cup B) - \mu(A \cap B)$.
+\begin{align*}
+	\mu(A \Delta B) &= \mu((A \cap B^{c}) \cup (A^{c} \cap B)) \\
+			&= \mu((A \cup A^{c}) \cap (B^{c} \cap A^{c}) \cap (A \cup B) \cap (B^{c} \cup B)) \\
+			&= \mu(\Omega \cap (A^{c} \cup B^{c}) \cap (A \cup B) \cap \Omega) \\
+			&= \mu((A \cap B)^{c} \cap (A \cup B)) \\
+			&= \mu((A \cup B) \setminus (A \cap B)) \\
+			&= \mu(A \cup B) - \mu(A \cap B) \\
+			&\geq |\mu(A) - \mu(B)|  
+\end{align*}
+\end{problem}
+
+\begin{problem}[4]
+~\begin{enumerate}[label=(\roman*)]
+	\item Since $ P$ is a probability measure,  $ 0 \leq P(\{\omega: X(\omega) \in A\} ) \leq 1 \ \forall \ A \subseteq \rr \implies 0\leq P_X(A) \leq 1 \ \forall \ A \subseteq \rr$.
+	\item $ P_X( \O) = P(\{\omega: X(\omega) \in \O\} ) = P( \O)=0$. And $ P_X(\rr) = P(\{\omega:X(\omega) \in \rr\} ) = P(\Omega) =1$.
+	\item Given a sequence of disjoint sets in $ \rr$, $ (A_n)$,
+		\begin{align*}
+			P_X\left( \bigcup_{ n =1}^{\infty} A_n \right) &= P\left( \left\{ \omega:X(\omega) \in \bigcup_{ n =1}^{\infty} A_n \right\}   \right)  \\
+								       &= P\left( \bigcup_{ n =1}^{\infty} \{\omega: X(\omega) \in A_n\}  \right)   \\
+								       &= \sum_{ n= 1}^{\infty} P(\{\omega:X(\omega) \in A_n\} ) \text{ by countable additivity of } P\\
+								       &= \sum_{ n= 1}^{\infty} P_X(A_n) 
+		\end{align*}
+		Thus, $ P_X$ is indeed a probability measure.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[5]
+	First let's show that $ \mu$ is finitely additive.
+
+	Given disjoint $ A,B \in \sigma(\Omega)$, if both $ A,B$ are finite,  then disjointness gives us
+	\[
+		\mu(A \cup B) = \sum_{k \in A \cup B} 2^{-k} = \sum_{k \in A} 2^{-k} + \sum_{k \in B} 2^{-k} = \mu(A) + \mu(B)
+	.\]
+	If at least one of them is infinite, then $ A \cup B$ is infinite. Thus,
+	\[
+		\mu(A \cup B) = \infty =\mu(A) + \mu(B)
+	.\]
+
+	However, we claim that $ \mu$ is not countably additive. Here is an counterexample: let $ A_n = \{n\} $, so they are disjoint and finite. It's easy to see that $ \bigcup_{ n =1}^{\infty} A_n =\Omega$ is infinite, so $ \mu\left( \bigcup_{ n =1}^{\infty} A_n \right) = \infty $. However,
+\begin{align*}
+	\sum_{n=1}^{\infty} \mu(A_n) &= \sum_{ n= 1}^{\infty} \sum_{k=n}^n 2^{-k}\\
+	&= \sum_{n= 1}^{\infty} 2^{-n} \\
+	&= 1 < \infty \\
+\end{align*} 
+Therefore, $\mu$ is not countably additive.
+\end{problem}
+\end{document}

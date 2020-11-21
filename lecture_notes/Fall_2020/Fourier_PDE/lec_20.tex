@@ -1,0 +1,70 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\newpage
+\section{Summary of Heat Equations}
+
+BCs whose solutions form a vector space:
+~\begin{enumerate}[label=\arabic*)]
+	\item Dirichlet BCs: temperature fixed at ends, homogeneous function BCs. Solution is FSS.
+	\item Neumann BCs: perfectly insulated, homogeneous derivative BCs. Solution is FCS.
+	\item Cauchy BCs: thin circular wire, equal function and derivative BCs. Solution is FS.
+	\item Variations: mixture of Dirichlet and Neumann BCs. Depending on the mixture, we get different answers. See homework and practice exam.
+\end{enumerate}
+For those that don't form a vector space, we move the nonhomogeneous part to the steady state BCs.
+\begin{note}[]
+The initial condition changes after removing the steady state component.
+\end{note}
+
+\newpage
+\section{Motion of Stretched String}
+\begin{motivation}
+	We consider a \emph{horizontally stretched string} with ends that are tied down (something like a guitar). The string moves in time and we wish to track the position of each point on the string during vibration. The motion of a point on the string is NOT entirely vertical, but we are going to assume the motion is entirely vertical. See lecture slides for illustrations.
+\end{motivation}
+
+\subsection{Assumptions}
+\begin{enumerate}[label=\arabic*)]
+	\item With \allbold{no motion}, the string has
+		\begin{itemize}
+			\item $ \delta(s)$: density
+			\item $ A(s)$: cross-sectional area
+			\item $ u(s)$: vertical displacement at arc length $ s$.
+		\end{itemize}
+	\item The \emph{linear mass density} of the string is $ \rho_0 = ( \delta \cdot A)$.
+	\item \emph{Boundary Conditions}:  The ends of the string with length $ L$ are fixed:
+		$ u(0,t)=u(L,t)=0$.
+	\item Possible external forces: gravity, violin bow, guitar pick, etc.
+	\item  \allbold{Trivial equilibrium} is if there are no external forces and no motion, then we assume the string lies along a straight line, so $ ds=dx$. Then we assume there is a constant  \allbold{tensile force} or \emph{tension} along the string.
+	\item For small vibrations, $ u=u(x,t)$ measures the vertical displacement from the trivial equilibrium at time  $ t$. That is, the shape of the string at time  $ t=t_0$ is given by $ u(x,t_0)$.
+\end{enumerate}
+
+\subsection{Additional Assumptions}
+~\begin{enumerate}[label=\arabic*)]
+	\item We assume mass is constant.
+	\item Assume the string is perfectly flexible and has no stiffness.
+	\item The forces exerted by the string on the ends act purely in the \emph{tangential direction} and there are no transverse forces and no torque (twisting).
+\end{enumerate}
+
+\subsection{Derivation}
+Let $ T(x,t) \geq 0$ represent the magnitude of the tangential force due to the tension. Then the horizontal tension balances each other out because there is no horizontal motion. That is,
+ \[
+	 T(x,t) \cos(x, \theta ) = T(x+ \Delta x, t) \cos(x+ \Delta x, \theta )
+.\] 
+Therefore, we conclude that $ T$ is constant.  $ T(x,t)\cos(x,t ) = T_0$.
+
+\subsection{Vertical Forces}
+According to Newton's second law, $ \vec{ F}= m \vec{ a}  $, the vertical net force equals the tensile forces plus the vertical components of any external forces. Therefore,
+\[
+	\rho_0 \Delta x \cdot  \frac{\partial^2 u}{\partial { t}^2} = T(x+ \Delta x,t) \sin(\theta (x+ \Delta x, t) ) - T(x,t) \sin(\theta(x,t) ) - \rho_0 \Delta x \cdot  g
+.\] 
+This is force equals to opposing vertical tensile forces minus the gravity.
+Note that $ T(x,t)=\frac{T_0}{\cos(x,t )} \implies T(x,t) \sin(\theta(x,t) ) = T_0 \tan(\theta(x,t)) $, so
+\[
+	\rho_0 \cdot \frac{\partial^2 u}{\partial { t}^2} = T_0 \cdot  \left[ \frac{\tan(\theta(x+ \Delta x, t))- \tan(\theta(x,t))}{\Delta x } \right] -\rho_0 \cdot  g
+.\] 
+Taking the limit $ \Delta x \to 0$,
+\[
+	\rho_0 \cdot  \frac{\partial^2 u}{\partial { t}^2} = T_0 \cdot  \frac{\partial }{\partial x} \tan(\theta(x,t)) - \rho_0 \cdot g
+.\] 
+\end{document}

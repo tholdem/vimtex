@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.7.26)  25 AUG 2020 22:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.7.26)  19 SEP 2020 14:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -771,132 +771,7 @@ Package zref Info: New property: mdf@pagevalue on input line 895.
 \c@prop=\count334
 \c@theorem=\count335
 \c@corollary=\count336
-) (./master.aux
-./master.aux:10: Missing \endcsname inserted.
-<to be read again> 
-                   \sigma 
-l.10 \newlabel{$\sigma $-field}{{0.1}{2}}
-                                         
-The control sequence marked <to be read again> should
-not appear between \csname and \endcsname.
-
-./master.aux:10: Missing \endcsname inserted.
-<to be read again> 
-                   \sigma 
-l.10 \newlabel{$\sigma $-field}{{0.1}{2}}
-                                         
-The control sequence marked <to be read again> should
-not appear between \csname and \endcsname.
-
-./master.aux:12: Missing \endcsname inserted.
-<to be read again> 
-                   \sigma 
-l.12 \newlabel{$\sigma (\mathcal  {A})$}{{0.1}{3}}
-                                                  
-The control sequence marked <to be read again> should
-not appear between \csname and \endcsname.
-
-./master.aux:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12 \newlabel{$\sigma (\mathcal  {A})$}{{0.1}{3}}
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-./master.aux:12: LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.12 \newlabel{$\sigma (\mathcal  {A})$}{{0.1}{3}}
-                                                  
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-LaTeX Font Info:    Trying to load font information for U+msa on input line 12.
-(/home/jaden/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 12.
- (/home/jaden/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 12.
- (/home/jaden/texlive/2020/texmf-dist/tex/latex/jknapltx/ursfs.fd
-File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-)
-LaTeX Font Info:    Trying to load font information for U+stmry on input line 12.
- (/home/jaden/texlive/2020/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
-./master.aux:12: Extra \endcsname.
-\bbl@ifunset #1->\ifcsname #1\endcsname 
-                                        \expandafter \ifx \csname #1\endcsna...
-l.12 \newlabel{$\sigma (\mathcal  {A})$}{{0.1}{3}}
-                                                  
-I'm ignoring this, since I wasn't doing a \csname.
-
-./master.aux:12: Missing \endcsname inserted.
-<to be read again> 
-                   \sigma 
-l.12 \newlabel{$\sigma (\mathcal  {A})$}{{0.1}{3}}
-                                                  
-The control sequence marked <to be read again> should
-not appear between \csname and \endcsname.
-
-
-LaTeX Warning: Label `$\sigma (\mathcal {A})$' multiply defined.
-
-./master.aux:12: Missing \endcsname inserted.
-<to be read again> 
-                   \sigma 
-l.12 \newlabel{$\sigma (\mathcal  {A})$}{{0.1}{3}}
-                                                  
-The control sequence marked <to be read again> should
-not appear between \csname and \endcsname.
-
-./master.aux:12: Extra \endcsname.
-<recently read> \endcsname 
-                           
-l.12 \newlabel{$\sigma (\mathcal  {A})$}{{0.1}{3}}
-                                                  
-I'm ignoring this, since I wasn't doing a \csname.
-
-./master.aux:12: Extra }, or forgotten $.
-\@newl@bel ...ined}}\global \@namedef {#1@#2}{#3}}
-                                                  
-l.12 \newlabel{$\sigma (\mathcal  {A})$}{{0.1}{3}}
-                                                  
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-)
-./master.tex:6: Missing $ inserted.
-<inserted text> 
-                $
-l.6 \begin{document}
-                    
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./master.tex:6: Missing } inserted.
-<inserted text> 
-                }
-l.6 \begin{document}
-                    
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
+) (./master.aux)
 \openout1 = `master.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
@@ -913,7 +788,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
 LaTeX Font Info:    ... okay on input line 6.
-(/home/jaden/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/home/jaden/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count337
 \scratchdimen=\dimen308
@@ -940,117 +815,42 @@ Dictionary: translator-basic-dictionary, Language: English
 File: siunitx-abbreviations.cfg 2017/11/26 v2.7k siunitx: Abbreviated units
 )
 \AtBeginShipoutBox=\box127
- ABD: EveryShipout initializing macros [1
+ ABD: EveryShipout initializing macros
+LaTeX Font Info:    Trying to load font information for U+msa on input line 6.
+ (/home/jaden/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 6.
+ (/home/jaden/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 6.
+ (/home/jaden/texlive/2020/texmf-dist/tex/latex/jknapltx/ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 6.
+ (/home/jaden/texlive/2020/texmf-dist/tex/latex/stmaryrd/Ustmry.fd) [1
 
-{/home/jaden/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [1] (./master.toc)
+{/home/jaden/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./master.toc)
 \tf@toc=\write4
 \openout4 = `master.toc'.
 
  [1
 
-] (./lec_01.tex
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 21.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 28.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 35.
-
-
-LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 36.
-
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 37.
-
-Underfull \hbox (badness 10000) in paragraph at lines 44--45
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 52--57
-
- []
-
-[2]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 62.
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 64.
-) [3] (./master.aux
-./master.aux:10: Missing \endcsname inserted.
-<to be read again> 
-                   \sigma 
-l.10 \newlabel{$\sigma $-field}{{0.1}{2}}
-                                         
-The control sequence marked <to be read again> should
-not appear between \csname and \endcsname.
-
-./master.aux:10: Missing $ inserted.
-<inserted text> 
-                $
-l.10 \newlabel{$\sigma $-field}{{0.1}{2}}
-                                         
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./master.aux:10: Extra \endcsname.
-\@newl@bel ... \bbl@tempa \csname #1@#2\endcsname 
-                                                  \def \bbl@tempb {#3}\@safe...
-l.10 \newlabel{$\sigma $-field}{{0.1}{2}}
-                                         
-I'm ignoring this, since I wasn't doing a \csname.
-
-./master.aux:12: Missing \endcsname inserted.
-<to be read again> 
-                   \sigma 
-l.12 \newlabel{$\sigma (\mathcal  {A})$}{{0.1}{3}}
-                                                  
-The control sequence marked <to be read again> should
-not appear between \csname and \endcsname.
-
-./master.aux:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12 \newlabel{$\sigma (\mathcal  {A})$}{{0.1}{3}}
-                                                  
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./master.aux:12: Extra \endcsname.
-\@newl@bel ... \bbl@tempa \csname #1@#2\endcsname 
-                                                  \def \bbl@tempb {#3}\@safe...
-l.12 \newlabel{$\sigma (\mathcal  {A})$}{{0.1}{3}}
-                                                  
-I'm ignoring this, since I wasn't doing a \csname.
-
-)
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+] (./master.aux) ) 
 Here is how much of TeX's memory you used:
- 22594 strings out of 480906
- 450336 string characters out of 5907779
- 695063 words of memory out of 5000000
- 37676 multiletter control sequences out of 15000+600000
- 559949 words of font info for 108 fonts, out of 8000000 for 9000
+ 22389 strings out of 480906
+ 445060 string characters out of 5907779
+ 687511 words of memory out of 5000000
+ 37479 multiletter control sequences out of 15000+600000
+ 555833 words of font info for 102 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,10n,102p,817b,991s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/home/jaden/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/home/jaden/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on master.pdf (5 pages, 214340 bytes).
+ 88i,6n,102p,817b,195s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/home/jaden/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb>
+Output written on master.pdf (2 pages, 38452 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
+ 31 PDF objects out of 1000 (max. 8388607)
+ 22 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

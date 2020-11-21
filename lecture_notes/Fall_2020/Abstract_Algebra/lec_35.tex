@@ -1,0 +1,102 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{defn}[simplied irreducible]
+	An element $ f(x) \in F[x]$ is \allbold{irreducible} if
+	\begin{enumerate}[label=(\roman*)]
+		\item It is not constant;
+		\item It cannot be factorized into two polynomials both of strictly smaller degree.
+	\end{enumerate}
+\end{defn}
+
+\begin{eg}[]
+	In $ \qq[x]$, $ 3x+3$ is irreducible because  $ 3$ is a unit. Also the degree wouldn't work if  $ 3x+3 = g(x)h(x)$ where $ g(x),h(x)$ are nonconstant.
+\end{eg}
+
+
+\begin{coro}[]
+	In $ F[x]$, a polynomial of degree 1 is irreducible. 
+\end{coro}
+
+\begin{remark}
+	There is always a question about degree 4 factorization on the final.
+\end{remark}
+
+Let's now look at degree 2 or 3.
+
+Suppose $ f(x) \in F[x]$ has degree 2, \emph{i.e.} $ f(x) = ax^2 +b x + c, a,b,c \in F, a \neq 0$. Suppose $ f(x)=g(x)h(x)$. Then we have three cases. When $ g(x)$ or  $ h(x)$ has degree 0, they are units and we ignore these cases. So if  $ f$ is not irreducible, then  $ \dg g = \dg h =1$. $ g(x) = ax+b, a \neq 0$, since  $ a^{-1} \in F$, $ g(x)$ has a root in  $ F$, which is  $ -\frac{b}{a}$. Then $ f(x)$ has a root in  $ F$ (the same one).
+
+Suppose  $ f(x)$ has degree 3,  \emph{i.e.} $ f(x) = ax^3+bx^2+cx+d, a,b,c,d \in F, a\neq 0$. Then $ f(x) = g(x)h(x)$, ignoring degree 0 cases, implies two cases.  When $ \dg g=1$, then $ g$ has a root in  $ F$, so  $ f(x)$ does as well by evaluation homomorphism. When  $ \dg h=1$, then $ h$ has a root in  $ F$, so  $ f(x)$ does as well.
+
+\begin{eg}[]
+	$ x^2+1 \in \rr[x]$ has a zero $ i$ but it's not in  $ \rr$.
+\end{eg}
+
+\begin{thm}[23.10]
+	If $ f(x) \in F[x]$ has degree 2 or 3, then either  $ f(x) $ is irreducible or  $ f(x)$ has a zero in  $ F$. 
+\end{thm}
+\begin{coro}[]
+	If $ f(x) \in F[x]$ is a polynomial of degree 2 or 3 with no roots in $ F$, then  $ f(x)$ is irreducible.
+\end{coro}
+
+\begin{eg}[]
+	$ x^2 + 1 \in R[x]$ is irreducible.
+\end{eg}
+\begin{note}[]
+This is not true in degree 4 or higher.
+\end{note}
+\begin{eg}[counterexample in degree 4]
+	Consider $ x^{4}+1 \in \qq[x]$. Does $ f(x)$ have any roots in  $ \qq$? No. What about $ \rr[x]$? No. Suppose $ f(x) = g(x)h(x)$. Ignoring degree 0 cases, for degree 1 cases there is a root. But for degree 2 case we might have 2 irreducible quadratics (no root). If  $ f$ is not irreducible we must have 2 irreducible quadratics case. WLOG, we can pretend the first term is monic because we can convert to monic anyway:
+	 \begin{align*}
+		 x^{4}+1 = (x^2+ ax + b)(x^2+cx+d) 
+	\end{align*}
+Now we can equate coefficients:
+
+Constant terms: $ 1=bd$.
+
+Coefficient of  $ x^3$: $ 0 = a+c$.
+
+ $ x$: $ 0= ad+bc$.
+
+  $ x^2$: $ 0 = ac+b+d$. 
+
+  Let's write everything in terms of  $ a,b$:  $ d=\frac{1}{b}, c=-a$. So we have
+  \begin{equation*}
+  \begin{cases}
+	  0&=\frac{a}{b} - ab\\
+	  0&=b+\frac{1}{b} -a^2\\
+  \end{cases}
+  \end{equation*}
+
+  First gives $ a(1-b^2)=0 \implies a=0 \text{ or }  b=\pm 1$. If $ a=0$, then  $ b+\frac{1}{b}=0$ (no solution). If $ b=-1$,  $ a^2 = -2$. If $ b=1$, then  $ a^2=2 \implies a=\sqrt{2}, b =1, c= -\sqrt{2}, d=1  $. So
+  \[
+	  x^{4}+1 = (x^2 + \sqrt{2}x+1 )(x^2 -\sqrt{2}x +1 )
+  .\]
+  These two factors are not units and irreducible because they are degree 2 and have no roots by determinant $ <0$ of quadratic. 
+
+  Therefore, $ x^{4}+1 \in R[x]$ is reducible (two irreducible quadratics). But $ x^{4}+1 \in \qq[x]$ is irreducible. The other parts of the question can be $ \zz_p$. 
+
+  Consider $ x^{4}+1 \in \cc[x]$. Since $ \cc$ is algebraically closed. We can pull out 4 factors:
+  \[
+	  ^{x^{4}+1} = (x-\alpha)(x-\beta)(x-\gamma)(x-\delta)
+  .\] 
+  Over $ \cc$, any $ f(x) \in  \cc[x]$ is a product of degree 1 polynomials. 
+
+  So what is the solution $ x^{4}=-1 $? Think of unit circle. Then
+  \[
+	  x^{4}+1 = (x-e^{\frac{i\pi}{4 }})\ldots
+  .\] 
+\end{eg}
+
+\begin{thm}[Fundamental Theorem of Algebra]
+Every polynomial over $ \cc$ has a root in $ \cc$.
+\end{thm}
+
+\begin{thm}[]
+	Any nonconstant polynomial $ f(x) \in F[x]$ can be written as a product of irreducible polynomials. This is unique up to changing the order and multiplying by units.
+\end{thm}
+\begin{eg}[]
+	$ x^2-5x+6 \in \qq[x] = (x-2)(x-3) = (x-3)(x-2) = (5x-15)(\frac{x}{5}-\frac{2}{5})$.
+\end{eg}
+\end{document}

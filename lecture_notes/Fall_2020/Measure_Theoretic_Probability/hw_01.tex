@@ -1,0 +1,175 @@
+\documentclass[12pt]{article}
+\input{preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 1}}}}
+\centerline {Jaden Wang}
+
+\begin{problem}[1]
+	Suppose not, $\bigcap \mathcal{F} $ is not the smallest  $\sigma$-field containing $\mathcal{A}$. It follows that there exists a subset $B \subseteq \Omega$ such that $B \in \bigcap \mathcal{F} $ but $B \not \in \sigma(\mathcal{A})$. In other words, $B$ is an element that makes  $\bigcap \mathcal{F}$ bigger than the smallest $\sigma$-field. Notice that $B \in \bigcap \mathcal{F} $ implies that $B$ is in every  $\sigma$-field containing $\mathcal{A}$, including the smallest $\sigma$-field containing $\mathcal{A}$. Therefore, $B \in \sigma(\mathcal{A})$, which is a contradiction. Hence, $\bigcap \mathcal{F} $ must be the smallest  $\sigma$-field containing $\mathcal{A}$, $\sigma(\mathcal{A})$.
+\end{problem}
+
+\begin{problem}[2]
+	To show that $\mathcal{F}$ is a field, let's go over the definition:
+	\begin{enumerate}[label=(\roman*)]
+		\item Since $\nn \subseteq \nn$, $\nn \setminus \nn = \O$ which is finite, we see that $\nn \in \mathcal{F}$.
+		\item Given $A \in \mathcal{F}$, we know that $A \subseteq \nn$ and either $A$ is finite or  $\nn \setminus A = A^{c}$ is finite. By symmetry, either $A^{c}$ is finite or $A$ is finite. And since  $A^{c} \in \nn$, we show that $A^{c} \in \mathcal{F}$.
+		\item To show that $\mathcal{F}$ is closed under finite unions, it suffices to show that given $A,B \in \mathcal{F}$, $A \cup B \subseteq \mathcal{F}$.
+			~\begin{case}[1]
+				$A,B$ are finite, then it's easy to see that  $A \cup  B$ is also finite. Thus, $A \cup B \in \mathcal{F}$.
+			\end{case}
+\begin{case}[2]
+	WLOG, if $A$ is either finite or cofinite and $B$ is cofinite. Consider $(A \cup B)^{c} = A^{c} \cap B^{c}$. Since $B^{c}$ is finite, this intersection must be finite. Thus, $A \cup B$ is cofinite, and $A \cup B \in \mathcal{F}$.
+\end{case} 
+Hence for all possible cases, $A \cup B \in \mathcal{F}$.
+	\end{enumerate}
+
+	To show that $\mathcal{F}$ is not a $\sigma$-field, consider the following counterexample:\\
+
+	Given the sequence of sets $(A_i) = \{2i\} $, $\bigcup_{i= 1}^{\infty} A_i = \{2,4,\ldots\} $. However, $\nn \setminus \bigcup_{i= 1}^{\infty} A_i = \{1,3,5,\ldots\} $ is also countably infinite. Thus $\bigcup_{i=1}^{\infty} A_i \not \in \mathcal{F}$, and $\mathcal{F}$ is not closed under countably unions, making it not a $\sigma$-field.
+\end{problem}
+\newpage
+\begin{problem}[3]
+~\begin{enumerate}[label=\alph*)]
+	\item \\
+	~\begin{enumerate}[label=\arabic*)]
+		\item Since $\mathcal{F}_1$ is a field, $\Omega \in \mathcal{F}_1$. And because the sequence of sets are nested, \emph{i.e.} $\mathcal{F}_n \subseteq \mathcal{F}_{n+1}$, it is easy to see that $\mathcal{F}_1 \subseteq \bigcup_{n =1}^{\infty} \mathcal{F}_n$. Therefore, $\Omega \in \bigcup_{n =1}^{\infty} \mathcal{F}_n$.
+		\item Given a set $A \in \bigcup_{n =1}^{\infty} \mathcal{F}_n$, we know that there exists an $i \in \nn$ such that $A \in \mathcal{F}_i$. Since $\mathcal{F}_i$ is a field, $A^{c} \in \mathcal{F}_i$. Therefore, $A^{c} \in \bigcup_{n =1}^{\infty} \mathcal{F}_n$.
+		\item Given finite sets $A_1,A_2,\ldots,A_k \in \bigcup_{n =1}^{\infty} \mathcal{F}_n, k \in \nn$, we know that each $A_i$ must be in at least one of the $\mathcal{F}_n$. Since $\mathcal{F}_n \subseteq \mathcal{F}_{n+1}$, choose $\mathcal{F}^* $ to be the largest $\mathcal{F}_n$ that contains all the  $A_i$'s. That is, $\{A_1,A_2,\ldots,A_k\} \subseteq \mathcal{F}^* $. Since $\mathcal{F}^* $ is a field, it follows that $\bigcup_{i= 1}^{k} A_i \in \mathcal{F}^* \subseteq \bigcup_{n =1}^{\infty} \mathcal{F}_n$.
+	\end{enumerate}
+	By proving all three parts of the definition, we show that $\bigcup_{n =1}^{\infty} \mathcal{F}_n$ is a field.
+\item Let $\Omega=\nn$, $\mathcal{F}_n = \sigma(\{\{1\},\{2\},\ldots,\{n\}\})$, and $A_k = \{2k\} $. Then $\bigcup_{k=1}^{\infty} A_k = \{2,4,\ldots\} $ which is the set of all positive even numbers. However, notice that since each set in $\mathcal{F}_n$ is either finite or cofinite, and $\mathcal{F}_n$ is nested, then $\bigcup_{n =1}^{\infty} \mathcal{F}_n$ is the collection of all finite and cofinite subsets in $\nn$. As we have shown in Problem 2, the set of all positive even numbers is not in this set, so $\bigcup_{k=1}^{\infty} A_k \not \in \bigcup_{n=1}^{\infty} \mathcal{F}_n$ and thus $\bigcup_{n =1}^{\infty} \mathcal{F}_n$ is not a $\sigma$-field.
+\end{enumerate} 
+\end{problem}
+
+\begin{problem}[4]
+	First, by Property 3 of $P^*$, 
+	\begin{equation}
+	P^*(A) \leq P(A)
+        \end{equation}
+	Since $A \subseteq \bigcup_{n =1}^{\infty} B_n$, by the monotonicity of probability measure, we have 
+	\begin{equation}
+		P(A) \leq P\left( \bigcup_{n =1}^{\infty} B_n \right) 
+	\end{equation}
+	The final missing link can be found by the countable subadditivity of probability measure:
+	\begin{equation}
+		P\left( \bigcup_{n =1}^{\infty} B_n \right) \leq \sum_{ n=1}^{\infty} P(B_n)
+	\end{equation}
+The three inequalities above together yields:
+\[
+	P^* (A) \leq P(A) \leq P\left( \bigcup_{n =1}^{\infty} B_n \right) \leq \sum_{ n=1}^{\infty} P(B_n)
+.\] 
+\end{problem}
+\begin{problem}[5]
+~\begin{enumerate}[label=\alph*)]
+	\item We would like to show that $P_2^*(A)$ is also the infimum of the set $S=\left\{ \sum_{ n=1}^{\infty} P(A_n):A_n \in \mathcal{F}_0, A \subseteq \bigcup_{n =1}^{\infty} A_n \right\} $. That is, we will show that $P^* (A)$ is a lower bound of $S$ and is no less than any lower bound of  $S$.
+		 \begin{enumerate}[label=\arabic*)]
+			 \item Given a sequence $(A_n) \subseteq \mathcal{F}_0$ such that $A \subseteq \bigcup_{n =1}^{\infty} A_n$, since $\mathcal{F} = \sigma(\mathcal{F}_0)$, $(A_n) \subseteq \mathcal{F}$ and $\bigcup_{n =1}^{\infty} A_n \in \mathcal{F} $. And since probability measure $P$ is defined on  $\mathcal{F}$, by subadditivity we immediately have $P\left( \bigcup_{n =1}^{\infty} A_n \right) \leq \sum_{ n=1}^{\infty} P(A_n)$. Since $P_2^* (A)$ is defined as the infimum of the set $\{P(B):A \subseteq B, B \in \mathcal{F}\} $, we have $P_2^* (A) \leq P\left( \bigcup_{n =1}^{\infty} A_n \right) $. It follows that $P_2^* (A) \leq \sum_{ n=1}^{\infty} P(A_n)$, which makes $P_2^* (A)$ a lower bound of $S$.
+			 \item To show that $P_2^* (A)$ is the greatest lower bound, it suffices to show that $P_2^* (A) \geq P_1^* (A)$ since $P_1^* (A)$ is already no less than all lower bounds of $S$. Using the $\epsilon$ definition of infimum, we know that given $\epsilon>0$, there exists a $B \in \mathcal{F}$ such that $A \subseteq B$ and $P_2^* (A) +\epsilon > P(B) $. We can use this existence machine to construct a sequence as the following: let $\epsilon_n = \frac{1}{n}$, there exists a $B_n \in \mathcal{F}$ such that $A \subseteq B_n$ and $P_2^* (A) +\epsilon_n> P(B_n)$. Let $B = \bigcap_{n =1}^{\infty} B_n$. Clearly $B \in \mathcal{F}$ as $\mathcal{F}$ is closed under countable intersection and $B$ is a subset of any  $B_n$. By monotonicity of probability measure, $P(B) \leq P(B_n)$ for all $n \in \nn$. Since $A$ is a subset of all $B_n$'s, it must be a subset of $B$ as well. By monotonicity of outer measures, $P_1^* (A) \leq P_1^* (B)$. By the theorem from class, $P_1^* (B) = P(B)$. Putting these together and letting $n \to \infty$, we obtain
+				 \[
+					 P_1^* (A) \leq P_1^* (B) = P(B) \leq P(B_n) \leq P_2^* (A)
+				 \]
+				 as required.
+		\end{enumerate}
+		Hence, $P_2*(A)$ is also an infimum of  $S$. Since infimum is unique, it must be that  $P_1^* (A) = P_2^* (A)$.
+	\item Consider
+		~\begin{align*}
+			\sup\left\{ P(B):B \subseteq A, B \in \mathcal{F} \right\} &= \sup\left\{ (1-(1-P(B)):B \subseteq A, B \in \mathcal{F} \right\}  \\
+										   &= 1 - \inf\left\{ P(B^{c}): A^{c} \subseteq B^{c}, B^{c} \in \mathcal{F} \right\}  \\
+										   &= 1- P_2^*(A^{c})
+		\end{align*}
+		To show that the infimum and supremum are always achieved, we need to show that there exist $B_1, B_2 \in \mathcal{F}$ such that $P(B_1) = P_2^*(A^{c}) $ and $P(B_2) = P_2_* (A)$. Notice that in a), we have already proven that for the specific $B$ we construct, $P_2^*(A) \geq P(B)$. And since $P_2^* (A)$ is the infimum, we also have $P_2^* (A) \leq P(B)$. Hence, this specific $B$ is our candidate  such that $P(B) = P_2^* (A) $. Then by symmetry of the complement, there must exist a $B_1$ such that $P(B_1) = P_2^* (A^{c})$. For the supremum, choose $B_2 = \Omega \setminus B_1$. Then by additivity of probability measure, $P(B_2) = 1- P(B_1) = 1- P_2^* (A^{c}) = P_2_*(A)$, as required.
+	\item ~$(\implies)$ Suppose $P^* (A \cap E) + P^* (A^{c} \cap E) = P^* (E), \quad \forall E \subseteq \Omega$. Choose $E = \Omega$, and we have $A \cap E = A$, $A^{c} \cap E = A^{c}$. It follows that 
+		\begin{align*}
+			P^* (A) + P^* (A^{c}) &= P^* (\Omega) =1 \\
+			P^* (A) &= 1- P^* (A^{c})\\
+			\inf\left\{P(B): A \subseteq B, B \in \mathcal{F} \right\} &= \sup\left\{ P(B): B \subseteq A, B \in \mathcal{F} \right\} 
+		\end{align*}
+		$(\impliedby)$ Suppose $\inf\left\{P(B): A \subseteq B, B \in \mathcal{F} \right\} = \sup\left\{ P(B): B \subseteq A, B \in \mathcal{F} \right\} $. Based on previous problems, it's easy to see that this statement is equivalent to $P^* (A) + P^* (A^{c}) = 1$. We would like to prove both directions to show equality. One direction comes directly from subadditivity of the outer measure: \[P^* (A \cap E) + P^* (A^{c} \cap E) \geq P^*((A \cap E) \cup (A^{c} \cap E)) = P^* (E).\] 
+		
+		The other direction requires more work. By b), since the infimum is always achieved, there exist $B_1,B_2 \in \mathcal{F}$ such that $A \subseteq B_1, P^* (A) = P(B_1)$ and $A^{c} \subseteq B_2, P^* (A^{c}) = P(B_2)$. It follows that $P(B_1) + P(B_2) = 1 = P(\Omega)$ and $B_1 \cup B_2 = \Omega$. The inclusion-exclusion principle asserts that
+		\begin{align*}
+		    P(B_1 \cup B_2) &= P(B_1) + P(B_2) - P(B_1 \cap B_2)\\
+		    P(\Omega) & = P(\Omega) - P(B_1 \cap B_2)\\
+		    P(B_1 \cap B_2) &= 0
+		\end{align*}
+		Let's generalize this result. Given $E \subseteq \Omega$, there also exists $B_3 \in \mathcal{F}$ such that $E \subseteq B_3, P^* (E) = P(B_3)$. By monotonicity and the fact that a probability measure always outputs a value in $[0,1]$, 
+		\[
+		0\leq P(B_1 \cap B_2 \cap B_3) \leq P(B_1 \cap B_2) = 0
+		\]
+		That is, $P(B_1 \cap B_2 \cap B_3)=0$. Applying the inclusion-exclusion principle again on the generalization, we have
+		\begin{align}
+		\begin{split}
+		    P((B_1 \cup B_2) \cap B_3) &= P(B_1 \cap B_3) + P(B_2 \cap B_3) - P(B_1 \cap B_2 \cap B_3)\\
+		   P(\Omega \cap B_3) &= P(B_1 \cap B_3) + P(B_2 \cap B_3)
+		\end{split}
+		\end{align}
+		
+		Now by monotonicity of the outer measure, we can establish
+	\begin{equation}
+		P^* (A \cap E) + P^* (A^{c} \cap E) \leq P^* (B_1 \cap E) + P^* (B_2 \cap  E)
+	\end{equation}
+	And because $B_1 \cap E \subseteq B_1 \cap B_3 \in \mathcal{F}$ and $B_2 \cap E \subseteq B_2 \cap B_3 \in \mathcal{F}$, by the definition of infinimum, 
+	\begin{equation}
+		P^* (B_1 \cap E) + P^* (B_2 \cap E) \leq P(B_1 \cap B_3) + P(B_2 \cap B_3)
+	\end{equation}
+	By (4),
+	\begin{equation}
+		P(B_1 \cap B_3) + P(B_2 \cap B_3) = P(\Omega \cap B_3) = P(B3) = P^* (E)
+	\end{equation}
+	Combining (5) to (7), we obtain $P^* (A \cap E) + P^* (A^{c} \cap E) \leq P^* (E)$. Hence, we proved both directions so we obtain the equality as required.
+\item We want to show equality by proving inequalities in both directions. Let's denote the first set as $S$ again and the new set as $S'$.
+	\begin{enumerate}[label=\arabic*)]
+		\item Since $\mathcal{F}_0 \subseteq \mathcal{F}$, by definition of infimum, $P_3^* (A) \leq \sum_{ n=1}^{\infty} P(A_n) \quad \forall A_n \in \mathcal{F}_0 \subseteq \mathcal{F}$. Thus $P_3^* (A)$ is a lower bound of $S$. And the greatest lower bound of $S$ $P_1^* (A) \geq P_3^* (A)$.
+		\item Now we want to show that  $P_3^* (A) \geq P_1^* (A)$ and thus it is the greatest lower bound of $S$. It suffices to show that  $P_1^* (A)$ is in fact a lower bound of $S'$. Given a sequence of  $(A_n) \subseteq \mathcal{F}$, since $\mathcal{F}$ is a $\sigma$-field, we know that $\bigcup_{ n =1}^{\infty} A_n \in \mathcal{F} $. By subadditivity and the definition of infimum, respectively, we obtain the following inequalities:
+\[
+	\sum_{ n=1}^{\infty} P(A_n) \geq P\left( \bigcup_{n =1}^{\infty} A_n \right) \geq P_2^* (A) = P_1^* (A)
+.\]
+Thus $P_1^* (A)$ is a lower bound of $S'$. It follows that the greatest lower bound of $S'$ $P_3^* (A) \geq P_1^* (A)$.  
+	\end{enumerate}
+	By proving both directions, we obtain $P_3^*(A) = P_1^* (A) = \inf\{S\}$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[6]
+To prove that the triple is a probability measure space, we need to show that $\mathcal{F}$ is a $\sigma$-field and $\lambda$ is a probability measure.
+\begin{enumerate}[label=\arabic*)]
+	\item 
+		~\begin{enumerate}[label=(\roman*)]
+			\item Since $(0,1] \in \mathcal{B}$, it is easy to see that $\Omega \in \mathcal{F}$.
+			\item Given $S \in \mathcal{F}$,
+				\[
+					S^{c}=\{(x,y):x \in A^{c}, 0<y\leq 1\} 
+				.\] 
+			Since $\mathcal{B}$ is closed under complements, $A^{c} \in \mathcal{B}$. Hence $S^{c} \in \mathcal{F}$.
+		\item Given $(S_n) \in \mathcal{F}$, 
+			\[
+				\bigcup_{ n =1}^{\infty} S_n &= \left\{ (x,y): x \in \bigcup_{ n =1}^{\infty} A_n, 0<y\leq 1 \right\} 
+			.\] 
+			Since each $A_n \in \mathcal{B}$, and $\mathcal{B}$ is a $\sigma$-field, we know that $\bigcup_{ n =1}^{\infty} A_n \in \mathcal{B}$. Hence $\bigcup_{ n =1}^{\infty} S_n \in \mathcal{F}$.
+		\end{enumerate}
+	\item It's easy to see that $P(\Omega) = \lambda((0,1]) = |1-0| = 1$ and that $P:\mathcal{F} \to [0,1]$ since it's Lebesgue's measure on the Borel set. Given a disjoint sequence $(S_n) \subseteq \mathcal{F}$ with their $x$-coordinates in the sequence $(A_n)$, notice that $\bigcup_{n=1}^\infty S_n = \left\{ (x,y): x \in \bigcup_{n=1}^\infty A_n , 0<y\leq 1 \right\}$. Therefore, countable additivity is achieved by
+	\[
+	P\left(\bigcup_{n=1}^\infty S_n \right) = \sum_{n=1}^\infty P(A_n) = \sum_{n=1}^\infty P(S_n)
+	\]
+	Hence $P$ is a probability measure.\\
+
+		Taken together,  $(\Omega, \mathcal{F},P)$ is a probability measure space.
+\end{enumerate}
+
+
+Given $B \in \mathcal{F}$ such that $A \subseteq B$, then this constraint yields 
+\[
+	\{(x,y): x \in (0,1],0<y\leq 1\} = \Omega \subseteq B
+.\] 
+But since $B \in \mathcal{F}$ is a subset of $\Omega$, this yields $B= \Omega$. That is, the only possible $B$ is  $\Omega$ itself. Now consider
+\begin{align*}
+	P^* (A) &= \inf\left\{P(B):A \subseteq B,B \in \mathcal{F} \right\}  \\
+	&= \inf\left\{ \Omega \right\}  \\
+	&= P(\Omega) \\
+	&= 1 \\
+\end{align*}
+By definition of the inner measure, $P_*(A) = 1-P^* (A) = 0$.
+\end{problem}
+\end{document}
+

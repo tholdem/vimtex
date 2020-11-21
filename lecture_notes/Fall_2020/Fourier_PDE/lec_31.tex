@@ -1,0 +1,116 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+From previous lecture, we obtain the \allbold{Lorentz series.}
+
+The coefficients are
+\begin{align*}
+	c_n = \frac{1}{2}(a_n - ib_n) &= \frac{1}{2L} \int_{-L}^{L} f(x) \left[ \cos \left( \frac{ n\pi x}{ L} \right) -i\sin \left( \frac{ n\pi x}{ L} \right)  \right] dx  \\
+				      &= \frac{1}{2L} \int_{-L}^{L} f(x) \cdot e^{-i n \pi x / L} dx \\
+\end{align*}
+
+Thus the complex form of the Fourier series of $ f(x)$ is
+ \[
+\text{ F.S.} [ f]( x) = \sum_{ n=-\infty}^{\infty} c_n e^{in\pi x /L}
+\]
+where
+\[
+c_n =  \frac{1}{2L} \int_{-L}^{L} f(x) \cdot e^{-i n \pi x / L} dx, n=0, \pm 1, \pm 2, \ldots 
+.\]
+Notice that the positive exponential term is used in the series and the negative exponential term is used to find the coefficients.
+
+\subsection{Orthogonality}
+The inner product of two complex-valued functions $ f(x) $ and  $ g(x)$, piecewise continuous on  $ [-L,L]$ is defined as
+ \[
+	 \langle f(x),g(x) \rangle = \int_{-L}^{L} f(x) \overline{g(x)} dx = \int_{-L}^{L} [f_1(x)+ if_2(x)]\overline{[g_1(x)+ig_2(x)]}  
+.\] 
+with norm defined by
+ \[
+	 \norm{f} = \sqrt{\langle f(x),f(x) \rangle}  = \int_{-L}^{L} |f(x)|^2 dx \in \rr 
+.\] 
+Note that 
+\begin{align*}
+	\langle e^{i m \pi x / L} , e^{i n \pi x /L}\rangle &= \int_{-L}^{L} e^{i m \pi x /L} \cdot \overline{e^{i n x /L}}dx  \\
+							    &= \int_{-L}^{L} \left[ \cos \left( \frac{ (m-n) \pi x}{ L} \right) + i \sin \left( \frac{ (m-n)\pi x}{ L} \right)  \right]  dx \\
+							    &= \begin{cases}
+								    0& \text{ if } m\neq n\\
+								    2L & \text{ if } m=n \
+							    \end{cases} \\
+\end{align*}
+
+\begin{eg}[]
+	Compute the complex F.S. of $ f(x)=e^{ax}, x \in [-L,L]$, where $ a \in \rr$.
+
+	\begin{align*}
+		c_n &= \frac{1}{2L} \int_{-L}^{L} e^{ax} \cdot e^{-i n \pi x /L} dx\\
+		    &= \frac{1}{2L[a-(in\pi /L]} e^{[a-(in\pi /L]x} \bigg |_{-L}^L \\
+		    &= \frac{1}{2[aL-in\pi]} \left[ e^{aL} e^{-in\pi}-e^{-aL} e^{-in\pi} \right]  \\
+		    &= \frac{1}{2[aL-in\pi]} \left[ e^{aL} (\cos(n\pi )-i\sin(n\pi )) -e^{aL}(\cos(n\pi )+i \sin(n\pi )) \right]  \\
+		    &= \frac{aL+in\pi}{[(aL)^2+(n\pi)^2] } \cdot (-1)^{n} \cdot \frac{e^{aL}-e^{-aL}}{2 }\\
+		    &= \frac{(-1)^{n} (aL+in\pi)}{(aL)^2 + (n\pi)^2 } \sinh(aL)\\
+	\end{align*}
+	Therefore, the complex F.S. is
+	\[
+		\sum_{ n= -\infty}^{\infty} c_n e^{in\pi x /L} = \sum_{ n= -\infty}^{\infty}  \frac{(-1)^{n} (aL+in\pi)}{(aL)^2 + (n\pi)^2 } \sinh(aL) e^{in\pi x /L}
+	.\] 
+	Note that we can use $ c_n= \frac{1}{2} (a_n - ib_n)$ to find the real F.S. coefficients $ a_n$ and $ b_n$ which is much easier than finding them directly!
+\end{eg}
+
+Fun Facts:
+
+\begin{itemize}
+		\item The coefficients $ c_n$ are usually complex even if $ f(x)$ is real.
+		\item If  $ f(x)$ is real then  $ c_{-n} = \overline{c_n}$.
+		\item If $ f(x)$ is an even function then  $ c_{-n}=c_n$ and if $ f(x)$ is an odd function then  $ c_{-n}=-c_n$.
+		\item Note that
+			\[
+				c_0 = \frac{1}{2L} \int_{-L}^{L} f(x) dx = \text{ average value of }f(x) \text{ on } [-L,L]
+			.\]
+
+		\item If $ f(x)$ is  piecewise smooth then the complex F.S. of $ f(x)$ converges to the periodic extension of the adjusted version of  $ f(x)$.
+		\item Parseval's Identity states that
+			 \[
+				 \frac{1}{2L} \int_{-L}^{L} |f(x)|^2 dx = \sum_{ n= -\infty}^{\infty}  |c_n|^2
+			.\] 
+\end{itemize}
+
+
+\subsection{Integral Transform}
+
+The Fourier transform is a \emph{continuous analog} of the F.S. In theory, a Fourier integral would lead to more manageable and understandable solutions in closed form.
+
+\begin{defn}[]
+	Given any "reasonable" function $ K(x,z)$, we can define the  \allbold{integral transform}, $ T[f](z)$ of a function  $ f(x)$,  $ a\leq x\leq b$, by
+	 \[
+		 T[f](z) = \int_{a}^{b} K(x,z) f(x) dx 
+	.\] 
+	where the function $ f(x)$ is transformed into a new function  $ T[f](z)$. Such transforms are linear. The function  $ K(x,z)$ is known as the  \allbold{kernel} of the transform. 
+\end{defn}
+
+\begin{remark}
+The Fourier transform is helpful in solving PDEs, primarily because it converts differentiation into algebraic multiplication:
+\[
+	T[f'](z) = iz T[f](z)
+.\] 
+\end{remark}
+
+\subsection{Fourier transform}
+Given $ f(x), x \in \rr$, we wish to represent $ f(x)$ as Fourier integral:
+ \begin{enumerate}[label=\arabic*)]
+	 \item Suppose $ \int_{-\infty}^{\infty} |f(x)|dx =M < \infty$ and $ f(x)$ is piecewise smooth on every finite interval.
+	 \item Let  $ f(x) = \sum_{ n=-\infty}^{\infty} c_n e^{in\pi x /L} $ and let $m_n =\frac{n\pi}{L }$ then this is a partition of $ (-\infty,\infty)$ for $ n \in \zz$.
+	 \item Note that $ \Delta m_n=m_{n+1}-m_n = \frac{(n+1)\pi}{L } - \frac{n\pi}{L } = \frac{\pi}{L}$. Thus $ \frac{L}{\pi} \Delta m_n =1$.
+	 \item Using this fact we can write the complex F.S. as a Riemann Sum:
+		 \[
+			 f(x) = \sum_{ n=-\infty}^{\infty} c_n e^{-in\pi x /L} \cdot \frac{L}{\pi} \Delta m_n = \sum_{ n= -\infty}^{\infty}  \left( \frac{L}{\pi} c_n \right) e^{i n\pi x /L} \Delta m_n = \sum_{ n=-\infty}^{\infty} \hat{ f}(m_n)e^{im_n x} \Delta m_n 
+		 .\] 
+		 where we let $ \hat{ f}(m_n) = L c_n / \pi$. 
+	 \item Taking the limit $ L \to \infty$ on both sides $ \Delta m_n \to 0$ yields:
+		 \[
+			 f(x) = \lim_{ L \to \infty} \sum_{ n= -\infty}^{\infty} \hat{ f}(m_n) e^{i  m_n x} \Delta m_n = \int_{-\infty}^{\infty} \hat{ f}(m) e^{imx} dm
+		 .\] 
+		 which is the Fourier integral representation of $ f(x)$.
+	 \item Note that $ \hat{ f}(m)$ is the \emph{Fourier transform of $ f(x)$} and $ f(x)$ is the  \emph{inverse Fourier transform of $ \hat{ f}(m)$}.  
+\end{enumerate}
+\end{document}

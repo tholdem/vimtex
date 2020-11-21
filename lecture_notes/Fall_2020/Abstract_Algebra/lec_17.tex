@@ -1,0 +1,148 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Homomorphism}
+
+\begin{note}[]
+\allbold{Homomorphism} is a structure preserving map. 
+\end{note}
+In linear algebra: it preserves vector addition and scalar multiplication (linear maps).
+
+In group theory: preserves group operation.
+
+\begin{defn}[]
+	Let $ (G,*)$ and  $ (H,*)$ be groups. A  \allbold{homomorphism} (of groups) from $ G$ to  $ H$ is a function $ \phi: G \to H$ such that 
+	\[
+		\phi(g_1 *_G g_2) = \phi(g_1) *_H \phi(g_2)
+	.\] 
+\end{defn}
+\begin{note}[]
+	This resembles linear maps $ T(u+v)=T(u)+T(v)$. Any linear map is a group homomorphism. An isomorphism is a bijective homomorphism.
+\end{note}
+
+\begin{eg}[uninteresting]
+	$ T:V \to W$? Let $ T(v)=0$ for all  $ v \in V$. Similarly, let $ (G,*_G), (H,*_H)$ be groups. Define $ \phi: G \to H$ by $ \phi(g) =e_H$ for all $ g \in G$. Then $ \phi$ is a homomorphism.
+
+	\begin{prf}
+		$ \phi(x*_G y) = e_H = e_H *_H e_H = \phi(x) *_H \phi(y)$
+	\end{prf}
+\end{eg}
+\begin{eg}[]
+	$ T: V \to V$. Another trivial example of homomorphism is the identity map $ T(v) = v$. Similarly, $ (G,*_G)$ is a group. Let  $ \phi: G \to G$ be defined as $ \phi(g)=g$. The proof is trivial.
+\end{eg}
+\begin{eg}[interesting, not isomorphism]
+	Consider $ GL_n( \rr)$: $ n\times n$ invertible matrices with entries from $ \rr$ under matrix multiplication. 
+
+	Is it abelian? Counterexample: use $ 2 \times 2$ upper and lower triangle of all 1 as non-zero entries. Then we can just insert this to any $ n \times n$ identity matrices to the top left.
+
+	$ GL_1( \rr) \simeq \rr^* $. This is abelian.
+
+	So it is abelian if and only if $ n=1$.
+
+	It is an infinite group. Just change one element of an identity matrix with infinite number of choices.
+
+	$\det: GL_n( \rr) \to \rr^* $, $ A \mapsto \det(A)$.
+\begin{claim}[]
+$ \det$ is a homomorphism of groups. 
+\end{claim}
+	 It is surjective but not injective.
+It isn't an isomorphism because $ \det$ is abelian. 
+
+$ \det(AB) = \det (A) \det (B)$ by a Theorem from linear algebra. This satisfies the definition of homomorphism.
+\end{eg}
+
+\begin{eg}[sign map]
+$ \varepsilon: S_n \to \zz_2$.
+\begin{equation*}
+	\varepsilon(g)
+\begin{cases}
+	0 & \text{ if }g \text{ is even}  \\
+	1 & \text{ if } g \text{ is odd}  \\
+\end{cases}
+\end{equation*}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c||c|c}
+	&even&odd\\
+	\hline
+	\hline
+		even&even&odd\\
+		\hline
+		odd&odd&even\\
+	\end{tabular}
+\end{table}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c||c|c}
+	$+_2$&0&1\\
+	\hline
+	\hline
+		0&0&1\\
+		\hline
+		1&1&0\\
+	\end{tabular}
+\end{table}
+WLOG assume $ x$ is even,  $ y$ is odd. Then
+ \begin{align*}
+	 \varepsilon(x*y) &=? \varepsilon(x) * \varepsilon(y) \\
+	 1&= 0 +_2 1 \\
+\end{align*}
+True by table.
+
+\end{eg}
+
+\begin{note}[]
+	Given linear map $ T: V \to W$. Then $ T(0_V) = 0_W$.  $ T(-v) = -T(v)$.
+
+\end{note}
+Similarly, for group homomorphism $\phi: G \to H$.
+\begin{claim}[]
+	$ \phi(e_G)=e_H$.
+\end{claim}
+\begin{prf}
+\begin{align*}
+	\phi(x*_G y ) &= \phi(x) *_H \phi(y)\\
+	\phi(e_G) &= \phi(e_G * e_G) = \phi(e_G) *_H \phi(e_G) \\
+	Y &= Y *_H Y \implies Y=\phi(e_G) = e_H \\
+\end{align*}
+\end{prf}
+\begin{claim}[]
+	$ \phi(g^{-1}) = \phi(g)^{-1}$.
+\end{claim}
+\begin{prf}
+\begin{align*}
+	\phi(x*_G x^{-1}) &= \phi(x) *_H \phi(x^{-1}) \\
+	e_H = \phi(e_G) &=  \\
+\end{align*}
+Thus $ \phi(x^{-1}) = \phi(x)^{-1}$.
+\end{prf}
+
+\begin{eg}[]
+	Consider $ \det: GL_n( \rr) \to \rr^* $. By the theorem above: 
+	\[\det(A^{-1}) = \frac{1}{\det A}\]. 
+\end{eg}
+
+\begin{note}[]
+	In linear algebra, $ T:V \to W$ linear map, \[\ker T=\{v \in V: T(v) = 0_W\} \] and \[\im T=\{w \in W: T(v)=w, v \in V\} \]
+\end{note}
+\begin{defn}[kernel and image]
+	$ \phi: G \to H$ a homomorphism of groups. 
+	\[
+		\ker \phi = \{g \in G : \phi(g) = e_H\} 
+	.\] 
+	\[
+		\im \phi=\{ h \in H: \phi(g) =h, g \in G\} 
+	.\] 
+	$ \ker \phi \leq G$, $ \im \phi \leq H$.
+\end{defn}
+See screenshot for illustration. 
+\begin{prf}
+$ \ker \phi \subseteq G$ by definition. Then
+\begin{enumerate}[label=\arabic*)]
+	\item $ \phi(e_G) = e_H$ by previous proof.
+	\item closure: If $ x,y \in \ker \phi$, $ \phi(x)=e_H, \phi(y) = e_H$, and $ \phi(x*y) = e_H * e_H = e_H$.
+	\item If $ x \in \ker \phi$, $ \phi(x^{-1}) = \phi(x)^{-1} = e_H ^{-1} = e_H$.
+\end{enumerate}
+\end{prf}
+\end{document}

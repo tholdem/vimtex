@@ -15,16 +15,6 @@ endglobal
 
 
 context "math()"
-snippet pp "phi,cs" iA
-\phi
-endsnippet
-
-context "math()"
-snippet PP "Phi,cs" iA
-\Phi
-endsnippet
-
-context "math()"
 snippet ww "omega,cs" iA
 \omega
 endsnippet
@@ -38,8 +28,16 @@ snippet letw "let omega" iA
 Let $\Omega$ be a non-empty set.
 endsnippet
 
-snippet sf "sigma field" iA
+snippet sf "sigma field" A
 $\sigma$-field
+endsnippet
+
+snippet ps "sigma field" A
+$\pi$-system
+endsnippet
+
+snippet ls "sigma field" A
+$\lambda$-system
 endsnippet
 
 context "math()"
@@ -53,13 +51,97 @@ snippet FF "fancy F" iA
 endsnippet
 
 context "math()"
-snippet supr "supr" iA
-\sup\{$1\} $0
+snippet GG "fancy G" iA
+\mathcal{G}
 endsnippet
 
 context "math()"
-snippet infi "infimum" iA
-\inf\{$1\} $0
+snippet MM "fancy M" iA
+\mathcal{M}
+endsnippet
+
+context "math()"
+snippet BB "fancy B" iA
+\mathcal{B}
+endsnippet
+
+context "math()"
+snippet PP "fancy P" iA
+\mathcal{P}
+endsnippet
+
+context "math()"
+snippet LL "fancy L" iA
+\mathscr{L}
+endsnippet
+
+context "math()"
+snippet supr "supremum" iA
+\sup\left\\{$1 \right\\} $0
+endsnippet
+
+context "math()"
+snippet infim "infimum" iA
+\inf\left\\{$1 \right\\} $0
+endsnippet
+
+context "math()"
+snippet limsup "limsup" iA
+\limsup_{ ${1: n}} $0
+endsnippet
+
+context "math()"
+snippet limifm "liminf" iA
+\liminf_{ ${1: n}} $0
+endsnippet
+
+context "math()"
+snippet NU "limsup NU" iA
+\bigcap_{ ${1:n=${2: 1}}}^{\infty} \bigcup_{${3:k=${2: n}}}^{\infty} $0
+endsnippet
+
+context "math()"
+snippet UN "limsup NU" iA
+\bigcup_{ ${1:n=${2: 1}}}^{\infty} \bigcap_{${3:k=${2: n}}}^{\infty} $0
+endsnippet
+
+context "math()"
+snippet up| "" iA
+\\uparrow
+endsnippet
+
+context "math()"
+snippet dw| "" iA
+\\downarrow
+endsnippet
+
+context "math()"
+snippet io.. "" iA
+\text{ i.o. }
+
+context "math()"
+snippet aa.. "" iA
+\text{ a.a. }
+endsnippet
+
+context "math()"
+snippet xra "" iA
+\xrightarrow{ $1} $0
+endsnippet
+
+context "math()"
+snippet EE "expected value" iA
+E\left[ $1 \right] $0
+endsnippet
+
+context "math()"
+snippet VV "variance" iA
+\var \left[ $1 \right] $0
+endsnippet
+
+context "math()"
+snippet lbi "Lebesgue Integral" iA
+\int_{ ${1: A}} ${2: f} \ d ${3: \mu} $0
 endsnippet
 
 # vim:ft=snippets

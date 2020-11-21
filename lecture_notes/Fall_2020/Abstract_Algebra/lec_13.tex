@@ -1,0 +1,134 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{coro}[9.12]
+	Any permutation of a finite set of at least two elements can be written as a product of its transpositions.
+\end{coro}
+\begin{eg}[]
+\[
+	(1\ 2)(1\ 3)(1\ 4)(1\ 5) = (1\ 5\ 4\ 3\ 2) \in S_5
+.\] 
+We start from right to left. Then for (1 2 3 4 5) we can just use (1 5)(1 4)(1 3)(1 2)
+\end{eg}
+
+\begin{eg}[]
+\begin{align*}
+	\sigma &= \text{ (1 3 6)(2 8)(4 7 5)} \\
+	       &= \text{ (1 6)(1 3)(2 8)(4 5)(4 7)}  \\
+\end{align*}
+\end{eg}
+
+\begin{eg}[]
+\begin{align*}
+	\text{ (1 2)(2 3)(1 2)(2 3)(1 2)} &= \text{ (1)(2 3)}  \\
+					  &= \text{ (2 3)}  \\
+\end{align*}
+A product of 5 transpositions = product of 1 transposition.
+\end{eg}
+\begin{eg}[]
+Use the same $ \sigma$ as above, it is a product of 5 transpositions. We can write it as 7 transposition.
+\[
+	\sigma = \text{(1 6)(1 3)(2 8)(4 5)(4 7)(1 2)(1 2) } 
+.\] 
+Could $ \sigma$ be the product of 10 transpositions? No!
+\end{eg}
+
+\begin{defn}[even permutation]
+An \allbold{even permutation} is a product of even number of transpositions. 
+\end{defn}
+Likewise for odd permutation.
+\begin{note}
+So far any permutation is even or odd. Also, $ k$-cycle are odd if  $ k$ is even, and are even if  $ k$ is odd.
+\end{note}
+\begin{eg}[]
+	Consider (1 2) and (1 2 3) in $ S_3$
+\end{eg}
+
+\begin{claim}[]
+No permutation is both even and odd.
+\end{claim}
+Let's prove this using permutation matrix from linear algebra. Note that ith column of the permutation matrix tells you where the $ e_i$ basis goes.
+\begin{prf}
+\begin{claim}[]
+	A permutation is even or odd if its permutation matrix has determinant 1 or -1, respectively.
+\end{claim}
+Since every time swapping rows flips the sign of the determinant. Since it cannot have determinant to be both 1 and -1 at the same time, the permutation cannot be both even and odd.
+\end{prf}
+
+\begin{claim}[]
+There exists an isomorphism between $ S_n$ and $ n\times n$ permutation matrices under matrix multiplication.
+\end{claim}
+
+\begin{note}[]
+	The identity is even $ (1 2)(1 2)$ and has determinant 1.
+\end{note}
+
+\begin{eg}[]
+If $ \sigma$ is a product of 5, $ \tau$ is a product of 4, so $ \sigma \tau$ is a product of 9 transposition.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c||c|c}
+		*& even & odd\\
+		\hline
+		\hline
+		even & even & odd\\
+		\hline
+		odd& odd & even
+	\end{tabular}
+\end{table}
+So it adds like even and odd numbers.
+\end{eg}
+\begin{eg}[]
+	If $ \alpha = \text{ (1 2)(2 4)(3 4)} $, then $ \alpha^{-1}=\text{(3 4)(2 4)(1 2)}$.
+\end{eg}
+Then clearly an even permutation's inverse is also even.
+
+\begin{thm}[]
+The even permutations in $ S_n$ form a subgroup.
+\end{thm}
+
+\begin{prf}
+~\begin{enumerate}[label=(\roman*)]
+	\item the identity is even.
+	\item the product of two even permutations is even.
+	\item the inverse of an even permutation is even.
+\end{enumerate}
+\end{prf}
+
+\begin{defn}[]
+This is called the \allbold{alternating group on $ n$ letters}, denoted $ A_n$.
+\end{defn}
+
+\begin{claim}[]
+If $ n\geq 2$, then exactly half the elements in  $ S_n$ are even,
+\end{claim}
+
+\begin{prf}
+	The map $ x \mapsto x \text{ (1 2)} $ from $ S_n$ to $ S_n$ sends even to odd and vice versa.
+	And if $ n\geq 2$, then  $ |A_n|=\frac{n!}{2}$.
+\end{prf}
+\begin{note}[]
+If $ n=1$,  $ S_n$ is trivial, and so is $ A_n$, so $ A_n=S_n$.
+
+If $ n=2$,  $ S_n = \{id, \text{ (1 2)} \} $, and $ A_n$ has an order 1.
+
+If $ n=3$,  $ S_n$ has order 6, and $ A_n$ has order 3. So $ S_n$ is nonabelian but $ A_n$ is abelian! This is the only time it happens.
+
+If $ n=4$,  $ A_n$ has order 12, is $ \{1, \text{ (1 2 3)}, \text{ (1 3 2)}, \text{ (1 2 4)}, \text{ (1 4 2)}, \text{ (1 3 4)}, \text{ (1 4 3)}, \text{ (2 3 4)}, \text{ (2 4 3)}, \text{ (1 2)(3 4)}, \text{ (1 3)(2 4)}, \text{ (1 4)(2 3)}        \} $
+
+This is nonabelian because
+\begin{align*}
+	\text{ (1 2 3)(1 2 4)} &= \text{ (1 3)(2 4)}  \\
+	\text{ (1 2 4)(1 2 3)} &= \text{ (1 4)(2 3)}  \\ 
+\end{align*}
+The same counterexample can be used for $ A_n$ showing that $ A_n$ is nonabelian for $ n \geq 4$.
+\end{note}
+
+\begin{note}[]
+$ \zz_n$ is abelian. $ D_n$ is nonabelian for $ n\geq 3$ of  order 6, $ A_n$ is nonabelian for $ n\geq 4$ of order $ 12$, $ S_n$ is nonabelian for $ n\geq 3$ of order  $ 6$.
+\end{note}
+
+
+\end{document}

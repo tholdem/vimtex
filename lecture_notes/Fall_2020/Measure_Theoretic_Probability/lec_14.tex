@@ -1,0 +1,193 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{coro}[]
+	Let $ \mathcal{P}$ be a $\pi$-system. Suppose that $ \mu_1, \mu_2$ are finite measures on $ \sigma(\mathcal{P})$ and that $ \Omega$ is a countable union of sets in $ \mathcal{P}$. If $ \mu_1, \mu_2$ agree on $ \mathcal{P}$, they agree on $ \sigma(\mathcal{P})$.
+\end{coro}
+\begin{intuition}[]
+	We sort of replace the $ \sigma$-finiteness of $ \mu$ with $ \Omega$ as a countable union of sets.
+\end{intuition}
+\begin{defn}[general outer-measure]
+Let $\Omega$ be a non-empty set. An \allbold{outer measure} on $ \Omega$ is a function
+\[
+	\mu^* : \text{ Power Set of }\Omega \to [0, \infty] 
+\] 
+that satisfies
+\begin{enumerate}[label=(\roman*)]
+	\item $ \mu^* ( \O) = 0$
+	\item monotone
+	\item countable subadditivity
+\end{enumerate}
+\end{defn}
+
+\begin{defn}[]
+	Let $ \mu^* $ be an outer measure on $ \Omega$. A set $ A \subseteq \Omega$ is said to be \allbold{$ \mu^*$-measurable} if
+	\[
+		\mu^* (A \cap E) + \mu^* (A^{c} \cap E) = \mu^* (E) \ \forall \ E \subseteq \Omega
+	.\] 
+\end{defn}
+
+Equivalently, by finite subadditivity of $ \mu^* $:
+	\[
+		\mu^* (E) = \mu^* ((A \cap E) \cup (A^{c} \cap  E)) \leq \mu^* (A \cap E) + \mu^* (A^{c} \cap E)
+	.\] 
+
+\begin{thm}[]
+	A set $ A$ is  $ \mu^* $-measurable if $ \mu^* (A \cap E)+ \mu^* (A^{c} \cap E) \leq \mu^* (E)$.
+\end{thm}
+
+Let $ \mathcal{M}(\mu^*) =$ the collection of $ \mu^* $-measurable sets.
+
+\begin{thm}[11.1]
+$ \mu^* $ is an outer measure implies:
+\begin{enumerate}[label=(\roman*)]
+	\item $ \mathcal{M}(\mu^* )$ is a $\sigma$-field.
+	\item $ \mu^* $, restricted to $ \mathcal{M}(u^* )$, is a measure on $ \mathcal{M}(\mu^* )$
+\end{enumerate}
+\end{thm}
+(The same as the 5 lemma proof for probability outer measure.)
+
+\begin{thm}[11.2]
+	A measure $ \mu$ on a field has an extension to the generated $\sigma$-field.
+\end{thm}
+
+\begin{claim}[]
+	If the original measure is finite or $ \sigma$-finite on the field (cover $ \Omega$ with a countable collection $ \mathcal{F}$-sets with finite measure), then the extension is unique.
+\end{claim}
+
+\begin{defn}[semiring]
+A class $ \mathcal{A}$ of subsets of $ \Omega$ is called a \allbold{semiring} if
+\begin{enumerate}[label=(\roman*)]
+	\item $ \O \in \mathcal{A}$.
+	\item closed under finite intersections.
+	\item For any  $ A,B \in \mathcal{A}$ such that $ A \subseteq B$, there exists disjoint sets $ A_1,A_2,\ldots \in \mathcal{A}$ such that $ B \setminus A = \bigcup_{ i= 1}^{ n} A_i$. Equivalently, $ B = A \cup A_1 \cup  \ldots \cup A_n$ all disjoint.
+\end{enumerate}
+\end{defn}
+\begin{note}[]
+	For (iii), think of a picture with $ A$ in  $ B$ and the "ring" formed by the boundaries of  $ A$ and  $ B$ can be partitioned into finite disjoint sets.
+
+A semiring doesn't have additive inverses compared to a ring.
+
+In the set theory context, addition becomes $ A \Delta B$ (symmetric difference) and multiplication becomes $ A \cap B $.
+\end{note}
+
+\begin{eg}[]
+	Any field is a semiring. 
+	\begin{enumerate}[label=(\roman*)]
+		\item Field (i) and (ii) 
+		\item Field (ii) and (iii) 
+		\item Take any $ A,B \in \mathcal{F}$ with $ A \subseteq B$, then
+			\begin{align*}
+				B &= A \cap  (B\setminus A) \\
+				  &= A \cup (B \cap A^{c}) \in \mathcal{F} 
+			\end{align*}
+	\end{enumerate}
+\end{eg}
+
+\begin{eg}[]
+$ \rr, \mathcal{A}=$ collection of half-open intervals of the form $ \{x: a<x\leq b\} $ for any $ a,b \in \rr$. Then $ \mathcal{A}$ is a semiring.
+\begin{enumerate}[label=(\roman*)]
+	\item Take $ b<a$.
+	\item  $ A,B \in A \implies A = \{x: a< x \leq b\} , B = \{x: c<x\leq d\} $. Then $ a \cap B = \{x: \max(a,c)< x \leq \min(d,b)\} $ 
+	\item Take $ A,B \in \mathcal{A}$ with $ A \subseteq B$, then $ A=(a,b], B = (c,d]$ with $ c\leq a<b\leq d$. It follows that $ B \setminus A = (c,a] \\cup (b,d]$ disjoint. 
+\end{enumerate}
+\end{eg}
+\begin{eg}[]
+	$ \rr^{k}$ and half-open rectangles  $ \{(x_1,\ldots,x_k): a_i<x_i\leq b_i \text{ for } i=1,\ldots,k \} $ is a semiring because any Cartesian product of semiring is a semiring.
+\end{eg}
+
+\begin{thm}[11.3]
+	Suppose that $ \mu$ is a measure on a semiring $ \mathcal{A}$. Then $ \mu$ extends to a measure on the $ \sigma(\mathcal{A})$.
+\end{thm}
+\begin{note}[]
+Theorem 11.2 is a special case of this.
+
+Only need finite additivity of $ \mu$, as opposed to countable additivity.
+\end{note}
+
+\begin{prf}
+\begin{claim}[]
+$ \mu$ is monotone on $ \mathcal{A}$.
+\end{claim}
+
+We need to prove this because a semiring might not contain complements, which is what we used to prove monotonicity previously. Since $ \mathcal{A}$ is a semiring, there exist disjoint $ A_1, \ldots, A_n$ such that $ B = A \cup A_1 \cup \ldots \cup A_n$, where all these sets are in $ \mathcal{A}$. By finite additivity of $ \mu$,
+\[
+	\mu(B) = \mu(A) + \sum_{ i= 1}^{ n} \mu(A_n) \geq \mu(A)
+.\] 
+
+Define an outer measure, for any $ A \subseteq \Omega$. Using infimum like probability measure might not be well-defined because there might not exists $ \mathcal{A}$-covering of $ A$, since $ \mathcal{A}$ might not contain $ \Omega$, yet previously we can choose $ A_1 = \Omega, A_2 = \O, \ldots$ to cover $ A$. Therefore, we modify the definition to be
+\begin{equation*}
+	u^* (A)=
+\begin{cases}
+\infty,\qquad  \qquad  \text{ if a } \mathcal{A} \text{ covering doesn't exist for } A \\
+\inf\left\{\sum_n \mu(A_n): A_n \in \mathcal{A}, A \subseteq \bigcup _{ n} A_n \right\},  \text{ otherwise} \\
+\end{cases}
+\end{equation*}
+\begin{claim}[]
+$ \mu^* $ is an outer measure.
+\end{claim}
+Let $ \mathcal{M}(\mu^* )$ be the class of $ \mu^* $-measurable sets.
+\begin{claim}[]
+	$ \mathcal{A} \subseteq \mathcal{M}(\mu^* )$.
+\end{claim}
+Take any $ A \in \mathcal{A}$ and $ E \in \Omega$, we want to show that
+\begin{equation}
+	\mu^* (A \cap E) + \mu^* (A^{c} \cap E) \leq \mu^* (E) 
+\end{equation}
+\begin{case}[]
+	$ \mu^* (E) = \infty$. This makes (1) trivially true. 
+\end{case}
+\begin{case}[]
+	$ \mu^* (E) < \infty$. This implies that there exists a $ \mathcal{A}$-covering of $ E$. Let  $ \epsilon>0$. Choose $ \mathcal{A}$-sets $ A_1,A_2,\ldots$ such that $ E \subseteq \bigcup_{ n} A_n $ and 
+\[
+	\sum_n \mu(A_n) < \mu^* (E) + \epsilon
+\] 
+by the definition of infimum. Since $ \mathcal{A}$ is a semiring, and $ A, A_n \in \mathcal{A}$, define $ B_n \coloneqq A \cap  A_n \in \mathcal{A} \ \forall \ n \in \nn$. Note that $ B_n \subseteq A_n$. So by definition of a semiring, there exists $ C_{n,1},C_{n,2},\ldots,C_{n,m_n}$ such that 
+\[
+A_n \setminus B_n = \bigcup_{ i= 1}^{m_n} C_{n,i} \ \forall \ n \in \nn 
+.\]
+
+Notice that $ A_n \cap A^{c} = A_n \setminus B_n = \bigcup_{ i= 1}^{m_n} C_{n,i} $ by how we define $ B_n$. Then $ A_n = B_n \cup \bigcup_{ i= 1}^{m_n} C_{n,i} $. Thus by finite additivity of $ \mu$,
+\[
+	\mu(A_n) = \mu(B_n) + \sum_{ i= 1}^{ m_n} \mu(C_{n,i}) 
+.\]
+Since $ E$ is covered by  $ A_n$, $ A \cap E \subseteq A \cap \bigcup_{ n} A_n = \bigcup_{ n}(A \cap A_n) = \bigcup_{ n} B_n  $, and $ A^{c} \cap E \subseteq A^{c} \cap \bigcup_{ n} A_n = \bigcup_{ n} (A^{c} \cap A_n) = \bigcup_{ n} \bigcup_{ i= 1}^{m_n} C_{n,i}    $. Notice both are $ \mathcal{A}$-covering of the sets. By definition of infimum,
+\begin{align*}
+	\mu^* (A \cap E) + \mu^* (A^{c} \cap E) &\leq \sum_n \mu (B_n) + \sum_n \sum_{ i= 1}^{ m_n} \mu (C_{n,i}) \\
+						&= \sum_n \left( \mu(B_n) + \sum_{ i= 1}^{ m_n} \mu (C_{n,i}) \right) \\
+						&= \sum_n \mu(A_n) \\
+						&< \mu^* (E) + \epsilon
+\end{align*}
+Take $ \epsilon \to 0$, we have (1) as required. Thus, $ \mathcal{A} \subseteq  \mathcal{M}(\mu^* )$.
+\end{case}
+
+\begin{claim}[]
+	$ \mu^* $ is a measure on $ \mathcal{M}(\mu^* )$
+\end{claim}
+by Theorem 11.1.
+
+\begin{claim}[]
+$ \mu$ and $ \mu^* $ agree on $ \mathcal{A}$.
+\end{claim}
+
+Take any $ A \in \mathcal{A}$.  
+
+Since $ A_1 = A, A_2 = \O,\ldots$ is a $ \mathcal{A}$-covering of $ A$, $ \mu^* (A) \leq \mu(A)$ follows from $ \mu^* (A)$ being an infimum.
+
+For the other direction, we want to show that $ \mu(A)$ is a lower bound. let $ (A_n)$ be an $ \mathcal{A}$-covering of $ A$. This is well-defined because we at least have the covering above. Since $ \mathcal{A}$ is a semiring, $ A \cap A_n \in \mathcal{A} \ \forall \ n \geq 1$. Since $ A \subseteq \bigcup_n A_n $, we have
+\[
+	\bigcup_{ n =1}^{\infty} (A \cap A_n) = A \cap \bigcup_{ n =1}^{\infty} A_n = A
+.\]
+
+By countable subadditivity of $ \mu$,
+\[
+	\mu(A) = \mu\left( \bigcup_{ n =1}^{\infty}  A \cap A_n \right) \leq \sum_{ n= 1}^{\infty} \mu(A \cap A_n) 
+.\] 
+Since $ \mu^* (A)$ is the infimum of the RHS, and $ \mu(A)$ is a lower bound of the RHS, we have $ \mu(A) \leq \mu*(A)$.
+
+Since $ \mathcal{A} \subseteq \mathcal{M}(u^* )$ and $ \mathcal{M}(\mu^* )$ is a $\sigma$-field by Theorem 11.1, $ \mathcal{A} \subseteq \sigma(\mathcal{A}) \subseteq \mathcal{M}(\mu^* )$. Since $ \mu^* $ is a measure on $ \mathcal{M}(\mu^* )$, then $ \mu^* $ is a measure on $ \sigma(\mathcal{A})$ and it agrees with $ \mu$ for all sets in $ \mathcal{A}$.
+
+
+\end{prf}
+\end{document}

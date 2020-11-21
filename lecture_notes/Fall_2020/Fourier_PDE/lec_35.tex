@@ -1,0 +1,164 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{defn}[Laplace Transform]
+	Let $ f(t)$ be given for  $ t\geq 0$ and suppose that  $ f$ satisfies:
+	 \begin{enumerate}[label=\arabic*)]
+		\item $ f$ is piecewise continuous on the interval  $ 0 \leq t \leq A$ for any positive  $ A$.
+		\item $|f(t)|\leq K e^{at}$ when $ t \geq M$. In this inequality  $ K>0,a,M>0 \in \rr$.
+	\end{enumerate}
+	Then define the \allbold{Laplace Transform}, $ \mathcal{ L} \{f(t)\} = F(s)$ as
+	\[
+		\mathcal{ L}\{f(t)\} = F(s) = \int_{0}^{\infty} e^{-st} f(t) dt, s>a
+	.\] 
+	This uses the kernel $ K(s,t) = e^{-st}$ and the parameter $ s$ may be complex but we assume  $ s \in \rr$.
+\end{defn}
+
+\begin{claim}[]
+Laplace transform is a special case of Fourier transform.
+\end{claim}
+
+\begin{prf}
+	Suppose $ f$ is such a function that  $ f(t) = 0$ for  $ t<0$ then
+	 \[
+		 2\pi \wh{ f}(m) = 2\pi \mathcal{ F}[f(t)] - \int_{-\infty}^{\infty} f(t) e^{-imt} dt = \int_{0}^{\infty} f(t) e^{-imt} dt 
+	.\] 
+	If we let $ m=-is, s \in \rr$, then we have
+	\begin{align*}
+		2\pi \wh{ f}(m) &= \int_{0}^{\infty} f(t) e^{-i(-is)t} dt = \int_{0}^{\infty} f(t) e^{-st} dt = F(s) \\
+		\implies		2\pi \mathcal{ F}[f(t)] &= \mathcal{ L}\{f(t)\}   
+	\end{align*} 
+\end{prf}
+
+\newpage
+\section{Dispersive Waves}
+
+Recall the wave equation
+\begin{equation*}
+\begin{cases}
+	\text{PDE: } \frac{\partial^2 u}{\partial { t}^2} = c^2 \frac{\partial^2 u}{\partial { x}^2}  & 0<x<L, t>0 \\
+	\text{BCs: } u(0,t)=0=u(L,t), & t>0 \\
+	\text{ICs: } u(x,0) = U(x), \frac{\partial u}{\partial t} (x,0) = V(x).  & 0 \leq x \leq L \\
+\end{cases}
+\end{equation*}
+has the solution
+\[
+	u(x,t) = \sum_{ n= 1}^{\infty} \sin \left( \frac{ n\pi x}{ L} \right) \left[ A_n \cos \left( \frac{ n\pi c t}{ L} \right) + B_n \sin \left( \frac{ n\pi c t}{ L} \right)  \right] 
+.\] 
+So it's a product of a wave in $ x$ and a wave in  $ t$. Therefore, suppose the solution to  \emph{wave propagation} problems have the form
+\[
+	u(x,t) = F(x) G(t) = e^{ikx} \cdot e^{-i\omega t}= e^{i(kx- \omega t)}, k, \omega \in \rr
+.\] 
+
+\begin{notation}[]
+$ k, \omega$ are newly defined, not related to previous materials.
+\end{notation}
+
+\begin{defn}[phase velocity]
+~\begin{enumerate}[label=\arabic*)]
+	\item The wavelength of the space wave $ e^{ikx} $ is $ L = \frac{2\pi}{k }$ so we see that $ k$ represents the number of wavelengths per  $ 2\pi $ unit of distance (spatial frequency). For the time wave $ e^{-i\omega t}$, the term $ \omega$ is the number of waves per $ 2\pi$ unit time (time frequency).
+	\item the \allbold{phase velocity}, $ c_p$, is defined as
+		 \[
+		c_p = \frac{\omega}{k } \text{ with units distance/time} 
+		.\] 
+	\item The wave $ e^{ik(x-\frac{\omega}{k }t)}$ represents a "traveling wave" with wave number $ k$ and wave velocity  $ c_p = \frac{\omega}{k}$.
+	\item If $ \omega$ is a function of $ k \in \rr$, \emph{i.e.} if $ \omega = \omega(k)$ then $ e^{-i(kx-\omega t)}$ is a \allbold{linear dispersive wave}.
+	\item For linear dispersive waves, we have $ c_p = c_p(k)$ and if $ \frac{d}{dk} c_p \neq 0$, \emph{i.e.} if the wave velocity is not constant, then we have a wave propagation problem that is said to be \allbold{dispersive}. 
+	\item The term $ \omega(k)$ relates space and time in the expression $ e^{ik(x-\omega \frac{t}{k} }$.
+	\item The information about the PDE (but not the BCs or ICs) is encoded in $ \omega(k)$.
+\end{enumerate}
+\end{defn}
+
+\begin{eg}[]
+Consider wave equation with stiffness term and ICs:
+\[
+	\frac{\partial^2 u}{\partial { t}^2} =c^2 \frac{\partial^2 u}{\partial { x}^2} - \alpha^2 \frac{\partial^4 u}{\partial { x}^4} , u(x,0) = U(x), \frac{\partial }{\partial t} u(x,0) = V(x)
+.\] 
+
+Assume $ U(x,t) = e^{ikx-i\omega t}, k \in \rr$ and it yields
+\[
+	\frac{\partial^2 u}{\partial { t}^2} = -\omega^2 u, c^2 \frac{\partial^2 u}{\partial { x}^2} = c^2(ik)^2 u, \alpha^2 \frac{\partial^4 u}{\partial { x}^4} = \alpha^2 k^{4} u
+.\] 
+Substituting into the PDE and we obtain:
+\[
+	w(k) = \pm k \sqrt{c^2 + \alpha^2 k^2} 
+.\] 
+Thus,
+\[
+	u_{1,k} = e^{ik(x-\sqrt{^2+\alpha^2 k^2 t}) }, u_{2,k}(x,t) = e^{ik(x+ \sqrt{c^2+ \alpha^2 k^{2}} )}
+.\] 
+By superposition principle, summing for all $ k \in \rr$ yields
+\[
+	u(x,t) = \int_{-\infty}^{\infty}  \left[ A(k) e^{ik (x-\sqrt{c^2+ \alpha^2 k^2}) } + B(k) e^{ik(x+ \sqrt{c^2+ \alpha^2 k^2} )} \right] dk
+.\] 
+Now we can use the ICs to find $ A(k),B(k)$.
+
+\[
+	U(x) = u(x,0) = \int_{-\infty}^{\infty} [A(k)+B(k)] e^{ikx} dk = \mathcal{ F}^{-1} [A(k)+B(k)]
+.\] 
+Thus, taking Fourier transform on both sides gives us
+\[
+	A(k)+B(k) = \mathcal{ F}[U(x)] = \wh{ U}(k) = \frac{1}{2\pi} \int_{-\infty}^{\infty} U(x) e^{ikx} dx 
+.\] 
+And similarly,
+\[
+	-A(k) + B(k) = \frac{1}{2\pi} \int_{-\infty}^{\infty} \frac{V(x)}{ik \sqrt{c^2+ \alpha^2 k^2}  } e^{ikx} dx 
+.\] 
+These two expressions allow us to solve
+\[
+	A(k) = \frac{1}{4\pi} \int_{-\infty}^{\infty} \left[ U(x) - \frac{V(x)}{ik \sqrt{c^2 + \alpha^2 k^2}  } \right]  e^{ikx} dx
+.\] 
+and
+\[
+	B(k) = \frac{1}{4\pi} \int_{-\infty}^{\infty} \left[ U(x) + \frac{V(x)}{ik \sqrt{c^2 + \alpha^2 k^2}  } \right]  e^{ikx} dx
+.\] 
+
+\end{eg}
+
+\subsection{Group Velocity}
+
+We wish to analyze the physical interaction of waves with proximal spatial frequency. Assume two close waves of the form $ \cos[kx-\omega(k) t]$ with wave numbers $ k$ and  $ k+ \Delta k$. That is,
+\[
+	u(x,t) = A \cos[kx - \omega(k) t] + A \cos[(k+\Delta k)x-\omega(k+ \Delta k )t]
+.\] 
+Using trig identity and $ \cos$ is even,
+\[
+	u(x,t) = 2A \cdot \cos\left[ \left( k+ \frac{\Delta k}{2 } \right) x - \frac{\omega(k)+\omega (k+ \Delta k)}{2 } t\right] \cdot  \cos\left[ \frac{\Delta k}{2 } x - \frac{\omega(k+\Delta k)- \omega(k)}{2 } t\right] 
+.\] 
+The wavelength of the first term is $ 2\pi / (k+\Delta k /2)$, which is shorter than that of the second term, $ 2\pi / \Delta k / 2$. 
+
+The long wave acts as a wave envelop of the short waves and it travels with what is called as \allbold{group velocity} given by
+\[
+	c_g = \lim_{ \Delta k \to 0} \frac{\omega(k+ \Delta k) - \omega(k)}{\Delta k }= \frac{d}{dk} \omega(k)
+.\] 
+The short wave moves at almost the speed $ c_p = \frac{\omega(k)}{k }$ which is the phase velocity of an individual dispersive wave. The long wave acts as a wave envelope of the short waves and travels at group velocity. We claim that the  \allbold{wave energy} moves with group velocity $ c_g$.
+
+\subsection{Deep Water Waves}
+
+Gravity and surface tension affects the propagation of water waves. For surface water the equation is
+\[
+	\omega(k) = \sqrt{gk \tanh(kh)} 
+\] 
+where $ g=9.8$ m/s and  $ h>0$ is the depth of the water. In deep water where the depth of water $ h$ is large, notice $ \lim_{ h \to \infty} \tanh(kh) =1 \implies \omega(k) = \sqrt{gk \tanh(kh)} \approx \sqrt{gk}  $ thus the phase velocity of a short wave in deep water is approximately
+\[
+	c_p = \frac{\omega(k)}{k } = \frac{\sqrt{gk \tanh(kh)} }{k } = \sqrt{\frac{g \tanh(kh)}{k }}  \approx \sqrt{\frac{g}{k} }
+.\]
+Since $ L=\frac{2\pi}{k }$, we finally have
+\[
+c_p \approx \sqrt{\frac{gL}{2\pi }} 
+.\] 
+Thus, $ c_p=c_p(k)$ and short waves in deep water are dispersive.
+
+For long wave
+\[
+	c_g = w'(k) = \frac{d}{dk} \sqrt{gk} = \frac{1}{2} \sqrt{\frac{g}{k}} = \frac{1}{2} \sqrt{\frac{gL}{ 2\pi}}  \implies c_g = \frac{1}{2} c_p 
+.\] 
+This shows that longer waves will have larger group velocities and arrive at a distance shoreline sooner.
+
+For shallow water, short waves are non-dispersive and the phase velocity mainly depends on gravity and depth of water since
+\[
+	c_p = \frac{\omega(k)}{k } = \sqrt{\frac{g \tanh(kh)}{k }} = \sqrt{gh \cdot \frac{\tanh(kh)}{kh }} \approx \sqrt{gh}   
+.\]
+where we use the fact that $ \tanh(kh) / kh \approx 1$ for small $ h$ (by L'Hopital Rule).
+\end{document}

@@ -1,0 +1,105 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+
+\begin{defn}[order]
+Let $ G$ be a group and let $ a \in G$. The \allbold{order} of $ a$ is the number of elements in  $ \langle a \rangle$. Alternatively, the \allbold{order} of $ a$ is the smallest  $ n>0$ such that  $ a^{n}=e$ or $ \infty$ if no such $ n$ exists. We denote the order of  $ a$ by  $ |a|$.
+\end{defn}
+
+\section{Cosets and Lagrange's Theorem}
+
+See iPad screenshots for what cosets look like. We cut $ G$ into pieces and each is the same size as  $ H$. This forms a partition of $ G$. None of them are empty, intersection is empty, and union is the whole group. Only one can be a subgroup since identity can only exist in one of them.
+
+\begin{defn}[]
+	$ G$ is a group,  $ H \leq G$. Define a relation,  $ \sim_L$, on $ G$,  such that $ a \sim_L b \implies a^{-1}b \in H$ (where the inverse has to be on the left).
+\end{defn}
+WLOG everything below are similar for right cosets.
+\begin{thm}[]
+$ \sim_L$ is an equivalence relationship.
+\end{thm}
+\begin{prf}
+\begin{enumerate}[label=(\roman*)]
+	\item Reflexive: need $ a \sim_L a$ for $ a \in G$. $ a^{-1}a = e \in H$ since $ H$ is a subgroup. 
+	\item Symmetric: if $ a \sim_L b$, then $ b \sim_L a$. Since $ a^{-1}b$ and $ b ^{-1} a$ are inverses. Since $ H$ is closed under inverses, hence $ b ^{-1}a \in H$.
+	\item transitive: If $ a \sim_L b$ and $ b \sim_L c$, then $ a \sim_L c$. If $ a^{-1} b \in H$ and $ b ^{-1}c \in H$, then $ a^{-1} b b ^{-1} c = a^{-1} c \in H$ since $ H$ is closed under operation.
+\end{enumerate}
+\end{prf}
+\begin{note}[]
+We used all necessary conditions of a subgroup for the above proof.
+\end{note}
+
+
+What is $ [a]$, the equivalence class of  $ a$?
+ \[
+	 [a] = \{g \in G: a \sim_L g\} 
+.\]
+$ a \sim_L g$ means $ a^{-1} g \in H \iff a^{-1} g = h \in H \iff g=ah, h \in H$.
+Then
+\[
+	[a] = \{ah:h \in H\} \coloneqq aH
+.\] 
+\begin{defn}[cosets]
+Group $ G$ and subgroup  $ H\leq G$. The \allbold{left cosets of $ H$ in  $ G$} is $ aH = \{ah: h \in H\} $. The \allbold{right cosets of $ H$ in  $ G$} is $ Ha=\{ha: h \in H\} $  .
+\end{defn}
+\begin{property}
+\begin{itemize}
+	\item Left cosets of $ H$ partition  $ G$. (Any two left cosets are equal or disjoint).
+	\item $ xH = yH$ does  \allbold{NOT} mean that $ x=y$!!!!
+	\item Consider  $ xH= \{xh: h \in H\} $. Then $xH $ contains  $ x$ because  $ e \in H$. So $ xH$ is the left coset containing  $ x$. No other coset of $ H$ does because they form a partition of $ G$. 
+	\item $ eH \{eh: h \in H\} =H $. So $ H $ is one of the left cosets.
+	\item there is a bijection between $ H$ and  $ xH$. Can always multiply by  $ x^{-1}$ to undo it. This means that any two left cosets have the same size, and any two right cosets have the same size.
+	\item there is a bijection between left cosets of $ H$ and right cosets of  $ H$. We can just take inverses of each element in the left coset:
+		 \begin{align*}
+			xh&= \{xh : h \in H\}  \\
+			&= \{ h^{-1}x^{-1}: h \in H\}  \\
+			&= \{ h x^{-1}: h \in H\}  \\
+			&= H x^{-1} 
+		\end{align*}
+		This is a bijection. So there are same number of left cosets as right cosets.
+\end{itemize}
+\end{property}
+
+Question: What is the condition for $ x$ and  $ y$ to be in the same cosets. Answer:  $ x \sim y$.
+
+\begin{thm}[]
+$ xH = yH \iff x^{-1}y \in H$ and $ Hx = Hy \iff xy^{-1} \in H$.
+\end{thm}
+\begin{note}[]
+The important thing is for the inverse to be on the left side for left coset.
+\end{note}
+\begin{thm}[Lagrange's Theorem]
+	Let $ G$ be a finite group and let  $ H \leq G$. Then  $ |G|$ is equal to  $ |H|$ times the number of cosets of  $ H$ in  $ G$.
+\end{thm}
+
+See iPad for picture. Each set has the same size and together they form a partition.
+\begin{thm}[]
+$ |H|$ divides  $ |G|$.
+\end{thm}
+
+$ H \leq V_4$:  $ H$ cannot have size 3 because 3 cannot divide 4.
+
+\begin{note}[]
+The converse of Lagrange's Theorem is false.
+\end{note}
+\begin{eg}[]
+$ A_4$ is a group of order $ 4!/2= 12$. But  $ A_4$ has no subgroup of order 6, although Lagrange's Theorem allows it. This is the smallest example for this.
+\end{eg}
+\begin{eg}[]
+$ D_6$ has order 12 and does have a subgroup of order 6 which are the rotations.
+\end{eg}
+
+Question: Is $ D_6$ isomorphic to $ A_4$? No. Because they have a structural difference described above.
+
+\begin{defn}[index]
+	Let $ G$ be a group and  $ H \leq G$. The  \allbold{index of $ H$ in  $ G$} is the number of cosets of $ H$ in  $ G$. We denote this by $|G:H|$ or $ \{G:H\} $ or $ (G:H)$.  
+\end{defn}
+
+So Lagrange's Theorem implies $ |G|=|H| \times \{G:H\} $.
+
+\begin{eg}[infinite group]
+$ G= \zz$ and  $ H=3 \zz$. If the operation is addition-like, we write $ a+H$ for  $ aH$.  If $ G$  is abelian, left and right cosets are the same. What are the cosets?
+
+$ x+H = y+H \iff y-x \in H$.
+\end{eg}
+\end{document}

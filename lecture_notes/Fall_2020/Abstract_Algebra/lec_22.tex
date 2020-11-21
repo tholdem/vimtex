@@ -1,0 +1,102 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{eg}[]
+	Subgroups of $ S_3$: $ \{e, (1\ 2)\}, \{e,(1\ 3)\}, \{e,(2\ 3)\}, \{e\}, S_3, A_3$. The first three are not normal. The rest are normal. $ A_3$ is 1. index is two. 2. kernel of the sign homomorphism. 
+\end{eg}
+
+Let $ g \in G$, we have seen that if $ H \leq G$, then so is  $ gHg^{-1}$. Furthermore, the map $ \iota_g (x) = gxg^{-1}$ (injective map) is called conjugating by $ g$.  
+\begin{prop}[]
+	$ \iota_g$ is a group homomorphism (in fact an isomorphism) from  $ G$ to itself.
+\end{prop}
+\begin{prf}
+\begin{align*}
+	\iota_g(xy)=gxyg^{-1} = gxg^{-1}gyg^{-1}=\iota_g(x) \iota_g(y)
+\end{align*}
+\end{prf}
+\begin{eg}[]
+Isomorphism of $ V_4 \to V_4$. Identity needs to go to itself, but there are 3! different isomorphism. Then the group of isomorphisms are just $ S_3$. 
+
+But since it's abelian, conjugation is trivial.
+\end{eg}
+
+\begin{claim}[]
+	The inverse of $ \iota_g = \iota_{g^{-1}}$ (conjugation by  $ g^{-1}$ ).
+\end{claim}
+
+\begin{defn}[automorphism]
+An isomorphism from $ G$ to itself is called an  \allbold{automorphism}. 
+\end{defn}
+
+\begin{defn}[inner automorphism]
+Automorphisms that come from conjugation are called \allbold{inner automorphism}. 
+\end{defn}
+\begin{note}[]
+Inner automorphism is a subgroup of the group of automorphisms
+\end{note}
+
+\begin{note}[]
+	$ \iota_g(H)$ is a subgroup of  $ G$ because it is the image of  $ \iota_g$.
+\end{note}
+\begin{defn}[]
+\[
+H \simeq gH g^{-1}
+.\] 
+is conjugate subgroup.
+\end{defn}
+
+\begin{eg}[]
+	$ G=S_3, H=\{e, (1\ 2)\}, g=(1\ 3) $. Then
+\begin{align*}
+	gHg^{-1} &= \{geg^{-1}, g(1\ 2)g^{-1}\}\\
+		 &= \{e, (2\ 3)\}  \\
+	gHg^{-1} &\simeq H \text{ but } H \neq gHg^{-1} 
+\end{align*}
+Which proves that $ H$ is not normal.
+\end{eg}
+
+\begin{thm}[]
+If $ G$ is abelian, then  $ G / N$ is abelian.
+\end{thm}
+\begin{prf}
+Let $ xN,yN \in G / N$. Then
+\begin{align*}
+	xN*yN= (xy) N = (yx) N = yN*xN
+\end{align*}
+Since $ x=y \implies xN = yN$.
+\end{prf}
+\begin{note}[]
+The converse is false. Example is $ S_3 / A_3$. Or the trivial $ N$.  
+\end{note}
+\begin{note}[]
+$ G / N$ is cyclic doesn't imply $ G$ is cyclic.
+\end{note}
+
+What is the order of $ xN \in G / N$? It is the smallest $ n>0$  such that $ (xN)^{n}=N \implies x^{n} N= eN \implies e^{-1}x^{n} \in N \implies x^{n} \in N$.
+
+\begin{defn}[]
+The order of a coset $ xN \in G / N$ is the smallest positive integer $ n$  such that $ x^{n} \in N$. 
+\end{defn}
+
+\begin{eg}[15.7]
+$ G= \zz_4 \times \zz_6$. Order is 24. If $ G_1$ and $ G_2$ are abelian so is $ G_1 \times G_2$. If one group is not abelian, then the product isn't abelian. So $ G$ is abelian. $ G$ isn't cyclic since it isn't isomorphism to $ \zz_{24}$. 
+
+$ H=\langle (0,1) \rangle = \{(0,0), (0,1),\ldots,(0,5)\} $. The order is 6. 
+
+Is $ H$ normal in  $ \zz_4 \times \zz_6$? Yes because $ G$ is abelian.
+
+Then  $ G / H$ is abelian with order 4. So it's either $ \zz_4$ or $ V_4$. We can show $ \zz_4$ if we find an element of order 4 (a generator). Then a coset looks like  $ (1,0)+ \langle (0,1) \rangle$. 
+
+What is the order of that? 
+
+First find all elements of $ N$. Then repeat operation on the representative of coset until it's in  $ N$.  It takes 4 steps to get $ (0,0) \in N$. Thus it has order 4.
+\end{eg}
+\begin{eg}[]
+	$ \qq / \zz$ is an infinite group where every element has finite order.
+
+	$ \rr / \qq$ is an infinite group that has no element of finite order apart from the identity.
+
+	$ \rr / \zz \simeq U$. Since $ \phi: \rr \to C^*, r\mapsto e^{2\pi i r} $.
+\end{eg}
+\end{document}

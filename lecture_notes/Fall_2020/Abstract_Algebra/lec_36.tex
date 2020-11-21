@@ -1,0 +1,128 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{thm}[uniqueness of factorization]
+	Let $ F$ be a field and let  $ f(x) \in F[x]$ be a non-constant polynomial. Then we can express $ f(x)$ as a product of irreducible polynomials
+	 \[
+		 f(x)=p_1(x) p_2(x) \ldots p_r(x)
+	,\]
+	unique up to changing order and multiplication by units.
+\end{thm}
+
+\begin{prop}[]
+	In $ \rr[x]$, all irreducible polynomials have degree 1 or 2. 
+\end{prop}
+\begin{note}[]
+ In $ \cc[x]$, all irreducible polynomials have degree 1.
+\end{note}
+
+\begin{prop}[]
+	If $ \alpha \in \cc$ is a root of $ f(x) \in \rr[x]$, then so is $ \overline{\alpha}$.
+\end{prop}
+
+\begin{note}[]
+Sum and product of pair of conjugates are real. That is,
+\[
+	(x-\alpha)(x- \overline{\alpha}) = x^2 - (\alpha + \overline{\alpha})x + \alpha \overline{\alpha}
+.\] 
+This can help us find roots in $ \cc[x]$.
+\end{note}
+
+\begin{remark}
+It's better to work with monic polynomials and ignore multiply by units.
+\end{remark}
+
+
+\begin{thm}[23.11: Gauss's Lemma special case]
+	Let $ f(x) \in \qq[x]$ (but with integer coefficients). If $ f(x)=g(x)h(x)$, where  $ g,h \in q[x]$ with lower degrees, then it is possible to factor $ f(x) = a(x)b(x)$ with  $ a(x),b(x) \in \zz[x]$ with lower degrees.
+\end{thm}
+\begin{eg}[]
+	$ x^{4} + 1 \in \qq[x]$ is irreducible. Reduce to degree 2 in $ \rr[x]$ and to degree 1 in $ \cc[x]$. In general for degree 4 polynomial, we can have irreducible quartic, irreducible cubic+linear, irreducible quadratic, 1 quadratic two linear, and 4 linear.
+\end{eg}
+\begin{eg}[]
+	Consider $ x^2-5x+6 \in \qq[x]$. The lemma ensures that we can factor into $ (x-2)(x-3)$ with integer coefficients.
+\end{eg}
+\begin{eg}[]
+	There is a quick way to show $ x^{4}+1 \in \qq[x]$ is irreducible using Gauss's lemma.
+
+	If $ x^{4}+1$ can be factorized, it can be factorized over $ \zz$.
+
+	\begin{align*}
+		x^{4}+1 &= (x^2+ax\pm 1)(x^2 -ax \pm 1) \text{ since } a+b=0 \\
+			&= x^2 \pm (2\mp a^2) x + 1 \\
+	\end{align*}
+	But either case wouldn't work because $ 2-a^2 \neq 0, -2-a^2\neq 0$ since coefficient of $ x^3$, $ a$, is zero.
+\end{eg}
+
+\begin{thm}[]
+	Let $ f(x) \in \qq[x]$ and coefficients are integers (we can always obtain this by multiplying by units to find roots). Suppose
+	\[
+		f(x) = a_n x^{n}+ a_{n-1}x^{n-1}+ \ldots+ a_1 x + a_0
+	.\] 
+	Suppose $ \frac{p}{q} \in f(x)$ is a root in $ \qq$ of $ f(x)$ and that  $ \frac{p}{q}$ is in lowest terms \emph{i.e.} $ \gcd ( p,q)=1 $. Then the numerator of the root divides the constant term and the denominator of the root divides the leading coefficient.
+\end{thm}
+
+\begin{prf}
+\begin{align*}
+	a_n \left( \frac{p}{q} \right) ^{n} + \ldots + a_0 &= 0 \\
+	a_n p^{n} + a_{n-1}p^{n-1}q+ \ldots + a_1 p q^{n-1} + a_0 q^{n}&= 0 \text{ multiply by }q^{n}
+\end{align*}
+1st term is a multiple of q since everything else is multiple of q. Similarly, last term is a multiple of $ p$ since everything else is a multiple of  $ p$. So  $ q / a_n p^{n}$, since $ \gcd ( q,p)=1 \implies \gcd ( (q,p^{n})=1 $. 
+\begin{claim}[]
+If $ a / bc$ and  $ \gcd ( a,b) =1$, then $ a /c$.
+\end{claim}
+So we have $ q / a_n$. Similarly, $ \gcd ( (p,q^{n}), p / a_0 q^{n} \implies p / a_0$.
+\end{prf}
+
+\begin{eg}[]
+	$ 3x^{3}-4x+6 \in \qq[x]$. Prove this is irreducible. We can think of roots because it has degree 3.
+
+	Suppose $ \frac{p}{q} \in \qq$ is a root. Then $ q /3, p /6, \gcd ( p,q)=1 $. Then $ q \in \{\pm 1,\pm 3 \} $ but we can assume $ q>0$. And  $ p \in \{\pm 1,\pm 2,\pm 3,\pm 6\} $. So the candidates for roots are
+	\[
+	\pm 1, \pm 2, \pm 3, \pm 6, \pm \frac{1}{3}, \pm \frac{2}{3}
+	.\] 
+\end{eg}
+
+~\begin{thm}[Eisenstein Criterion]
+	Let $ f(x) \in \qq[x]$ with integer coefficients:
+	\[
+		f(x) = a_n x^{n}+ \ldots + a_1 x + a_0
+	.\] 
+	If there exists a prime such that $ p $ doesn't divide  $ a_n$, $ p^2$ doesn't divide $ a_0$, but $ p$ divides every other coefficients, then  $ f(x) $ is irreducible over  $ \qq[x]$. 
+\end{thm}
+\begin{note}[]
+Eisenstein works for any degree.
+\end{note}
+\begin{eg}[]
+Using Eisenstein for the above example, we can try $ p=2$ and it works.
+\end{eg}
+
+\begin{eg}[]
+$ 25x^{5} - 9x^{4} - 3x^2-12$. Take $ p=3$ and it works so it's irreducible. "It's Eisenstein by  $ p=3 $.
+\end{eg}
+
+\begin{eg}[]
+	$ x^{4}+x^3+ x^2 + x +1 \in \qq[x]$ is irreducible. This equals to $ \frac{x^{5}-1}{x-1 }$. Change $ x-1$ to  $ y$, so  $ x $ becomes  $ y+1$. And
+	 \begin{align*}
+		 \frac{x^{5}-1}{x-1 }&= \frac{(y+1)^{5}-1}{y } \\
+		 &= y^{4}+ 5 y^3 + 10 y^2 + 10 y + 5 \text{ using binomial theorem} 
+	\end{align*}
+	This works because if $ p$ is prime, then the  $ p$th line of Pascal triangle are all multiples of  $ p$.
+\end{eg}
+
+\begin{thm}[]
+	$ x^{p-1}+ x^{p-2}+ \ldots+ x+1 \in \qq[x]$ is irreducible for $ p$ prime.
+\end{thm}
+
+\begin{eg}[]
+\[
+	\frac{x^{6}-1}{x-1 } = x^{5} + x^{4}+ x^{3}+ x^{2}+ x+ 1 = (x+1) (x^{4}+ x^2 + 1)
+.\] 
+Since we can always group them into two. This doesn't work.
+\end{eg}
+
+\begin{claim}[]
+	Over $ \rr$, there is no irreducible polynomials of degree $ \geq 3$. For odd degree it's because of Calculus. For even degree we use complex conjugate, so two linear factors of complex conjugates already give us a degree two polynomial in $ \rr[x]$, and any even degree $ \geq 4$ would have some degree 2 polynomials as factors if we consider the complex roots.
+\end{claim}
+\end{document}

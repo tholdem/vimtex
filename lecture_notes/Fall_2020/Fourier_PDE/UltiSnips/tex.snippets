@@ -24,13 +24,84 @@ snippet \cos "cos with parentesis" iA
 endsnippet
 
 context "math()"
+snippet frs "sin with parentesis" iA
+\sin \left( \frac{ ${1:n\pi ${2:x}}}{ ${3:L}} \right) $0
+endsnippet
+
+context "math()"
+snippet frc "cos with parentesis" iA
+\cos \left( \frac{ ${1:n\pi ${2:x}}}{ ${3:L}} \right) $0
+endsnippet
+
+context "math()"
 snippet hsi "sinh with parentesis" iA
-\sinh($1 )$0
+\sinh\left($1 \right)$0
 endsnippet
 
 context "math()"
 snippet hco "cosh with parentesis" iA
-\cosh($1 )$0
+\cosh\left($1 \right)$0
 endsnippet
+
+context "math()"
+snippet 'intp' "-pi to pi integral" rwA
+\int_{-\pi}^{\pi} ${1:${VISUAL}} $0
+endsnippet
+
+context "math()"
+snippet 'intL' "0 to L integral" rwA
+\int_{-L}^{L} ${1:${VISUAL}} $0
+endsnippet
+
+context "math()"
+snippet fsf "Fourier series function" iA
+\text{ F.S.} [${1: f}](${2: x}) $0
+endsnippet
+
+context "math()"
+snippet fssf "Fourier sine series function" iA
+\text{ FSS} [${1: f}](${2: x}) $0
+endsnippet
+
+context "math()"
+snippet "fh" "f hat" riA
+\\hat{ ${1: f}}( ${2: m}) $0
+endsnippet
+
+context "math()"
+snippet 'vv' "vector arrow" riA
+\\vv{ $1} $0
+endsnippet
+
+context "math()"
+snippet fre "Fourier exp" iA
+e^{ ${1: } i ${2:n}\pi x / L} $0
+endsnippet
+
+snippet pbi "math with curly bracket cases" bA
+\begin{equation*}
+\begin{cases}
+	\text{PDE: } $1 & 0<x<L, t>0 \\\
+	\text{BCs: } $2 & t>0 \\\
+	\text{ICs: } $3 & 0 \leq x \leq L \\\
+\end{cases}
+\end{equation*}
+endsnippet
+
+context "math()"
+snippet tfs "time sin with parentesis" iA
+\sin \left( \frac{ ${1:n\pi ${2:c t}}}{ ${3:L}} \right) $0
+endsnippet
+
+context "math()"
+snippet tfc "time cos with parentesis" iA
+\cos \left( \frac{ ${1:n\pi ${2:c t}}}{ ${3:L}} \right) $0
+endsnippet
+
+context "math()"
+snippet ww "omega,cs" iA
+\omega
+endsnippet
+
 
 # vim:ft=snippets

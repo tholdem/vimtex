@@ -1,0 +1,82 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+
+\begin{equation*}
+\begin{cases}
+	G''(y) = \lambda G(y)\\
+	G(0)=0, G(H)=0\\
+\end{cases}
+\end{equation*}
+and  $F''(x)=-\lambda F(x)$. We do the same process again to solve $ u_2(x,t)$. Note that since only $ \lambda <0$ works to solve to F-equation, we require $ |\lambda|=\left( \frac{n\pi}{H } \right)^2 \implies \lambda = -\left(\frac{n\pi}{H } \right)^2$. The solution is
+
+\[
+	u_2(x,y)=\sum_{ n= 1}^{\infty} c_n \sinh\left(\frac{n\pi x}{H }  \right)
+	\sin \left( \frac{ n\pi y}{ H} \right) + d_n \sinh\left(\frac{n\pi [x-L]}{H } \right) \sin \left( \frac{ n\pi y}{ H} \right) 
+.\] 
+with coefficients
+\[
+	c_n= \frac{\frac{2}{H} \int_0^H g_2(y) \sin \left( \frac{ n\pi y}{ H} \right) dy }{\sinh\left(\frac{n\pi L}{H } \right) } \text{ and } d_n =  \frac{\frac{2}{H} \int_0^H g_1(y) \sin \left( \frac{ n\pi y}{ H} \right) dy }{\sinh\left(\frac{-n\pi L}{H } \right) }
+.\] 
+Then the \allbold{formal solution} is 
+\begin{align*}
+	u(x,y) &= u_1(x,y)+u_2(x,y) \\
+	&= \sum_{ n= 1}^{\infty} a_n \sinh\left(\frac{n\pi y}{L }  \right) \sin \left( \frac{ n\pi x}{ L} \right) + b_n \sinh\left(\frac{n\pi [y-H]}{L } \right) \sin \left( \frac{ n\pi x}{ L} \right) \\
+	&\quad + \sum_{ n= 1}^{\infty} c_n \sinh\left(\frac{n\pi x}{H }  \right) \sin \left( \frac{ n\pi y}{ H} \right) + d_n \sinh\left(\frac{n\pi [x-L]}{H } \right) \sin \left( \frac{ n\pi y}{ H} \right) \\
+\end{align*}
+with the coefficients:
+\begin{align*}
+	a_n= \frac{\frac{2}{L} \int_0^L f_2(x) \sin \left( \frac{ n\pi x}{ L} \right) dx }{\sinh\left(\frac{n\pi H}{L } \right) } &\text{ and } b_n =  \frac{\frac{2}{L} \int_0^L f_1(x) \sin \left( \frac{ n\pi x}{ L} \right) dx }{\sinh\left(\frac{-n\pi H}{L } \right) }\\
+	c_n= \frac{\frac{2}{H} \int_0^H g_2(y) \sin \left( \frac{ n\pi y}{ H} \right) dy }{\sinh\left(\frac{n\pi L}{H } \right) } &\text{ and } d_n =  \frac{\frac{2}{H} \int_0^H g_1(y) \sin \left( \frac{ n\pi y}{ H} \right) dy }{\sinh\left(\frac{-n\pi L}{H } \right) }
+\end{align*}
+\begin{note}[]
+	At the corners we have $ u(0,0)=u(L,0)=u(0,H)=u(L,H)=0$.
+\end{note}
+\begin{intuition}
+Recall the formal solution $ u(x,y)$ from above. We can show if  $ 0<a<b \implies \frac{\sinh(na)}{\sinh(nb) }< e^{n(a-b)}$ and $ e^{n(a-b)}<1$. Since $ x<L$ and  $ y<H$, the coefficients are finite integral of quotient of two hyperbolic terms (less than 1) and thus are bounded. We can show convergence along this line of logic.
+\end{intuition}
+
+\newpage
+\section{Laplace in Circular Geometry}
+
+We now wish to determine the formula for Laplace's equation in terms of the polar coordinates. Let's denote $ u(x,y)=v(r, \theta)$. Suppose $ x=r \cos(\theta ), y=r \sin(\theta )$. Then
+\[
+	\Delta u = \frac{1}{r} \frac{\partial }{\partial r} \left(r \frac{\partial v}{\partial r} \right) + \frac{1}{r^2} \frac{\partial^2 v}{\partial { \theta}^2}, r>0
+.\] 
+Using the Chain rule,
+\[
+\frac{\partial v}{\partial r} = \frac{\partial u}{\partial r} = \frac{\partial u}{\partial x} \cdot \frac{\partial x}{\partial r} + \frac{\partial u}{\partial y} \cdot \frac{\partial y}{\partial r} = u_x \cos(\theta ) + u_y \sin(\theta )
+.\] 
+and
+\[
+	\frac{\partial v}{\partial \theta} = \frac{\partial u}{\partial \theta} = u_x(-r \sin\theta) + u_y(r \cos\theta)  
+.\] 
+Now for the 2nd partials, we use the rules we discovered above:
+\begin{align*}
+	\frac{\partial^2 v}{\partial { r}^2} &= \frac{\partial }{\partial r} [u_x \cos\theta + u_y \sin\theta] \\
+					     &= \frac{\partial }{\partial r} [u_x \cos\theta] + \frac{\partial }{\partial r} [u_y \sin\theta] \\
+					     &= [u_{x x}\cos^2\theta + u_{xy} \cos \theta \sin\theta ]+ [u_{yx} \cos\theta \sin\theta + u_{yy}\sin^2\theta] \\
+					     &= u_{x x} \cos^2\theta + 2u_{xy}\cos\theta \sin\theta + u_{yy} \sin^2\theta 
+\end{align*}
+Again doing this for $ \theta$,
+\[
+	\frac{\partial^2 v}{\partial { \theta}^2} = \frac{\partial }{\partial t} [u_x (-r \sin\theta)] + \frac{\partial }{\partial t} [u_y (r\cos\theta)]
+.\] 
+Thus by product rule, we eventually obtain
+\[
+	\frac{\partial^2 v}{\partial { \theta}^2} = u_{x x} r^2 \sin^2\theta - 2u_{yx}r^2 \cos\theta\sin\theta + u_{yy} r^2 \cos^2\theta - r(u_x \cos\theta+ u_y \sin\theta)
+.\] 
+dividing both sides by $ r^2$ yields:
+\[	\frac{1}{r^2} \frac{\partial^2 v}{\partial { \theta}^2} = u_{x x} \sin^2\theta - 2u_{yx} \cos\theta\sin\theta + u_{yy} \cos^2\theta - \frac{1}{r} (u_x \cos\theta+ u_y \sin\theta)
+.\]
+Therefore, if we add these two second partials together:
+\[
+v_{rr} + \frac{1}{r^2} \cdot v_{\theta \theta} = u_{x x} + u_{yy} - \frac{1}{r}v_r
+.\] 
+This gives us
+\[
+\Delta u = u_{x x}+ u_{yy} = v_{rr} + \frac{1}{r}v_r + \frac{1}{r^2} v_{\theta \theta}
+.\] 
+
+\end{document}

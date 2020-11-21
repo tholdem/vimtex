@@ -1,0 +1,69 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{defn}[random variable]
+	$(\Omega,\mathcal{F},P)$. A \allbold{random variable} $ X$ is a measurable function from $ \Omega \to \rr$. That is, for any $ A \in \mathcal{B}(\rr)$, 
+	\[
+		X^{-1}(A) \coloneqq \{\omega: X(\omega) \in A\}  \in \mathcal{F}
+	.\] 
+\end{defn}
+\begin{thm}[]
+	$ X$ is a random variable if and only if  $ \{\omega: X(\omega) \leq x\} \in \mathcal{F} \ \forall \ x \in \rr$.
+\end{thm}
+ \begin{prf}
+	 $ (\implies)$: the set $ (-\infty,x]$ is in the Borel set.
+
+	 ($ \impliedby$): show that $ \mathcal{B}( \rr) \subseteq \mathcal{A} = \{A \subseteq \rr: X^{-1}(A) \in \mathcal{F}\} $ 
+ \end{prf}
+\begin{claim}[]
+For a simple r.v. $ X$,
+ \[
+	 \{\omega:X(\omega) \leq x\} \in \mathcal{F} \ \forall \ x \in \rr \iff \{\omega:X(\omega)=x\} \ \forall \ x \in \rr
+.\] 
+\end{claim}
+\begin{prf}
+	$ (\implies)$: intersection of a set and a complement of another set is still in $ \mathcal{F}$.
+	$ (\impliedby)$: $ \{\omega: X(\omega) \leq x\} = \bigcup _{y \leq x} \{\omega:X(\omega)=y\}   \in \mathcal{F}$. Here we restrict $ y$ to be in the range of  $ x$.
+\end{prf}
+
+\begin{defn}[measurable function]
+	A function $ f: \rr \to \rr$ is \allbold{(Borel) measurable} if
+\[
+	f^{-1}(A) \in \mathcal{B}( \rr) \ \forall \ A \in \mathcal{B}( \rr)
+.\] 
+\end{defn}
+
+\begin{thm}[]
+	Any composition of measurable functions is measurable. In particular, given $ X: \Omega \to \rr$ measurable and $ f: \rr \to \rr$ measurable, then $ Y=f(X)$ is measurable wrt  $ \mathcal{F}$, \emph{i.e.} $ Y$ is a r.v.
+\end{thm}
+\begin{prf}
+	Take $ A \in \mathcal{B}( \rr)$, want to show that $ (f \circ X)^{-1}(A) \in \mathcal{F}$. Note that $ (f \circ X)^{-1}(A)=X^{-1}(f^{-1}(A)) \in \mathcal{F}$ since $ f^{-1}$ yields another Borel set by definition of measurable function and $ X^{-1}$ of a Borel set is still in $ \mathcal{F}$ by definition of $ X$ being a r.v.
+\end{prf}
+\begin{note}[]
+Given a constant $ c$, $ x+c,cX,X^2,|X|$ are all measurable.
+\end{note}
+
+\begin{prf}[$ |X|$]
+	$ f(x)=|x|$. Given $ y \in \rr$, want to show $ \{x:f(x)\leq y\} \in \mathcal{B}( \rr)$.
+\end{prf}
+\begin{eg}[]
+$X+Y,X-Y,XY$ are measurable.
+\end{eg}
+
+\begin{prf}[$X+Y$]
+\begin{align*}
+	\{X+Y\leq x\} &= \{\omega:(X+Y)(\omega) \leq x\}  \\ 
+		      &= \{\omega: X(\omega)+Y(\omega) \leq x\}  \\
+		      &= \bigcup_{r \in \rr} (\{X\leq r\} \cap \{Y\leq x-r\}  ) \\
+\end{align*}
+\begin{claim}[]
+can restrict the union to rational number because $ \qq$ is dense in $ \rr$.
+\end{claim}
+
+Then the union becomes countable, hence it's in $ \mathcal{F}$.
+\end{prf}
+\begin{prf}[$XY$]
+	$ XY = \frac{1}{2} [(X+Y)^2-X^2 - Y^2]$
+\end{prf}
+\end{document}

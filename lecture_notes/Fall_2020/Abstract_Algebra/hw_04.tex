@@ -1,0 +1,149 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 4}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[7.1]
+Recall that $ 1$ is a generator of  $ \zz_{12}$. If $ 1$ can be represented by a word of $ \{2,3\} $, then we can just let the  $ \{2,3\} $ representation of $ 1$ generate $ \zz_{12}$. This is indeed possible here:
+\[
+1 = 3 +_{ 12} 3+_{ 12} 3+_{ 12} 2+_{ 12}  2 
+.\]
+Therefore, $ \{2,3\} $ should generate the whole $ \zz_{12}$.
+\end{problem}
+\begin{problem}[7.2]
+Since even numbers under $ +_{ 12} $ can only output even numbers, we know that the odd numbers $ \{1,3,5,7,9,11\} $ cannot be in the subgroup. Let's check the rest:
+\begin{align*}
+	0 &= 6 +_{ 12} 6\\
+	2 &= 6 +_{ 12} 4 +_{ 12} 4 \\
+	4 &= 4 \\
+	6 &= 6 \\
+	8 &= 4 +_{ 12} 4 \\
+	10 &= 4 +_{ 12} 6 
+\end{align*}
+Hence, the elements of the subgroup are $ \{0,2,4,6,8,10\} $.
+\end{problem}
+
+\begin{problem}[7.7]
+~\begin{enumerate}[label=\alph*)]
+	\item $ (a^2 b)  a^3 = eaabaaa = a^3 b$
+	\item $ (ab)(a^3 b) = eabaaab = a^2$ 
+	\item $ b(a^2 b) = ebaab = a^2$
+\end{enumerate}
+\end{problem}
+\begin{problem}[7.8]
+	To fill out the table, we simply need to represent $ c$ in terms of  $ a,b$. The graph tells us  $ c = ab = ba$. Hence we have the following: $ aa=e,ab=c,ac=aab=eb=b,ba=c,bb=e,bc=bba=ea = a, ca=b,cb=a,cc=c(ab)=ce=c$. That is,
+ \begin{table}[H]
+	\centering
+	\begin{tabular}{c||c|c|c|c}
+		*&e&a&b&c\\
+		\hline
+		\hline
+		e&e&a&b&c\\
+		\hline
+		a&a&e&c&b\\
+		\hline
+		b&b&c&e&a\\
+		\hline
+		c&c&b&a&e
+	\end{tabular}
+\end{table}
+\end{problem}
+
+\begin{problem}[7.10]
+Let's represent other elements using $ a,b$:  $c=aa d=ba, f=ab$. Thus we have the following:  $ aa=c,ab=f,ac=aaa=e, ad=aba=b, af = aab = d, ba=d,bb=e,bc=baa=f,bd=bba=a,bf=bab=c,ca=e,cb=d,cc=caa=a,cd=cba=f,cf=cab=b,da=f,db=c,dc=daa=b,dd=dba=e,df=dab=a,fa=b,fb=a,fc=faa=d,fd=fba=c,ff=fab=e$.
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c||c|c|c|c|c|c}
+		*&e&a&b&c&d&f\\
+		\hline
+		\hline
+		e&e&a&b&c&d&f\\
+		\hline
+		a&a&c&f&e&b&d\\
+		\hline
+		b&b&d&e&f&a&c\\
+		\hline
+		c&c&e&d&a&f&b\\
+		\hline
+		d&d&f&c&b&e&a\\
+		\hline
+		f&f&b&a&d&c&e	
+	\end{tabular}
+\end{table}
+\end{problem}
+
+\begin{problem}[8,1]
+\begin{align*}
+	\tau \sigma &= \begin{pmatrix} 1&2&3&4&5&6\\2&4&1&3&6&5 \end{pmatrix}  \begin{pmatrix} 1&2&3&4&5&6\\2&4&1&3&6&5 \end{pmatrix}\\ 
+	&=   \begin{pmatrix} 1&2&3&4&5&6\\1&2&3&6&5&4 \end{pmatrix} 
+\end{align*}
+\end{problem}
+
+\begin{problem}[8.2]
+\begin{align*}
+	\tau^2 \sigma = \tau(\tau \sigma) &=   \begin{pmatrix} 1&2&3&4&5&6\\2&4&1&3&6&5 \end{pmatrix}\begin{pmatrix} 1&2&3&4&5&6\\1&2&3&6&5&4 \end{pmatrix}  \\
+	&= \begin{pmatrix} 1&2&3&4&5&6\\2&4&1&5&6&3 \end{pmatrix}  
+\end{align*}
+\end{problem}
+
+\begin{problem}[8.6]
+\begin{align*}
+	\sigma^2 &=  \begin{pmatrix} 1&2&3&4&5&6\\3&1&4&5&6&2 \end{pmatrix} \begin{pmatrix} 1&2&3&4&5&6\\3&1&4&5&6&2 \end{pmatrix} \\
+	&= \begin{pmatrix} 1&2&3&4&5&6\\4&3&5&6&2&1 \end{pmatrix}  \\
+	\sigma^3 &= \begin{pmatrix} 1&2&3&4&5&6\\3&1&4&5&6&2\end{pmatrix} \begin{pmatrix} 1&2&3&4&5&6\\4&3&5&6&2&1 \end{pmatrix}  \\
+           &= \begin{pmatrix} 1&2&3&4&5&6\\5&4&6&2&1&3 \end{pmatrix}  \\
+	   \sigma^{4}&= \begin{pmatrix} 1&2&3&4&5&6\\3&1&4&5&6&2\end{pmatrix} \begin{pmatrix} 1&2&3&4&5&6\\5&4&6&2&1&3 \end{pmatrix} \\
+	   &= \begin{pmatrix} 1&2&3&4&5&6\\6&5&2&1&3&4 \end{pmatrix}  \\
+	   \sigma^{5} &= \begin{pmatrix} 1&2&3&4&5&6\\ 3&1&4&5&6&2\end{pmatrix}  \begin{pmatrix} 1&2&3&4&5&6\\6&5&2&1&3&4 \end{pmatrix}  \\
+	   &= \begin{pmatrix} 1&2&3&4&5&6\\2&6&1&3&4&5 \end{pmatrix}  \\
+	   \sigma^{6} &= \begin{pmatrix} 1&2&3&4&5&6\\3&1&4&5&6&2\end{pmatrix} \begin{pmatrix} 1&2&3&4&5&6\\2&6&1&3&4&5 \end{pmatrix}  \\
+	   &= \begin{pmatrix} 1&2&3&4&5&6\\1&2&3&4&5&6 \end{pmatrix}  
+\end{align*}
+Since $ \sigma^{6}$ is clearly the identity, we know that $ \sigma^{6}= \sigma^{0}$. Therefore, $ |\langle \sigma \rangle| = 6$.
+\end{problem}
+\begin{problem}[8.9]
+Notice
+\begin{align*}
+	\mu^2 &= \begin{pmatrix} 1&2&3&4&5&6\\5&2&4&3&1&6 \end{pmatrix}  \begin{pmatrix} 1&2&3&4&5&6\\5&2&4&3&1&6 \end{pmatrix}\\ 
+	&=   \begin{pmatrix} 1&2&3&4&5&6\\1&2&3&4&5&6 \end{pmatrix} 
+\end{align*}
+Hence $ \mu^2=\mu^0$. It is easy to see that $ \mu^{100} = \mu^0$ which is the identity above. 
+\end{problem}
+
+\begin{problem}[8.20]
+~\begin{table}[H]
+	\centering
+	\begin{tabular}{c||c|c|c|c|c|c}
+		& $ \rho^0$ & $ \rho$ & $ \rho^2$ & $ \rho^3$ & $ \rho^{4}$ & $ \rho^{5}$\\
+		\hline
+		\hline
+		$ \rho^0$&$ \rho^0$&$ \rho$&$ \rho^2$&$ \rho^3$&$ \rho^{4}$&$ \rho^{5}$\\
+		\hline
+	        $ \rho$&$ \rho$&$ \rho^2$&$ \rho^3$&$ \rho^{4}$&$ \rho^{5}$ & $ \rho^{0}$\\
+		\hline
+		$ \rho^2$ &$ \rho^2$&$ \rho^3$&$ \rho^{4}$&$ \rho^{5}$ & $ \rho^{0}$ & $ \rho$\\
+		\hline
+$ \rho^3$ &$ \rho^3$&$ \rho^{4}$&$ \rho^{5}$ & $ \rho^{0}$ & $ \rho$&$ \rho^2$\\
+\hline
+$ \rho^4$ &$ \rho^{4}$&$ \rho^{5}$ & $ \rho^{0}$ & $ \rho$&$ \rho^2$&$ \rho^3$\\
+\hline
+$ \rho^5$ &$ \rho^{5}$ & $ \rho^{0}$ & $ \rho$&$ \rho^2$&$ \rho^3$&$ \rho^{4}$\\
+	\end{tabular}
+\end{table}
+This cannot be isomorphic to $ S_3$, since it is symmetric about the diagonal and thus abelian yet $ S_3$ is nonabelian.
+\end{problem}
+\begin{problem}[8.32]
+	It suffices to show that $ f_3$ has a two-sided inverse to determine it is a permutation. Let $ g: \rr \to \rr$ where $g(x) = -x^{\frac{1}{3}}$. It is clear that given $ x \in \rr$, $ f_3 \circ g (x) = -\left( -x^{\frac{1}{3}} \right)^3 = x = -\left( -x^3 \right) ^{\frac{1}{3}} = g \circ f_3(x)$. Therefore, $ g(x) = f^{-1}(x)$ thus $ f_3$ is bijective and hence is a permutation.
+\end{problem}
+
+\begin{problem}[8.33]
+	$ f_4$ is not a permutation because it is not bijective on  $ \rr \to \rr$. Choose $ y=-1 \in \rr$, notice that since $ e^{x}>0$ for all $ x \in \rr$, there is no $ x \in \rr$ such that $ f_4(x) = y<0$. This violates the surjectivity requirement. 
+\end{problem}
+
+\begin{problem}[8.34]
+	$ f_5$ is not a permutation. $ f_5(x)=x^3-x^2-2x = x(x-2)(x+1)$. We can immediately see that it is not bijective because although $ f_4(0)=f_4(-1)=f_4(2)=0$, we have  $ -1 \neq 0 \neq 2$, violating the injective requirement.
+\end{problem}
+\end{document}

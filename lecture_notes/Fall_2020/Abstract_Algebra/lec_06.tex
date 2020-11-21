@@ -1,0 +1,107 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Group}
+\begin{defn}[group]
+	A \allbold{group} is a binary structure $(G,*)$ s.t. 
+	\begin{enumerate}[label=\arabic*)]
+		\item $(G,*)$ is associative
+		\item (G,*) has an identity: there exists  $e \in G$ s.t.
+			\[
+			e*g=g*e=g \quad \forall g \in G
+			.\] 
+		\item $(G,*)$ has two-sided inverses for all $x \in G$, there exists a $y \in G$ s.t. \[
+		x*y=y*x=e
+		.\] 
+	\end{enumerate}
+\end{defn}
+
+\begin{eg}[]
+	$(\zz,+)$ is a group. 
+\end{eg}
+
+\begin{defn}[abelian group]
+A group in which $*$ is commutative is called  \allbold{abelian}. 
+\end{defn}
+
+\begin{eg}[]
+\begin{itemize}
+	\item $\zz^+$ under $+$: has no identity.
+	\item $N_0$ under  $+$:  $1$ doesn't have an inverse.
+	\item  $(\qq^* , \times)$ nonzero rationals under $\times $: yes
+	\item $(\qq,\times )$: $0$ doesn't have an inverse.
+	\item  $(\zz^{\times },\times )$ nonzero integers under $\times $: 2 doesn't have an inverse.
+	\item $(\zz_n,+_{n} )$ integers mod n under addition mod n is a group. Associativity is not obvious yet.
+	\item $(\zz_7^*,\times_7  )$ is a group.
+	\item $(M_n(\rr),+)$ $n\times n$ matrices with real entries under matrix addition: is a group.
+	\item $(M_n(\rr),\times )$ under matrix multiplication. The zero matrix have no inverse.
+	\item $(GL_n(\rr),\times )$ the invertible $n\times n$ matrices in the general linear group under $\times $.
+	\item $GL_2(\rr)$ is nonabelian. 
+		\begin{align*}
+			\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 1&0\\1&1 \end{pmatrix} &= \begin{pmatrix} 2&1\\1&1 \end{pmatrix}  \\
+			\begin{pmatrix} 1&0\\1&1 \end{pmatrix} \begin{pmatrix} 1&1\\0&1 \end{pmatrix}  	&= \begin{pmatrix} 1&1\\1&2 \end{pmatrix}  
+		\end{align*}
+\end{itemize}
+
+\end{eg}
+\begin{thm}[]
+	Let $(G,*)$ be a group. 
+	\begin{itemize}
+		\item If  $a*b=a*c$, then  $b=c$. 
+		\item If $b*a=c*a$, then  $b=c$.
+	\end{itemize}
+\end{thm}
+
+\begin{prf}
+	Suppose $a*b=b*c$, then
+	\begin{align*}
+		a^{-1}*(a*b) &=a^{-1} * (a*c)\\
+		(a^{-1}*a)*b &= (a^{-1}*a)*c \\
+		e*b&= e* c \\
+		b&=c
+	\end{align*}
+\end{prf}
+
+\begin{eg}[group with 3 elements]
+	$(\zz_3,+_3)$.
+
+	G=\{e,a,b\}.
+\begin{table}[htpb]
+	\centering
+	\begin{tabular}{c||c|c|c}
+		*&e&a&b\\
+		\hline
+		e&e&a&b\\
+		\hline
+		a&a&b&e\\
+		\hline
+		b&b&e&a\\
+	\end{tabular}
+\end{table}
+
+\begin{remark}
+	Any group with 3 elements is isomorphic to $(\rr_3,+_3)$.
+\end{remark}
+\end{eg}
+\begin{eg}[groups of order 2]
+\begin{table}[htpb]
+	\centering
+	\begin{tabular}{c||c|c}
+		*&e&a\\
+		\hline
+		e&e&a\\
+		\hline
+		a&a&e
+	\end{tabular}
+\end{table}
+\end{eg}
+
+\begin{eg}[groups of order 4]
+See iPad.
+\end{eg}
+
+\begin{eg}[]
+	$(U,\times )$ (all complex numbers that form unit circle) and $(U_n,\times )$ are groups.
+\end{eg}
+\end{document}

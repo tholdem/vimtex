@@ -1,0 +1,150 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+
+
+\subsection{Asymptotic Behavior}
+
+Recall $ I = \int_{-\infty}^{\infty} e^{-x^2} \ dx = \sqrt{\pi}  $. Then for all $ x$ and  $ t>0$,
+ \begin{align*}
+	 |u(x,t)|&\leq \int_{-\infty}^{\infty} | \hat{ U}(m)| \cdot e^{-m^2kt} \cdot  |e^{imx}|\ dm \\
+		 &\leq \frac{M}{2\pi} \int_{-\infty}^{\infty} e^{-m^2kt} \ d m \\ 
+		 &= \frac{M}{2\pi} \int_{-\infty}^{\infty} e^{-(m\sqrt{kt})^2 } \ d m \\
+		 &= \frac{M}{2\pi} \cdot \frac{\sqrt{\pi} }{\sqrt{kt}  } 
+\end{align*}
+Therefore, $ u(x,t) \to 0$ as $ t \to \infty$.
+
+\subsection{Large time estimate}
+
+Note that since $-\infty<m< \infty $, there is no smallest Fourier mode, instead we expand $ \hat{ U}(m)$ as a Maclaurin Series (assuming it can be done) then
+\[
+	\hat{ U}(m) = \hat{ U}(0) + \hat{ U}'(0)m + \frac{\hat{ U}''(0)}{2! } m^2 + \ldots
+.\]
+By completing the square, we can show that
+\[
+	e^{-m^2kt} e^{imx} = e^{-kt(m-ix / 2kt)^2} e^{-x^2 /4kt}
+.\] 
+So we can approximate
+\begin{align*}
+	u(x,t) &\approx \int_{-\infty}^{\infty} \hat{ U}(0) e^{imx}e^{-m^2kt}\ d m \\
+	       &= \hat{ U}(0) e^{-x^2 / 4kt} \int_{-\infty}^{\infty} e^{-kt(m-ix /2kt)^2} \ d m \\
+	       &= \hat{ U}(0) e^{-x^2 / 4kt} \cdot \frac{\sqrt{\pi} }{\sqrt{kt}  }
+\end{align*}
+
+So for large but finite $ t$, we have
+ \[
+	 u(x,t) \approx \hat{ U}(0) e^{-x^2 / 4kt} \cdot \frac{\sqrt{\pi} }{\sqrt{kt}  }
+.\]
+Now we can motivate the fundamental source solution:
+\[
+	\sqrt{kt} \cdot u(x,t) \approx \hat{ U}(0) \sqrt{\pi} \cdot e^{-x^2 /4kt}  
+.\]
+So for each fixed $ t$,  $ \sqrt{kt} \cdot u(x,t)$ has a bell shape and will have a bell shape for almost initial data as $ kt \to \infty$. Using the Maclaurin Series approximation of $ u(x,t)$, we can show  $ u(x,t) \to 0$ as $ |x|\to \infty$.
+
+\begin{defn}[Dirac delta function]
+	Define the \allbold{Dirac delta function} to be the concentrated pulse "function" $ \delta(x)$ with the property that
+	\[
+		\int_{-\infty}^{\infty} \delta(x-c) f(x) dx = f(c) = \int_{-\infty}^{\infty} \delta(c-x) f(x) dx, c \in \rr  
+	.\] 
+	That is, formally define
+	\begin{equation*}
+		\delta(x-c)=
+	\begin{cases}
+		0,& \text{ if } x\neq c\\
+		\infty,& \text{ if } x=c\\ 
+	\end{cases}
+	\end{equation*}
+\end{defn}
+\begin{note}[]
+	If we let $ f(x) =1$ and  $ c=0$, then  $ \int_{-\infty}^{\infty} \delta(x) dx =1 $. The integrals above cannot be defined as limits of Riemann sums because $ \delta(x)$ is no ordinary function. The integral statement above is true by definition.
+\end{note}
+
+\begin{thm}[fundamental solution of the heat equation]
+Given the problem
+\begin{equation*}
+\begin{cases}
+	\text{PDE: } \frac{\partial u}{\partial t} =k\frac{\partial^2 u}{\partial { x}^2}  & -\infty<x<\infty, t>0 \\
+	\text{ICs: } u(x,0) = \delta(x) & \\
+\end{cases}
+\end{equation*}
+Then we can show that the fundamental solution is
+\begin{align*}
+	u(x,t) &= \int_{-\infty}^{\infty} \hat{ \delta}(m) e^{imx} e^{-m^2 kt}  dm \\
+	       &= \int_{-\infty}^{\infty} \left[ \frac{1}{2\pi} \int_{-\infty}^{\infty} \delta( \overline{x}) e^{-im \overline{x}} d \overline{x}  \right]  e^{imx} e^{-m^2 kt} d m \\
+	       &= \int_{-\infty}^{\infty} \frac{1}{2\pi} e^{-im \cdot  0} e^{imx} e^{-m^2 kt} d m \\
+	       &= \frac{1}{\sqrt{4\pi kt} } e^{-x^2 /4kt} \text{ by above approximation} \\
+\end{align*} 
+\end{thm}
+\begin{remark}
+This solution represents the evolution of the temperature due to an initial heat source at $ x=0, t=0$ for an infinite rod and the temperature has a Gaussian distribution.
+\end{remark}
+\section{Finite Rod}
+Consider the finite interval problem:
+\begin{equation*}
+\begin{cases}
+	\text{PDE: } \frac{\partial u}{\partial t} = k \frac{\partial^2 u}{\partial { x}^2}  & 0<x<L, t>0 \\
+	\text{BCs: } u(0,t)=0=u(L,t) & t>0 \\
+	\text{ICs: } u(x,0) =f(x) & 0 \leq x \leq L \\
+\end{cases}
+\end{equation*}
+where $ f(x)$ is continuous and  $ f(0)=f(L)=0$. Note that the DE is not required to hold when  $ t=0$ (so  $ f(x)$ is not required to be twice differentiable). However,  $ u(x,t)$ is required to be continuous for  $ (x,t) \in [0,L]\times [0,\infty)$. That is,
+\[
+	\lim_{ (x,t) \to (x_0,0^+} u(x,t) = u(x_0,0) = f(x_0) , x_0 \in \rr 
+.\] 
+\begin{thm}[heat equation by method of images]
+	Let $ \tilde{f}_{odd}(x), -\infty< x < \infty$, be the periodic extension of the odd extension of $ f(x)$. Then the unique solution of problem above, which is continuous for all  $(x,t) \in (-\infty, \infty) \times [0,\infty)$, is
+	\begin{equation*}
+		u(x,t)=
+	\begin{cases}
+		\frac{1}{\sqrt{4\pi k t} } \int_{-\infty}^{\infty} e^{-(x-\overline{x})^2 /4kt} \tilde{f}_{odd}(\overline{x}) d\overline{x}, & \text{ if } t>0\\
+		f(x), & \text{ if } t=0\\ 
+	\end{cases}
+	\end{equation*}
+\end{thm}
+
+\begin{claim}[]
+The fundamental source solution and the F.S. solution to the heat equation are the same.
+\end{claim}
+\begin{prf}
+	Since $ u(x,t) \in \mathcal{ C}^{\infty}$ odd periodic function of $ x$,  $ t>0$. Thus, fundamental source solution is equal to its F.S.S on $ [0,L], t>0$. That is,
+	\[
+		u(x,t) = \sum_{ n= 1}^{\infty} B_n(t) \sin \left( \frac{ n\pi x}{ L} \right) , B_n(t) = \frac{2}{L} \int_{0}^{L} u(x,t) \sin \left( \frac{ n\pi x}{ L} \right) dx 
+	.\] 
+Using integration by parts, we move derivative of $ f$ wrt $ x$ to derivative of  $ g$ wrt  $ x$. 
+	\begin{align*}
+	\text{ In general,} 	\int_{ a}^{ b} \frac{df}{dx} g(x) dx &= g(x) f(x) \bigg |_{a}^b - \int_{ a}^{ b} f(x) \cdot \frac{dg}{dx} dx \\
+	\text{ In our case, } 	\frac{\partial u}{\partial t} &= \sum_{ n= 1}^{\infty} \frac{\partial }{\partial t} B_n(t) \sin \left( \frac{ n\pi x}{ L} \right)  \\
+							      &= \sum_{ n= 1}^{\infty} \frac{2}{L} \left[\int_{0}^{L} u_t(x,t) \sin \left( \frac{ n\pi x}{ L} \right) dx \right] \sin \left( \frac{ n\pi x}{ L} \right)   \\
+							      &= \sum_{ n= 1}^{\infty} \frac{2}{L} \left[ \int_{0}^{L} k u_{xx}(x,t) \sin \left( \frac{ n\pi x}{ L} \right) dx \right] \sin \left( \frac{ n\pi x}{ L} \right)   \\
+							      &= \sum_{ n= 1}^{\infty} \frac{2}{L}\left[ \int_{0}^{L} k u(x,t) \frac{d^2 }{d x^2} \left( \sin \left( \frac{ n\pi x}{ L} \right) \right) dx \right] \sin \left( \frac{ n\pi x}{ L} \right)   	
+	\end{align*}
+	After differentiation we can show that $ B_n(t)$ satisfies the following ODE:
+	\[
+		B_n(t) = -k\left( \frac{n \pi}{L } \right)^2 B_n'(t) \implies B_n(t) = c_n e^{-(n\pi /L})^2 kt 
+	.\] 
+	We can finally show that $ c_n = b_n$ and thus complete the proof.
+\end{prf}
+
+\begin{thm}[transform method]
+	Suppose $ f(x) \in \mathcal{ C}^1$ and suppose $ |f(x)|+ |f'(x)| \leq K |x|^{-2}$, then
+	\[
+		\frac{\wh{ df}}{dx }(m) = im \cdot \wh{ f}(m) \iff \mathcal{ F} [f'(x)] = im \cdot \mathcal{ F}[f(x)].
+	\]
+\end{thm}
+\begin{prf}
+	Use integration by parts on $ \mathcal{ F}[f'(x)] =\frac{1}{2\pi} \int_{-\infty}^{\infty} f'(x) e^{-imx} dx$ and the fact that $ \lim_{ x \to \pm \infty} f(x) = 0$ to prove it. 
+\end{prf}
+
+\begin{eg}[]
+	Take the Fourier transform of both sides of the heat equation wrt $ x$, fix  $ t$, yields:
+	 \[
+		 \frac{1}{2\pi} \int_{-\infty}^{\infty} u_t e^{-imx} dx = \frac{1}{2\pi} \int_{-\infty}^{\infty} k u_{x x} e^{-imx} dx \implies \frac{\partial }{\partial t} \wh{ u}(m,t) = k \wh{ u_{xx}}(m,t)  
+	.\] 
+	Apply the property above and we have
+\[
+	\frac{\partial }{\partial t} \hat{ u}(m,t) = k (im)^2 \hat{ u}(m,t) \implies \frac{\partial }{\partial t} \hat{ u}(m,t) = -km^2 \hat{ u}(m,t)
+.\] 
+Thus the PDE has been essentially transformed into an ODE (because $ x$ doesn't affect the frequency domain). It can be shown that the solution is  $ \hat{ u}(m,t) = \hat{ f}(m)e^{-km^2t}$ which implies that $ u(x,t) = \mathcal{ F}^{-1}[\hat{ u}(m,t)]$ is equal to the Fourier solution.
+\end{eg}
+\end{document}

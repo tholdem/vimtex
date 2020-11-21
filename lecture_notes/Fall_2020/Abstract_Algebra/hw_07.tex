@@ -1,0 +1,137 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 7}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[13.2]
+Not a homomorphism. Consider $ 1.5, 0.5 \in \rr$, then
+\[
+	\phi(1.5+0.5) = \phi(2)=2 \neq 1 = 1+0= \phi(1.5) + \phi(0.5)
+.\] 
+\end{problem}
+
+\begin{problem}[13.3]
+Yes. Given $ a,b \in \rr^* $, 
+\[
+\phi(ab) = |ab| = |a||b| = \phi(a) \phi(b)   
+.\] 
+\end{problem}
+\begin{problem}[13.4]
+Given $ a,b \in \zz_6$,
+\[
+	\phi(a+_{ 6} b) = (a+_{ 6} b) \mod 2
+.\]
+Note $ \mod 2$ is a homomorphism, so we get
+\[
+	= (a \mod 2) +_{ 2} (b \mod 2) = \phi(a) +_{ 2} \phi(b)  
+.\]
+\end{problem}
+
+\begin{problem}[13.5]
+No. Notice
+\[
+\phi(2+_{ 9} 7) = \phi(0) = 0 \neq 1 = 0+_{ 2} 1 = \phi(2)+_{ 2} \phi(7)      
+.\] 
+\end{problem}
+
+\begin{problem}[13.6]
+Yes. Given $ a,b \in \rr$,
+\[
+\phi(a+b)= 2^{a+b}=2^{a} \cdot 2^{b} = \phi(a) \phi(b)   
+.\] 
+\end{problem}
+
+\begin{problem}[13.8]
+No. Consider $ \mu_1, \rho_2 \in D_3$,
+\[
+	\phi(\mu_1 \rho_2) = (\mu_1 \rho_2)^{-1} = \rho_2 ^{-1} \mu_1 ^{-1} = \rho_1 \mu_1 = \mu_3 
+.\] 
+However,
+\[
+	\phi(\mu_1) \phi(\rho_2) = \mu_1 ^{-1} \rho_2 ^{-1} = \mu_1 \rho_1 = \mu_2 
+\] 
+and they clearly don't equal to each other.
+\end{problem}
+\begin{problem}[13.12]
+	No. Consider $ \begin{pmatrix} 1&0\\0&0 \end{pmatrix}, \begin{pmatrix} 0&0\\0&1 \end{pmatrix} \in M_2 $,
+	\[
+		\phi\left(  \begin{pmatrix} 1&0\\0&0 \end{pmatrix} + \begin{pmatrix} 0&0\\0&1 \end{pmatrix}  \right) = \det \begin{pmatrix}  1&0\\0&1  \end{pmatrix} = 1
+	.\] 
+	However,
+	\[
+		\phi \left(\begin{pmatrix} 1&0\\0&0 \end{pmatrix}\right) + \phi \left(\begin{pmatrix} 0&0\\0&1 \end{pmatrix} \right) = \det \begin{pmatrix} 1&0\\0&0 \end{pmatrix} + \det \begin{pmatrix} 0&0\\0&1 \end{pmatrix} = 0+0=0
+	.\] 
+	And they clearly don't equal.
+\end{problem}
+\begin{problem}[13.13]
+Yes. Given $ A,B \in M_n$, consider the diagonal elements $ A_{ii} $ and $ B_{ii} $, where $ i=1,\ldots,n$. Since matrix addition is elementwise, we have
+\[
+	(A+B)_{ii}=A_{ii} + B_{ii} 
+.\] 
+Recall 
+\begin{align*}
+	\tr(A+B) &= \sum_{ i= 1}^{ n} (A+B)_{ii}\\
+		 &= \sum_{ i= 1}^{ n} (A_{ii} + B_{ii} )\\
+		 &= \sum_{ i= 1}^{ n} A_{ii} + \sum_{ i= 1}^{ n} B_{ii} \\
+		 &= \tr A + \tr B \\
+\end{align*}
+Therefore,
+\[
+	\phi(A+B)=\tr (A+B) = \tr A + \tr B = \phi(A) + \phi(B)   
+.\] 
+\end{problem}
+
+\begin{problem}[13.17]
+The identity of both groups is 0. The kernel here is
+\[
+\ker \phi = \{x \in \zz: \phi(x) = 0 \} 
+.\] 
+Since $ \zz_7$ is a cyclic group, and since $ \gcd ( 4,7)=1 $, we expect $ \phi(1)=4 $ to be a generator of $ \zz_7$ with order 7. Therefore, we expect to arrive at the identity after adding $ 7n$ numbers of $ \phi(1)$ where $ n \in \zz$. Since $ \phi$ is a homomorphism, $7n \cdot_7 \phi(1)= \phi(7n) = 0$. Therefore,
+\[
+\ker \phi = \{7n: n \in \zz\} = 7 \zz 
+.\] 
+Again by homomorphism of $ \phi$ and $ \mod 7$, 
+\[
+\phi(25) = 25 \cdot_7 \phi(1) = 25 \cdot \phi(1) \mod 7 = 25 \cdot 4 \mod 7 = 2   
+.\] 
+\end{problem}
+
+\begin{problem}[13.18]
+By similar argument as above, we have $ \gcd ( 6,10) = 2 $, so we expect $ \phi(1)=6 $ to have order $ \frac{10}{2}=5$. Hence $ 5 n \cdot_{10} \phi(1) = \phi(5n) =0 $ by homomorphism. It follows that
+\[
+\ker \phi = 5 \zz 
+.\]
+By homomorphism of $ \phi$ and $ \mod 10$,
+\begin{align*}
+	\phi(18) &= 18 \cdot_{10} \phi(1)  \\
+	&= 18 \cdot 6 \mod 10   \\
+	&=  8
+\end{align*}
+\end{problem}
+
+\begin{problem}[13.25]
+	There are two: $ \phi(x) =x $ and $ \phi(x) = -x $. The identity function is clearly a bijective homomorphism. For the latter function, given $ x,y \in \zz$, $ \phi(x+y) = -(x+y) = -x - y = \phi(x) + \phi(y) $ so it is a homomorphism. We can also find $ \phi(x)^{-1} = -x $ so it is also bijective.
+\end{problem}
+
+\begin{problem}[13.26]
+There are infinitely many. By Corollary 13.18, if $ \ker \phi = \{e\} $, then the homomorphism $ \phi $ is injective. Let  $ \phi(1) = n $, where $ |n| \geq 1$ and  $ n \in \zz$. Then since $1$ is a generator of $ \zz$, using homomorphism we can generate a set in $ \zz$ using $ \phi(1) $. And since $ |\phi(1)|\geq 1 $, we know that $ \phi(1)^{k} \neq 0 \ \forall \ k \in \zz^* $. Hence, the only element that maps to 0 is 0, which gives us that $ \phi $ is injective. Since we have infinitely many ways to choose $ n$, we have infinitely many injective homomorphisms. 
+\end{problem}
+
+\begin{problem}[13.32]
+~\begin{enumerate}[label=\alph*)]
+	\item True. Every subgroup of index 2 is normal.
+	\item True. The trivial homomorphism.
+	\item False. The trivial homomorphism is clearly not one-to-one.
+	\item True. By Corollary 13.18.
+	\item False. By exercise 44.
+	\item False. This requires at least one element in the first group to map to more than one output, making it not a function.
+	\item True. Let $ G= \zz_{12}$ and $ H = \langle 2 \rangle$. Then $ |\langle 2 \rangle|=\frac{12}{ \gcd ( 12,2) } = 6$.  Now let $ \phi(x)=x $. In general, we can always find a $ H \leq G$ where  $ H$ has order 6 and  $ G$ has order 12. This is allowed by Lagrange, since 6 is a divisor of 12.
+	\item False. No such subgroup described above exist here because this isn't allowed by Lagrange. 
+	\item False. The identity is always in there, because $ \phi(e_G) = \phi(a \cdot a^{-1}) = \phi(a) \phi(a^{-1}) = \phi(a) \phi(a)^{-1} = e_H $.
+	\item False. Let $ \phi: \zz_n \to \cc^* $, $ \phi(x) = e^{i 2\pi x/n}  $. 
+\end{enumerate}
+\end{problem}
+\end{document}

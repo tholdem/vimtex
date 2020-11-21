@@ -1,0 +1,129 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{defn}[]
+	An infinite (even uncountable) collection of sets is independent if every finite subcollection satisfies the above definition of independence.
+\end{defn}
+
+\begin{note}[]
+Pairwise independence $ \not \implies$ independence.
+\begin{eg}[]
+	Roll a fair 6-sided die twice. Let $ A=$ the sum of outcomes is 7.  $ B =$ the first roll is 2. $ C=$ the second roll is 5.  $ P(A)=\frac{6}{36},P(B)=\frac{1}{6},P(C)=\frac{1}{6}, P(A \cap  B) = \frac{1}{36}$. Same for the other two pairs. However, $ P(A \cap B \cap C) = P(B \cap C)= \frac{1}{36} \neq \frac{1}{6^3}$. 
+\end{eg}
+\end{note}
+
+\begin{defn}[]
+Let $ \mathcal{A}_1, \mathcal{A}_2, \ldots, \mathcal{A}_n$ be classes/collections of sets from $ \mathcal{F}$. These classes are independent if $ A_1, A_2,\ldots,A_n$ are independent for all choices of $ A_i \in \mathcal{A}_i$.
+
+Or\\
+
+$ \mathcal{A}_1,\ldots,\mathcal{A}_n$ are independent if $ P(A_1 \cap A_2 \cap \ldots \cap A_n) = P(A_1)P(A_2)\cdots P(A_n)$ for $ A_i \in \mathcal{A}_i$ OR $ A_i = \Omega$.
+
+\end{defn}
+
+Does the independence of classes imply the independence of their sigma fields?
+
+No! They need to be $ \pi$-systems.
+
+Let $\Omega$ be a non-empty set. 
+
+\begin{defn}[]
+A $ \pi$-system 
+\end{defn}
+\begin{defn}[lambda-system]
+A $\lambda$-system is a collection of subsets of $ \Omega$ such that 
+\begin{enumerate}[label=(\roman*)]
+	\item contains $ \Omega$.
+	\item closed under complements.
+	\item closed under countable disjoint unions.
+\end{enumerate}
+\end{defn}
+
+\begin{notation}
+	
+\end{notation}
+
+\begin{eg}[]
+	$ \Omega = \{a,b,c,d\} $. Define $ \mathcal{L} = \{\{a,b\} ,\{a,c\} ,\{c,d\} ,\{b,d\} ,\Omega, \O\} $. Note $ \{a,b\} \cup \{a,c\} = \{a,b,c\} \not\in \mathcal{L} \implies \mathcal{L}$ is not a field.
+\end{eg}
+
+
+In the definition of a $\lambda$-system, (ii) can be replaced by\\
+(ii') $ A,B \in \mathcal{L}$ with $ A \subseteq B$ then $ B\setminus A \in \mathcal{L} $.
+
+\begin{prf}
+	(i) and (ii')  $ \implies$ (ii). Take $ B = \Omega$. Then $ B \setminus A = A^{c} \in \mathcal{L}$.\\
+
+	(ii) and (iii) $ \implies$ $ A \subseteq B \implies B\setminus A = B \cap A^{c} = (A \cup B^{c})^{c} \in \mathcal{L}$ since disjoint union and its complement is in $ \mathcal{L}$.
+\end{prf}
+
+\begin{lem}[1]
+If $ \mathcal{A}$ is a $\pi$-system and a $\lambda$-system, then $ \mathcal{A}$ is a $\sigma$-field.
+\end{lem}
+
+\begin{prf}
+	(i) and (ii) for  $\sigma$-field are satisfied from (i) and (ii) from the $\lambda$-system. We want to show (iii) from $\sigma$-field definition.
+
+	Take $ A_1,A_2,\ldots \in \mathcal{A}$. Let $ B_1=A_1, B_2=A_2 \setminus A_1 = A_2 \cap A_1^{c}, B_3 = A_3 \cap A_2^{c} \cap A_1^{c},\ldots$ The $ B_n$ are disjoint. $ \mathcal{A}$ is a $\pi$-system and $\lambda$-system implies that the $ B_n$ are in $ \mathcal{A}$. So
+	\[
+	\bigcup_{ n} A_n = \bigcup_{ n} B_n \in \mathcal{A}  
+	.\] 
+\end{prf}
+
+\begin{lem}[2]
+	Suppose that $ \mathcal{L}_0$ is a $\lambda$-system. Define, for any $ C \subseteq \Omega$, $ \mathcal{L}_C \coloneq \{D \subseteq \Omega : D \cap  C \in \mathcal{L}_0\} $. If $ C \in \mathcal{L}_0$ then $ \mathcal{L}_C$ is a $\lambda$-system.
+\end{lem}
+
+\begin{prf}
+\begin{enumerate}[label=(\roman*)]
+	\item $ C \in \mathcal{L}_0 \implies \Omega \cap C = C \in \mathcal{L}_0 \implies \Omega \in \mathcal{L}_C$ 
+	\item Suppose $ A \in \mathcal{L}_C$, want to show $ A^{c} \in \mathcal{L}_C$. Write $ C = (A \cap C) \cup (A^{c} \cap  C)$. Then $ A^{c} \cap  C = C \setminus (A \cap C) \in \mathcal{L}_0$ since $ \mathcal{L}_0$ is a $\lambda$-system, and $ A \cap C \subseteq C \implies A^{c} \in \mathcal{L}_C$.
+	\item Take $ A_1,A_2,\ldots$ disjoint in $ \mathcal{L}_C$. Then $A_1 \cap  C, A_2 \cap C,\ldots$ are in $ \mathcal{L}_0$. Since $ \mathcal{L}_0$ is a $\lambda$-system, we have
+		\begin{align*}
+			\bigcup_{ n =1}^{\infty} (A_n \cap  C) \in \mathcal{L}_0\\
+			\left( \bigcup_{ n =1}^{\infty} A_n \right) \cap C \in \mathcal{L}_0\\
+		\end{align*}
+\end{enumerate}
+\end{prf}
+
+\begin{thm}[Dynkin's pi-lambda Theorem]
+	Let $ \mathcal{ P}$ be a $\pi$-system and $ \mathcal{L}$ be a $\lambda$-system. If $ \mathcal{ P} \subseteq \mathcal{L}$ then $ \sigma( \mathcal{ P}) \subseteq \mathcal{L}$.
+\end{thm}
+
+\begin{prf}
+	Suppose $ \mathcal{ P} \subseteq \mathcal{L}$. Let $ \mathcal{L}_0$ be the smallest $\pi$-system containing $ \mathcal{ P}$. Then $ \mathcal{ P} \subseteq \mathcal{L}_0 \subseteq \mathcal{L}$. If we can show that $ \mathcal{L}_0$ is a $\sigma$-field then $ \sigma( \mathcal{ P}) \subseteq \mathcal{L}_0 \subseteq \mathcal{L}$.
+
+	By Lemma 1, we need to show that $ \mathcal{L}_0$ is a $\pi$-system. Take $ A,B \in \mathcal{L}_0$, we want to show that $ A \cap B \in \mathcal{L}_0$.
+
+	Claim: $ \mathcal{ P} \subseteq \mathcal{L}_B = \{C \subseteq \Omega: C \cap B \in \mathcal{L}_0\} $.
+	Then, since $ B \in \mathcal{L}_0$, by Lemma 2, $ \mathcal{L}_B$ is a $\lambda$-system, assuming the claim is true. Since $ \mathcal{ P} \subseteq \mathcal{L}_B$ and $ \mathcal{L}_B$ is a $\lambda$-system, we have $ \mathcal{ P} \subseteq \mathcal{L}_0 \subseteq \mathcal{L}_B$ since $ \mathcal{L}_0$ is the smallest $\lambda$-system containing $ \mathcal{ P}$. So $ A \in \mathcal{L}_B \implies A \cap B \in \mathcal{L}_0$ by the definition of $ \mathcal{L}_B$.
+\end{prf}
+
+\begin{thm}[4.2]
+	Given $ (\Omega,\mathcal{F},P)$. If $ \mathcal{A}_1,\mathcal{A}_2,\ldots,\mathcal{A}_n$ are independent $\pi$-systems, then $ \sigma(\mathcal{A}_1), \sigma(\mathcal{A}_2), \ldots, \sigma(\mathcal{A}_n)$ are independent.
+\end{thm}
+
+\begin{prf}
+	For $ i=1,2,\ldots,n$, define $ \mathcal{B}_i = \mathcal{A}_i \cup \{\Omega\} $. Note that $ \mathcal{B}_i$ is still a $\pi$-system and $ \sigma(\mathcal{B}_i) = \sigma(\mathcal{A}_i)$. $ \mathcal{A}_1,\ldots,\mathcal{A}_n$ independent $ \iff P(A_1 \cap \ldots \cap A_n) = P(A_1)\cdots P(A_n)$ for all $ A_i \in \mathcal{A}_i$ or $ A_i=\Omega \iff P(B_1 \cap \ldots \cap B_n) = P(B_1)\cdots P(B_n)$ for any $ B_i \in \mathcal{B}_i$.
+
+	For $ i=2,\ldots , n$, fix sets $ B_i \in \mathcal{B}_i$ and define $ \mathcal{L} = \{A \in \mathcal{F}: P(A \cap B_2 \cap \ldots \cap B_n) = P(A) P(B_2) \cdots P(B_n)\} $.\\
+
+	Claim: $ \mathcal{L}$ is a $\lambda$-system.
+	\begin{enumerate}[label=(\roman*)]
+		\item (i) $ \Omega \in \mathcal{L}$ since $ P(B_2 \cap \ldots \cap  B_n) = P(B_2)\cdots P(B_n)$
+		\item Take $ A \in \mathcal{L}$. Let $ B = B_2 \cap  \ldots \cap  B_n$. Then $ P(B)=P(A \cap B) + P(A^{c} \cap B) \implies P(B_2) \cdots P(B_n)=P(A)P(B_2)\cdots P(B_n)+P(A^{c} \cap B) \implies P(A^{c} \cap B) = (1-P(A)P(B_2)\cdots P(B_n) \implies A^{c} \in \mathcal{L}$.
+		\item Take $ A_1,\ldots \in \mathcal{L}$ disjoint. Let $ A=\bigcup_{ m =1}^{\infty} A_m$. Then
+			\begin{align*}
+				P(A \cap  B_2 \cap  \ldots \cap B_n) &= P(\bigcup_{ m =1}^{\infty} A_m \cap B_2 \cap \ldots \cap B_n  \\
+								     &= P\left( \bigcup_{ m =1}^{\infty} A_m \cap (B_2 \cap \ldots \cap B_n) \right) \qquad \text{ by countable additivity}  \\
+								     &= \left( \sum_{ m= 1}^{\infty} P(A_m) \right) P(B_2) \cdots P(B_n) \\
+								     &= P\left( \bigcup_{ m =1}^{\infty} A_m \right) P(B_2) \cdots P(B_n) \qquad \text{ by countable additivity} 
+			\end{align*}
+			Hence $ \bigcup_{ m =1}^{\infty} A_m \in \mathcal{L}$.
+	\end{enumerate}
+
+	Note that $ B_1 \subseteq \mathcal{L}$, $ \mathcal{B}_i$ is a $\pi$-system, $ \mathcal{L}$ is a $\lambda$-system, by Dynkin we have $ \sigma(\mathcal{A}_1) \sigma(\mathcal{B}_1) \subseteq \mathcal{L}$. By definition of $ \mathcal{L}$, we have $ \sigma(\mathcal{A}_1)$ is independent of $ \mathcal{A}_2,\ldots,\mathcal{A}_n$.
+\end{prf}
+
+\end{document}

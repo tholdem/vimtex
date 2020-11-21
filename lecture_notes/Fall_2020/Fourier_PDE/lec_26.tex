@@ -1,0 +1,107 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\newpage
+\section{Laplace's Equation and Solution}
+We wish to solve the 2D equilibrium heat equation
+\[
+	\frac{\partial u}{\partial t} = k\left( \frac{\partial^2 u}{\partial { x}^2} + \frac{\partial^2 u}{\partial { y}^2}  \right) = 0
+.\] 
+Recall the Laplace Operator from prior lecture:
+\[
+	L(u) = \nabla^2 u = \Delta u  = \frac{\partial^2 u}{\partial { x}^2} + \frac{\partial^2 u}{\partial { y}^2} 
+.\] 
+
+\begin{eg}[Thought Experiment in 1D]
+~\begin{enumerate}[label=\arabic*)]
+	\item Suppose $ f''(x)=0 \implies f(x)=kx+c$, whose rate of change is constant.
+	\item for all possible $ k$, the extrema only occur at the boundaries.
+	\item For any  $ x_0 \in (a,b)$, and for any $ \epsilon>0$ such that $ [x_0- \epsilon,x_0+ \epsilon] \subseteq (a,b)$, we have
+		\[
+			f(x_0) = \frac{f(x_0- \epsilon) + f(x_0+ \epsilon)}{ 2} = \frac{k(x_0 - \epsilon)+c-k(x_0 + \epsilon) -c}{2 }= f(x_0)
+		.\]
+		This is a characterization of equilibrium.
+\end{enumerate}
+\end{eg}
+
+\subsection{Rectangular Domain}
+\begin{equation*}
+\begin{cases}
+	\text{PDE: }& \Delta u =0, \qquad (x,y) \in (0,L) \times (0,H) \\
+	\text{BCs: }& u(x,0) =f_1(x)  \\
+		    &u(0,H)=f_2(x)\\
+		    &u(0,y)=g_1(y)\\
+		    &u(L,y) = g_2(y)\\
+\end{cases}
+\end{equation*}
+Note that we don't have ICs because this is a steady state problem. Since Laplace Operator is linear, we can use the same trick by decomposing it into two problems. Let $ u(x,y)=u_1(x,y)+u_2(x,y)$.
+\begin{equation*}
+\begin{cases}
+	\text{PDE: }& \Delta u_1 =0, (x,y) \in (0,L) \times (0,H) \\
+	\text{BCs: }& u_1(x,0) =f_1(x)  \\
+		    &u_1(0,H)=f_2(x)\\
+		    &u_1(0,y)=0\\
+		    &u_1(L,y) = 0\\
+\end{cases}
+\begin{cases}
+	\text{PDE: }& \Delta u =0, (x,y) \in (0,L) \times (0,H) \\
+	\text{BCs: }& u_2(x,0) =0  \\
+		    &u_2(0,H)=0\\
+		    &u_2(0,y)=g_1(y)\\
+		    &u_2(L,y) = g_2(y)\\
+\end{cases}
+\end{equation*}
+Note the homogeneous BCs and PDE form a vector space. Then we can use the nonhomogeneous BCs to get the coefficients (like ICs).
+
+\subsubsection{separation of variables}
+Let $ u_1(x,y)=F(x)G(y) \neq 0$. Then $ \Delta u_1=0$ implies
+\[
+	F''(x)G(y)=F(x)G''(y) \implies -\frac{G''(y)}{G(y) }=\frac{F''(x)}{F(x) } = -\lambda
+.\] 
+\subsubsection{F-equation}
+We can solve $ F(x)$ under Dirichlet conditions exactly like before. Note that $ F$ is nontrivial only if  $ \lambda >0$. Then we obtain
+\[
+	F_n(x) = C_n \sin \left( \frac{ n\pi x}{ L} \right) , n=1,2,\ldots
+.\]
+\subsubsection{G-equation}
+\[
+	G''(y)=\lambda_n G(y) \implies r^2e^{ry}=\lambda_n e^{ry} \implies r^2 = \left( \frac{n \pi}{L} \right)^2 \implies r=\pm \frac{n\pi}{L }\implies e^{ry}=e^{\pm n\pi y / L} 
+.\]
+So $ \{e^{n\pi y/L}, e^{-n \pi y/L}\} $ is a basis solutions for the G-equation. For convenience, we wish to have basis functions that vanish at the endpoints $ y=0$ and  $ y=H$ because it makes fining the coefficients really easy.
+
+Recall that $ \cosh$ is even and $ \sinh $ is odd. Then
+\[
+	\frac{e^{n\pi y /L}+ e^{-n\pi y /L}}{2 }= \cosh\left( \frac{n \pi y}{L } \right) \text{ and } \frac{e^{n \pi y /L}- e^{-n \pi y /L}}{2 }= \sinh\left( \frac{n\pi y}{L } \right)  
+.\]
+
+However, using $ \{\sinh\left( \frac{n\pi y}{L } \right), \cosh\left( \frac{n \pi y}{L } \right)  \} $ is not the basis we seek because $ \cosh$ doesn't go to zero. Let's use the identity:
+\[
+	\sinh\left( \frac{n \pi [y-H]}{L } \right)= \sinh\left( \frac{n\pi y}{L } - \frac{n\pi H}{L } \right) = \sinh\left( \frac{n\pi y}{L } \right)  \cosh\left( \frac{n\pi H}{L } \right) - \cosh\left( \frac{n\pi y}{L } \right) \sinh\left( \frac{n\pi H}{L } \right)  
+.\] 
+Therefore, $ \left\{ \sinh\left( \frac{n\pi y}{L } \right) , \sinh\left( \frac{n\pi [y-H]}{L } \right)  \right\}  $ is also a basis of solutions for the G-equation. Note that this is not an orthogonal basis. Thus, the general solution of $ G_n$ is:
+\[
+	G_n(y) = A_n \sinh\left( \frac{n\pi y}{L } \right) + B_n \sinh\left( \frac{n\pi [y-H]}{L } \right) , n=1,2,\ldots
+.\] 
+
+Therefore, the general solution of $ u(x,y)$ is
+ \[
+	 u_1(x,y) = \sum_{ n= 1}^{\infty} a_n \sinh \left( \frac{ n\pi y}{ L} \right) \sin \left( \frac{ n\pi x}{ L} \right) + b_n \sinh \left( \frac{ n\pi [y-H]}{ L} \right) \sin \left( \frac{ n\pi x}{ L} \right) 
+.\] 
+When $ y=0$, only the second term remains, so the nonhomogeneous BC yields
+ \[
+	 f_1(x) = \sum_{ n= 1}^{\infty} b_n \sinh \left( \frac{- n\pi H}{ L} \right) \sin \left( \frac{ n\pi x}{ L} \right) = \sum_{ n= 1}^{\infty} \tilde{ b}_n \sin \left( \frac{ n\pi x}{ L} \right)  
+.\]
+So by projection formula,
+\[
+	 b_n = \frac{ \frac{2}{L} \int_{0}^{L} f_1(x) \sin \left( \frac{ n\pi x}{ L} \right)  }{ \sinh \left( \frac{ -n\pi H}{ L} \right) } 
+.\] 
+And similarly, 
+ \[
+	 f_2(x) = \sum_{ n= 1}^{\infty} a_n \sinh \left( \frac{ n\pi H}{ L} \right) \sin \left( \frac{ n\pi x}{ L} \right)  = \sum_{ n= 1}^{\infty} \tilde{ a}_n \sin \left( \frac{ n\pi x}{ L} \right)  
+.\] 
+And
+\[
+a_n = \frac{\frac{2}{L} \int_{0}^{L} f_2(x) \sin \left( \frac{ n\pi x}{ L} \right)  }{\sinh \left( \frac{ n\pi H}{ L} \right)  } 
+.\] 
+\end{document}

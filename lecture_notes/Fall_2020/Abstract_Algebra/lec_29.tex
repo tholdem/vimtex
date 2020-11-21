@@ -1,0 +1,91 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{thm}[Euler's Theorem]
+	$ G=U(\zz_n), |G|=\phi(n)$. If $ x \in U(\zz_n)$, then $ x^{|G|}=e$. If $ \gcd ( a,n)=1 $ then $ a^{\phi(n)}=1 \mod n$.
+\end{thm}
+\begin{note}[]
+It's the same thing as Fermat with $ \zz_n^* $. The units of 
+\end{note}
+
+How many elements in $ U(\zz_n)$?
+
+\begin{defn}[Euler's phi-function]
+	$ \phi(p) = p-1$ in $ U(\zz_p)$. $ \phi(1)=1$.
+\end{defn}
+
+\begin{eg}[]
+	$ \phi(9) =3$.  
+\end{eg}
+\begin{prop}[]
+	$ \phi(p^{n}) = p^{n-1}(p-1)$. 
+\end{prop}
+\begin{eg}[]
+	$ \phi(1000)$. Even numbers and multiples of 5 are factors. The units are the ones that don't have 2 or 5 as factors.
+\end{eg}
+\begin{eg}[solving congruence]
+Solving $ ax=b \mod m$, $ a,b,m \in \zz$. "Congruence mod m": $ ax-b = km$ for some  $ k \in \zz$. So $ b=ax-km$.
+
+$ d=\gcd ( a,m) $. So $ a$ is a multiple of  $ d$,  $ m$ is a multiple of  $ d$. So  $ b= ax-km$ is multiple of $ d$. So by contrapositive, if $ d $ doesn't divide  $ b$ then there is no solution. 
+
+If we assume $ d / b$. Define  $ b' = \frac{b}{d}, a'=\frac{a}{d}, m'=\frac{m}{d}$ all integers. Then
+\begin{align*}
+	b'&=a'x-km'\\
+	a'x &= b' \mod m'\\
+\end{align*}
+
+This is better because let $ a=30, m=42$, then  $ d=6, a'=\frac{30}{6}=5, m'=\frac{42}{6}=7$. Then $ \gcd ( a',m')=1 $ always coprime! 
+
+Now, $ a'$ is a unit in  $ \zz_{m'}$. This means $ a'x=b'$ has a unique solution in  $ \zz_{m'}$ by multiplying by the inverse.
+\end{eg}
+
+\begin{eg}[20.14]
+$ 12x=27 \mod 18$. $ a=12, b=27,m=18$.  $ d=6$. Since  $ d$ doesn't divide  $ b$, no solution.
+
+$ 15x=27 \mod 18$. $ d=3$. $ d / b$. So  $ a'=5, m'=6, b'= 9$. So  $ 5x=9 \mod 6 \implies 5x=3 \mod 6$. Since 5 and 6 are coprime, 5 is a unit in $ \zz_6$. The inverse is also 5. 
+
+So \[
+5 \times 5 x = 5 \times 3 \mod 6 \implies x = 3 \mod 6
+.\]
+
+\end{eg}
+
+What is the relationship between mod 18 and mod 6?
+
+Since 18 is a multiple of 6, so mod 18 implies mod 6. So if $ x=3 \mod 6 \implies x=3, 9, 15 \mod 18$. There are $ d$ solutions here, evenly spaced mod 18, similar to  $ U_n$ complex root of unity..
+
+If $ c=5 \mod 9$ what is $ c \mod 2$? Not well-defined.
+
+\begin{coro}[20.13]
+$ ax=b \mod m, d=\gcd ( a,m) $. 
+\begin{itemize}
+	\item If $ d$ doesn't divide $b$, no solutions.
+	\item If  $ d / b$, there are  $ d$ solutions  $ \mod m$, and they are evenly spaced. 
+\end{itemize}
+\end{coro}
+\begin{note}[]
+	This allows us to find all solutions if we find one.
+\end{note}
+
+\section*{21}
+Question: Is a subring of a field always a domain?
+\begin{eg}[]
+$ \zz \leq \qq$. It's a subset, nonempty, closed under addition, subtraction, and multiplication. It is also a domain.
+\end{eg}
+
+Suppose $ S \leq F$ a field.  $ S$ inherits commutativity and no zero divisors. However,  $ 2\zz \leq \qq$ doesn't have identity.
+
+\begin{thm}[]
+	If $ S$ is a subring of a field and  $ S$ has identity, then  $ S$ is a domain.
+\end{thm}
+
+Goal: start with a domain and try to find the smallest field that contains it. (This always works!). This smallest field is called the field of fractions of the domain.
+
+\begin{eg}[]
+	$ \zz$ is a domain. $ \zz\leq F$. What could $ F$ be? It can be  $ \qq, \rr, \cc, \qq(\sqrt{2} )$. There is a smallest one: $ \qq$. 
+\end{eg}
+
+To say two fractions are equal without mentioning division: $ ad=bc$.
+\end{document}
+

@@ -1,0 +1,142 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{defn}[]
+If $A_1 \subseteq A_2 \subseteq A_3 \subseteq  \ldots$ and $A = \bigcup_{ n =1}^{\infty} A_n$, we write $A_n \uparrow A$. 
+\end{defn}
+
+\begin{defn}[]
+If $ A_1 \supseteq A_2 \supseteq \ldots$ and $ A= \bigcap_{ n=1}^{\infty} A_n $, we write $A_n \downarrow A$.
+\end{defn}
+
+\begin{eg}[]
+Given $A_1,A_2,\ldots \in \mathcal{F}$, consider $\bigcup_{ k =1}^{\infty} A_k, \bigcup_{ k =2}^{\infty} A_k \ldots  $ as $n \to \infty$, 
+\[
+\bigcup_{ k =n}^{\infty} A_k \downarrow \bigcap_{ m=1}^{\infty} \bigcup_{k=m}^{\infty} A_m = \limsup_{ n} A_n
+.\] 
+Also,
+\[
+\bigcap_{ k =n}^{\infty} A_k \uparrow \bigcup_{ m=1}^{\infty} \bigcap_{k=m}^{\infty} A_m = \liminf_{ n} A_n
+.\] 
+\end{eg}
+
+\begin{note}[]
+\[
+\liminf_{ n} A_n \subseteq \limsup_{ n} A_n
+.\] 
+"("all but finitely many $A_n$") $\subseteq $ ("infinitely many of the $A_n$")" (this is not a proof).
+\end{note}
+\begin{prf}
+	Take $\omega \in \liminf_{ n} A_n = \bigcup_{ n= 1}^{\infty} \bigcap_{k= n}^{\infty} A_k \implies \omega \in \bigcap_{ k =n}^{\infty} A_k$ for at least one $n$. Then there exists a  $N \geq 1$  such that $\omega \in A_N, A_{N+1},\ldots \implies \omega \in \bigcup_{ k =1}^{\infty} A_k, \omega \in \bigcup_{ k =2}^{\infty} A_k,\ldots$. Hence, it's in all of them (the intersection) so it's in limsup.
+\end{prf}
+
+\begin{defn}[common value]
+If $\liminf_{ n} A_n = \limsup_{ n} A_n$, define $\lim_n A_n$ to be the \allbold{common value} .
+\end{defn}
+
+\begin{lem}[]
+\[
+	\left( \limsup_{ n} A_n \right)^{c} =  \liminf_{ n} A_n^{c}
+.\] 
+by De Morgan's law.
+\end{lem}
+
+
+In probability, "sets" represent "events". liminf and limsup are also "events".
+\begin{enumerate}[label=\arabic*)]
+	\item $\limsup_{ n} A_n =$ "the event that infinitely many of the events $A_n$ occur" / "$A_n$ occurs infinitely often" / "$A_n$ i.o.".
+		\[
+			P(A_n \text{i.o.} ) = P(\limsup_{ n} A_n)
+		.\] 
+	\item $\liminf_{ n} A_n = $ "$A_n$ occurs almost always"/"$A_n$ a.a.".
+\end{enumerate}
+
+\begin{eg}[]
+Let $A_n = \{0,\frac{1}{n}, \frac{2}{n},\ldots, \frac{n^2}{n}\} $. So for example $A_2 \not \subseteq A_3$.\\
+
+Claim: $\limsup_{ n} A_n = \qq_+$.
+\begin{prf}
+	Clearly $\limsup_{ n} A_n \subseteq \qq_+$. On the other hand, take any positive rational $\frac{a}{b}$. Assume $b \neq 0$,  $a,b$ are non-negative integers, and are coprime (have no common factors). 
+\begin{case}[1]
+$a=0 \implies \frac{a}{b} = 0 \implies \frac{a}{b} \in A_n \quad \forall n \geq 1$.
+\end{case}
+\begin{case}[2]
+$b=1 \implies \frac{a}{b}=a \implies \frac{a}{b} =a \in A_n \quad \forall n \geq a$.
+\end{case}
+\begin{case}[3]
+Otherwise, in order for $\frac{a}{b}$ to be in $A_n$, choose $n$ large enough, so $n$ has to be a multiple of $b$, \emph{i.e.} $n = kb$. Thus,  $\frac{a}{b} = \frac{ka}{kb} = \frac{ka}{n}$. To get $\frac{a}{b} \in A_n$, we need $ka \in \{0,1,2,\ldots,n^2\} $. That is, need $ a \in \{ 0, \frac{1}{k} , \frac{2}{k},\ldots, \frac{n^2}{k}\} $. This will happen if $\frac{n^2}{k}\geq a \implies n\geq \sqrt{ka} \implies \frac{a}{b} \in A_n$ for infinitely many $n > \sqrt{ka}$. So, any positive rational $\frac{a}{b}$ is in all $A_n$ for $n$ large enough. 
+\[
+\frac{a}{b} \in \limsup_{ n} A_n = \bigcap_{ n= 1}^{\infty} \bigcup_{k= n}^{\infty} A_k
+.\] 
+\end{case}
+\end{prf}
+\end{eg}
+
+\begin{eg}[]
+Claim: $\liminf_{ n} A_n = nn$.
+\end{eg}
+
+\begin{thm}[continuity of probabilities]
+\begin{enumerate}[label=(\roman*)]
+	\item if $A_n \uparrow A$, then $\lim_{ n \to \infty} P(A_n) = P(A)$.
+	\item if $A_n \downarrow A$, then $\lim_{ n \to \infty} P(A_n) =P(A)$.
+\end{enumerate}
+\end{thm}
+
+\begin{prf}
+	For (i), rewrite  $A$ as a disjoint union,  $A = \bigcup_{ n =1}^{\infty} B_n$ where $B_1=A_1, B_2 = A_2 \setminus A_1 = A_2 \cap A_1^{c} $. Then
+	\begin{align*}
+		P(A) &= P(\bigcup_{ n =1}^{\infty} B_n)\\
+		     &= \sum_{ n=1}^{\infty} P(B_n) \qquad \text{ by countable additivity} \\
+		     &= \lim_{ m \to \infty} \sum_{ n=1}^{ m} P(B_n) \\
+		     &= \lim_{ m \to \infty} P\left( \bigcup_{ n=1}^{m} B_n \right)  \\
+		     &= \lim_{ m \to \infty} P\left( \bigcup_{ n=1}^{m} A_n \right)  \\
+		     &= \lim_{ m \to \infty} P(A_m) 
+	\end{align*}
+	Since $ A_1 \subseteq A_2 \subseteq \ldots$.
+\end{prf}
+
+\begin{thm}[4.1]
+\begin{enumerate}[label=(\roman*)]
+	\item For any sequence $(A_n) \subseteq \mathcal{F}$. 
+		\[
+			P\left( \liminf_{ n} A_n \right) \leq \liminf_{ n} P(A_n) \leq \limsup_{ n} P(A_n) \leq P(\limsup_{ n} A_n)
+		.\] 
+	\item If $\lim_{ n \to \infty} A_n= A$, then
+		\[
+			\lim_{ n \to \infty} P(A_n) = P(A)
+		.\] 
+\end{enumerate}
+\end{thm}
+\begin{defn}[]
+	If $(x_n)$ is a sequence in $\rr$,
+	\[
+		\liminf_{ n} x_n = \lim_{ n \to \infty} \left( \inf_{k\geq n} x_k \right) 
+	.\] 
+	\[
+		\limsup_{ n} x_n = \lim_{ n \to \infty} \left( \sup_{k\geq n} x_k \right) 
+	.\] 
+\end{defn}
+
+\begin{prf}
+	(ii) follows from (i) by the "squeeze theorem".\\
+
+(i): let $B_n = \bigcap_{ k =n}^{\infty} A_k$, $B = \bigcup_{ n =1}^{\infty} B_n$. So $B_1 \subseteq  B_2 \subseteq \ldots$ and $B_n \uparrow B$.
+\begin{align*}
+	P(\liminf_{ n} A_n) &= P\left( \bigcup_{ n= 1}^{\infty} \bigcap_{k= n}^{\infty} A_n \right)  \\
+			    &= P(B) \\
+			    &= \lim_{ n \to \infty} P(B_n) \text{ by continuity of probabilities}  \\
+			    &= \lim_{ n \to \infty} P\left( \bigcap_{ k =n}^{\infty}A_k  \right)  \\
+			    &= \liminf_{ n} P\left( \bigcap_{ k =n}^{\infty} A_k \right)  \\
+			    &\leq \liminf_{ n} P(A_n)  \text{ by monotonicity of } P 
+\end{align*}
+\end{prf}
+
+\begin{defn}[independent events]
+	Let $(\Omega,\mathcal{F},P)$ be a probability space. Let $(A_n) \subseteq \mathcal{F}$. Then $A_1,A_2,\ldots$ are mutually independent if for any $j \in \{2,3,\ldots,n\} $ and any indices $1\leq k_1 < \ldots < k_j \leq n$,
+	\[
+		P(A_{k_1} \cap A_{k_2} \cap \ldots \cap A_{k_j}) = P(A_{k_1}) P(A_{k_2}) \ldots P(A_{k_j})
+	.\] 
+\end{defn}
+\end{document}

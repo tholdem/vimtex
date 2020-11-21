@@ -1,0 +1,47 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{coro}[1 of LMCT]
+Let $ f,g \geq 0$ integrable, then  $ f+g$ is also integrable and 
+ \[
+	 \int (f+g) \ d \mu=\int f\ d \mu + \int g  \ d \mu
+.\] 
+\end{coro}
+\begin{prf}
+	Choose simple $ 0\leq s_1(\omega) \leq s_2(\omega) \leq \ldots$ converging up to $ f$, and simple  $ 0\leq t_1(\omega)\leq t_2(\omega)\leq \ldots$ converging to $ g$. Then  $ (s_n+ t_n)$ is a nonnegative sequence.
+\end{prf}
+
+\begin{lem}[]
+	A finite "measure" $ \mu$ with \emph{only} finite additivity (\emph{i.e.} $ \mu: \mathcal{F} \to [0,\infty), \mu( \O) =0,$ finite additivity) is countably additive iff $ \mu(A_n) \searrow 0$ for every $ \mathcal{F}$-sequence $ (A_n)$ satisfying $ A_1 \supseteq A_2 \supseteq \ldots$ and $ \bigcap_{ i= 1}^{ n} A_n = \O$. 
+\end{lem}
+\begin{prf}
+	($ \implies$): suppose $ \mu$ is countably additive and a $ \mathcal{F}$-sequence $ (A_n) \searrow \O$. By continuity from above and the fact that $ \mu$ is finite, $ \mu(A_n) \searrow \mu( \O)=0$, which only makes sense if $ \mu$ is countably additive.
+	($ \impliedby$): 
+\end{prf}
+
+\begin{coro}[2 of LMCT]
+	Suppose $ f\geq 0$ integrable, the set function  $ \nu( \cdot )$ defined by $ \nu(A) = \int_A f \ d \mu$ is a finite measure on $ (\Omega,\mathcal{F})$.
+\end{coro}
+\begin{prf}
+	$ f$ integrable implies  $ \nu(\Omega)=\int_{\Omega} f \ d \mu < \infty$. Thus $ \nu$ is a finite measure. Recall that  $ \mu(A)=0 \implies \int_A f \ d \mu =0$. So
+	\[
+		\nu( \O) = \int_{ \O} f\ d \mu=0
+	.\] 
+	Take $ A_1, A_2$ disjoint sets in $ \mathcal{F}$. 
+	\begin{align*}
+		\nu(A_1 \cup A_2) &= \int_{A_1 \cup A_2} f\ d \mu\\
+		&= \int_{\Omega} I_{A_1 \cup A_2} \cdot  f\ d \mu \\
+		&= \int_{\Omega} (I_{A_1} + I_{A_2}) \cdot  f\ d \mu \text{ by disjoint} \\
+		&= \int_{A_1} f\ d \mu + \int_{A_2} f\ d \mu \\
+		&= \nu(A_1)+ \nu(A_2) \\
+	\end{align*}
+	Take any sequence $ A_n \searrow \O \implies 1- I_{A_n} \nearrow 1 \implies (1-I_{A_n})f \nearrow$. By LMCT, 
+	\begin{align*}
+		\int (1-I_{A_n}) \cdot d \mu &\nearrow \int f\ d \mu\\
+		\int f\ d \mu - \int_{A_n} f\ d \mu &\nearrow \int f\ d \mu\\
+		\nu(\Omega)-\nu(A_n) &\nearrow \nu(\Omega)\\
+	\end{align*}
+	Thus by the lemma, $ \nu$ is countably additive!
+\end{prf}
+\end{document}

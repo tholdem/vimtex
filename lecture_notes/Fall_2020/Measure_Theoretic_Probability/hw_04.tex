@@ -1,0 +1,140 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 4}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[1]
+~\begin{enumerate}[label=\alph*)]
+	\item $ T^{-1}\mathcal{F}'$: Let's check each axiom:
+		\begin{enumerate}[label=(\roman*)]
+			\item Since $ \O \in \mathcal{F}'$, $ T^{-1} \O = \{\omega: T(\omega) \in \O\} = \O \in T^{-1} \mathcal{F}' $.
+			\item Given $ T^{-1}A' \in T^{-1}\mathcal{F}'$, we have $ A' \in \mathcal{F}'$. Since $ \mathcal{F}'$ is a $\sigma$-field, $ A'^{c} \in \mathcal{F}'$ and $ T^{-1}(A'^{c}) \in T^{-1}\mathcal{F}'$. Then
+				\begin{align*}
+					(T^{-1}A')^{c} &= \{\omega:\omega \in (T^{-1}A')^{c}\}  \\
+					&= \{\omega:\omega \not\in T^{-1}A'\}  \\
+					&= \{\omega: T(w) \not\in A'\}  \\
+					&= \{\omega:T(\omega) \in A'^{c}\}  \\
+					&= T^{-1}(A'^{c}) \in T^{-1}\mathcal{F}'
+				\end{align*}
+			\item Given $ T^{-1}A_1', T^{-1}A_2',\ldots \in T^{-1}\mathcal{F}', A_1',A_2',\ldots \in \mathcal{F}'$. Since $ \mathcal{F}'$ is a $\sigma$-field, $ \bigcup_{ n =1}^{\infty} A_n' \in \mathcal{F}'$ and $ T^{-1}\left( \bigcup_{ n =1}^{\infty} A_n' \right) \in T^{-1}\mathcal{F}' $. Now
+				\begin{align*}
+					\bigcup_{ n =1}^{\infty} T^{-1} A_n' &= \bigcup_{ n =1}^{\infty} \{\omega: T( \omega) \in A_n'\}  \\
+									     &= \{\omega: T(w) \in \bigcup_{ n =1}^{\infty} A_n'\}  \\
+									     &= T^{-1} \left( \bigcup_{ n =1}^{\infty} A_n' \right) \in T^{-1}\mathcal{F}' \\
+				\end{align*}
+		\end{enumerate}
+		Hence, $ T^{-1} \mathcal{F}'$ is a $\sigma$-field.
+
+	$ T\mathcal{F}$: Let's check each axiom:
+		\begin{enumerate}[label=(\roman*)]
+			\item Since $ \O \in \mathcal{F}$, $ T^{-1} \O = \{\omega: T(\omega) \in \O\} = \O \in T^{-1} \mathcal{F} $.
+			\item Given $ A' \in T\mathcal{F}$, we have $ T^{-1}A' \in \mathcal{F}$. Since $ \mathcal{F}$ is a $\sigma$-field, $ (T^{-1}A')^{c} \in \mathcal{F}$. Then
+				\begin{align*}
+					T^{-1}(A'^{c}) &= \{\omega:T(\omega) \in A'^{c}\}  \\
+					&= \{\omega: T(w) \not\in A'\}  \\
+					&= \{\omega:\omega \not\in T^{-1}(A')\}  \\
+					&= \{\omega: \omega \in \left( T^{-1} (A') \right) ^{c}\}  \\
+					&= (T^{-1}A')^{c} \in \mathcal{F}
+				\end{align*}
+				Thus $ A'^{c} \in T\mathcal{F}$.
+			\item Given $ A_1',A_2',\ldots \in T\mathcal{F}$, we have $T^{-1}A_1', T^{-1}A_2',\ldots \in \mathcal{F}$. Since $ \mathcal{F}$ is a $\sigma$-field, $ \bigcup_{ n =1}^{\infty} T^{-1}A_n' \in \mathcal{F}$. Now
+				\begin{align*}
+					T^{-1} \left(\bigcup_{ n =1}^{\infty} A_n'\right) &= \{\omega: T( \omega) \in \bigcup_{ n =1}^{\infty} A_n'\}  \\
+									     &= \bigcup_{ n =1}^{\infty}  \{\omega: T(w) \in A_n'\}  \\
+									     &= \bigcup_{ n =1}^{\infty} T^{-1} A_n' \in \mathcal{F} \\
+				\end{align*}
+Thus, $ \left( \bigcup_{ n =1}^{\infty} A_n' \right) \in T\mathcal{F} $.
+		\end{enumerate}
+		Hence, $ T\mathcal{F}$ is a $\sigma$-field.
+
+		Regarding measurability, for given $ A' \in \mathcal{F}'$ notice that
+		\[
+			T^{-1}A' = \{\omega \in \Omega: T(\omega) \in A'\} \in \mathcal{F} 
+		\] implies that $ T^{-1}\mathcal{F}' \subseteq \mathcal{F}$ but is also the definition of $ T$ measurable  $ F /F'$. So the two statements are equivalent.
+
+		Similarly, 
+		\[
+			T^{-1}(A') \in \mathcal{F} \iff A' \in T\mathcal{F}
+		.\] This implies that $ \mathcal{F}' \subseteq T\mathcal{F}$ but is also the definition of $ T $ measurable  $ F /F'$. Thus the two statements are equivalent.
+
+	\item 
+		~\begin{enumerate}[label=(\roman*)]
+			\item We would like to prove by double containment.
+
+				$ (\subseteq) :$ Since by part b) $ T^{-1}( \sigma(\mathcal{A}'))$ is a $\sigma$-field, it suffices to show that $ T^{-1}\mathcal{A}' \subseteq T^{-1}( \sigma(\mathcal{A}'))$.
+
+				Since $ \mathcal{A}' \subseteq  \sigma(\mathcal{A}')$,
+				\[
+					T^{-1}\mathcal{A}'= \{T^{-1}A': A' \in \mathcal{A}' \}  \subseteq \{T^{-1}A': A' \in \sigma(\mathcal{A}')\} = T^{-1}( \sigma(\mathcal{A}'))
+				.\]
+				Since $ \sigma(T^{-1}A')$ is the smallest $\sigma$-field containing $ T^{-1}\mathcal{A}'$, we obtain $ \sigma(T^{-1}\mathcal{A}') \subseteq T^{-1}( \sigma(\mathcal{A}'))$ as required.
+
+				$ ( \supseteq ):$ Give $ A' \in \mathcal{A}'$, clearly $ T^{-1}A' \in T^{-1} \mathcal{A}'$ and thus $ T^{-1}A' \in \sigma(T^{-1}A') \coloneqq \mathcal{F}$. Let $ \mathcal{F}' \coloneqq \sigma(\mathcal{A}')$. Then by Theorem 13.1, $ T$ is measurable $ F / F'$. Then by  1a, this is equivalent to
+				\[
+					T^{-1}\mathcal{F}' = T^{-1}( \sigma(\mathcal{A}')) \subseteq \sigma(T^{-1} \mathcal{A}') = \mathcal{F}
+				.\]
+				As we obtain both directions, 
+				\[
+					\sigma(T^{-1} \mathcal{A}') = T^{-1}( \sigma(\mathcal{A}'))
+				.\] 
+			\item Suppose $ \Omega_0 \subseteq \Omega, T: \Omega_0 \to \Omega$ be the identity map. Theorem 10.1 states:
+			~\begin{enumerate}[label=\arabic*)]
+				\item If $ \mathcal{F}$ is a $\sigma$-field on $ \Omega$, then $ \mathcal{F}_0 = \mathcal{F} \cap \Omega_0$ is a $\sigma$-field on $ \Omega_0$.
+					\begin{prf}
+					Given $ A \in \mathcal{F}$, 
+					\begin{align*}
+						T^{-1}A&= \{\omega \in \Omega_0: T(\omega) \in A\}  \\
+						       &= \{\omega \in \Omega_0 : T(\omega) \in A \cap \Omega_0\} \text{ by identity map}  \\
+						       &= A \cap \Omega_0 \\
+					\end{align*}
+					Therefore, $ T^{-1}\mathcal{F} = \{T^{-1}A: A \in F\} = \{A \cap \Omega_0: A \in \mathcal{F}\} =  \mathcal{F} \cap \Omega_0$. Recall from part b) that $ T^{-1}\mathcal{F}$ is the smallest $\sigma$-field such that $ T$ is measurable  $(\mathcal{F} \cap \Omega_0) / F$. Thus, $ \mathcal{F}_0 = \mathcal{F} \cap \Omega_0$ is a $\sigma$-field.
+					\end{prf}
+				\item If $ \mathcal{F} = \sigma(\mathcal{A})$ on $ \Omega$, then $ \mathcal{F}_0 = \mathcal{F} \cap \Omega_0 = \sigma(\mathcal{A} \cap \Omega_0)$.
+					\begin{prf}
+						By part c (i), we have
+						\begin{align*}
+							\sigma(T^{-1} \mathcal{A}) &= T^{-1}( \sigma(A)) \\
+							\sigma( \{T^{-1}A: A \in \mathcal{A}\} )&= T^{-1} \mathcal{F} \\
+							\sigma(A \cap \Omega_0 : A \in \mathcal{A}) &= \mathcal{F} \cap \Omega_0 \text{ by identity map} \\
+							\sigma(\mathcal{A} \cap \Omega_0)&= \mathcal{F}_0
+						\end{align*}
+						as required.
+					\end{prf}
+			\end{enumerate}
+		\end{enumerate}
+
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[2]
+Suppose $ s= \sum_{ i= 1}^{ n} a_i I_{A_i}, A_i \in \mathcal{F}$.
+~\begin{enumerate}[label=(\roman*)]
+	\item $ \nu( \O) = 0$: 
+		\begin{align*}
+			\nu( \O) &= \int_{ \O} s \ d  \mu  \\
+				 &= \sum_{ i= 1}^{ n} a_i \mu(A_i \cap \O) \\
+				 &= \sum_{ i= 1}^{ n} a_i \mu( \O) \\
+				 &= \sum_{ i= 1}^{ n} a_i \cdot  0 =0 \\
+		\end{align*}
+	\item $ \nu: \Omega \to [0,\infty)$: Since $ s \geq 0$, we have  $ a_i \geq 0 \ \forall \ i$. Since $ \mu$ is a measure on $ (\Omega,\mathcal{F})$, $ \mu(A) \geq 0 \ \forall \ A \in \mathcal{F}$. Given $ B \in \mathcal{F}$, since $ \mathcal{F}$ is a $\sigma$-field, $ A_i \cap B \in \mathcal{F}$. So $ a_i \mu(A_i \cap B) \geq 0 \ \forall \ i$. 
+		\begin{align*}
+			\nu(B)&= \int_{ B} s \ d  \mu \\
+			      &= \sum_{ i= 1}^{ n} a_i \mu(A_i \cap B) \\
+			      &\geq 0  \\
+		\end{align*}
+	\item countable additivity: Given disjoint $ B_1, B_2, \ldots \in \mathcal{F}$,
+		\begin{align*}
+			\nu \left( \bigcup_{ n =1}^{\infty} B_n \right) &= \sum_{ i= 1}^{ m} a_i \mu\left( A_i \cap \bigcup_{ n =1}^{\infty} B_n \right)  \\
+									&= \sum_{ i= 1}^{ m} a_i \mu\left( \bigcup_{ n =1}^{\infty} (A_i \cap B_n) \right)  \\
+									&= \sum_{ i= 1}^{ m} a_i \sum_{ n= 1}^{\infty} \mu(A_i \cap B_n) \text{ countable add. of } \mu\\
+									&= \sum_{ n= 1}^{\infty} \sum_{ i= 1}^{ m} a_i \mu(A_i \cap B_n) \qquad \text{ linearity} \\
+									&= \sum_{ n= 1}^{\infty} \nu(B_n) \\
+		\end{align*}
+\end{enumerate}
+Hence, $ \nu$ is a measure on $ (\Omega,\mathcal{F})$.
+\end{problem}
+
+\end{document}

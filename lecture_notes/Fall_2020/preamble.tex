@@ -9,6 +9,8 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{enumitem}
+\usepackage{lmodern}
+\usepackage{hyperref}
 
 
 \pdfminorversion=7
@@ -21,10 +23,11 @@
 \usepackage{subcaption}
 \usepackage{multicol}
 \usepackage[dvipsnames]{xcolor}
-
+\usepackage[b]{esvect}
 
 % Math stuff
 \usepackage{amsmath, amsfonts, mathtools, amsthm, amssymb}
+
 % Fancy script capitals
 \usepackage{mathrsfs}
 \usepackage{cancel}
@@ -41,9 +44,27 @@
 \newcommand{\norm}[1]{{\left\lVert{#1}\right\rVert}}
 \renewcommand{\vec}[1]{{\mathbf{#1}}}
 \newcommand\allbold[1]{{\boldmath\textbf{#1}}}
-
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\var}{Var}
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\dg}{deg}
 % Put x \to \infty below \lim
 \let\svlim\lim\def\lim{\svlim\limits}
+
+\usepackage{scalerel,stackengine}
+\stackMath
+\newcommand\wh[1]{%
+\savestack{\tmpbox}{\stretchto{%
+  \scaleto{%
+    \scalerel*[\widthof{\ensuremath{#1}}]{\kern-.6pt\bigwedge\kern-.6pt}%
+    {\rule[-\textheight/2]{1ex}{\textheight}}%WIDTH-LIMITED BIG WEDGE
+  }{\textheight}% 
+}{0.5ex}}%
+\stackon[1pt]{#1}{\tmpbox}%
+}
+\parskip 1ex
 
 %Make implies and impliedby shorter
 \let\implies\Rightarrow
@@ -155,6 +176,29 @@ frametitleaboveskip=\dimexpr-\ht\strutbox\relax
 \begin{mdframed}[]\relax%
 \label{#1}}{\end{mdframed}}
 
+%proposition
+\newenvironment{prop}[1][]{%
+\ifstrempty{#1}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=Dandelion]
+{\strut Proposition};}}
+}%
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=Dandelion]
+{\strut Proposition:~#1};}}%
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=Dandelion,%
+linewidth=2pt,topline=true,%
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+\begin{mdframed}[]\relax%
+\label{#1}}{\end{mdframed}}
+
+
 %corollary
 \newenvironment{coro}[1][]{%
 \ifstrempty{#1}%
@@ -202,21 +246,19 @@ frametitleaboveskip=\dimexpr-\ht\strutbox\relax
 
 \theoremstyle{definition}
 
-\newmdtheoremenv[nobreak=true]{definition}{Definition}
-\newmdtheoremenv[nobreak=true]{prop}{Proposition}
-\newmdtheoremenv[nobreak=true]{theorem}{Theorem}
-\newmdtheoremenv[nobreak=true]{corollary}{Corollary}
 \newtheorem*{eg}{Example}
+\newtheorem*{problem}{Problem}
+\newtheorem*{claim}{Claim}
 \theoremstyle{remark}
 \newtheorem*{case}{Case}
 \newtheorem*{notation}{Notation}
 \newtheorem*{remark}{Remark}
 \newtheorem*{note}{Note}
-\newtheorem*{problem}{Problem}
-\newtheorem*{observe}{Observe}
+\newtheorem*{motivation}{Motivation}
 \newtheorem*{property}{Property}
 \newtheorem*{intuition}{Intuition}
 
+\renewcommand\thesection{\arabic{section}}
 
 % End example and intermezzo environments with a small diamond (just like proof
 % environments end with a small square)
@@ -236,6 +278,76 @@ frametitleaboveskip=\dimexpr-\ht\strutbox\relax
 % %http://tex.stackexchange.com/questions/76273/multiple-pdfs-with-page-group-included-in-a-single-page-warning
 \pdfsuppresswarningpagegroup=1
 
+\renewcommand{\baselinestretch}{1.5}
+\RequirePackage{hyperref}[6.83]
+\hypersetup{
+  colorlinks=false,
+  frenchlinks=false,
+  pdfborder={0 0 0},
+  naturalnames=false,
+  hypertexnames=false,
+  breaklinks
+}
+\urlstyle{same}
+\ifpdf
+\usepackage{graphics,graphicx}
+\usepackage{epstopdf}
+\else
+\usepackage{graphics,graphicx}
+   \RequirePackage{breakurl}[1.40]
+   \if@nohypdvips
+   \else
+   \usepackage{hypdvips}
+   \fi
+\fi
+
+\RequirePackage{xcolor}[2.11]
+\colorlet{siaminlinkcolor}{green!50!black}
+\colorlet{siamexlinkcolor}{red!50!black}
+\colorlet{siamreviewcolor}{black!50}
+%%
+%% Add support for color in order to color the hyperlinks.
+%% 
+\if@hidelinks
+\hypersetup{ hidelinks = true }
+\else
+\hypersetup{
+  colorlinks = true,
+  allcolors = siaminlinkcolor,
+  urlcolor = siamexlinkcolor,
+}
+\fi
+
+%customization of cleveref
+\RequirePackage[capitalize,nameinlink]{cleveref}[0.19]
+
+% Per SIAM Style Manual, "section" should be lowercase
+\crefname{section}{section}{sections}
+\crefname{subsection}{subsection}{subsections}
+\Crefname{section}{Section}{Sections}
+\Crefname{subsection}{Subsection}{Subsections}
+
+% Per SIAM Style Manual, "Figure" should be spelled out in references
+\Crefname{figure}{Figure}{Figures}
+
+% Per SIAM Style Manual, don't say equation in front on an equation.
+\crefformat{equation}{\textup{#2(#1)#3}}
+\crefrangeformat{equation}{\textup{#3(#1)#4--#5(#2)#6}}
+\crefmultiformat{equation}{\textup{#2(#1)#3}}{ and \textup{#2(#1)#3}}
+{, \textup{#2(#1)#3}}{, and \textup{#2(#1)#3}}
+\crefrangemultiformat{equation}{\textup{#3(#1)#4--#5(#2)#6}}%
+{ and \textup{#3(#1)#4--#5(#2)#6}}{, \textup{#3(#1)#4--#5(#2)#6}}{, and \textup{#3(#1)#4--#5(#2)#6}}
+
+% But spell it out at the beginning of a sentence.
+\Crefformat{equation}{#2Equation~\textup{(#1)}#3}
+\Crefrangeformat{equation}{Equations~\textup{#3(#1)#4--#5(#2)#6}}
+\Crefmultiformat{equation}{Equations~\textup{#2(#1)#3}}{ and \textup{#2(#1)#3}}
+{, \textup{#2(#1)#3}}{, and \textup{#2(#1)#3}}
+\Crefrangemultiformat{equation}{Equations~\textup{#3(#1)#4--#5(#2)#6}}%
+{ and \textup{#3(#1)#4--#5(#2)#6}}{, \textup{#3(#1)#4--#5(#2)#6}}{, and \textup{#3(#1)#4--#5(#2)#6}}
+
+% Make number non-italic in any environment.
+\crefdefaultlabelformat{#2\textup{#1}#3}
 
 % My name
 \author{Jaden Wang}

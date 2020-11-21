@@ -1,0 +1,51 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Permutation Groups}
+~\begin{defn}
+	Let $ A $ be a set (e.g. $ A = \{1,2,3,4,5\} $). A \allbold{permutation} of $ A$ is a bijective function $ \sigma: A \to A$.
+\end{defn}
+
+\begin{thm}[]
+	A function is bijective if and only if it has a two-sided inverse (i.e. the function is invertible).
+\end{thm}
+
+\begin{thm}[]
+	A function between two finite sets with the same number of elements is injective if and only if the function is surjective.
+\end{thm}
+
+\begin{eg}[]
+$ A=\{1,2,3\} $. A permutation of $ A$ might be \ldots. There are 3! permutations. There are $ n!$ permutations of an $ n$-element set.
+\end{eg}
+
+\begin{thm}[permutation group]
+Let $ A$ be a set. The set permutations of  $ A$, denoted by  $ S_A$ is a group under composition of functions.
+\end{thm}
+\begin{claim}[]
+$ \tau \circ \sigma$ is a permutation of $ A$.
+\end{claim}
+\begin{prf}
+Let $ \sigma, \tau$ be permutations of $ A$. So  $ \sigma$ has a two-sided inverse, $ \sigma^{-1}$, and so does $ \tau$, $ \tau^{-1}$. The inverse of $ \tau \circ \sigma$ is $ \sigma^{-1} \circ \tau^{-1}$. This gives bijectivity.
+\end{prf}
+
+\begin{prf}
+To show it's a group, 
+\begin{enumerate}[label=\arabic*)]
+	\item the identity of $ A$ is  id$_A$ where  id$_A(a)=a $. 
+	\item the inverse is $ \sigma^{-1}$.
+	\item composition of functions is associative.
+	\item the previous claim shows that it is closed under operation.
+\end{enumerate}
+\end{prf}
+
+\begin{defn}[symmetric group]
+$ S_A$ is the  \allbold{symmetric group} on $ A$. If  $ A=\{1,\ldots,n\} $, we write $ S_n$ for  $ S_A$. It has the order  $ n!$.
+\end{defn}
+
+\begin{eg}[]
+$ S_3$ permutations of  $ \{1,2,3\} $ with 6 elements. See iPad. $ S_3$ is a nonabelian group with order 6, which is the smallest nonabelian group.  $ V_4$ is the smallest noncyclic group.
+\end{eg}
+
+
+\end{document}

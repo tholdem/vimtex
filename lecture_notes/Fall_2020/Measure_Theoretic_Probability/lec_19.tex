@@ -1,0 +1,110 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section*{Chapter 3: Integration}
+
+$ (\Omega,\mathcal{F},\mu)$, $ f:\Omega \to \rr$ measurable. 
+\begin{notation}
+	\[ \int f d \mu = \int_{\Omega} f(\omega) d \mu(\omega) = \int_{\Omega} f(\omega) \mu(d\omega).\]
+\end{notation}
+
+\begin{defn}[integration]
+	For a simple function $ f(\omega)= \sum_{ i= 1}^{ n} a_i I_{A_i}(\omega)$, $ A_i \in \mathcal{F}$, we define
+	\[
+		\int_{\Omega} f d \mu = \sum_{ i= 1}^{ n} a_i \mu(A_i)
+	.\] 
+	For any $ B \in \mathcal{F}$, define
+	\[
+		\int_B f d \mu = \sum_{ i= 1}^{ n} a_i \mu(A_i \cap B)
+	.\] 
+\end{defn}
+
+\begin{eg}[]
+~\begin{enumerate}[label=\arabic*)]
+	\item $ \int_{\Omega} I_A d \mu = \mu(A)$.
+	\item $ f = \sum_{ i= 1}^{ n} a_i I_{A_i}$, then $ \int f \ d\lambda$ is the Riemann integral.
+	\item Recall Theorem 12.4 ($ F$ non-decreasing, right continuous, real-valued, there exists a unique measure $ \mu$ on $ \mathcal{B}(\rr)$ satisfying $ \mu((a,b])=F(b)-F(a)$. And $ \mu((a,b))=\mu((a,b ^{-}))= F(b ^{-}) - F(a)$ ). $ \mu$ is called the \allbold{Lebesgue-Stietjes meausre} given by $ F$. Suppose  $ f$ is a non-negative Riemann integrable function, and suppose $ F$ is defined by  $ F(x)=\int_{-\infty}^x f(y)\ dy$. Then for $ a<b$,
+		 \[
+			 \int_{\rr} I_{(a,b]} d \mu = \mu((a,b]) = F(b)-F(a) = \int_a^b f(x) \ dx
+		.\]
+		Moreover,
+		\[
+			\int_{\rr} I_{([a,b])} =\mu((-\infty,b])-\mu((-\infty,a^-]) = F(b)-F(a^-)
+		.\] 
+\end{enumerate}
+\end{eg}
+
+~\begin{defn}[]
+	$ (\Omega,\mathcal{F},\mu), f:\Omega \to \rr$ measurable. If $ f$ is non-negative, define, for any  $ A \in \mathcal{F}$,
+	\[
+	\int_{A} f \ d \mu = \sup \int_A s\ d \mu
+	\]
+	where the supremum is taken over all simple functions $ s$ where  $ 0\leq s(\omega) \leq f(\omega) \ \forall \ \omega \in A$.
+\end{defn}
+\begin{note}[]
+	This is well-defined since $ s(\omega) =0 \ \forall \ \omega \in \Omega$ is one element in the set. If the supremum is infinite, we say either "$ f$ is not integrable over  $ A$" or "$ f$ has infinite integral over  $ A$".
+\end{note}
+
+Facts:
+\begin{enumerate}[label=\arabic*)]
+	\item $ 0\leq f \leq g \implies \int_A f \  d \mu \leq \int_A g\ d \mu$.
+	\item $ A \subseteq B \implies \int_A f\ d \mu \leq \int_B f\ d \mu$.
+		\begin{prf}
+			Take any simple $s: \Omega \to \rr $ such that $ 0<s<f$. Then $ s$ can be written as  $ s(\omega)=\sum_{ i= 1}^{ n} a_i I_{A_i} (\omega)$  for some partition $ A_1, \ldots, A_n$ of $ A$, assuming $ a_i$ are distinct. Then
+			\[
+				A \subseteq B \implies A_i \cap A \subseteq A_i \cap B \implies \mu(A_i \cap A) \leq \mu(A_i \cap B)
+			\] 
+			so
+			\begin{align*}
+				\int_A s\ d \mu&= \sum_{ i= 1}^{ n} a_i \mu(A_i \cap A) \\
+					      &\leq \sum_{ i= 1}^{ n} a_i \mu(A_i \cap B)  \\
+					      &= \int_B s\ d \mu \\
+			\end{align*}
+			Since $ s$ is arbitrary, this relationship should hold for the suprema:
+			 \[
+			\int_A f \ d \mu = \sup_{0\leq s \leq f} \int_A s \ d \mu \leq \sup_{0\leq s\leq f} \int_B s \ d \mu = \int_B f \ d \mu 
+			.\] 
+		\end{prf}
+	\item For $ c>0$ constant, then  $ \int_A cf d \mu = c \int_A f d \mu$.
+
+		~\begin{prf}
+		$ 0\leq s_1 \leq c f$. Define $ s_2 = \frac{s_1}{c }$ is still simple. And constants can be taken out of supremum.
+		\end{prf}
+	\item $ \mu(A)=0 \implies \int_A f d \mu=0$.
+	\item $ \int_A f d \mu = \int_\Omega I_A \cdot  f d \mu$.
+\end{enumerate}
+
+More: Let $ S_1,S_2$ be simple, then
+\begin{enumerate}[label=\arabic*)]
+	\item $ \int_A (s_1 + s_2) d \mu = \int_A s_1 d \mu + \int_A s_2 d \mu$.
+	\item Define $ \nu (A) = \int_A s\ d \mu$. Then can show that $ \nu$ is another measure on  $ \Omega,\mathcal{F}$.
+\end{enumerate}
+
+\begin{thm}[Lebesgue's Monotone Convergence Theorem]
+	Let $ (f_n)$ be a sequence of measurable functions on $(\Omega,\mathcal{F},\mu) $. Suppose $ 0\leq f_1(\omega)\leq f_2(\omega)\leq \ldots \ \forall \ \omega \in \Omega$ and that $ \lim_{ n \to \infty} f_n(\omega) = f(\omega) \ \forall \ \omega \in \Omega$, then
+	\[
+	\lim_{ n \to \infty} \int f_n \ d \mu=\int f\ d \mu
+	.\] 
+\end{thm}
+~\begin{prf}
+We have three cases.
+\begin{enumerate}[label=\arabic*)]
+	\item Some $ f_n$ are not integrable. 
+
+		That is, $ \int f_n \ d \mu = \infty$. Then given $ M>0$, there exists a simple  $ s$ with  $ 0\leq s \leq f_n$ and $ \int s d \mu > M$. Since $ f_n \nearrow f$, then $ 0\leq s \leq f_n \leq f$. Hence, $ \int f d \mu = \infty = \lim_{ n \to \infty} \int f_n \ d \mu $. 
+	\item All $ f_n$ are integrable but $ (\int f_n\ d \mu ) $ diverges.
+		
+		If we assume divergence, then for any constant $ M >0$, there exists  $ N$  such that $ \int f_n d \mu > M+1 \ \forall \ n\geq M$. So $ \lim_{ n \to \infty} \int f_n \ d \mu = \infty$. By the definition of $ \int f_n d \mu$, there exists a simple $ s, 0\leq s \leq f_n$ such that $ \int s d \mu>M \ \forall \ n\geq N$. Since $ 0\leq s \leq f_n \leq f$,  this $ s$ can make  $ \int f d \mu$ as large as we want. Hence $ \int f \ d \mu = \lim_{ n \to \infty}  \int f_n d \mu = \infty$.
+	\item All $ f_n$ are integrable and $ (\int f_n \ d \mu)$ converges.
+
+		$ f_n \leq f_{n+1} \implies \int f_n d \mu \leq \int f_{n+1} d \mu \implies \lim_{ n \to \infty} \int f_n d \mu = \sup_n \left\{\int f_n d \mu \right\} \equiv c$. We need to show that $ f$ is integrable and the integral equals  $ c$.
+		
+		Let $ s$ be simple with $ 0\leq s \leq f$. Let  $ b$ be any constant  $ (0,1)$. Define
+		 \[
+			 A_n = \{\omega: f_n(\omega) \geq b \cdot  s(\omega)\} 
+		.\] 
+		Note that $ A_n \in \mathcal{F}$ because both $ f_n, bs$ are both measurable and by the last theorem in lecture 17.
+\end{enumerate}
+\end{prf}
+\end{document}

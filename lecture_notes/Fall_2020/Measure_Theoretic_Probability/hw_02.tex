@@ -1,0 +1,201 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 2}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[1]
+Let $ B_n = \bigcup_{ k =n}^{\infty} A_k$. Notice that $ B_1 \supseteq B_2 \supseteq \ldots$. Define $ B=\bigcap_{ n =1}^{\infty} B_n$, then it follows that $ B_n \downarrow B$. This allows us to use the continuity of probability later. Now consider:
+\begin{align*}
+	P\left( \limsup_{  n} A_n \right) &= P\left( \bigcap_{ n= 1}^{\infty} \bigcup_{k= n}^{\infty} A_k \right)  \\
+					  &= P(B) \\
+					  &= \lim_{ n \to \infty} P(B_n) \qquad \text{ by continuity of probabilities} \\
+					  &= \lim_{ n \to \infty} P\left( \bigcup_{ k =n}^{\infty} A_k \right)  \\
+					  &= \limsup_{  n} P\left( \bigcup_{ k =n}^{\infty} A_k \right)  \\
+					  &= \lim_{ n \to \infty} \left( \sup_{m \geq n} \left\{ P \left( \bigcup_{ k =m}^{\infty} A_k \right)  \right\}  \right)  \\
+					  &= \lim_{ n \to \infty} P\left( \bigcup_{ k =n}^{\infty} A_k \right) \qquad \text{ by monotonicity of }P  \\
+					  &\geq \lim_{ n \to \infty} P(A_n) \qquad \text{ by monotonicity of }P \\
+					  &= \lim_{ n \to \infty} \left( \sup_{m \geq n}\left\{ P(A_m) \right\}  \right)  \\
+					  &= \limsup_{  n} P(A_n) 
+\end{align*}
+\end{problem}
+
+\begin{problem}[2]
+~\begin{enumerate}[label=\alph*)]
+	\item Given $ a \in \limsup_{  n} (A_n \cap B_n)$, then $ a$ is in every tail sequence $ \{(A_n \cap B_n), (A_{n+1} \cap B_{n+1}),\ldots\} $. That is, given $ k \in \nn, \ \exists \  N_k \geq k$ such that $ a \in (A_{N_{k}} \cap B_{N_{k}})$. Notice that $ A_{N_{k}} \subseteq \bigcup_{ n =k}^{\infty}A_n $ and $ B_{N_{k}} \subseteq \bigcup_{ n =k}^{\infty} B_n $. Since $ k$ is arbitrary, this means that no matter what the value of $ k$ is, we are guaranteed to find a $ N_{k}$ such that $ a \in A_{N_{k}} \subseteq \bigcup_{ n =k}^{\infty}A_n $ and $ a \in B_{N_{k}} \subseteq \bigcup_{ n =k}^{\infty} B_n $. In the language of set theory, this translates to $ a \in A_{N_{k}} \cap B_{N_{k}} \subseteq \limsup_{  n} A_n \cap \limsup_{  n} B_n $. Thus by containment, we show that
+		\[
+			(\limsup_{  n} A_n) \cap (\limsup_{  n} B_n) \supseteq \limsup_{  n} (A_n \cap B_n)
+		.\] 
+	\item Let's show equality by double containment. Given $ a \in \limsup_{  n} (A_n \cup B_n)$,using similar logic as part (a), we can show that given $ k \in \nn, \ \exists \ N_k \geq k$ such that $ a \in (A_{N_{k}} \cup B_{N_{k}})$, and $ A_{N_{k}} \subseteq \bigcup_{ n =k}^{\infty} A_n$ and $ B_{N_{k}} \subseteq \bigcup_{ n =k}^{\infty} B_n $, and therefore $ a \in (A_{N_{k}} \cup B_{N_{k}}) \subseteq (\limsup_{  n} A_n \cup \limsup_{  n} B_n) $. This yields:
+		\[
+			(\limsup_{  n} A_n) \cup (\limsup_{  n} B_n) \supseteq \limsup_{  n} (A_n \cup A_n)
+		.\]
+		To show the other direction, given $ b \in (\limsup_{  n} A_n) \cup (\limsup_{  n} B_n) $. This means $ b$ is either in  $ \limsup_{  n} A_n$ or $ \limsup_{  n} B_n$. WLOG assume that $ b \in \limsup_{  n} A_n$. Since $ A_n \subseteq A_n \cup B_n \implies \bigcup_{ n =k}^{\infty} A_n \subseteq \bigcup_{ n =k}^{\infty} (A_n \cup B_n) \implies \limsup_{  n} A_n \subseteq \limsup_{  n} (A_n \cup B_n)$. It follows that $ a \in \limsup_{  n} (A_n \cup B_n)$. By containment,
+		\[
+			(\limsup_{  n} A_n) \cup (\limsup_{  n} B_n) \subseteq \limsup_{  n} (A_n \cup A_n)
+		.\]
+		Thus by double containment, we prove the equality.
+\item This follows directly by taking the complement of (b) on both sides:
+	\begin{align*}
+		\left( \limsup_{  n} A_n \cup \limsup_{  n} B_n \right)^{c} &= \left( \limsup_{  n} (A_n \cup B_n) \right)^{c}  \\ 
+		\left( \limsup_{  n} A_n \right)^{c} \cap \left( \limsup_{  n} B_n \right)^{c} &= \liminf_{  n} (A_n \cup B_n)^{c} \\
+		\liminf_{  n} A_n^{c} \cap \liminf_{  n} B_n^{c} &= \liminf_{  n} \left( A_n^{c} \cap B_n^{c} \right) 
+	\end{align*}
+	Since $ A_n,B_n$ are arbitrary, their complements are also arbitrary, so we can write
+	\[
+		(\liminf_{  n} A_n) \cap (\liminf_{  n} B_n) = \liminf_{  n} (A_n \cap B_n)
+	.\]
+\item Again this is achieved by taking complements of part (a) on both sides, after similar steps, we obtain
+	\[
+		\liminf_{  n} A_n^{c} \cup \liminf_{  n} B_n^{c} \subseteq \liminf_{  n} \left( A_n^{c} \cup B_n^{c} \right)
+	.\] 
+	Again due to arbitrary complements, we have
+	\[
+		(\liminf_{  n} A_n) \cup (\liminf_{  n} B_n) \subseteq \liminf_{  n} (A_n \cup B_n)
+	.\] 
+\item Let $ A_n= \{1\} $ and $ B_n = \{1,\ldots,n\} $. Notice $ A_n \cap B_n = \{1\} \ \forall \ n \in \nn$. And it's easy to see that $ \limsup_{  n} B_n = \nn$. Now consider
+	\begin{align*}
+		\limsup_{  n} A_n \cap \limsup_{  n} B_n &=\limsup_{  n} 1 \cap \limsup_{  n} \{1,\ldots,n\} \\
+		&= 1 \cap \nn \\ 
+		&= 1 \\
+		&= \limsup_{  n} 1 \\
+		&= \limsup_{  n} (A_n \cap B_n) \\
+	\end{align*}
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[3]
+~\begin{enumerate}[label=\alph*)]
+	\item Let's first show that $ \limsup_{  n} \liminf_{  k} (A_n \cap A_k^{c}) = \O$. Note that the dummy indices $ n$ and  $ k$ do not affect each other.
+	\begin{align*}
+		\limsup_{  n} \liminf_{ k} A_n \cap A_k^{c} &= \limsup_{  n} (A_n \cap \liminf_{ k} A_k^{c}) \qquad \text{ by 2(c)}  \\
+							    & \subseteq (\limsup_{  n} A_n) \cap (\liminf_{ k} A_k^{c}) \qquad \text{ by 2(a)}   \\
+							    &= ( \limsup_{  n} A_n) \cap (\limsup_{ k} A_k)^{c}\qquad \text{ by De Morgan's Law}   \\
+							    &= \O
+	\end{align*}
+	The last step comes from that the intersection of complements is empty. Since $ \O$ is a subset of any set, we then must have $ \limsup_{  n} \liminf_{  k} (A_n \cap A_k^{c}) = \O$.
+
+Now we are ready to show the claim:
+\begin{align*}
+	\lim_n P(\liminf_{ k} (A_n \cap A_k^{c})) &\leq \limsup_{n} P(\liminf_{ k} A_n \cap A_k^{c}) \\
+						  &\leq P\left( \limsup_{  n} \liminf_{ k} (A_n \cap A_k^{c}) \right)  \\
+						  &= 0 \\
+\end{align*}
+Since any probability  $ P(A) \geq 0$, this must equal to 0.
+\item 
+	\begin{align*}
+		\lim_{ n \to \infty} P(A_n \setminus A^* ) &= \lim_{ n \to \infty} P\left( A_n \cap A^{*^c} \right)  \\
+							   &= \lim_{ n \to \infty} P\left( A_n \cap  \left( \limsup_{  k} A_k \right)^{c} \right)  \\
+							   &= \lim_{ n \to \infty} P\left( A_n \cap \liminf_{ k} A_k^{c} \right)  \\
+							   &= \lim_{ n \to \infty} P\left( \liminf_{ k} \left( A_n \cap A_k^{c} \right)  \right)  \\
+							   &= 0 \qquad  \text{ by 3(a)}  \\
+		\lim_{ n \to \infty} P(A_* \setminus A_n) &= \lim_{ n \to \infty} P\left( \liminf_{ k} A_k \cap A_n^{c} \right)  \\
+							  &= \lim_{ n \to \infty} P\left( \liminf_{ k} \left( A_k \cap A_n^{c} \right)  \right)  \\
+							  &= \lim_{ n \to \infty} P\left( \liminf_{ k} \left( B_n \cap B_k^{c} \right)  \right) \text{ since } A_n \text{ is arbitrary}   \\
+							  &= 0 \qquad \text{ by 3(a)}  \\
+	\end{align*}
+\item 
+	\begin{align*}
+		\lim_{ n \to \infty} P\left( A \Delta An \right) &= \lim_{ n \to \infty} P(A\setminus A_n \cup A_n \setminus A )\\
+								 &= \lim_{ n \to \infty} P(A_* \setminus A_n \cup A_n \setminus A^* ) \\
+								 &= \lim_{ n \to \infty} \left( P(A_*\setminus A_n) +P(A_n \setminus A^* )\right) \text{ since they are disjoint}  \\
+								 &= 0+0 = 0 \\
+	\end{align*}
+\item Let's first obtain the following results:
+	\begin{align*}
+		P(A \Delta A^* )&= P\left( (A \cap A^{*^c}) \cup  (A^* \cap A^{c}) \right)  \\
+			0&= P(A \cap A^{*^c}) + P(A^*  \cap  A^{c}) \\
+			0&= 0 + P(A^* \cap  A^{c})\\
+			P(A \Delta A_*) &= P((A \cap A_*^{c}) \cup (A_* \cap A^{c}) ) \\
+					0&= P(A \cap A_*^{c}) + P(A_* \cap A^{c}) \\
+					0&= P(A \cap A_*^{c}) + 0 
+	\end{align*}
+Now let's consider the main problem:
+\begin{align*}
+	\lim_{ n \to \infty} P(A \Delta A_n) &= \lim_{ n \to \infty} P\left( (A \cap  A_n^{c}) \cup (A_n \cap A^{c}) \right) \\
+	&= \limsup_{  n} P\left( (A \cap  A_n^{c}) \cup (A_n \cap A^{c}) \right) \\
+	&\leq P\left( \limsup_{  n} \left( (A \cap A_n^{c}) \cup (A_n \cap A^{c}) \right)  \right)   \\
+	&= P\left( \left( \limsup_{  n} A_n^{c} \cap A \right) \cup \left( \limsup_{  n} A_n \cap A^{c} \right)  \right) \text{ by 2(b)}  \\
+	&= P\left( \left( \left( \liminf_{  n} A_n \right) ^{c} \cap A \right) \cup  \left( \left( \limsup_{  n} A_n \right) \cap A^{c} \right)  \right)  \\
+	&\leq P(A \cap A_*^{c}) + P(A^* \cap A^{c})  \text{ by subadditivity} \\
+	&= 0 + 0 =0 
+\end{align*}
+Since $ \lim_{ n \to \infty} P(A \Delta A_n) \geq 0$, we must have $ \lim_{ n \to \infty} P(A\Delta A_n) =0$.
+\end{enumerate}
+\end{problem}
+\begin{problem}[4]
+Let's show that $ \mathscr{L}_C$ satisfies the three conditions of a $\lambda$-system.
+\begin{enumerate}[label=(\roman*)]
+	\item $ \Omega \in \mathscr{L}_C$: Let $ D = \Omega$, then clearly $ \Omega \subseteq \Omega$ and $ \Omega \cap C = C \in \mathscr{L}_0$, hence $ \Omega \in \mathscr{L}_C$.
+	\item closed under complements: Given $ A \in \mathscr{L}_C$, we want to show that $ A^{c} \cap C \in \mathscr{L}_0$. Since $ A \in \mathscr{L}_C$ implies $ A \cap C \in \mathscr{L}_0$, and $ \mathscr{L}_0$ is a $\lambda$-system, it follows that $ A^{c} \cup C^{c} \in \mathscr{L}_0$. Since $ C \in \mathscr{L}_0$ and $ \mathscr{L}_0$ is also closed under countable intersections, 
+		\begin{align*}
+			\left( A^{c} \cup C^{c} \right) \cap C &\in \mathscr{L}_0\\
+			\left( A^{c} \cap C \right) \cup \left( C^{c} \cap C \right) &\in \mathscr{L}_0\\
+			A^{c} \cap C &\in \mathscr{L}_0
+		\end{align*}
+		as required. Hence $ A^{c} \in \mathscr{L}_C$ and $ \mathscr{L}_C$ is closed under complements.
+	\item closed under disjoint unions: Given disjoint $ A_1,A_2,\ldots \in \mathscr{L}_C$, we want to show that $ \bigcup_{ n =1}^{\infty} A_n \cap C \in \mathscr{L}_0$. Since $ A_n \cap C \in \mathscr{L}_0$ and are disjoint for all $ n \in \nn$ and $ \mathscr{L}_0$ is closed under countable disjoint unions, we have
+		\begin{align*}
+			\bigcup_{ n =1}^{\infty} \left( A_n \cap C \right) &\in \mathscr{L}_0\\
+			\left( \bigcup_{ n =1}^{\infty} A_n \right) \cap C & \in \mathscr{L}_0\\
+		\end{align*}
+		Hence $ \bigcup_{ n =1}^{\infty} A_n \in \mathscr{L}_C$ and $ \mathscr{L}_C$ is closed under countable disjoint unions. 
+\end{enumerate}
+Hence, $ \mathscr{L}_C$ is a $\lambda$-system.
+\end{problem}
+
+\begin{problem}[5]
+~\begin{enumerate}[label=\alph*)]
+	\item Let's show that $ \mathscr{L}$ satisfies the three conditions of a $\lambda$-system:
+		\begin{enumerate}[label=(\roman*)]
+			\item Clearly $ \Omega \in F$. Since $ P,Q$ are two probability measure on  $ \mathcal{F}$, by definition we have $ P(\Omega)=Q(\Omega)=1$. Hence $ \Omega \in \mathscr{L}$.
+			\item Given $ A \in \mathscr{L}$, we know $ A \in \mathcal{F}$ and $ P(A) = Q(A)$. Since  $ \mathcal{F}$ is a $\sigma$-field closed under complements, $ A^{c} \in \mathcal{F}$. Thus by countable additivity of probability measure we obtain:
+				\[
+					P(A^{c}) = P(\Omega) - P(A) = Q(\Omega) - Q(A) = Q(A^{c})
+				.\] 
+			\item Given disjoint $ A_1, A_2, \ldots \in \mathscr{L}$, we know that $ A_n \in \mathcal{F}$ and $ P(A_n) = Q(A_n)$ for all $ n \in \nn$. We want to show that $ \bigcup_{ n =1}^{\infty} A_n \in \mathscr{L}$. Since $ \mathcal{F}$ is a $\sigma$-field closed under countable unions, $ \bigcup_{ n =1}^{\infty} A_n \in \mathcal{F}$. Since the equality holds under summation,
+				\begin{align*}
+					\sum_{ n= 1}^{\infty} P(A_n) &= \sum_{ n= 1}^{\infty} Q(A_n) \\
+					P\left( \bigcup_{ n =1}^{\infty} A_n \right) &=  Q\left( \bigcup_{ n =1}^{\infty} A_n \right)
+				\end{align*}
+by countable additivity of $P,Q$. Hence  $ \mathscr{L}$ is closed under countable disjoint unions. 
+		\end{enumerate}
+		Therefore, $ \mathscr{L}$ is a $\lambda$-system.
+	\item We want to show that $ \mathcal{F} \subseteq \mathscr{L}$. It suffices to show that $ \mathcal{P} \subseteq \mathscr{L}$ and apply Dynkin's Theorem. To prove containment, given $ A \in \mathcal{P}$, we want to show $ A \in \mathscr{L}$. Since  $ \mathcal{P} \subseteq \sigma(\mathcal{P})$ by definition of a generated $\sigma$-field, clearly $ A \in \mathcal{F}$. Since $ A \in \mathcal{P}$, we are given that $ P(A) = Q(A)$. Thus,  $ A \in \mathscr{L}$ and we obtain $ P \subseteq \mathscr{L}$. By Dynkin's Theorem, $ \mathcal{F}= \sigma(\mathcal{P}) \subseteq \mathscr{L}$, This implies any element $ A$ in $ \mathcal{F}$ satisfies $ P(A)=Q(A)$ by the definition of $ \mathscr{L}$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[6]
+~\begin{enumerate}[label=\alph*)]
+	\item Let's first prove a claim:
+\begin{claim}[]
+\[
+	\limsup_{  n} A_n \cap  \limsup_{  n} A_{n+1}^{c} = \limsup_{  n} (A_n \cap An_{n+1}^{c})
+.\] 
+\end{claim}
+Note that since we already have one direction of containment by 2(a), it suffices to show the other direction. Given $ a \in \left( \limsup_{  n} A_n \cap \limsup_{  n} {A_{n+1}}^{c} \right) $. Then we know that given any $ n \in \nn$, there exists an $ N \geq n$ such that $ a \in {A_{N+1}}^{c}$. Choose $ N \geq n$ to be the smallest index such that $ a \in {A_{N+1}}^{c}$, then this implies that $ a \not\in {A_N}^{c}$. If $ a$ is not in the complement, then it must be in  $ A_{N}$. It follows that $ a \in (A_N \cap {A_{N+1}}^{c})$, which leads to $ a \in \bigcup_{ k =n}^{\infty} (A_k \cap {A_{k+1}}^{c})$ for every $n \in \nn$. This is equivalent to $ a \in \bigcap_{ n= 1}^{\infty} \bigcup_{k= n}^{\infty} (A_k \cap {A_{k+1}}^{c}) = \limsup_{  n} (A_n \cap {A_{n+1}}^{c}) $ and we obtain the containment as required. Together with 2(a), we prove the claim. 
+
+Now we begin the proof proper: 
+		\begin{align*}
+			& \qquad \{(A_n \cap A_{n+1}^{c})\ i.o.\} \cup \liminf_{  n} A_n \\
+									       &= \left( \limsup_{  n} A_n \cap \limsup_{  n} A_{n+1}^{c} \right) \cup \liminf_{  n} A_n \qquad \text{ by the claim above}\\ 
+									       &= \left( \limsup_{  n} A_n \cup \liminf_{  n} A_n \right) \cap \left( \limsup_{  n} A_{n+1}^{c} \cup \liminf_{  n} A_n \right) \\
+									       &=\limsup_{  n} A_n \cap \left( \left( \liminf_{  n} A_{n+1} \right)^{c} \cup \liminf_{  n} A_n  \right)  \\
+									       &= \limsup_{  n} A_n \cap \left( \left( \liminf_{  n} A_n\right)^{c} \cap \liminf_{  n} A_n  \right)   \\
+									       &= \limsup_{  n} A_n \cap \Omega \\
+									       &= \{A_n\ i.o.\} 
+		\end{align*}
+	\item Since $ \sum_{ n= 1}^{\infty} P(A_n \cap A_{n+1}^{c}) < \infty$, it follows from Borel-Cantelli Lemma (i) that $ p(A_n \cap A_{n+1}^{c}\ i.o.) =0$. Then the equality from part (a) yields
+		\begin{align*}
+			P(A_n\ i.o.) &= P( \{A_n \cap A_{n+1} \ i.o.\} \cup  \liminf_{  n} A_n) \\
+				     &\leq P(A_n \cap A_{n+1}\ i.o.) + P(\liminf_{  n} A_n) \text{ by subadditivity of }P \\
+				     &\leq 0+ \liminf_{  n} P(A_n) \\
+				     &= \lim_{ n \to \infty} P(A_n) \\
+				     &= 0 
+		\end{align*}
+		Then clearly $ P(A_n \ i.o.)=0$.
+\end{enumerate}
+\end{problem}
+\end{document}

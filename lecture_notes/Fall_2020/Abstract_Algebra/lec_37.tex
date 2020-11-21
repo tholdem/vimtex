@@ -1,0 +1,137 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section*{26: Homomorphism and Quotient Rings}
+
+Given a ring $ R$ and  $ S \leq R$ a subring, we wish to make  $ R /S = \{r+S: r \in R\} $ (additive cosets) into a ring. 
+
+If we only consider the additive groups of $ R,S$. We already know that $ R /S$ is an abelian group because  $ R$ is an abelian group, so  $ S$ must be a normal subgroup. 
+
+Now let's consider the multiplication:
+\[
+	(r_1+S)\times (r_2+S) = r_1 r_2 +S
+.\] 
+Let's try
+\begin{align*}
+	(r_1+s_1+ S) \times (r_2+s_2+S) &= (r_1+s_1)(r_2+s_2) + S \\
+	&= r_1 r_2 + s_1 r_2 + r_1 s_2 + s_1 s_2 +S 
+\end{align*}
+We need $ (r_1 r_2 + s_1 r_2 + r_1 s_2 + s_1 +s_2)-r_1 r_2 = s_1 r_2 + r_1 s_2 + s_1 + s_2 \in S$.
+
+This must work when $ r_1 = r_2 =0$, $ s_1 s_2 \in S \ \forall \ s_1, s_2 \in S$.
+
+This must work when $ s_1 =0$, $ r_1 s_2 \in S \ \forall \ r_1 \in R, s_2 \in S$.
+
+This must work when $ s_2=0$, $ s_1 r_2 \in S \ \forall \ s_1 \in S, r_2 \in R$.
+
+By the above observation/requirements, we need to require $ S$ to be nonempty, closed under  $ +,-$, and if $ r \in R$ and $ s \in S$, then $ rs, sr \in S$.
+
+\begin{defn}[ideal]
+	Let $ R$ be a ring and let  $ I\leq R$. We say  $ I$ is a (two-sided)  \allbold{ideal} of $ R$ if
+	 \begin{enumerate}[label=(\roman*)]
+		\item $ 0 \in I$ or $ I \neq \O$.
+		\item If $ i_1,i_2 \in I$ then $ i_1+i_2 \in I$ and $ i_1 - i_2 \in I$ (or negation).
+		\item If $ i \in I$ and $ r \in R$ then $ ri \in I$ (left ideal) and $ ir \in I$ (right ideal).
+	\end{enumerate}
+	If $ I$ is an ideal of  $ R$, we write  $ I \trianglelefteq R$.
+\end{defn}
+\begin{note}[]
+	The first two conditions are already given by subring. The third condition implies closure under multiplication.
+\end{note}
+\begin{eg}[]
+$ \zz \leq \qq$ but $ \zz$ is not an ideal of $ \qq$. Take $ r=3 \in \zz$ and $ \frac{1}{7} \in \qq$, but $ 3 \times \frac{1}{7} \not\in \zz$.
+\end{eg}
+
+\begin{eg}[]
+$ 2 \zz \trianglelefteq \zz$. We know this is a subring. If $ i \in 2 \zz$ and $ r \in \zz$, then $ ri= ir \in 2\zz$. "Multiplying an even integer by any integer gives an even integer."
+\end{eg}
+
+\begin{eg}[]
+	$ R=M_2 (\rr)$ (matrix ring). Let $ s= \{ \begin{pmatrix} a&0\\b&0\\ \end{pmatrix} : a,b \in \rr \} $. It's a subring. 
+	\[
+		\begin{pmatrix} a&b\\c&d\\ \end{pmatrix} \begin{pmatrix} e&0\\f&0\\ \end{pmatrix} = \begin{pmatrix} ae+bf&0\\ce+df&0\\ \end{pmatrix} 
+	.\] 
+	But it wouldn't work on the right.
+	\[
+		\begin{pmatrix} 1&0\\1&0\\ \end{pmatrix} \begin{pmatrix} 1&1\\1&1\\ \end{pmatrix}  = \begin{pmatrix} 1&1\\1&1\\ \end{pmatrix} \not\in S
+	.\] 
+So this is a left ideal but not a ring ideal. If we swap the columns or transpose, we can get a right ideal.
+\end{eg}
+
+
+Let $ R$ be a ring and  $ I \trianglelefteq R$. Define $ R /I = \{r+I : r \in R\} $. Define
+\begin{align*}
+	(r+I)+(s+I) &= r+s+I\\
+	(r+I) \times (s+I) &= rs + I \text{ well-defined} 
+\end{align*}
+To show that this is a ring, we need to show associativity of $ \times $ and distributive laws.
+
+Distributivity:
+\begin{align*}
+	((r+I) + (s+I))(t+I) &= ((r+s)+I) \times (t+I) \\
+			     &= (r+s) t + I \\
+			     &= rt + st + I \\
+			     &= (rt + I) +(st + I) \\
+			     &= ((r+I)(t+I)) + ((s+I)(t+I))
+\end{align*}
+The rest are similar. Thus $ R /S$ is a ring!
+
+\begin{eg}[]
+Let $ n \in \nn$. Then $ n \zz \trianglelefteq \zz$. Then $ \zz /n\zz$ is a ring. This is $ \zz_n$ by definition.
+\end{eg}
+\begin{eg}[]
+$ \zz_7 \coloneqq \zz / 7\zz$.
+\begin{align*}
+	(5+7 \zz)\times (4+7\zz) &= 20 + 7\zz \\
+	&= 6+ 7\zz \text{ because } 20-6 \in 7\zz  
+\end{align*}
+So $ \overline{5} \times \overline{4} = \overline{6}$. 
+\end{eg}
+
+\begin{thm}[]
+	If $ R$ is commutative, then  so is  $ R /I$.  (The converse is false.)
+
+	If $ R$ has identity $ 1_R$, then so does  $ R /I$ which is  $ 1_R + I$.
+\end{thm}
+
+Let $ \phi: R \to S$ be a ring homomorphism. It preserves addition and multiplication. The kernel
+\[
+	\ker \phi = \{r \in R: \phi(r) = 0_S\} 
+.\] 
+\begin{thm}[]
+$ \ker \phi \trianglelefteq R$.
+\end{thm}
+
+\begin{prf}
+We know $ \ker \phi \leq R$ subgroup by applying group theory and ignoring multiplication. We also need to know if $ k \in \ker \phi, r \in R$, then $ rk \in \ker \phi$ and $ kr \in \ker \phi$.
+
+\begin{align*}
+	\phi(rk) = \phi(r) \phi(k) = \phi(r) \cdot  0 &= 0\\
+	\phi(kr) &=0 
+\end{align*}
+Thus, $ rk \in \ker \phi, kr \in \ker \phi$.
+\end{prf}
+
+\begin{eg}[]
+
+Let $ I \trianglelefteq R$. Consider the map $ \pi: R \to R /I, r \mapsto r+I$. Then $ \pi$ is a ring homomorphism.
+\begin{align*}
+	\pi(r+s) &= (r+s)+I\\
+	\pi(r)+\pi(s) &= (r+I)+ (s+I) \\
+	\pi(r\times s)&= rs+ I \\
+	\pi(r) \times \pi(s) &= (r+I) (s+I) 
+\end{align*}
+$ \im \pi= R /I$. The zero element of $ R /I$ is  $ 0_R + I$.
+ \begin{align*}
+	 r \in \ker \phi &\iff \pi(r) = 0+I\\
+			 & \iff r+I = 0+I\\
+			 & \iff r-0 \in I \iff r \in I
+\end{align*}
+Summary: kernels of ring homomorphisms are ideals. Ideals are kernels of ring homomorphisms.
+\end{eg}
+
+\begin{thm}[]
+Let $ \phi: R \to S$ be a homomorphism of rings. $ \phi$ is injective if and only if $ \ker \phi = \{0_R\} $.
+\end{thm}
+\end{document}

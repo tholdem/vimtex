@@ -1,0 +1,90 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+Let $ \phi: D \to F, a \mapsto  [(a,1)]$ is a ring homomorphism. Clearly,
+\begin{align*}
+	\phi(a+b) = [(a+b),1] = [(a1+1b,1)] = [(a,1)]+[(b,1)] = \phi(a)+\phi(b)
+\end{align*}
+and
+\[
+	\phi(a\times b) = [(ab,1)] = [(a,1)]\times [(b,1)] = \phi(a)\phi(b)
+.\] 
+To show injectivity, let's look at $ \ker \phi$:
+\[
+	\ker \phi = \{a \in D: \phi(a)=0\} = \{a \in D: [(a,1)]=[(0,1)]\}  
+.\] 
+iff $ a=0$. So  $ \ker \phi = \{e\} $.
+
+\begin{thm}[]
+	If $ F$ is the field of fraction of  $ D$, and  $ K$ is some other field containing  $ D$, then  $ K$ has a subfield isomorphic to  $ F$.
+\end{thm}
+
+\begin{intuition}[]
+If $ \iota:D \to K$ is an injective map.
+\[
+	\iota\left( \frac{a}{b} \right) \to \frac{\iota(a)}{\iota(b) } = \iota(a)(\iota(b))^{-1}
+.\] 
+\end{intuition}
+
+How do we check that $ F$ is the field of fractions of  $ D$?
+
+We need to check
+ \begin{enumerate}[label=\arabic*)]
+	 \item $ F$ is a field.
+	\item "$ F$ is not too small". 
+	\item "$ F$ is not too big". $ \rr$ isn't the field of fractions of $ \zz$ because $ \pi \in \rr$ but $ \pi \neq \frac{a}{b}$ for $ a,b \in \zz, b \neq 0$.
+\end{enumerate}
+
+\begin{eg}[21.1]
+	$ D=\{n+m1,: n,m \in \zz\} $ Gaussian integers. 
+
+	Why is this a ring? Prove it's a subring of $ \cc$ : closed under $ +,-,\times $ and nonempty.
+
+	Why is this a domain? $ D$ is commutative inherited from complex numbers.  $ D$ has identity  $ (1+0i)$. And  $ D$ has no zero divisors because  $ \cc$ is a field and doesn't. 
+
+	The field of fraction of $ D$ must be a subring of  $ \cc$. We guess that
+	\[
+	F=\{p+qi: p,q \in \qq\} 
+	\] 
+	is the field of fractions.
+
+	$ F$ is a field (done in previous homeowkr).  $ F$ is a subring. It is commutative and has identity. Every element has inverse.
+
+	 $ F$ needs to contain  $ D$. Clearly  $ D \subseteq F$ because $ \zz \subseteq \qq$. 
+
+	 $ F$ is not too big: Every element of $ F$ is of form  $ \frac{a}{b}, a,b \in D, b\neq 0$. Given  $ p+qi \in F$, express this as $ \frac{a+bi}{c+di }$ where $ a,b,c,d \in \zz$. If $ p+qi = \frac{r}{s} + \frac{t}{u}i$ with $ r,s,t,u \in \zz$ and $ s,u \neq 0$.
+	  \[
+	 \frac{r}{s}+ \frac{t}{u}i = \frac{ru+st i}{su+0i }
+	 .\] 
+\end{eg}
+
+\begin{eg}[]
+What is the field of fraction of $ \qq$? It is $ \qq$ itself.
+\end{eg}
+
+\section*{22: Polynomial Rings}
+
+Start with a ring $ R$ (probability commutative with identity). Invent a new ring  $ R[x]$ (polynomials with coefficients in  $ R$ in the indeterminate $ x$).  
+
+Warning: $ x$ is NOT a variable. It is not waiting for you to plug in a value. "Plugging in values" is only allowed in the context of evaluate homomorphisms.  $ x$ is just  $ x$.
+
+A typical element of  $ R[x]$ looks like
+ \[
+a_0+a_1x+a_2 x^2 + \ldots + a_n x^{n}
+.\]
+where $ n \in \nn, a_i \in R$. We don't allow infinite terms because we don't want infinitely many coefficients. 
+
+Note
+\[
+a_0+\ldots +a_n x^{n} = b_0 + \ldots + b_n x^{n} \iff a_i=b_i \ \forall \ i
+.\]
+In fact, $ 1-x^2 = 1+0x-x^2+0x^3$. 
+
+These polynomials are not functions! Consider $ \zz_3[x]$. $x^3-x+1, 1 \in \zz_3[x]$. If we illegally plug in values 0,1,2, then the outputs equal but they aren't functions. This is happening because every element of $ \zz_3$ is a root of $ x^3 -x$. This cannot happen in infinite fields like $ \zz$. We need to check coefficients instead and they clearly aren't the same.
+
+Addition:
+\[
+	\sum_{ i= 0}^{ n} a_i x^{i} + \sum_{ i= 0}^{ n} b_i x^{i} = \sum_{ i= 0}^{ n} (a_i + b_i) x^{i} 
+.\] 
+\end{document}

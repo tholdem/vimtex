@@ -1,0 +1,133 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\newpage
+\section{Convergence Part 1}
+
+~\begin{defn}[]
+\begin{enumerate}[label=\arabic*)]
+	\item $f(x)$ is \allbold{continuous} at  $x=a$ if  $\lim_{ x \to a} f(x) = f(a)$.
+	\item $f(x)$ is \allbold{piecewise continuous} on the interval $[a,b]$ if  $f(x)$ is defined and continuous at all but a finite number of points  $x_i \in [a,b], 1\leq i \leq N$, where $f(x)$ has either a jump discontinuity or a removable discontinuity and  $f(a^+) = \lim_{ x \to a^+} f(x) $ and $f(b^-) = \lim_{ x \to b^-} f(x) $ exist.
+	\item A differentiable function $f(x)$ is \allbold{piecewise smooth} on $[a,b]$ if both  $f(x)$ and  $f'(x)$ are piecewise continuous on  $[a,b]$, \emph{i.e.} $f \in \text{ piecewise } \mathcal{C}^1$ .
+	\item The function  $f(x)$ is \allbold{continuous piecewise smooth} on  $[a,b]$ if  $f(x)$ is piecewise smooth on $[a,b]$ and has no discontinuities in  $(a,b)$.
+\end{enumerate}
+\end{defn}
+\begin{note}[]
+~\begin{enumerate}[label=\alph*)]
+	\item $f'(x)$ will not be continuous at the discontinuities of  $f(x)$ (if any) and may have its own additional discontinuities.
+	\item If  $f'(x)$ is piecewise continuous on  $(a,b)$, then  $f(x)$ is also piecewise continuous on  $(a,b)$. Why? (Jaden: $f'$ is piecewise continuous on $(a,b) \implies f'$ exists on $(a,b) \implies f$ is piecewise differentiable on $(a,b) \implies f$ is piecewise continuous on $(a,b)$. ) 
+	\item "finite number of points" can be replaced with "a collection of points that is measure-zero" for full generality.
+\end{enumerate}
+\end{note}
+\begin{eg}[]
+	$f(x) = \frac{1}{x}$ where $x\neq 0$ and $x \in [-1,1]$ is not piecewise continuous because the left and right limits do not exist at $x=0$.
+\end{eg}
+
+\begin{eg}[]
+	Consider $x \in [-1,1]$, if 
+	\begin{equation*}
+		f(x)=|x|^{\frac{1}{4}} =
+	\begin{cases}
+		x^{\frac{1}{4}} &\text{ if } x \in [0,1] \\
+		(-x)^{\frac{1}{4}} & \text{ if } x \in [-1,0) \\
+	\end{cases}	
+	\end{equation*}
+	\begin{equation*}
+		f'(x)=
+	\begin{cases}
+		\frac{1}{4}x^{-\frac{3}{4}} &\text{ if }x \in (0,1)\\ 
+		-\frac{1}{4}(-x)^{-\frac{3}{4}} &\text{ if } x \in (-1,0)\\ 
+	\end{cases}
+	\end{equation*}
+	$f(x)$ is piecewise continuous on  $[-1,1]$ but the derivative is not piecewise continuous.
+\end{eg}
+
+\begin{eg}[]
+	$f(x) = |x|$ is piecewise smooth.
+\end{eg}
+
+
+To prove convergence, we want:
+\begin{enumerate}[label=\arabic*)]
+	\item $|a_0| < \infty$
+	\item $a_n \to 0, b_n \to 0$ as $n \to \infty$. Otherwise the series will diverge.
+		\begin{note}[]
+			As $n \to \infty$, the periodicity goes to zero. So $ \int_{-L}^{L}  f(x) \sin \left( \frac{ n\pi x}{ L } \right) $ is the cumulative rapidly oscillating positive and negative area bounded by $|f(x)|$. Intuitively they cancel each other out as oscillation increases to infinity.
+		\end{note}
+	\end{enumerate}
+
+\subsection*{Restrictions}
+\begin{enumerate}[label=\arabic*]
+	\item If $f(-L) = f(L)$, then we require that  $\tilde{ f } (x)$, the periodic extension of $f(x)$, be piecewise smooth on  $[-L,L]$.
+	\item If  $f(-L) \neq f(L)$, then redefine  $f_{new}(-L) = f_{new}(L) = \frac{f(-L)+f(L)}{2} $. We denote the adjusted function $\overline{f}(x)$. Now we require that the periodic extension of the adjusted function, $\tilde{\bar{f}} (x)$, be piecewise smooth on $[-L,L]$.
+\end{enumerate}
+\begin{notation}
+	We will use $\tilde{ f } $ instead of $\tilde{\bar{f}} $ for brevity.
+\end{notation}
+\begin{lem}[1]
+	The set of real functions defined on $[-L,L]$ that satisfy Restriction 1 and 2 form a vector space (satisfies linearity).
+\end{lem}
+
+\begin{lem}[2]
+	If $f(x)$ satisfies Restriction 1 and 2 then there exists a number  $0<M<\infty$ such that 
+	\[
+		|\tilde{ f } (x)|< M \quad \forall x \in \rr
+	.\] 
+\end{lem}
+\begin{prf}
+Any closed interval on $\rr$ is compact. Since $f$ is piecewise continuous, the image of a compact set is also compact. And compact set in $\rr$ means it's closed and bounded by Heine-Borel Theorem.
+\end{prf}
+
+\begin{lem}[3]
+	If $f(x)$ satisfies Restriction 1 and 2 and if  $M$ is the positive constant from Lemma 2 then the Fourier coefficients satisfy:
+	 \[
+	|a_0|<M, |a_n|<2M, \text{ and } |b_n|<2M
+	.\] 
+\end{lem}
+\begin{prf}
+	Given $a \in \rr$, $-|a|\leq a \leq |a|$. Thus given  $f(x)$ defined on  $[-L,L]$,
+	 \begin{align*}
+		 -|f(x)| \leq f(x) \leq |f(x)| &\implies  - \int_{-L}^{L} |f(x)| dx \leq \int_{-L}^{L} f(x)  dx \leq \int_{-L}^{L} |f(x) | dx\\
+					       & \implies \left|\int_{-L}^{L} f(x)dx \right| \leq \int_{-L}^{L} f(x) dx 
+	\end{align*}
+
+	\begin{align*}
+		|a_n| &= \left| \frac{1}{L} \int_{-L}^{L} f(x) \cos \left( \frac{ n\pi x}{ L } \right) dx  \right|  \\
+		      &\leq \frac{1}{L} \int_{-L}^{L} |f(x)| \left| \cos \left( \frac{ n\pi x}{ L } \right)  \right| dx   \\
+		      &\leq \frac{1}{L} \int_{-L}^{L} |f(x)|dx \\
+		      &\leq \frac{1}{L} \int_{-L}^{L} M dx = \frac{M}{L}2L = 2M  
+	\end{align*}
+	That is, $|a_n|<2M$. Repeat for $b_n<2M$ and $a_0<M$.
+\end{prf}
+
+\begin{lem}[Riemann-Lebesgue (special case)]
+	If $f(x)$ satisfies Restriction 1 and 2 then  $a_n \to 0$ and $b_n \to 0$ as $n \to \infty $.
+\end{lem}
+
+\begin{prf}
+	Suppose $\tilde{\bar{f}} (x)$, denote any discontinuities as $\{x_1,x_2,\ldots\,x_N\} $ with $x_0=-L$ and $x_{N+1} = L$. Then we can write
+	 \[
+		 a_n = \frac{1}{L} \int_{-L}^{L} \tilde{ f } (x) \cos \left( \frac{ n\pi x}{ L } \right) dx = \sum_{ p=1}^{ N+1} \frac{1}{L} \int_{ x_{p-1}}^{ x_{p}} \tilde{ f } (x) \cos \left( \frac{ n\pi x}{ L } \right) dx
+	 .\]
+		 Now let 
+		 \[
+			 \alpha_{n,p} = \frac{1}{L} \int_{ x_{p-1}}^{ x_{p}} \tilde{ f } (x) \cos \left( \frac{ n\pi x}{ L } \right) dx  
+		 .\] 
+		 where $\tilde{ f } (x) = u$ and $\cos \left( \frac{ n\pi x}{ L } \right) dx = dv$. Then using integration by parts,
+		 \begin{align*}
+			 \alpha_{n,p} &= \frac{1}{L} \left( uv \big|_{x_{p-1}}^{x_p} - \int_{ x_{p-1}}^{ x_p} v du  \right)  \\
+				  |a_{n,p}|    &= \frac{1}{n\pi} \left| \tilde{ f } (x) \sin \left( \frac{ n\pi x_p}{ L} \right) -\tilde{ f } (x)\sin \left( \frac{ n\pi x_{p-1}}{ L} \right) -\int_{ x_{p-1}}^{ x_p} \tilde{f'}(x)\sin \left( \frac{ n\pi x}{ L} \right) dx   \right|  \\
+				      &\leq \frac{1}{n\pi} \bigg[ \left| \tilde{ f } (x) \sin \left( \frac{ n\pi x_p}{ L} \right)  \right| +\left| \tilde{ f } (x) \sin \left( \frac{ n\pi x_{p-1}}{ L} \right)  \right| \\
+				      & \quad + \int_{x_{p-1}}^{x_p} \left| \tilde{f'}(x) \sin \left( \frac{ n\pi x}{ L} \right)   \right| dx  \bigg]  \text{$\qquad $ using triangle inequality } \\
+			 &\leq \frac{1}{n\pi} \left| \tilde{ f } (x) \right| + \left|\tilde{ f } (x)\right| + \int_{ x_{p-1}}^{ x_p} |\tilde{ f } (x)| dx  \\
+			 &\leq \frac{1}{n\pi} \cdot C
+		\end{align*}
+		 where $C$ represents the constant that bounds  $\tilde{f}(x) $ and $\tilde{f'}(x) $ on $[-L,L]$. As $n \to \infty$,
+		 \[
+|\alpha_{n,p}| \to 0 \implies a_n=\sum_{ p=1}^{ N+1} \alpha_{n,p} \to 0 
+.\] 
+\end{prf}
+
+
+\end{document}

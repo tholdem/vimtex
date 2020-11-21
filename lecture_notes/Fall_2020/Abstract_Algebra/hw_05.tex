@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 5}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[9.1]
+Let's start tracing the orbit from 1: $ \{1,5,2\} $.\\
+3: $ \{3\} $.\\
+4: $ \{4,6\} $ \\
+The orbits are: $ \{1,5,2\}, \{3\},\{4,6\}. $
+\end{problem}
+\begin{problem}[9.2]
+1: $ \{1,5,8,7\} $.\\
+2: $ \{2,6,3\} $.\\
+4: $ \{4\} $.\\
+The orbits are: $ \{1,5,8,7\}, \{2,6,3\},\{4\} $.
+\end{problem}
+
+\begin{problem}[9.7]
+\begin{align*}
+	\text{(1 4 5)(7 8)(2 5 7)}&=\text{(1 4 5 8 7 2)}\\
+				  &= \begin{pmatrix} 1&2&3&4&5&6&7&8\\4&1&3&5&8&6&2&7 \end{pmatrix}   \\
+\end{align*}
+\end{problem}
+\begin{problem}[9.8]
+\begin{align*}
+	\text{ (1 2)(4 7 8)(2 1)(7 2 8 1 5)} &= \text{(1 5 8)(2 4 7)} \\
+					     &= \begin{pmatrix} 1&2&3&4&5&6&7&8\\5&4&3&7&8&6&2&1 \end{pmatrix}  \\
+\end{align*}
+\end{problem}
+\begin{problem}[9.10]
+By tracing the orbits we can rewrite the permutation as a product of disjointed cycles:\\
+
+(1 8)(3 6 4)(5 7) = (1 8)(3 4)(3 6)(5 7).
+\end{problem}
+
+\begin{problem}[9.11]
+	(1 3 4)(2 6)(5 8 7) = (1 4)(1 3)(2 6)(5 7)(5 8)
+\end{problem}
+\begin{problem}[9.23]
+~\begin{enumerate}[label=\alph*)]
+	\item False. A cycle requires at least one orbit with more than one elements. So the identity permutation is not a cycle.
+	\item True. By definition.
+	\item False. 9.15 eliminated a case when a permutation is both a product of even number and product of odd number of transpositions, so we don't have to consider such case in 9.18. 
+	\item True. By Corollary 9.12, since a nontrivial subgroup of $ S_9$ contains permutations of at least two elements, they must be a product of transpositions. Hence some transpositions must be in the subgroup.
+	\item False. $ |A_5|=5!/2=60$.
+	\item False. $ S_1 = \{id\} $ is trivially cyclic with $ id$ as the generator.
+	\item True.  $ |A_3|=3!/2=3$. We know that all groups with order 3 are isomorphic to $ \zz_3$ and it is commutative. So $ A_3$ must be isomorphic to that group and be commutative too.
+	\item True. By fixing 8 we are only permuting 7 elements. This is isomorphic to $ S_7$.
+	\item True. Same as above.
+	\item False. The identity is an even permutation so this set of only odd permutations cannot be a subgroup.
+\end{enumerate}
+\end{problem}
+\begin{problem}[9.24]
+	$ A_3$ are:
+\begin{align*}
+	\rho^0 &= \text{ (1 2)(1 2)}  \\
+	\rho^1 &= \text{(1 2 3)} = \text{(1 3)(1 2)} \\
+\rho^2 &= \text{(1 3 2)} = \text{(1 2)(1 3)}  \\
+\end{align*}
+which are all products of even number of transpositions.
+\begin{table}[H]
+	\centering
+	\begin{tabular}{c||c|c|c}
+	& $ \rho^0 $ & $ \rho^1$ & $ \rho^2$\\
+	\hline
+	\hline
+		$ \rho^0 $& $ \rho^0$ & $ \rho^1$ & $ \rho^2$\\
+		\hline
+		$ \rho^1 $ & $ \rho^1$ & $ \rho^2$& $ \rho^0$\\
+		\hline
+		$ \rho^2 $ & $ \rho^2$& $ \rho^0$ & $ \rho^1$\\
+
+	\end{tabular}
+\end{table}
+\end{problem}
+\end{document}

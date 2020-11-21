@@ -1,0 +1,143 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Convergence Part 2}
+~\begin{defn}[Dirichlet Kernel]
+	We define \allbold{Dirichlet Kernel} to be: 
+\[
+	D_N\left( \frac{\pi u}{L} \right) = \frac{1}{2}+\sum_{ n=1}^{ N} \cos \left( \frac{ n\pi u}{ L} \right)  
+.\] 
+\end{defn}
+\begin{property}
+~\begin{enumerate}[label=\arabic*)]
+	\item we have $\frac{1}{L}\int_{-L-\delta}^{L-\delta} D_N \left( \frac{\pi u}{L} \right) du =1 $ for any $\delta \in \rr$.
+	\item 
+		\[
+			D_N\left( \frac{\pi u}{L} \right) = \frac{\sin[(N+\frac{1}{2}) \frac{\pi}{L}u]}{2 \sin\left( \frac{\pi}{2L} u \right) }
+		.\] 
+\end{enumerate}
+\end{property}
+\begin{prf}
+\begin{enumerate}[label=\arabic*)]
+	\item Prove by direct integration.
+	\item use $ 2 \sin(\alpha )\cos(\beta )=\sin(\beta+ \alpha )-\sin(\beta -\alpha )$ to show
+		\[
+			\sin\left( \frac{u}{2} \right) +\sum_{ n= 1}^{ N} 2\sin(\frac{u}{2} )\cos(nu )=\sin[(N+\frac{1}{2})u]
+		.\]
+		The sum will telescope away.
+\end{enumerate}
+\end{prf}
+We will prove pointwise convergence first.
+
+Recall that the adjusted function $\tilde{\overline{f}} $ just average the discontinuities.
+\newpage
+
+\begin{thm}[Dirichlet]
+	Suppose $f(x)$ is a piecewise smooth function on $[-L,L]$ and let $\tilde{ f } (x)$ denote the periodic extension of the adjusted function. For any fixed integer $N>0$ and at each point  $x$, we can define the  $N$th partial sum of the Fourier Series representing  $f(x)$ as
+	\[
+		S_N(x)=a_0 +\sum_{ n= 1}^{ N} a_n\cos \left( \frac{ n\pi x}{ L} \right) + \sum_{ n= 1}^{ N} b_n \sin \left( \frac{ n\pi x}{ L} \right) 
+	.\]
+	then 
+\[
+	\text{ F.S.} [ f]( x) = \tilde{ f } (x) \quad \forall \  x \in [-L,L]
+,\]
+and
+	\begin{enumerate}[label=\arabic*)]
+		 \item If $\tilde{f} (x)$ is continuous at any $x_0$ then
+			 \[
+				 \lim_{ N \to \infty} S_N(x_0) = \tilde{f} (x_0)
+			 .\] 
+		 \item If $ \tilde{ f } (x)$ is discontinuous at any real $ x_0$ then
+			 \[
+				 \lim_{ N \to \infty} S_N(x_0) = \frac{\tilde{ f } (x_0^-)+\tilde{ f } (x_0^+)}{2}
+			 .\] 
+	\end{enumerate}
+	That is, $ \text{ F.S.} [ f]( x) =\tilde{\bar{f}} (x) \quad \forall \ x$.
+\end{thm}
+
+\begin{prf}[Pointwise Convergence]
+	Given $x_0 \in \rr$, we will use the Riemann-Lebesgue Lemma, so we need to first write $S_N(x_0)$ in integral form. Note that:
+	\[
+		a_n \cos \left( \frac{ n\pi x}{ L} \right) = \frac{1}{L} \int_{-L}^{L} f(t) \cos \left( \frac{ n\pi t}{ L} \right) \cos \left( \frac{ n\pi x}{ L} \right) dt 
+	.\] 
+
+and in general, for each $n \geq 1$, we can write the $n$th element in the integral form:
+ \begin{align*}
+	 a_n \cos \left( \frac{ n\pi x}{ L} \right) + b_n \sin \left( \frac{ n\pi x}{ L} \right) &= \frac{1}{L} \int_{-L}^{L} f(t) \cos \left( \frac{ n\pi t}{ L} \right) \cos \left( \frac{ n\pi x}{ L} \right) \\
+	 &\quad  + \frac{1}{L} \int_{-L}^{L} f(t) \sin \left( \frac{ n\pi t}{ L} \right) \sin \left( \frac{ n\pi x}{ L} \right) dt   \\
+	&= \frac{1}{L}\int_{-L}^{L} f(t) \left[ \cos \left( \frac{ n\pi t}{ L} \right) \cos \left( \frac{ n\pi x}{ L} \right) + \sin \left( \frac{ n\pi t}{ L} \right) \sin \left( \frac{ n\pi x}{ L} \right)  \right]dt  \\ 
+	&=  \frac{1}{L}\int_{-L}^{L} f(t) \left[ \cos \left( \frac{ n\pi (t-x)}{ L} \right)  \right] dt  
+\end{align*}
+
+Thus, we have
+\begin{align*}
+	S_N(x_0) &= a_0 + \sum_{ n=1}^{ N} a_n \cos \left( \frac{ n\pi x_0}{ L} \right) + \sum_{ n=1}^{ N} b_n \sin \left( \frac{ n\pi x_0}{ L} \right)  \\
+		 &= \frac{1}{2L} \int_{-L}^{L} f(t) dt + \sum_{ n=1}^{ N} \frac{1}{L} f(t) \left[ \cos \left( \frac{ n\pi (t-x_0)}{ L} \right)  \right]  dt \\
+		 &= \frac{1}{L} \int_{-L}^{L} f(t) \left[ \frac{1}{2} + \sum_{ n=1}^{ N} \cos \left( \frac{ n\pi (t-x_0)}{ L} \right)  \right] dt  
+\end{align*}
+
+
+we now apply the Dirichlet Kernel result to $S_N(x_0) - \tilde{f}(x_0) $. 
+\begin{align*}
+	S_N(x_0) = \frac{1}{L} \int_{-L}^{L} f(t) D_N\left(\frac{\pi (t-x_0)}{L}\right) dt 
+\end{align*}
+Now, using substitution $u = t-x_0$, $t=u+x_0$, we have
+\[
+	\frac{1}{L} \int_{-L-x_0}^{L-x_0} D_N\left( \frac{\pi u}{L} \right) du = 1 \implies \frac{1}{L} \int_{-L}^{L} D_N\left( \frac{\pi (t-x_0)}{L} \right) dt = 1  
+.\] 
+so multiplying both sides of the equation by $\tilde{ f } (x_0)$ yields
+\[
+	1=\frac{1}{L}\int_{-L}^{L} D_N\left( \frac{\pi u}{L} \right) dt \implies \tilde{ f } (x_0) = \frac{1}{L} \int_{-L}^{L} \tilde{ f } (x_0) D_N\left( \frac{\pi (t-x_0)}{L} \right) dt  
+.\] 
+then applying Property 2 of Dirichlet Kernel yields 
+\begin{align*}
+	S_N(x_0)-\tilde{ f } (x_0) &= \frac{1}{L} \int_{-L}^{L} (f(t) - \tilde{ f } (x_0) D_N\left( \frac{\pi(t-x_0)}{L} \right) dt  \\
+				   &= \frac{1}{L} \int_{-L}^{L} (f(t) -\tilde{ f } (x_0)) \frac{\sin\left( (N+\frac{1}{2}) \frac{\pi}{L} (t-x_0) \right) }{2\sin(\frac{\pi}{2L}(t-x_0) )} \\
+\end{align*}
+
+Finally we will apply the Riemann-Lebesgue Lemma. Note that if we let $ u=t-x_0$ and $M=(N+\frac{1}{2})\frac{\pi}{L}$, we have
+\[
+	\frac{1}{L}\int_{-L-x_0}^{L-x_0} \frac{f(u+x_0)-\tilde{ f } (x_0)}{2\sin\left( \frac{\pi}{2L}u \right) } \sin\left( Mu \right)   
+.\] 
+Denote the quotient as $Q(u)$. Then the lemma implies that
+ \[
+	 \int_{-L-x_0}^{L-x_0} Q(u) \sin(Mu) du \to 0 \text{ as } M \to \infty   
+.\] 
+provided that $Q(u)$ is piecewise smooth. We proceed to show this. First, we show  $Q(u)$ is piecewise continuous. 
+
+Since the quotient of two continuous functions is continuous where defined we claim that  $Q(u)$, being the quotient of two piecewise continuous functions is piecewise continuous on its domain. Consider the denominator of  $Q(u)$ and its roots. WLOG (due to periodicity), assume that  $x_0 \in [-L,L]$. 
+\begin{case}[1]
+	If $x_0 \in (-L,L)$, then since $u \in [-L-x_0,L-x_0]$, we can show that $\sin\left( \frac{\pi}{2L} u \right) = 0 \iff u=0$, so we need to examine the limit $\lim_{ u \to 0} Q(u) $.
+	Note that since $u+x_0 \in [-L,L]$ we have $f(u+x_0) = \tilde{ f } (u+x_0)$ so
+	\[
+		Q(u) = \frac{f(u+x_0)-\tilde{ f}(x_0)}{2\sin\left( \frac{\pi}{2L} u \right) } = \frac{\tilde{ f } (u+x_0) -\tilde{ f } (x_0)}{2\sin\left( \frac{\pi}{2L} u \right) }
+	.\] 
+	Using L'Hopital's Rule,
+	\[
+		\lim_{ u \to 0} Q(u) = \lim_{ u \to 0} \frac{\tilde{ f' }(u+x_0)}{\frac{\pi}{L}\cos \left( \frac{ \pi}{ 2L} u \right) } = \tilde{ f' } (x_0) \frac{L}{\pi} < \infty
+	.\]
+	Since $ x_0 \in (-L,L)$, $ f'(x_0)$ is well-defined. This implies there is a removable discontinuity at $ u=0$ so  $ Q(u)$ is piecewise continuous if  $ |x_0|<L$.
+\end{case}
+\begin{case}[2]
+	Suppose $|x_0| =L$, and WLOG assume $x_0=-L$ so $u  \in [0,2L]$. Notice
+	\[
+		\sin\left( \frac{\pi}{2L}u \right) =0 \implies u=0 \text{ or } u=2L
+	.\] 
+	So we only need to check these two cases. As before, since $ u+x_0 \in[-L,L]$ we can interchange $ f$ and $ \tilde{ f }$.
+	By the continuity and differentiability of $\tilde{ f } (x)$ (at 0), we can show $\lim_{ u \to 0^+} Q(u) = \lim_{ u \to 0} Q(u) = \tilde{ f }' (x_0)\frac{L}{\pi} < \infty$ so there is a removable discontinuity at $u=0$. 
+
+	At  $u=2L$, by periodicity, we have  $\tilde{ f } (x_0+2L) = \tilde{f} (x_0)$ so again using L'Hopital's Rule:
+	\[
+		\lim_{ u \to 2L^-} Q(u) = \lim_{ u \to 2L^-} \frac{\tilde{f'}(u+x_0) }{\frac{\pi}{L}\cos \left( \frac{ \pi}{ 2L} u \right) } = \tilde{ f' }(2L+x_0) \frac{-L}{\pi} = \tilde{f'}(x_0) \frac{-L}{\pi}   < \infty  
+	.\]
+	(Jaden: note $ f'(x_0)$ for both cases is only defined if $ \tilde{  f}( x) $ is differentiable for all $x \in [-L,L]$. Additional argument is required to prove it for all piecewise smooth functions. Here we seemed to skip the proof for the cases when $x_0$ happens to be jumped discontinuities.)
+	Now we have established that $Q(u)$ is piecewise continuous. To show  $Q'(u)$ is also piecewise continuous we leave it to the readers. So  $Q(u)$ is piecewise smooth.
+	By the lemma,  $S_N(x_0)-\tilde{ f } (x_0) \to 0$ as $N \to \infty$. That is
+	\[
+		\lim_{ N \to \infty} S_N(x_0)=\tilde{ f } (x_0) \iff \text{ F.S.} [ f](x_0) = \tilde{ f } (x_0)
+	.\] 
+	Thus we have established the pointwise convergence.
+\end{case}
+\end{prf}
+\end{document}

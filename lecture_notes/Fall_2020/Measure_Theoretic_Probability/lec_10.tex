@@ -1,0 +1,110 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{thm}[]
+	Let $(X_n) $ be a sequence of r.v. on $ (\Omega,\mathcal{F},P)$. Then
+	\[
+		\left\{ \omega: \lim_{ n \to \infty} X_n(\omega) \text{ exists}  \right\} \coloneqq \left\{ \lim_{ n \to \infty} X_n \text{ exists}  \right\}  
+	\]
+	is a tail event. That is, it is in $ \mathcal{F}_T = \bigcap_{ m =1}^{\infty} \sigma(\{X_m,X_{m+1},\ldots\} )$ (let's call each individual term $ \sigma_m$, and denote $ \sigma_{\infty}$ as the whole thing).
+\end{thm}
+
+\begin{prf}
+	For $ \omega \in \{\lim_{ n \to \infty} X_n \text{ exists} \} $, $ \lim_{ n \to \infty} X_n(\omega)$ exists, meaning that $ (X_n(\omega))$ is Cauchy sequence. That is, for all $ \epsilon>0$, there exists an $ N \in \nn$ such that if $ n>m \geq N$, then  $ |X_n - X_m|< \epsilon$. \emph{i.e.}:
+	\begin{align*}
+		\{\lim_{ n \to \infty} X_n \text{ exists} \} &= \{ \ \forall \ \epsilon>0, \ \exists \ N \text{ s.t. } \ \forall \ n>m\geq N, |X_n - X_m|< \epsilon\}  \\
+		&= \bigcap_{ \epsilon>0} \bigcup_{ N} \bigcap_{ n>m\geq N} \{|X_n - X_m|< \epsilon\} 
+       \end{align*}
+       since rationals are dense, we can restrict $\epsilon$ to be countable. Since $ X_n$ and $X_m$ are $ \sigma_1$-measurable, $ |X_n-X_m|$ is also $ \sigma_1$-measurable by previous proofs. Then by definition of measurable, $ \{|X_n - X_m|< \epsilon\} \in \sigma_1 $. (Recall $ \{Y< \epsilon\} = \{\omega: Y(\omega) < \epsilon\} = Y^{-1}((-\infty, \epsilon))  $, where $ (- \infty, \epsilon) \in \mathcal{B}( \rr)$.) 
+
+       Then we can repeat this argument on the shifted sequence $ \{X_m,X_{m+1},\ldots\} $, and by induction we can establish that $ \{\lim_{ n \to \infty} X_n \text{ exists} \} \in \sigma_m \ \forall \ m\geq 1$. Hence,
+       \[
+       \{\lim_{ n \to \infty} X_n \text{ exists} \} \in \sigma_{\infty} = \bigcap_{ m=1}^{ \infty} \sigma_m  
+       .\] 
+\end{prf}
+
+\begin{eg}[valid r.v. formed from a sequence of r.v.]
+~\begin{enumerate}[label=\arabic*)]
+	\item $ \sup_n\left\{X_n\right\} $ and $ \inf_n\left\{ X_n \right\} $.
+		\begin{prf}
+			\[
+				\{\omega: \sup_n X_n(\omega) \leq x\} = \bigcap_{ n=1}^{ \infty} \{\omega: X_n(\omega) \leq x\} \in \mathcal{F} \ \forall \ x \in \rr
+			\]
+			\[
+				\{\omega: \inf_n X_n(\omega) \leq x \} = \bigcup_{ n =1}^{\infty} \{ X_n(\omega) \leq x \} \in \mathcal{F} \ \forall \ x \in \rr 
+			.\] 
+		\end{prf}
+	\item $ \limsup_{  n} X_n$ and $ \liminf_{  n} X_n$.
+		\begin{prf}
+		\begin{align*}
+		\{\omega: \limsup_{  n} X_n(\omega) \leq x\} &= \{\omega: \inf_n \sup_{m\geq n} X_m(\omega)\leq x\}\\ 
+		&= \bigcup_{ n =1}^{\infty} \{\omega: \sup_{m\geq n} X_m(\omega)\leq x\}\\
+		&= \bigcup_{ n =1}^{\infty} \bigcap_{ m=n}^{ \infty} \{\omega: X_m(\omega) \leq x\}   \\
+		& \in \mathcal{F} \ \forall \ x \in \rr 
+		\end{align*}
+		\end{prf}
+	\item If $(X_n(\omega)) $ converges $ \ \forall \ \omega \in \Omega$, then $ \lim_{ n \to \infty} X_n$ is a r.v.
+		\begin{prf}
+		\[
+		\lim_{ n \to \infty} X_n = \limsup_{  n} X_n=\liminf_{  n} X_n \in \mathcal{F}
+		.\] 
+		\end{prf}
+	\item If $ (X_n(\omega))$ converges for "almost all" $ \omega \in \Omega$. (It means that $ P(\{\omega: \lim_{ n \to \infty} X_n(\omega) \text{ does not exists} \} ) =0$. Define
+\begin{equation*}
+	X(\omega) \coloneqq
+\begin{cases}
+	\lim_{ n \to \infty} X_n(\omega) , & \text{ if }  (X_n(\omega)) \text{ converges}\\
+	0, & \text{ otherwise} \\
+\end{cases}
+\end{equation*}
+\end{enumerate}
+
+\end{eg}
+
+\begin{defn}[]
+	Given a sequence of r.v. $ (X_n)$ and a r.v. $ X$ on  $ (\Omega,\mathcal{F},P)$. We say $ X_n$ \allbold{converges} to $ X$ w.p. 1 ("almost surely"), $ X_n \xrightarrow{ a.s.} X $, if  \[ P\left( \lim_{ n \to \infty} X_n=X \right) = P(\{\omega: \lim_{ n \to \infty} X_n(\omega) = X(\omega)\} ) =1.\]
+\end{defn}
+
+\begin{eg}[]
+	$ \Omega = [0,1],\mathcal{F}=\mathcal{B}([0,1]), P=$ Lebesgue measure. Define $ X_n(\omega) = \omega^{n}$, \emph{i.e.} $ X_1(\omega)=\omega, X_2(\omega)=\omega^2$. Then
+	\begin{equation*}
+		\lim_{ n \to \infty} X_n(\omega) =
+	\begin{cases}
+		0 & \text{ if } \omega\neq 1\\
+		1 & \text{ if } \omega=1 \\
+	\end{cases}
+	\end{equation*}
+	Define
+	\begin{equation*}
+		X(\omega)=0
+	\end{equation*}
+	Then
+	\[
+		P(\{\omega:\lim_{ n \to \infty} X_n(\omega)=X(\omega)\} )=P([0,1))=1-0=1
+	.\] 
+	So
+	\[
+	X_n \xrightarrow{ a.s.} X 
+	.\] 
+\end{eg}
+
+\subsection*{An alternative characterization of almost sure convergence}
+~\begin{thm}
+\[
+	P\left( \lim_{ n \to \infty} X_n =X \right) =1 \iff P(|X_n - X| \geq \epsilon\ i.o.) =0 \ \forall \ \epsilon>0
+.\]
+\end{thm}
+\begin{prf}
+
+	If  $ |X_n(\omega)-X(\omega)| \geq \epsilon \ \forall \ \epsilon>0$ for finitely many $ n$, then  $ X_n(\omega) \to X(\omega)$. So
+	\[
+		\{\omega:\lim_{ n \to \infty} X_n(\omega)=X(\omega)\} = \{\omega: |X_n(\omega)-X(\omega)|\geq \epsilon \ i.o.\}^{c} \ \forall \ \epsilon>0  
+	.\] 
+
+\end{prf}
+
+\begin{defn}[converges in probability]
+	$ X_n$ \allbold{converges in probability} to $ X$ if  $ \ \forall \ \epsilon>0, \lim_{ n \to \infty} P(|X_n -X|\geq \epsilon) =0$. And we write $ X_n \xrightarrow{ p}  X$. 
+\end{defn}
+\end{document}

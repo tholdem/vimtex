@@ -1,0 +1,162 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{thm}[distributions of transformations]
+	Let $ X=(X_1, \ldots, X_k)$ be a r.vec. Let $ g: \rr^{k} \to \rr^{i}$ be a measurable function. Define $ Y=g(X)$ (is measurable because it's composition of measurable functions). Let $ P_X$ be the distribution of  $ X$. Then
+	\[
+		P_Y(A) = P(Y \in A) = P(g(X) \in A) = P(X \in g^{-1}(A))= P_X(g^{-1}(A))
+	.\] 
+	\emph{i.e.} $ P_Y = P_X \circ g^{-1}$. 
+\end{thm}
+
+It's also called pushforward operation.
+
+
+\subsection*{Projection Maps}
+Consider the measurable spaces $ (\Omega_1,\mathcal{F}_1),\ldots,(\Omega_k,\mathcal{F}_k)$. Define $ \Omega= \Omega_1 \times \ldots \times \Omega_k$. Define
+\[
+	\mathcal{F} = \sigma(\mathcal{F}_1 \times \cdots \times \mathcal{F}_k)
+.\]
+Let $ \pi_i: \Omega \to \Omega_i$ be the projection map
+\[
+	\pi_i(\omega_1,\ldots,\omega_k) = \omega_i
+.\] 
+\begin{note}[]
+	If $ A = A_1 \times \cdots \times A_k$ then $ \pi_i(A) = A_i$.
+\end{note}
+
+Let $ \pi_i ^{-1} (\mathcal{F}_i) = \{A \subseteq \Omega: \pi_i(A) \in \mathcal{F}_i\} $. Then
+\[
+	\mathcal{F}= \sigma \left( \bigcap_{ i= 1}^{k} \pi_{i}^{-1}(\mathcal{F}_i)  \right)
+.\]
+\begin{note}[]
+The thing in the parenthesis do not equal. Their $\sigma$-fields equal.
+\end{note}
+
+Moreover (TODO requires proof!),
+\[
+	\pi_i ^{-1}(\mathcal{F}_i) \subseteq \mathcal{F} \implies \pi_i: \Omega \to \Omega_i \text{ is } \mathcal{F} /\mathcal{F}_i \text{ measurable} 
+.\]
+
+\subsection{Marginal Distribution}
+
+Notice $ \pi_i(X) = X_i$ is a composition of measurable functions hence it's measurable.
+
+Its distribution is $ P_{X_i} = P_X \circ \pi_i ^{-1}$. This is called \allbold{marginal distribution}.
+
+Question: is there a corresponding marginal density? That is, we are looking for a function $ f_i$ such that $ P_{X_i}(A) = \int_A f_i(t) dt$. 
+
+Guess: If we integrate the density over all the other r.v. To do this we need to change the order of integration using Fibini's Theorem. That is, we guess
+\[
+	f_i(x_i) = \int_{-\infty}^{\infty} \cdots \int_{-\infty}^{\infty} f(x_1,\ldots,x_k) dx_1 \ldots d x_{i-1} d x_{i+1} \ldots d x_k  
+.\] 
+And we would want to check that
+\begin{align*}
+	\int_{A} f_i (x_i) dx_i &= \int_{A}  \int_{-\infty}^{\infty} \cdots \int_{-\infty}^{\infty} f(x_1,\ldots,x_k) dx_1 \ldots d x_{i-1} d x_{i+1} \ldots d x_k d x_i  \\
+				&\overset{\mathrm{Fibini}}{=}  \int_{-\infty}^{\infty} \cdots \int_{A} \cdots \int_{-\infty}^{\infty} f(x_1,\ldots,x_k) dx_1 \ldots d x_{i-1} d x_{i+1} \ldots d x_k \\
+				&= P_{X} ( (- \infty, \infty) \times \cdots \times A \times \cdots \times (-\infty,\infty)) \\
+				&= P_{X_i} (A) \\
+\end{align*}
+
+\begin{defn}[product space]
+Let $ (\Omega_1, \mathcal{F}_1, \mu_1)$ and $ (\Omega_2,\mathcal{F}_2, \mu_2)$ be measure spaces. Let's define the product  $\sigma$-field $ \mathcal{F} \coloneqq \sigma(\mathcal{F}_1 \times \mathcal{F}_2)$. Define $ \Omega = \Omega_1 \times \Omega_2$. Then $ (\Omega,\mathcal{F})$ is called the \allbold{product space}. 
+\end{defn}
+
+\begin{prop}[]
+Let $ \mathcal{F}$ be the product $\sigma$-field. Let $ A \in \mathcal{F}$. Define the "slices":
+\[
+	A \big|_{\omega_1} \coloneqq \{\omega_2 \in \Omega_2: (\omega_1, \omega_2) \in A\} 
+.\]
+Then $ A\big|_{\omega_1}$ and $ A\big|_{\omega_2}$ are in $ \mathcal{F}_2$ and $ \mathcal{F}_1$, respectively. 
+\end{prop}
+
+\begin{prf}
+	Let $ \mathcal{G} = \{ B \subseteq \Omega: B\big|_{\omega_1} \in \mathcal{F}_2 \text{ and } B\big|_{\omega_2} \in \mathcal{F}_1 \ \forall \ \omega_1,\omega_2 \in \Omega\} $. We wish to show that $ \mathcal{G}$ is a $\sigma$-field.
+	\begin{enumerate}[label=(\roman*)]
+		\item Slices of $ \Omega$ are $ \Omega_1 \in \mathcal{F}_1, \Omega_2 \in \mathcal{F}_2 $. 
+		\item Take $ B \in \mathcal{G}$. Notice
+			\begin{align*}
+				(B \big|_{\omega_1})^{c} &= \{\omega_2 \in \Omega_2: (\omega_1, \omega_2) \in B\}^{c}  \\
+							 &= \{\omega_2 \in \Omega_2: (\omega_1,\omega_2) \in B^{c}\} \\
+							 &= B^{c}\big|_{\omega_1}
+			\end{align*}
+			And we know $ (B\big|_{\omega_1})^{c} \in \mathcal{F}_2$ since $ \mathcal{F}_2$ is a $\sigma$-field.
+		\item same technique as above.
+	\end{enumerate}
+
+	It remains to show that $ \mathcal{F}$ is a subset of $ \mathcal{G}$. Given $ A_i \in \mathcal{F}_i$, notice
+	\begin{align*}
+		(A_1 \times A_2 )\big|_{w_1} &= \{\omega_2 \in \Omega_2: (\omega_1,\omega_2) \in A_1 \times A_2\}  \\
+					     &= \begin{cases}
+						     A_2 &\text{ if } \omega_1 \in A_1\\
+						     \O & \text{ if } \omega_1  \not\in A_1\\
+					     \end{cases} \in \mathcal{F}_2 
+	\end{align*}
+	Likewise for the other. Thus $ A_1 \times A_2 \in \mathcal{G}$. Since $ \mathcal{F}$ is the smallest $\sigma$-field containing sets of the form $ A_1 \times A_2$, it follows that $ \mathcal{F} \subseteq \mathcal{G}$.
+\end{prf}
+
+
+\begin{thm}[]
+\[
+	\mathcal{B}(\rr^{n+m}) = \sigma(\mathcal{B}(\rr^{n})\times \mathcal{B}(\rr^{m}))
+.\]
+\end{thm}
+
+\begin{defn}[product measure]
+	Given two spaces $ (\Omega_1, \mathcal{F}_1,\mu_1), (\Omega_2, \mathcal{F}_2, \mu_2)$. Define a \allbold{product measure} as a measure $ \mu= \mu_1 \times \mu_2$ on $ (\Omega,\mathcal{F})$ such that 
+	\[
+		\mu(A_1 \times A_2) = \mu_1(A_1) \cdot \mu_2(A_2) \ \forall \ A_i \in \mathcal{F}_i
+	.\] 
+\end{defn}
+
+\begin{thm}[Fubini's Theorem]
+Given two $\sigma$-finite measure spaces and their product measure space. If $ f: \Omega \to \rr$ is a measurable function such that $ \int_{\Omega} |f|\ d \mu < \infty$, then
+\begin{enumerate}[label=\arabic*)]
+	\item For almost all $ \omega_1 \in \Omega_1$, $ f(\omega_1,\omega_2)$ is an integrable function of $ \omega_2$ (vice-versa).
+	\item There exists an integrable $ h:\Omega_1 \to \rr$ such that 
+		\[
+			h(\omega_1) = \int_{\Omega_2} f(\omega_1,\omega_2) d \omega_2
+		\]
+		for almost all $ \omega_1$ (vice versa).
+	\item \begin{align*}
+			\int_{\Omega}f\ d \mu = \int_{\Omega_1 \times \Omega_2} f\ d( \mu_1 \times \mu_2) &= \int_{\Omega_1} \left[ \int_{\Omega_2} f(\omega_1,\omega_2) d \omega_2 \right] d \omega_1\\
+													  &= \int_{\Omega_2} \left[ \int_{\Omega_1} f(\omega_1, \omega_2) d \omega_1 \right] d\omega_2 \\
+		.\end{align*} 
+\end{enumerate}
+\end{thm}
+
+\begin{lem}[1]
+	Suppose $ \mu_1$ and $ \mu_2$ are $\sigma$-finite. For every $ A \in \mathcal{F} = \sigma(\mathcal{F}_1 \times \mathcal{F}_2)$, the function $ h: \Omega_1 \to \rr$ defined as 
+	\[
+		h(\omega_1) = \mu_2(A\big|_{\omega_1})
+	\] 
+is $ \mathcal{F}_1$-measurable.
+\end{lem}
+
+\begin{prf}
+\begin{case}[1]
+	$ \mu_1 , \mu_2$ are finite. Define $ \mathcal{G}= \{B \in \mathcal{F}: h_{B} \text{ is }\mathcal{F}_1 - \text{measurable}  \} $. We wish to show that $ \mathcal{G}$ is a $\lambda$-system.
+	\begin{enumerate}[label=(\roman*)]
+		\item $ \Omega \in \mathcal{G}$ because 
+			\[
+				h_{\Omega}(\omega_1) = \mu_2(\Omega\big|_{\omega_1}) = \mu_2(\Omega_2) < \infty
+			.\] 
+			Then $ h_\Omega $ is a finite constant function which is measurable as we have shown in Lecture 9.
+		\item Take $ B \in \mathcal{G}$, 
+			\begin{align*}
+				h_{B^{c}}(\omega_1) &= \mu_2(B^{c}\big|_{\omega1}) \\
+						    &= \mu_2((B\big|_{\omega_1})^{c}) \\
+						    &= \mu_2(\Omega_2) - \mu_2(B\big|_{\omega_1} 
+			\end{align*}
+			Since a constant function minus a measurable function is still $ \mathcal{F}_1$ measurable, $ B^{c} \in \mathcal{G}$.
+		\item Given $ B_n$ disjoint, using the same technique, we can show 
+\[
+	h_{\bigcup_{n} B_i } (\omega_1)= \sum_n h_{B_i} (\omega_1)
+.\] 
+The sum is measurable. Since the limit of measurable functions is measurable, taking $ n \to \infty$ gives us a $ \mathcal{F}_1$ measurable function.
+			closure under countable disjoint union.
+	\end{enumerate}
+\end{case}
+\end{prf}
+\end{document}

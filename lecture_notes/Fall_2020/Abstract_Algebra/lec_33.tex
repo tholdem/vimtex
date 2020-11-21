@@ -1,0 +1,79 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{note}[hw20.10]
+$ d=3$, so there are three evenly spaced solutions,  $ x=3 \bmod 8$ or $ x=3,11,19 \bmod 24$. We can either multiply by 7 or think 7 as  $ -1$.
+\end{note}
+
+Question: is $ R[x]$ a field?
+
+No,  $ x$ is never a unit.
+ \[
+	 x(a_0+a_1 x + \ldots + a_n x^{n}) = a_0 x +a_1 x^2 + \ldots + a_n x^{n+1} \neq 0
+.\] 
+Since $ x0\neq 1$ by theorem and definition of unit.
+
+\begin{eg}[Evaluation Homomorphism]
+
+Idea: "plug in values" for $ x$.  
+
+Evaluate a polynomial of $ \rr[x]$ at $ i$.  $ f(x) = \sqrt{2} -\pi x^2 + \frac{36}{7} x^3 $. Then
+\[
+	\phi_{i}(f(x)) = \sqrt{2} + \pi - \frac{36}{7} i \in \cc  
+.\]
+
+$ \phi_\alpha: F[x] \to E$. Two fields $ F,E, F \leq E, \alpha \in E, \phi_{\alpha} (f(x)) = f(\alpha)$.  
+
+Why is $ \phi_{\alpha}$ a ring homomorphism?
+
+Consider $ \phi_i : \rr[x] \to \cc$, 
+\begin{align*}
+	\phi_i( (\sqrt{2} - \pi x  )(\frac{3}{7}+4x^3)) &= \frac{3\sqrt{2} }{7 } - \frac{3\pi}{7 }i + 4\sqrt{2} i^2 - 4\pi i ^3 \text{ if we distributive}  \\
+							&= \phi_i(\sqrt{2}-\pi x ) \phi_i (\frac{3}{7}+4x^3) \\
+\end{align*}
+This is very trivial because we just substitute $ i$ for  $ x$ and everything else stays the same.
+\end{eg}
+
+\begin{defn}[kernel of ring homomorphism]
+The \allbold{kernel} of a ring homomorphism are elements that are mapped to zero. 
+\end{defn}
+
+What about $ \ker \phi_i$? Notice that $ \phi_i(0)=\phi_i(1+x^2) = 0$.
+
+What is $ \im \phi_i$? $ \rr[x] \to \cc$.
+
+\begin{eg}[22.6]
+	$ \phi_0 : \qq[x] \to \rr$.
+	\[
+		\phi_0 (a_0+a_1x+\ldots+a_n x^{n}) = a_0 + \ldots = a_0
+	.\] 
+	$ \phi_0$ is a ring homomorphism and $ \phi_0$ takes the constant term imply constant term of a sum is the sum of the constant terms.
+	\[
+		\phi_0(a(x)+b(x)) = \phi_0(a(x))+\phi_0(b(x))
+	.\] 
+	Same with the products.
+
+	But consider $ \phi_1: \qq[x] \to \qq$.
+	\[
+		\phi_1(a_0+a_1x_1+ \ldots + a_n x^{n}) = \sum_{ i= 1}^{ n} a_i
+	.\]
+	This is a ring homomorphism too! So does $ \phi_{-1}$.
+\end{eg}
+
+Goal: we want to study the (zero) roots of polynomials.
+
+"$ \sqrt{2} $ is a root of the polynomial $ x^2-2$". We need evaluation homomorphism $ \phi_{\sqrt{2} }: \qq[x] \to \rr$. Then $ \phi_{\sqrt{2} }(f(x)) = 0$ means that $ \sqrt{2} $ is a root of $ x^2 -2$ in $ \rr$.
+
+Does $ x^2 - 2 \in \qq[x]$ have any roots in $ \qq$? No. 
+
+\begin{thm}[]
+If $ n \in \nn$, then a positive $ k$-th root of  $ n$ is either an integer or irrational.
+\end{thm}
+
+\section*{23:}
+Consider $ F[x]$ and  $ F$ is field. So  $ F[x]$ is a domain. 
+\begin{eg}[]
+	We want to divide $ sx^{4} - 3x^3 + x^2+ 4x-1$ by $ x^2-2x + 3$ in $ \zz_5[x]$. The reminder term will have less degree than the divisor or 0. 
+\end{eg}
+\end{document}

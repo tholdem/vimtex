@@ -1,0 +1,135 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+
+\begin{note}[]
+Gibbs only occur if FS is truncated. Gibbs has about $ 9\%$ over/undershoot.
+\end{note}
+
+\begin{intuition}
+	A sequence of continuous function cannot converge uniformly to a discontinuous function.
+\end{intuition}
+
+\begin{itemize}
+	\item if the adjusted periodic extension $ \tilde{  f}( x) $ is piecewise smooth on every finite interval but has a jump discontinuity then the Fourier Series of $ f(x)$
+		 \begin{enumerate}[label=\alph*)]
+			\item converges pointwise by Dirichlet's Theorem for pointwise convergence.
+			\item will converge at different rates of convergence at each point.
+			\item is not uniformly convergent and therefore not absolutely convergent.
+			\item exhibits Gibbs Phenomenon in every open interval around a jump discontinuity and does not converge to a continuous function (but does converge).
+		\end{enumerate}
+	\item A series that converges uniformly will not exhibit Gibbs phenomenon.
+	\item if $ \tilde{f}(x)$ is continuous everywhere then we expect absolute convergence.
+\end{itemize}
+
+\subsection{Integration and Differentiation of Fourier Series}
+
+~\begin{thm}[term-by-term integration]
+	Let $ \sum_{ n= 0}^{\infty} f_n(x)$ be defined on $ [a,b]$. If each  $ f_n(x)$ is continuous on $ [a,b]$ and if the series  $ \sum_{ n= 0}^{\infty} f_n(x)$ converges uniformly to $ f(x)$ on  $ [a,b]$ then
+	 \begin{enumerate}[label=(\roman*)]
+		 \item $ f(x) = \sum_{ n= 0}^{\infty} f_n(x)$ is continuous on $ [a,b]$ 
+		 \item
+			 \[
+				 \int_{ a}^{ b} \sum_{ n= 0}^{\infty} f_n(x) dx = \sum_{ n= 0}^{\infty} \int_{ a}^{ b} f_n(x) dx  
+			 .\] 
+	\end{enumerate}
+\end{thm}
+\begin{thm}[term-by-term differentiation]
+	Let $ f_n$ be differentiable functions defined on $ [a,b]$ and suppose the series  $ \sum_{ n= 0}^{\infty} f_n'(x)$ converges uniformly to a limit $ g(x)$ on $ [a,b]$. If there exists a point $ x_0 \in [a,b]$ where $ \sum_{ n= 0}^{\infty} f_n(x_0)$ converges, then $ \sum_{ n= 1}^{\infty} f_n$ converges uniformly to a differentiable function $ f(x)$ satisfying  $ f'(x)=g(x)$ on  $ [a,b]$. That is,
+	\[
+		f(x) = \sum_{ n= 1}^{\infty} f_n(x)
+	.\] 
+	and
+	 \[
+		 f'(x) = \frac{d}{dx} \left[ \sum_{ n= 0}^{\infty} f_n(x) \right] = \sum_{ n= 0}^{\infty} f_n'(x)
+	.\] 
+\end{thm}
+
+\begin{thm}[univerform convergence theorem]
+	Let $ f(x)$ be a continuous piecewise smooth function  $ [-L,L]$ such that  $ f(-L)=f(L)$. Then  $ \text{ F.S.} [ f]( x) $ converges uniformly to $ f(x)$ on  $ [-L,L]$. That is,
+	 \[
+		 \lim_{ n \to \infty} \max_{-L\leq x \leq L} |S_N(x) -f(x)| =0
+	.\] 
+\end{thm}
+
+Pinsky book has much more analysis.
+
+\newpage
+\section{Derivation of the Heat Equation 1}
+\subsection{Insulated Road}
+We model the transfer of thermal energy in a one dimensional rod with ends at $ x=0$ and  $ x=L$ and where the lateral surface of the rod is insulated perfectly. 
+
+~\begin{defn}[thermal energy density]
+~\begin{enumerate}[label=\arabic*)]
+	\item The \allbold{thermal energy density} $ e(x,t)$ is the amount of thermal energy per unit volume.
+	\item Consider a thin slice of the rod with cross sectional area  $ A$ between  $ x$ and  $ x+ \Delta x$. The heat energy changes in time due only to heat flowing across the edges ($ x$ and  $ x+\Delta x$). If $ \Delta x$ is small then $ e(x,t)$ may be approximated as constant throughout the slice so:
+		 \[
+			 \text{ heat energy in slice }[x,x+\Delta x] = e(x,t) \cdot A \cdot \Delta x
+		.\] 
+		Integrating it yields:
+		\[
+			\text{ Total heat energy in the rod} = \int_{ 0}^{ L} e(x,t) A dx  
+		.\] 
+\end{enumerate}
+
+\end{defn}
+\begin{defn}[heat flux]
+	The \allbold{heat flux}, $ \Phi(x,t)$, is the amount of thermal energy flowing to the right per unit time per unit surface area. If $ \Phi(x,t)<0$ then energy flows to the left. 
+\end{defn}
+
+The heat energy flow per unit time across the boundaries of slice $ [x,x+\Delta x]$ with cross sectional surface area $ A$ is:
+ \[
+	 \Phi(x,t) \cdot A \text{ (heat gain) } + (-\Phi(x+\Delta x,t) \cdot A \text{ (heat loss) }  = -[\Phi(x+\Delta x,t) - \Phi(x,t)] \cdot A
+.\] 
+
+\begin{defn}[]
+	In the model we allow for \allbold{internal sources of energy}. Let $ Q(x,t)$ be the heat energy generated per unit volume  per unit time within the rod then
+	\[
+		\text{ heat energy per unit time } = Q(x,t) \cdot  A \cdot \Delta x 
+	.\] 
+\end{defn}
+
+\begin{thm}[Heat Flow Process]
+The fundamental heat flow process in the rod is conceptually described as:
+\\
+
+rate of change of heat energy wrt time = heat energy flowing across boundaries per unit time + heat energy generated inside the rod per unit time.
+\\
+
+Now consider any finite sement of the rod (from $a$ to $b$), then the conservation of heat energy principle given above implies:
+\[
+	\frac{d}{dt} \int_{ a}^{ b} e(x,t) A dx = -[\Phi(b,t)-\Phi(a,t)] \cdot A + \int_{ a}^{ b} Q(x,t) A dx  
+.\] 
+which after canceling $ A>0$ can be rewritten as (by fundamental theorem of calculus):
+ \[
+	 \int_{ a}^{ b} \frac{\partial}{\partial t} e(x,t) dx = -\int_{ a}^{ b} \frac{\partial }{\partial x} \Phi(x,t) dx + \int_{ a}^{ b} Q(x,t) dx     
+.\] 
+which yields the "Integral Conservation Law"
+\[
+	\int_{ a}^{ b} \left[ \frac{\partial }{\partial t} e(x,t) + \frac{\partial }{\partial x} \Phi(x,t) - Q(x,t) \right]  dx = 0
+.\] 
+which holds for any $ a$ and  $ b$ within the rod, and since the integrand is assumed to be continuous, this implies (proof by contradiction):
+ \[
+	 \frac{\partial }{\partial t} e(x,t) + \frac{\partial }{\partial x} -Q(x,t) = 0 \implies \frac{\partial }{\partial t} e(x,t) = -\frac{\partial }{\partial x} \Phi(x,t) + Q(x,t)
+.\] 
+\end{thm}
+
+If $ \partial_x \Phi > 0 $ then $ \Phi$ is an increasing function in $ x$ so the heat flowing to the right at  $ x=b$ is greater than the heat flowing to the right at $ x=a$ thus the heat energy decreases between  $ x=a$ and  $ x=b$ (hence the minus sign).
+
+
+~\begin{defn}[heat capacity]
+\begin{enumerate}[label=\arabic*)]
+	\item Let $ u(x,t)$ be the temperature of the rod at point  $ x$ and at time  $ t$. Note that it may take different amounts of thermal energy to raise two different materials from one temperature to another.
+	\item Define the heat capacity, $ c(x,u)$, to be the heat energy required to raise its temperature one unit. We will either assume  $ c=c(x)$ or  $ c$ is a constant.
+	\item An alternate description of thermal energy is that it is the amount of energy needed to raise the rod's temperature from 0 to the actual temperature $ u(x,t)$. Thus if  $ \rho(x)$ is the mass density of the road then
+\[
+\text{ heat energy } = c(x) \cdot u(x,t) \cdot  \rho(x) \cdot A \cdot \Delta x 
+.\] 
+	now equating the expression for heat energy derived earlier with this expression yields
+		\[
+			e(x,t) \cdot  A \Delta x = c(x) u(x,t)\rho(x) \cdot  A \Delta x\implies e(x,t) = c(x) \rho(x) u(x,t)
+		.\] 
+\end{enumerate}
+\end{defn}
+\end{document}

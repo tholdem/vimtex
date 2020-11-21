@@ -1,0 +1,247 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{defn}[simple function]
+	$ f: \Omega \to \rr$ is a \allbold{simple function} if it can be written as
+	\[
+		f(\omega)=\sum_{ i= 1}^{ n} x_i I_{A_i}(\omega)
+	\] 
+	where $ A_1,\ldots,A_n$ form a partition of $ \Omega$ (assuming disjoint).
+\end{defn}
+
+\begin{prop}[]
+$ f: \Omega \to \rr$ is measurable iff $ A_i \in \mathcal{F}$ for $ i=1,2,\ldots,n$.
+\end{prop}
+
+\begin{thm}[]
+	If $ f: \Omega \to \rr$ is measurable, there exists a sequence $ (f_n)$ of simple measurable functions such that 
+	\begin{align*}
+		0\leq f_n(\omega) \nearrow f(\omega) & \text{ if } f(\omega)\geq 0\\
+		0\geq f_n(\omega) \searrow f(\omega) &\text{ if } f(\omega)<0\\ 
+	\end{align*}
+\end{thm}
+
+\begin{prf}
+Break up the y-axis at $ 0,\frac{1}{2^{n}}, \ldots,\frac{n 2^{n}}{2^{n} }$ and the negatives of all these. Define
+\begin{equation*}
+	f_n(\omega)=
+\begin{cases}
+	-n &\text{ if } f(\omega)\leq - n\\
+	-(k-1)2^{-n} & \text{ if } -k2^{-n}\leq f(\omega) \leq -(k-1)2^{-n} \\
+	(k-1)2^{-n} & \text{ if } (k-1)2^{-n} \leq f(\omega) \leq k 2^{-n}\\
+	n &  \text{ if } f(\omega)\geq n 
+\end{cases}
+\end{equation*}
+Clearly $ f_n$ are simple functions that are measurable since $ f$ is measurable and the interval is a Borel set so the inverse image is in $ \mathcal{F}$. 
+\end{prf}
+\begin{intuition}
+	The idea is that $ f_n(\omega)$ will expand until its range totally covers $ f(\omega)$. Then after that the intervals will just get refined as $ n \to \infty$. 
+\end{intuition}
+\subsection*{Transformations of Measures}
+
+~\begin{thm}[]
+	$ (\Omega,\mathcal{F}),(\Omega',\mathcal{F}')$, $ T: \Omega \to \Omega'$ measurable $ F / F'$. Let  $ \mu$ be a measure on $ \mathcal{F}$. Define a function for $ \mathcal{F}'$ to $ \rr$, call it $ \mu T^{-1}$, as
+	\[
+		\mu T^{-1}(A') = \mu(T^{-1}(A')) \ \forall \ A' \in \mathcal{F}'
+	.\] 
+	Then $ \mu T^{-1}$ is a measure on $ \mathcal{F}'$.
+\end{thm}
+
+\begin{note}[]
+This is the measure-theoretic version of probability distribution transformation using the Jacobian.
+\end{note}
+
+\section*{14: Distribution Functions}
+
+Let $ (\Omega,\mathcal{F},P)$ be a probability space and let $ X: \Omega \to \rr$ be a r.v.
+
+\begin{defn}[distribution]
+	The \allbold{distribution} (law) of $ X$ is the probability measure $ P_X$, defined as
+	\[
+		P_X(A)=P(X \in A)= P(\{\omega: X(\omega) \in A\}) 
+	.\]
+\end{defn}
+
+\begin{defn}[distribution function]
+The \allbold{distribution function} for $ X$ is denoted/defined as 
+ \[
+	 F_X(x) = P_X ((-\infty,x]) = P(X\leq x)
+.\] 
+\end{defn}
+
+\begin{property}[$ F_X$]
+~\begin{enumerate}[label=\arabic*)]
+	\item Non-decreasing: from monotonicity of $ P$ or  $ P_X$.
+	\item Right-continuous: from continuity from above for  $ P_X$.
+	\item  $ \lim_{ x \to -\infty} F_X(x)=0, \lim_{ x \to \infty} F_X(x)=1 $.
+	\item $ F_X$ can have, at most, countably many points of discontinuity.
+\end{enumerate}
+
+\begin{prop}[]
+	If a measure $ \mu$ is $\sigma$-finite on a space $ (\Omega,\mathcal{F})$, then $ \mathcal{F}$ cannot contain an uncountable collection of disjoint sets with positive $ \mu$ measure.
+\end{prop}
+\begin{intuition}
+	How does this relate to (4)? Let $ x=a$ be a point of discontinuity of  $ F_X$.
+
+	 \[
+		 P_X(\{x\} )=P_X((-\infty,a])-P_X((-\infty,a)) = F(a)-F(a^{-})>0
+	.\]
+	So we see that proving this claim gives us (4), since discontinuities are disjoint singleton sets with positive $ \mu$ measure.
+\end{intuition}
+\end{property}
+
+\begin{prf}
+Suppose that $ \{A_s\}_{s \in S} $ is a disjoint collection of sets each with positive $ \mu$ measure. We want to show that $ S$ must be countable. 
+
+Since $ \mu$ is $\sigma$-finite, there exists a cover $ \{B_n\} $ of $ \Omega$ of $ \mathcal{F}$-sets with $ \mu(B_n)< \infty \ \forall \ n$. For a given $ n$, consider the set of indices:
+ \[
+	 S_n = \{s \in S: \mu(A_s \cap B_n)>0\} 
+.\] 
+\begin{claim}[]
+For each $ n$,  $ S_n$ is countable.
+\end{claim}
+Let $ A$ be any set in  $ \mathcal{F}$ ($ \mathcal{F}$-set) with $ \mu(A) < \infty$. Fix $ \epsilon>0$, suppose that $ s_1,s_2,\ldots,s_k$ are distinct indices such that 
+\[
+	\mu(A_{s_i} \cap A) \geq \epsilon > 0
+.\]
+Then
+\begin{align*}
+	k \epsilon &\leq \sum_{ i= 1}^{ k} \mu(A_{s_i} \cap A) \leq \mu(A) \text{ sum of measure of disjoint sets, might not cover }A \\
+	k&\leq \frac{\mu(A)}{ \epsilon} < \infty \text{ by assumption}\\ 
+\end{align*}
+Therefore, the index set must be finite for each $ \epsilon>0$ (using the same rationals are dense trick). So apply the claim to $ B_n$ and union over all the $ n$,
+\[
+\bigcup_{ n= 1}^{ \infty} S_n \text{ is countable} 
+.\] 
+Since $ \mu(A_s)>0, \{B_n\} $ is a cover of $ \Omega$, there exists a $ n$  such that  $ \mu(A_s \cap B_n)>0$. \emph{i.e.} $ s \in S \implies s \in S_n$. Thus $ S \subseteq \bigcup_{ n =1}^{\infty} S_n$ must also be countable.
+\end{prf}
+
+~\begin{thm}[14.1]
+	Suppose $ F$ is non-decreasing, right-continuous, with  $ \lim_{ x \to -\infty} F(x)=0$ and $ \lim_{ x \to \infty} F(x)=1$. Then $ F$ is the distribution function of some r.v.
+\end{thm}
+
+\begin{prf}
+	Motivation (pre measure theory): Suppose $ X$ has cdf  $ F$ that is invertible. Then  $ F(X) \sim \text{Unif}(0,1)$. 
+
+	Consider the probability space $(\Omega,\mathcal{F},P)$ with $ \Omega=(0,1)$, $ \mathcal{F}=\mathcal{B}((0,1))$, and $ P$ being the Lebesgue measure. 
+
+	For intuition, let's first suppose that  $ F$ is invertible. For  $ \omega \in \Omega$, define $ X(\omega) = F^{-1}(\omega)$. Then this $ X$ is the r.v. we seek, because
+	 \begin{enumerate}[label=\arabic*)]
+		\item $ X$ is a r.v. measurable  $ \mathcal{F}$.
+			
+			Take $ x \in \rr$, since $ F$ is invertible and non-decreasing, $ F^{-1}$ is strictly increasing. So
+\begin{align*}
+\{\omega: X(\omega)\leq x\} &= \{\omega: F^{-1}(\omega)\leq x\}  \\
+&= \{\omega: \omega \leq F(x)\}  \text{ by increasing} \\
+&= (0,F(x)] \in \mathcal{B}((0,1)) =\mathcal{F} 
+\end{align*}
+		\item $ P(X\leq x) = F(x)$.
+
+			\begin{align*}
+				P(X\leq x) &= P(\{\omega:X(\omega)\leq x\} )\\
+					    &= P(\{\omega: F^{-1}(\omega) \leq x\} ) \\
+					    &= P(\{\omega: \omega\leq F(x)\} ) \\
+					    &= \lambda((0,F(x))) \\
+					    &= F(x)-0= F(x) \\
+			\end{align*}
+	\end{enumerate}
+
+	Now let's define a generalized inverse;
+	\[
+		F^{-1}(\omega) \coloneqq \inf\left\{x: \omega\leq F(x) \right\} 
+	.\] 
+\begin{intuition}
+	This is sort of the "leftmost" $ x$ that makes $ F(x)$ greater or equal to  $ \omega$.
+\end{intuition}
+Choose $ X(\omega) = F^{-1}(\omega)$. Notice that $ \inf\left\{x:\omega \leq F(x) \right\} \leq x $ as long as $ \omega \leq F(x)$ by definition of infimum. So 
+\begin{align*}
+	\{\omega: X(\omega) \leq x\} &= \{\omega: F^{-1}(\omega) \leq x \} \\
+				     &= \{\omega: \inf\left\{x: \omega \leq F(x) \right\} \leq x \}  \\
+	&= \{\omega:\omega\leq F(x)\}  	
+\end{align*}
+Then the same proof applies.
+\end{prf}
+
+\subsection{Weak Convergence (Convergence in Distribution)}
+~\begin{defn}[weak convergence]
+If $ F_n, n=1,2,\ldots$ and $ F$ are distribution functions, then  $ F_n$ converges weakly to $ F$ if
+\[
+	\lim_{ n \to \infty} F_n(x)=F(x)
+\] 
+at all points of continuity $ x$ of  $ F$. We say that the corresponding r.v.'s converge in distribution (convergence in law).  We denote it as $ X_n \xrightarrow{ d}X $.
+\end{defn}
+\begin{note}[]
+It doesn't mean that the r.v.'s are getting close at all, only their distributions.
+\end{note}
+
+\begin{eg}[]
+	Given $ X_1,X_2,\ldots$ i.i.d $ \sim N(\mu, \sigma^2)$, and $ X \sim N(\mu, \sigma^2)$ independent of $ (X_n)$. Then $ X_n \xrightarrow{ d} X $ but $ X_n $ doesn't converge to $ X$ since they are independent.
+\end{eg}
+
+\begin{thm}[]
+\[ X_n \xrightarrow{ a.s.} X  \implies X_n \xrightarrow{ p} X \implies X_n \xrightarrow{ d} X .\]
+\end{thm}
+
+\begin{prf}
+Let $ F_n$ be the distribution function of $ X_n$, and $ F$ for  $ X$. Take $ \epsilon>0$. Let $ x$  be a point of continuity of $ F$. 
+\begin{align*}
+	F_n(x)&= P(X_n \leq x) = P(\{\omega:X_n(\omega) \leq x\} ) \\
+	      &= P(\{X_n \leq x ,  X\leq x + \epsilon\} \cup  \{X_n \leq x ,  X>x+ \epsilon \}   ) \\
+	      &= P(X_n \leq x ,X\leq x + \epsilon ) +P( X_n \leq x ,  X>x + \epsilon   ) \text{ by disjoint} \\
+	      &\leq P(X \leq x + \epsilon ) + P(|X_n - X| > \epsilon) \text{ monotonicity, easy to see from drawing} 
+\end{align*}
+
+The other direction gives
+\begin{align*}
+	F(X\leq x- \epsilon) &=   P(X \leq x - \epsilon, X_n \leq x ) +P( X \leq x - \epsilon ,  X_n > x ) \\
+			     &\leq P(X_n \leq x ) + P(|X_n - X| > \epsilon)  \\
+\end{align*}
+Take $ n \to \infty$, $ X_n \xrightarrow{ p} X \implies \lim_{ n \to \infty} P(|X_n -X|> \epsilon) =0 $. So
+\begin{align*}
+	F(x- \epsilon) - \lim_{ n \to \infty} P(|X_n -X| > \epsilon) &\leq \lim_{ n \to \infty}  F_n(x) \text{ if it exists }  \leq F(x+ \epsilon) + \lim_{ n \to \infty}  P(|X_n - X|> \epsilon)\\
+	F(x- \epsilon) &\leq \lim_{ n \to \infty} F_n(x) \leq F(x+ \epsilon) \\
+\end{align*}
+Finally, take $ \epsilon \to 0$, since $ x$ is a point of continuity of  $ F$, by Squeeze Theorem the limit of  $ F_n(x)$ exists and equals to $ F(x)$.
+
+ \begin{note}[]
+More formally, we would squeeze twice for both $ \liminf$ and $  \limsup $ and show that they are equal.
+\end{note}
+\end{prf}
+
+\begin{note}[]
+The converse is false.
+\end{note}
+\begin{eg}[counterexample]
+	$ X_1,X_2,\ldots$ independent with $ P(X_i = \pm 1) = \frac{1}{2}$. Suppose $ X$ is independent of the  $ X_i$ with $ P(X=\pm 1)=\frac{1}{2}$. Then $ X_n \xrightarrow{ d} X$ because they have the same distribution functions. However, 
+	\begin{align*}
+		P(|X_n-X|\geq 2) &= P(|X_n -X|=2) \\
+				 &= P(X_n=1, X=-1) + P(X_n=-1, X=1) \\
+				 &= P()P() + P()P() \text{ by independence}  \\
+				 &= \frac{1}{2} \cdot \frac{1}{2} + \frac{1}{2} \cdot \frac{1}{2} =\frac{1}{2} \neq 0\\
+	\end{align*} 
+\end{eg}
+
+\begin{eg}[]
+$ X_n$ with cdfs $ F_n$, where
+\begin{equation*}
+	\lim_{ n \to \infty} F_n(x) =
+\begin{cases}
+	0,&x<c\\
+	1,& x\geq c\\
+\end{cases}
+\end{equation*}
+So $ X_n \xrightarrow{ d} X $ where $ X=c$ w.p. 1.
+\end{eg}
+
+\begin{eg}[]
+\begin{equation*}
+	\lim_{ n \to \infty} F_n(x)
+\begin{cases}
+	0, &x\leq c\\
+	1, & x\geq c\\
+\end{cases}
+\end{equation*}
+This is not a valid cdf but matches at all points of continuities. Then $ X_n \xrightarrow{ d}X $ where $ X=c$ w.p. 1.
+\end{eg}
+\end{document}

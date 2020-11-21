@@ -1,0 +1,53 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+What are the cosets of kernel?
+\begin{document}
+\begin{thm}[]
+	Let $ \phi:G \to H$ be a homomorphism, and $ K= \ker \phi = \{x \in G: \phi(x)=e_H\} $. The left and right cosets of $ K$ are the same. That is,
+	\[
+	xK = yK \iff Kx=Ky
+	.\] 
+\end{thm}
+
+\begin{prf}
+
+\begin{note}[]
+$ xK = yK \iff x^{-1}y \in K$.
+\end{note}
+Thus $ x^{-1}y \in \ker \phi \iff \phi(x^{-1}y)=e_H \iff \phi(x)^{-1} *_H \phi(y) =e_H$. Therefore, $ xK = yK \iff \phi(x) = \phi(y)$. Similarly, $ Kx=Ky \iff \phi(x)=\phi(y)$.
+\end{prf}
+
+\begin{defn}[normal subgroup]
+Let $ H \leq G$. We say  $ H$ is a  \allbold{normal subgroup} of $ G$ if the left and right cosets of  $ H$ in $ G$ agree. We denote this as $ H \trianglelefteq G$.
+\end{defn}
+\begin{note}[]
+There is no such thing as a "normal group". It only applies to subgroups.
+\end{note}
+
+\begin{claim}[]
+~\begin{itemize}
+	\item If $ G$ is a group then  $ G \trianglelefteq G$.
+	\item The trivial subgroup $ \{e\} $ is a normal subgroup.
+	\item If $ G=S_3$ and $ H=\{e,(1\ 2)\} $, then $H$ is not normal in $ G$. This is the smallest example of non-normal subgroup. (even though $ H$ is abelian!)
+	\item If $ G$ is abelian and  $ H \leq G$ then  $ H \trianglelefteq G$. "Any subgroup of an abelian group is normal."
+	\item Any group $ G$ has normal subgroups  $ G$ and  $ \{e\} $.
+	\item \allbold{EVERY SUBGROUP OF INDEX 2 IS NORMAL}.
+		\begin{prf}
+			Suppose $ H \leq G$ and  $ H$ has index 2 (number of cosets). Then the left cosets are:  $ H$ and everything else. The right cosets are again  $ H$ and everything else. Therefore they must agree.
+		\end{prf}
+	\item The kernel of a homomorphism is a normal subgroup.
+\end{itemize}
+\end{claim}
+
+\begin{eg}[determinant map]
+	$ \phi : GL_N( \rr) \to \rr^*, \phi(A)= \det A $. $ \ker \phi= \{A \in GL_n( \rr): \phi(A) = 1\} = \{A \in GL_n( \rr): \det A = 1\} = SL_n( \rr)$, the special linear group. 
+
+	Is $ SL_n( \rr) \trianglelefteq Gl_n( \rr)$? Yes, because it's the kernel of a homomorphism.
+\end{eg}
+
+\begin{eg}[sign map]
+$ \ker \varepsilon = A_n$ so $ A_n \trianglelefteq S_n$ because 1. it's the kernel of a known homomorphism 2. index of $ A_n$ in $ S_n$ is 2.
+\end{eg}
+
+\end{document}

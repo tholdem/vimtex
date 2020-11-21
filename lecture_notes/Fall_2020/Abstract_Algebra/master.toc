@@ -4,3 +4,15 @@
 \contentsline {subsection}{\numberline {0.1.2}Polar Coordinates}{2}%
 \contentsline {subsection}{\numberline {0.1.3}Roots of Unity}{3}%
 \contentsline {subsection}{\numberline {0.1.4}Modular Arithmetic}{3}%
+\contentsline {subsection}{\numberline {0.1.5}Binary Operations}{3}%
+\contentsline {section}{\numberline {0.2}Isomorphism}{5}%
+\contentsline {section}{\numberline {0.3}Group}{8}%
+\contentsline {section}{\numberline {0.4}Subgroups}{10}%
+\contentsline {section}{\numberline {0.5}}{12}%
+\contentsline {section}{\numberline {0.6}}{14}%
+\contentsline {section}{\numberline {0.7}Permutation Groups}{17}%
+\contentsline {section}{\numberline {0.8}Orbits, Cycles, and the Alternating Groups}{19}%
+\contentsline {section}{\numberline {0.9}Cosets and Lagrange's Theorem}{23}%
+\contentsline {section}{\numberline {0.10}Homomorphism}{29}%
+\contentsline {section}{\numberline {0.11}Factor/Quotient Groups}{35}%
+\contentsline {section}{\numberline {0.12}Rings}{43}%

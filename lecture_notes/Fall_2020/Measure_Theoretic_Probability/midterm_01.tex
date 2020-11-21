@@ -1,0 +1,75 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Midterm 1 }}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[1]
+~\begin{enumerate}[label=\alph*)]
+	\item Given $ A,B \in \mathcal{G}$, by definition of $ \mathcal{G}$ there exist $ A_1, B_1 \in \mathcal{F}_1$ and $ A_2, B_2 \in \mathcal{F}_2$ such that $ A=A_1 \cap A_2$, $ B= B_1 \cap B_2$. Then
+\begin{align*}
+	A \cap B &= (A_1 \cap A_2) \cap (B_1 \cap B_2) \\
+		 &= (A_1 \cap B_1) \cap (A_2 \cap B_2)
+\end{align*}
+Since $\sigma$-fields $ \mathcal{F}_1, \mathcal{F}_2$ are closed under intersections, it follows that $ A_1 \cap B_1 \in \mathcal{F}_1, A_2 \cap B_2 \in \mathcal{F}_2$. Hence $ A \cap B \in \mathcal{G}$, and $ \mathcal{G}$ is a $ \pi$-system by definition.
+\item We wish to show double containment. Given $ a \in \mathcal{G}$, there exists $ A_1 \in \mathcal{F}_1, A_2 \in \mathcal{F}_2$ such that $ a \in A_1 \cap A_2$. Since $ \mathcal{F}_1,\mathcal{F}_2$ are $\sigma$-fields, the complements $ A_1^{c} \in \mathcal{F}_1, A_2^{c} \in \mathcal{F}_2 \implies A_1^{c} \cup A_2^{c} \in \mathcal{F}_1 \cup \mathcal{F}_2$. Then  $ (A_1^{c} \cup A_2^{c})^{c} = A_1 \cap A_2 \in \sigma(F_1 \cup F_2) \implies \mathcal{G} \subseteq \sigma(\mathcal{F}_1 \cup \mathcal{F}_2)$ . Since a $\sigma$-field is also a $\lambda$-system, by Dynkin's $ \pi$-$ \lambda$ theorem, $ \sigma(\mathcal{G}) \subseteq \sigma(\mathcal{F}_1 \cup  \mathcal{F}_2)$.
+
+	Now let's show the other direction. Given $ b \in \mathcal{F}_1 \cup \mathcal{F}_2$, there exist $ B_1 \in \mathcal{F}_1, B_2 \in \mathcal{F}_2$ such that $ b \in B_1 \cup B_2 = (B_1^{c} \cap B_2^{c})^{c}$. Clearly $ B_1^{c} \in \mathcal{F}_1, B_2^{c} \in \mathcal{F}_2$, so $ B_1^{c} \cap B_2^{c} \in \mathcal{G} \implies (B_1^{c} \cap B_2^{c})^{c} \in \sigma(\mathcal{G}) \implies b \in \sigma(\mathcal{G}) \implies \mathcal{F}_1 \cup \mathcal{F}_2 \subseteq \sigma(\mathcal{G})$. Again by Dynkin's Theorem, $ \sigma(\mathcal{F}_1 \cup \mathcal{F}_2) \subseteq \sigma(\mathcal{G})$. Therefore, we obtain $ \sigma(\mathcal{G})= \sigma(\mathcal{F}_1 \cup  \mathcal{F}_2)$. 
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[2]
+	We would like to prove by contradiction. Suppose there exists an atom $ A \in \mathcal{F}$ such that $ P(A)>0$ and  $ \ \forall \ B \in \mathcal{F}, B \subseteq A$, we have $ P(B)=0$ or $ P(B)=P(A)$. Let's define
+	 \begin{equation*}
+	B_n =
+	\begin{cases}
+		A_n & \text{ if } P(A_n \cap A) = P(A)\\ 	
+		A_n^{c} & \text{ if } P(A_n^{c} \cap A) = P(A)\\
+	\end{cases}
+	\end{equation*}
+	Notice that since each $B_n $ only depends on $ A_n$, and $ A_n$ are independent, we know $ B_n$ are independent too. This definition intuitively means that all the $ B_n$ always contain the mass of $ A$. In other words, 
+	 \begin{align*}
+		 P(A) &\leq P(B_1 \cap B_2 \cap \ldots )\\
+		      &= P(B_1)P(B_2)\ldots \text{ by independence} \\
+		      &= p_1 \cdot  p_2 \cdot  \ldots 
+	\end{align*}
+	where we let $p_n = P(B_n)$ for convenience. Recall that $ 1-x \leq e^{-x} \implies x \leq e^{-(1-x)}$, applying to each $ p_n$ and we have
+	\begin{align*}
+		P(A) &\leq e^{-(1-p_1)} e^{-(1-p_2)} \ldots \\
+		\ln P(A) &\leq - \sum_{ n= 1}^{\infty} (1-p_n) \qquad \text{ by monotonicity of }\ln \\ 
+		\sum_{ n= 1}^{\infty} (1-p_n) &\leq -\ln P(A) = \ln \frac{1}{P(A)}
+	\end{align*}
+	Since $ P(A) > 0$,  $ \ln \frac{1}{P(A)}$ is a constant so $ \sum_{ n= 1}^{\infty} (1-p_n) < \infty$.
+	Now consider
+	\[
+		\sum_n \min \{P(A_n), 1-P(A_n)\} = \sum_n \min \{P(B_n), 1-P(B_n)\} \leq \sum_n (1-p_n) < \infty 
+	.\] 
+	This contradicts with our assumption, therefore we prove that the probability space must be non-atomic.
+\end{problem}
+\begin{problem}[3]
+	Naturally we apply Borel-Cantelli Lemma (i) and obtain $ P\left( \limsup_{  n} (A_n \cap A_{n+1}^{c}) \right) =0$. Also by Theorem 4.1, $ P\left( \liminf_{  n} A_n \right) \leq \liminf_{  n} P(A_n) = 0 \implies P\left( \liminf_{  n} A_n \right) =0$. By homework 2.6,
+\begin{align*}
+	P\left( \limsup_{  n} A_n \right) &= P\left( \limsup_{  n} (A_n \cap A_{n+1}^{c}) \cup \liminf_{  n} A_n \right)  \\
+					  &\leq P\left( \limsup_{  n} (A_n \cap A_{n+1}^{c} \right) + P\left( \liminf_{  n} A_n \right) \text{ by subadditivity}    \\
+					  &= 0 + 0 = 0
+\end{align*}
+Again by Theorem 4.1, $ \limsup_{n} P(A_n) \leq P\left( \limsup_{  n} A_n \right)  =0 \implies \limsup_{  n} P(A_n) = 0 = \liminf_{  n} P(A_n) \implies \lim_{ n \to \infty} P(A_n) = 0$ by definition of the limit of reals.
+\end{problem}
+
+\begin{problem}[4]
+	We would like to show that $ \{\omega: X(\omega) \leq x\} \in \mathcal{F} \ \forall \ x \in \rr$.
+\begin{case}[]
+$ x\geq 0$, then
+ \begin{equation*}
+	 \{\omega: X(\omega) \leq x\} = \{\omega: \lim_{ n \to \infty} X_n(\omega) \leq x  \} \cup \{\omega: \lim_{ n \to \infty} X_n(\omega) \text{ diverges} \}   
+\end{equation*}
+In class we have already show that the first set is in $ \mathcal{F}$. Notice that
+$ \{\omega: \lim_{ n \to \infty} X_n(\omega) \text{ diverges} \}  = \{\omega: \lim_{ n \to \infty} X_n(\omega) \text{ exists} \}^{c} $, which we showed in class that it is in the tail $\sigma$-field. Since the tail $\sigma$-field is the smallest $\sigma$-field containing the tail event, and the tail event is clearly contained in $ \mathcal{F}$, the tail $\sigma$-field must be a subset of $ \mathcal{F}$. It follows that $ \{\omega: \lim_{ n \to \infty} X_n(\omega)\} \in \mathcal{F}$, which implies the complement $ \{\omega: \lim_{ n \to \infty} X_n(\omega) \text{ diverges} \} \in \mathcal{F}$. Therefore, the union of two sets, $ \{\omega:X(\omega) \leq x\} \in \mathcal{F} $.
+\end{case}
+\begin{case}[]
+	$ x<0$, then  $ \{\omega:X(\omega)\leq x\} = \{\omega: \lim_{ n \to \infty} X_n(\omega) \leq x\} \in \mathcal{F} $ as shown in class.
+\end{case}
+Hence for all $ x \in \rr$, we show that $ \{\omega:X(\omega) \leq x\} $, proving that $ X$ is a random variable.
+\end{problem}
+\end{document}

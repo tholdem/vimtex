@@ -1,0 +1,99 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{lem}[4]
+$\mathcal{F}_0 \subset \mathcal{M}$
+\end{lem}
+\begin{prf}
+	Take any $A \in \mathcal{F}_0$ and any $E \subset \Omega$, we want to show that 
+\[
+	P^* (A \cap E) + P^* (A^{c} \cap  E) \leq P^* (E) 
+.\]
+Let $\epsilon>0$. Cover $E$ by  $\mathcal{F}_0$ sets and specifically choose a cover $\{A_n\} $ s.t. $\sum_{ n=1}^{\infty} P(A_n) < P^* (E) + \epsilon$ by the definition of infimum.
+Now since $A \cap  E \subset \bigcup_{n= 1}^{\infty} (A \cap A_n)$, $A^{c} \cap  E \subset \bigcup_{n= 1}^{\infty} (A^{c} \cap  A_n)$
+\begin{align*}
+	P^* (A \cap E ) + P^* (A^{c} \cap  E) &\leq \sum_{ n=1}^{\infty} P^* (A \cap A_n) + \sum_{ n=1}^{\infty} P^* (A^{c} \cap A_n)  \\
+					      &= \sum_{ n=1}^{\infty} P^* (A_n) \text{ by countable additivity} \\
+					      &\leq \sum_{ n=1}^{\infty} P(A_n)\\
+					      &< P^* (E) + \epsilon
+\end{align*}
+Let $\epsilon \to 0$, then $P^* (A \cap  E)+P^* (A^{c} \cap  E) \leq P^* (E) \implies A \in \mathcal{M} \implies \mathcal{F}_0 \subset \mathcal{M}$.
+\end{prf}
+
+\begin{lem}[5]
+	$A \in \mathcal{F}_0 \implies P^* (A) \geq P(A)$
+\end{lem}
+\begin{prf}
+	We already know that $P^* (A) \leq P(A)$. We just need to show the other way around.
+
+	Cover $A$ with  $(A_n) \in \mathcal{F}_0 (A \subset \bigcup_{n= 1}^{\infty} A_n)$. Then $A = \bigcup_{n= 1}^{\infty} (A \cap A_n)$. So 
+	\begin{align*}
+		P(A)&=P\left( \bigcup_{n= 1}^{\infty} (A \cap  A_n) \right) \\
+		    & \leq \sum_{ n=1}^{\infty} P(A \cap A_n) \text{ by c.s.} \\
+		    & \leq \sum_{ n=1}^{\infty} P(A_n)
+	\end{align*}
+	Note that $P^* (A)$ is the infimum for terms like $\sum_{ n=1}^{\infty} P(A_n)$. But here $P(A) \leq \sum_{ n=1}^{\infty} P(A_n)$. Hence $P(A) \leq P^* (A)$
+\end{prf}
+
+\begin{remark}
+	$P^* (\Omega) = P(\Omega) = 1$ by Lemma 5, since $\Omega \in \mathcal{F}_0$.
+\end{remark}
+
+So $P^* $, restricted to $ \mathcal{F}$, is a probability measure on $\mathcal{F}$ and it agrees with $P$ for sets in  $\mathcal{F}_0$.
+\begin{lem}[]
+The extension is unique.
+\end{lem}
+
+\begin{prf}
+	Let $Q$ be another extension of  $P$ to $\mathcal{F}$. Let $A \in \mathcal{F}$, 
+\begin{align*}
+	P^* (A) &= \inf{\left\{ \sum_{ n=1}^{\infty} P(A_n): A_n \in \mathcal{F}_0, A \subset  \bigcup_{n= 1}^{\infty} A_n \right\} } \\
+		&= \inf{\left\{ \sum_{ n=1}^{\infty} Q(A_n): A_n \in \mathcal{F}_0, A \subset \bigcup_{n= 1}^{\infty} A_n \right\} }  \\
+		&\geq \inf{\left\{ Q\left( \bigcup_{n= 1}^{\infty} A_n \right) : A_n \in \mathcal{F}_0, A \subset  \bigcup_{n= 1}^{\infty} A_n \right\} } \\
+		&\geq \inf\{Q(A): A_n \in \mathcal{F}_0, A_n \subset \cup A_n\}\\
+		&=Q(A)
+	\end{align*}
+	$A \in \mathcal{F} \implies A^{c} \in \mathcal{F} \implies P^* (A^{c}) \geq Q(A^{c}) \implies 1 - p^* (A) \geq 1-Q(A) \implies Q(A) \geq P^* (A)$ 
+
+\end{prf}
+
+\begin{defn}[pi system]
+	A \allbold{$\pi$-system} is a collection of subsets of $\Omega$ that is closed under finite intersections. 
+\end{defn}
+\begin{note}[]
+	This is a weak definition, and includes fields and $\sigma$-fields. Commonly denoted by $\mathcal{P}$.
+\end{note}
+\begin{thm}[3.3]
+	Let $\mathcal{F}_0$ be a $\pi$-system. Suppose that $P_1$ and $P_2$ are two probability measures on $\mathcal{F} = \sigma(\mathcal{F}_0)$. If $P_1$ and $P_2$ agree on $\mathcal{F}_0$, they agree on $\mathcal{F}$.
+\end{thm}
+(See Billingsley for proof.)
+\begin{note}[]
+This is a stronger theorem.
+\end{note}
+
+\section{"Denumerable" Probabilities}
+\begin{note}[]
+	If we write $P(A)$, the assumption is that there is an underlying  $(\Omega,\mathcal{F},P)$.
+\end{note}
+\subsection{Limit Sets}
+~\begin{defn}[limsup]
+For a sequence $A_1,A_2,\ldots \in \mathcal{F}$, we define the set called "limsup over $n$ of $A_n$" as:
+\[
+\lim\sup_n A_n = \bigcap_{n= 1}^{\infty} \bigcup_{k=n}^{\infty} A_k.
+\]
+\end{defn}
+\begin{intuition}
+	limsup is the infimum of the suprema of sequence tails after removing heads one by one. liminf is the supreumum of the infima of sequence tails after removing heads one by one.
+\end{intuition}
+\begin{eg}[]
+$A_1,A_2 $ and $A_n = \O$ for $n \geq 3$. Then $\lim\sup_n A_n = \O$.
+\end{eg}
+\begin{note}[]
+~\begin{enumerate}[label=\arabic*)]
+	\item Since $\mathcal{F}$ is closed under countable unions or intersections, $\lim\sup_n A_n, \lim\inf_n A_n \in \mathcal{F} $.
+	\item $\omega \in \lim\sup_n A_n \implies \omega \in \bigcup_{k=n}^{\infty} A_k$ for all $n \implies \omega$ is in infinitely many of the $A_n$.
+	\item $\omega \in \liminf_n A_n \implies \omega$ is in at least one $\bigcup_{k=n}^{\infty} A_k \implies w$ is in all but a finitely many of the $A_n$.	
+\end{enumerate}
+\end{note}
+\end{document}

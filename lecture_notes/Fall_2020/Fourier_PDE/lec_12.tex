@@ -1,0 +1,119 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{eg}[continued]
+According to Fourier's Law of Heat Conduction, the steady state heat flux is
+\[
+	\overline{\Phi}(x) = -k \frac{d }{d x} \overline{u}(x) = - \left( \frac{T_2-T_1}{L} \right)  
+.\] 
+\end{eg}
+
+\begin{eg}[]
+	Given a heat source $ Q(x,t)$, consider the equation
+	 \[
+		 k \frac{\partial^2 u}{\partial x^2} + Q(x,t) = 0 \implies \frac{\partial^2 u}{\partial {x}^2}= -\frac{1}{k} Q(x,t) \implies u \text{ may be a function of } t  
+	.\] 
+	So if $ \frac{\partial Q}{\partial t} \neq 0 $ we will have no steady state solution.
+\end{eg}
+\begin{eg}[]
+	Suppose $ Q(x,t)=M$ and consider  $ \frac{\partial^2 u}{\partial {x}^2} +M=0 $ with $ u(0)=T_1$ and $ u(L)=T_2$ then 
+	\[
+		u''(x)=-M \implies u(x)=-\frac{Mx^2}{2}+C_1x+C_2
+	.\] 
+and the boundary conditions imply the equilibrium solution is
+\[
+	\overline{u}(x) = T_1 + \left( \frac{T_2-T_1}{L}+\frac{ML}{2} \right) x - \frac{Mx^2}{2}
+.\] 
+\end{eg}
+
+
+\subsection{Insulated Boundaries}
+
+Consider the PDE with the BCs and IC:
+\[
+	\frac{\partial u}{\partial t} =k \frac{\partial^2 u}{\partial {x}^2}, u(x,0)=f(x), \frac{\partial u}{\partial x} (0,t)=0, \frac{\partial u}{\partial x} (L,t)=0 
+.\] 
+where IC is when $ t=0$, and BCs are  $ x=0$ and  $ x=L$, which have zero values and means these are insulated boundaries. \\
+
+With regards to the steady state solution, if we assume $ u(x,t)=u(x)$ then  $ u(x)=C_1 x + C_2$ and using the BCs we have
+\[
+	u'(x)=C_1 \implies C_1=u'(0)=\frac{\partial u}{\partial x} (0,t) =0 \implies u(x)=C_2
+.\]
+
+and we expect that $ \overline{u}(x) = \lim_{ t \to \infty} u(x,t) = \lim_{ t \to \infty} u(x)= C_2$. Rewriting the original heat equation and integrating both sides yields:
+\[
+	c\rho\frac{\partial u}{\partial t} =K_0 \frac{\partial^2 u}{\partial {x}^2} \implies \int_{0}^{L} c\rho \frac{\partial u}{\partial x} dx= \int_{0}^{L}  K_0 \frac{\partial^2 u}{\partial {x}^2} dx = K_0\left[ \frac{\partial u}{\partial x} (L,t) -\frac{\partial u}{\partial x} (0,t) \right] =0 
+.\]
+and multiplying by the constant area $ A$ and interchanging the derivative and integral yields
+ \[
+	 \int_{0}^{L} c\rho \frac{\partial u}{\partial x} A dx = 0 \implies \frac{d }{d t}  \left[  \int_{0}^{L}  c\rho u(x,t) A dx \right] =0 
+.\] 
+This implies that the total thermal energy is constant wrt time.
+
+Using IC,
+\[
+	\int_{0}^{L}  c\rho u(x,0) A dx= \int_{0}^{L}  c\rho f(x) A dx
+.\] 
+And the equilibrium thermal energy is
+\[
+	\lim_{ t \to \infty} \int_{0}^{L}  c\rho u(x,t) A dx = \int_{0}^{L}  c\rho \left[ \lim_{ t \to \infty} u(x,t) \right] A dx = \int_{0}^{L}  c\rho C_2 A dx = C_2 c \rho AL
+.\] 
+setting the initial and equilibrium thermal energy equal to each other and solving yields
+\[
+	c\rho A \int_{0}^{L}  f(x) dx = c\rho A C_2 L \implies C_2 = \frac{1}{L} \int_{0}^{L} f(x) dx 
+.\] 
+So the equilibrium solution to the heat equation with insulated boundaries is the \emph{average value of the initial temperature} f(x) over the interval $ [0,L]$ . 
+
+\subsection{Heat Equation in 3D}
+
+When can we switch integration and differentiation for partial differential equations?
+\begin{thm}[]
+Suppose
+\begin{enumerate}[label=\arabic*)]
+	\item $ u(x,t)$ is defined for  $ a\leq x \leq b, c\leq t\leq d$.
+	\item $u(x,t)$ is Riemann integrable for every  $ t \in [c,d]$
+	\item $\partial_t u(x,t)$ is continuous for $ (x,t) \in [a,b] \times [c,d]$
+\end{enumerate}
+then $ \partial_t u(x,t)$ is Riemann integrable for every  $ t \in [c,d]$, and 
+\[
+	\frac{d }{d t} \int_{ a}^{ b} u(x,t) dx = \int_{ a}^{ b} \frac{\partial u}{\partial x} dx   
+.\] 
+\end{thm}
+\begin{note}[]
+We can replace the closed intervals above with $ \rr$.
+\end{note}
+\subsection{Boundary Heat Flux}
+Let's generalize our result from 1D to 3D:
+
+\begin{thm}[Fourier's law of heat conduction 3D]
+\[
+\vv{\phi}(x)(\allbold{x},t) = -K_0 \nabla u(\allbold{x},t)
+\]
+where $\nabla u$ is the spatial gradient of $u$ and $K_0$ is the thermal conductivity constant.
+\end{thm}
+
+Consider a region $R$ with closed boundary $\partial R$ and outward unit normal vector $\allbold{n}$. Let $ \vv{\phi}(x)$ be the heat flux vector which specifies the direction of heat flow at the point \allbold{x}= $ (x,y,z)$. Then the magnitude is the flux, and direction is the normal to the surface area. So the heat energy flowing across boundaries per unit time is:
+ \[
+	 -\iint_{\partial R} \vv{\phi}(x) \cdot \allbold{n} \ dS
+.\] 
+if the dot product is positive then heat is flowing out of the object and the total energy would decrease.
+
+Then the heat flow process is:
+\[
+	\frac{d }{d t} \iiint_R c( \allbold{x}) \rho( \allbold{x} ) u( \allbold{x},t) dV = -\iint_{\partial R} \vv{\phi}( \allbold{x} ) \cdot \allbold{n}(\allbold{x})  dS + \iiint_R Q( \allbold{x},t ) dV
+.\] 
+Recall the \allbold{Divergence Theorem}, we have
+\[
+	\iint_{\partial R} \vv{\phi}( \allbold{x}) \cdot \allbold{n}( \allbold{x}) dS = \iiint_R\nabla \cdot \vv{\phi}( \allbold{x}) dV 
+.\] 
+where $ \nabla = \langle \partial_x, \partial_y, \partial_z \rangle$. Now we bring the derivative inside the integral:
+\[
+	\iiint_R c( \allbold{x} ) \rho( \allbold{x}) \frac{\partial }{\partial t} u( \allbold{x},t) dV = -\iiint_R \nabla \cdot \vv{\phi}( \allbold{x})  + \iiint_R Q( \allbold{x},t ) dV
+.\] 
+and combining all the triple integrals on the left hand side yields
+\[
+	c( \allbold{x}) \rho( \allbold{x}) \frac{\partial }{\partial t} u( \allbold{x},t) + \nabla \cdot \vv{ \phi} ( \allbold{x}) - Q( \allbold{x},t) =0     
+.\]
+where the last equality follows from that the integral equation is true for any region $ R$ and by continuity. 
+\end{document}

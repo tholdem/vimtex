@@ -15,12 +15,82 @@ endglobal
 
 context "math()"
 snippet + "+ subscript" i
-+_{$1} $0
++_{ $1} $0
 endsnippet
 
 context "math()"
 snippet = "= subscript" i
-=_{$1} $0
+=_{ $1} $0
+endsnippet
+
+context "math()"
+snippet pp "phi,cs" A
+\phi($1) $0
+endsnippet
+
+context "math()"
+snippet iso "phi,cs" iA
+\simeq
+endsnippet
+
+context "math()"
+snippet gcd "gcd" Ai
+\gcd ( $1) $0
+endsnippet
+
+context "math()"
+snippet sim "equivalence" A
+\sim
+endsnippet
+
+context "math()"
+snippet lcm "least common multiple" A
+\lcm \left( $1 \right) $0
+endsnippet
+
+context "math()"
+snippet im "image" A
+\im $0
+endsnippet
+
+context "math()"
+snippet dg "degree" A
+\dg $0
+endsnippet
+
+context "math()"
+snippet mod "modulo" A
+\bmod $0
+endsnippet
+
+context "math()"
+snippet ker "kernel" A
+\ker $0
+endsnippet
+
+context "math()"
+snippet det "determinant" A
+\det $0
+endsnippet
+
+context "math()"
+snippet vare "curly epsilon" A
+\varepsilon $0
+endsnippet
+
+context "math()"
+snippet lteq "normal subgroup" A
+\trianglelefteq $0
+endsnippet
+
+context "math()"
+snippet 'infpro:([A-Za-z])(\d)' "infinite product" rwA
+\prod_{ ${1:`!p snip.rv = match.group(1)`= `!p snip.rv = match.group(2)`}}^{\infty} ${2:}
+endsnippet
+
+context "math()"
+snippet 'pro:([A-Za-z])(\d)([A-Za-z]|\d)' "product" rwA
+\prod_{ ${1:`!p snip.rv = match.group(1)`= `!p snip.rv = match.group(2)`}}^{ ${2:`!p snip.rv = match.group(3)`}} ${3:}
 endsnippet
 
 # vim:ft=snippets

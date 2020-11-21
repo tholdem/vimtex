@@ -1,0 +1,126 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+More on Fourier Sine Series:
+
+\begin{defn}[]
+\begin{enumerate}[label=\arabic*)]
+	\item Define the \allbold{odd extension} of $ f(x), 0<x<L$, to be
+ \begin{equation*}
+	 f_{odd}(x)=
+\begin{cases}
+	f(x), \qquad & \text{ if } 0<x<L\\
+	-f(-x), \qquad & $ if $ -L<x<0
+\end{cases}
+\end{equation*}
+\item If $ f(x)$ is piecewise smooth then $ f(x)$ has a Fourier series representation and  if
+	\[
+		f(x)=\sum_{ n= 1}^{\infty} B_n \sin \left( \frac{ n\pi x}{ L} \right) , \text{ for } 0<x<L 
+	.\] 
+	then note that the RHS is continuous, odd, and $ 2L$-periodic thus the Fourier sine series of  $ f(x)$ represents the periodic extension of the adjusted odd extension of  $ f(x)$. That is,
+	 \[
+	\sum_{ n= 1}^{\infty} B_n \sin \left( \frac{ n\pi x}{ L} \right) =\tilde{ \overline{f}}_{odd}( x) 
+	.\] 
+\item In general, note that FSS$[f](x)= \text{ F.S.} [ f_{odd}]( x)  $.
+\end{enumerate}
+\end{defn}
+
+See lecture slides for an pictorial example. Fourier cosine series is defined similarly using even extension.
+
+
+What if we don't have homogeneous boundary conditions?
+
+\begin{thm}[General Solution]
+If:
+\begin{enumerate}[label=\arabic*)]
+	\item the set of functions that satisfy the PDE and BC form a vector space.
+	\item there is a non-trivial function $ v(x,t)$ that satisfies the PDE and BC (the transient solution).
+	\item if the PDE has a steady state solution,  $ \overline{u}(x)$ 
+\end{enumerate}
+		then the function $ u(x,t)= \overline{u}(x) + v(x,t)$ will be a solution to the PDE that satisfies the BCs and IC.
+\end{thm}
+
+So since our steady state solution in the previous example is trivial, we only obtain the transient solution.
+
+\begin{eg}[]
+Consider
+\begin{equation*}
+\begin{cases}
+	\text{ PDE: } \frac{\partial u}{\partial t} =k \frac{\partial^2 u}{\partial { x}^2}, & 0<x<L, t>0\\
+	\text{ BCs: } u(0,t)=T_1, u(L,t)=T_2, & t>0\\
+	\text{ IC: } u(x,0)=f(x), & 0\leq x \leq L\\ 
+\end{cases}
+\end{equation*}
+
+We need to make sure the solutions of PDE form a vector space, let $ u(x,t)=\overline{u}(x)+v(x,t)$ then
+\[
+\frac{\partial u}{\partial t} =0+\frac{\partial v}{\partial t} 
+.\] 
+and
+\[
+	k \frac{\partial^2 u}{\partial { x}^2} =k \overline{u}''(x)+k \frac{\partial^2 v}{\partial { x}^2} 
+.\] 
+The heat equation equates the two equations above. If we assume that steady-state (plus nonhomogeneous part if any) and transient solutions behave independently, then by matching terms we obtain the following ODE and PDE:
+\[
+	\overline{u}''(x)=0 \text{ and } \frac{\partial v}{\partial t} =k \frac{\partial^2 v}{\partial { x}^2}  
+.\]
+and by assigning the nonhomogeneous part of the BCs to ODE,
+\[
+	T_1=u(0,t)=\overline{u}(0)+v(0,t) \implies \overline{u}(0)=T_1 \text{ and } v(0,t) =0
+.\] 
+This way, the PDE solutions still form a vector space.
+
+Similarly, 
+\[
+	T_2=u(L,t)=\overline{u}(L) + v(L,t) \implies \overline{u}(L)=T_2 \text{ and } v(L,t)=0 
+.\] 
+Then finally for IC:
+\[
+	f(x)=u(x,0)=\overline{u}(x)+v(x,0) \implies v(x,0)=f(x)-\overline{u}(x)
+.\] 
+Now we are able to solve for the solution of both the steady state and transient problems.
+
+Steady state problem:
+\[
+	\overline{u}''(x)=0, \overline{u}(0)=T_1, \overline{u}(L)=T_2
+.\]
+As we have seen earlier, the solution is 
+\[
+	\overline{u}(x)=T_1+ \frac{T_2-T_1}{L}x
+.\] 
+Transient problem:
+\begin{equation*}
+\begin{cases}
+	\frac{\partial v}{\partial t} = k \frac{\partial^2 v}{\partial { x}^2} ,&0<x<L,t>0\\
+	v(0,t)=0=v(L,t), &t>0\\
+	v(x,0)=f(x)-\overline{u}(x), &0\leq x\leq L
+\end{cases}
+\end{equation*}
+To check that we set up the problems correctly, we see that $ \frac{\partial u}{\partial t} =0 + v_t(x,t)=k \overline{u}''(x)+kv_{xx} = k \frac{\partial^2 u}{\partial { x}^2} $. Hence heat equation is satisfied.
+Also,
+\begin{align*}
+	u(0,t)&= \overline{u}(0) + v(0,t) = T_1+0=T_1 \\
+	u(L,t) &= \overline{u}(L)+v(L,t) = T_2 +0 = T_2 \\
+	u(x,0)&=\overline{u}(x) + v(x,0) = \overline{u}(x)+[ f(x) -\overline{u}(x)] = f(x)
+\end{align*}
+
+
+Hence as before, we obtain the transient solution:
+\[
+	v(x,t)= \sum_{ n= 1}^{\infty}  \left( \frac{2}{L} \int_{0}^{L} \left[ f(x)-\overline{u}(x) \right] \sin \left( \frac{ n\pi x}{ L} \right) \ dx  \right) \sin \left( \frac{ n\pi x}{ L} \right) e^{-\left( \frac{n \pi}{L} \right)^2 kt }
+.\]
+Again note that the whole integral is just a constant, $ B_n$. Then the full solution is
+\[
+	u(x,t)=T_1 + \frac{T_2-T_1}{L}x + \sum_{ n= 1}^{\infty} \left( \frac{2}{L} \int_{0}^{L} \left[ f(x) - \overline{u}(x) \right] \sin \left( \frac{ n\pi x}{ L} \right)\ dx  \right) \sin \left( \frac{ n\pi x}{ L} \right) e^{-\left( \frac{n \pi}{L} \right)^2 kt } 
+.\] 
+where the first part comes from BCs, the integral constant comes from IC, and the sin and exponential terms come from the homogeneous PDE plus BCs. To verify our solution is correct, we plug in $ x=0,L$ or  $ t=0$, we can verify that it satisfies the BCs and IC.
+
+It remains to show that the full solution
+\[
+	u(x,t) = \sum_{ n= 1}^{\infty} B_n \sin \left( \frac{ n\pi x}{ L} \right) e^{-\left( \frac{n \pi}{L} \right)^2 kt}
+\] 
+converges.
+\end{eg}
+
+\end{document}

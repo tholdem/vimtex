@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.7.26)  28 AUG 2020 19:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.7.26)  19 SEP 2020 14:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -857,62 +857,68 @@ Package mdframed Info: mdframed detected package amsthm
 (mdframed)              on input line 18.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 21.
+(mdframed)              on input line 28.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 37.
+(mdframed)              on input line 30.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 43.
+(mdframed)              on input line 33.
  [1
 
 {/home/jaden/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 46.
+(mdframed)              on input line 52.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 48.
+(mdframed)              on input line 58.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 59.
+(mdframed)              on input line 61.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 64.
+(mdframed)              on input line 63.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 76.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 81.
  [2]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 79.
+(mdframed)              on input line 97.
 
-Overfull \hbox (11.15207pt too wide) in paragraph at lines 79--81
-[]\T1/cmr/m/n/10 Let $\OML/cmm/m/it/10 A \OT1/cmr/m/n/10 = [][] \OML/cmm/m/it/10 A[]$\T1/cmr/m/n/10 . Then we want to prove that $\OML/cmm/m/it/10 P[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^T [][] \OML/cmm/m/it/10 P[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A[]\OT1/cmr/m/n/10 )$\T1/cmr/m/n/10 .
+Overfull \hbox (7.90355pt too wide) in paragraph at lines 97--98
+\T1/cmr/m/n/10 For each $\OML/cmm/m/it/10 A[]$\T1/cmr/m/n/10 , $\OML/cmm/m/it/10 P[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A[]\OT1/cmr/m/n/10 ) = []\OMS/cmsy/m/n/10 f[][] \OML/cmm/m/it/10 P\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A[]\OT1/cmr/m/n/10 ) : \OML/cmm/m/it/10 A[] \OMS/cmsy/m/n/10 2 F[][]\OML/cmm/m/it/10 A[] \OMS/cmsy/m/n/10 ^^Z [][] \OML/cmm/m/it/10 A[]\OMS/cmsy/m/n/10 g$\T1/cmr/m/n/10 .
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 103.
+(mdframed)              on input line 120.
 [3]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 107.
+(mdframed)              on input line 123.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 111.
+(mdframed)              on input line 127.
  [4] (./lec_02.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 22785 strings out of 480906
- 455028 string characters out of 5907779
- 705933 words of memory out of 5000000
- 37871 multiletter control sequences out of 15000+600000
+ 22789 strings out of 480906
+ 455142 string characters out of 5907779
+ 705950 words of memory out of 5000000
+ 37875 multiletter control sequences out of 15000+600000
  558834 words of font info for 106 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,11n,102p,841b,1083s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 88i,11n,102p,841b,987s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/home/jaden/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb>
-Output written on lec_02.pdf (4 pages, 177102 bytes).
+Output written on lec_02.pdf (4 pages, 176637 bytes).
 PDF statistics:
  81 PDF objects out of 1000 (max. 8388607)
  59 compressed objects within 1 object stream

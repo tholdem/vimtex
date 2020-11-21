@@ -1,0 +1,114 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{D'Alembert's Solution continued}
+\begin{equation*}
+\begin{cases}
+	\text{PDE: } \frac{\partial^2 u}{\partial { t}^2} =c^2 \frac{\partial^2 u}{\partial { x}^2}  & x \in \rr, t>0 \\
+	\text{ICs: } u(x,0)=U(x), \frac{\partial u}{\partial t} (x,0)=V(t) & x \in \rr \\
+\end{cases}
+\end{equation*}
+\begin{note}[]
+Since $ x \in \rr$, we no longer have boundaries or BCs.
+\end{note}
+The solution has the form:
+\[
+	u(x,t)=f(x-ct)+g(x+ct)
+.\] 
+where $ f,g$ are traveling waves and need to be twice differentiable. We find  $ f(z)$ and  $ g(y)$ using the ICs.
+
+We know that the set of functions that satisfy the wave equation form a vector space. So we can divide and conquer by separating the PDE into two problems:
+ \begin{equation*}
+\qquad 
+\begin{cases}
+\partial_t^2 u_1 = c^2 \partial_x^2 u_1 \qquad \\
+u_1(x,0)=U(x) \qquad \qquad \qquad \qquad \\
+\partial_x u_1 (x,0) = 0 \qquad \qquad  \\
+\end{cases}
+\begin{cases}
+\partial_t^2 u_2 = c^2 \partial_x^2 u_2\\
+u_2(x,0)=0\\
+\partial_x u_2 (x,0) = V(x)\\
+\end{cases}
+\end{equation*}
+\begin{intuition}
+	By having 0 on the RHS, we can express $ f$ in terms of  $ g$, and solve an ODE involving one function instead.
+\end{intuition}
+If there exists two solutions $ u_1,u_2$, then their sum satisfies the PDE and ICs.
+
+Let's assume $ u_1(x,t)=f_1(x-ct)+g_1(x+ct)$. Using the Chain Rule,
+\[
+	0=\frac{\partial u_1}{\partial t} (x,0) = f_1'(x) \cdot (-c) + g_1'(x) \cdot (c) \implies f_1'(x)=g_1'(x)
+.\] 
+Therefore, $ f_1(x)=g_1(x)+k$ for some constant $ k$. Using the other initial condition,
+ \[
+	 U(x)=u_1(x,0)=f_1(x)+g_1(x)=[g_1(x)+k]+g_1(x) \implies g_1(x)=\frac{U(x)}{2}-\frac{k}{2}
+.\] 
+Then
+\[
+	f_1(x) = g_1(x)+k = \frac{U(x)}{2}+ \frac{k}{2}
+.\] 
+Therefore, the solution is
+\[
+	u_1(x,t)=f_1(x-ct)+g_1(x+ct) = \frac{U(x-ct)}{ 2} + \frac{U(x+ct)}{2 }
+.\]
+\begin{intuition}
+	If started at rest, the initial position of the string breaks in two, half moving to the left and half moving to the right at equal speeds $ c$, each with half the amplitude of the original. The solution is the simple sum of these traveling waves.
+\end{intuition}
+Similarly, we assume $ u_2 = f_2(x-ct)+g_2(x+ct)$, and
+\[
+	0=u_2(x,0)=f_2(x)+g_2(x)\implies f_2(x)=-g_2(x) \implies f_2'(x)=-g_2'(x)
+.\]
+Using the second initial condition:
+\[
+	V(x)= \frac{\partial u}{\partial t} (x,0) = f_2'(x) \cdot (-c) + g_2'(x) \cdot c= -g_2'(x) \cdot (-c) + g_2'(x) \cdot c = 2c g_2'(x) \implies g_2'(x)=\frac{V(x)}{2c}
+.\] 
+That is, $ g_2'(x)$ is an antiderivative of $ \frac{V(x)}{2 }$. Recall by Fundamental Theorem of Calculus,
+\[
+	\frac{d}{dx} \int_a^{g(x)} f(t) dt = f(g(x)) \cdot g'(x)
+.\] 
+
+So by the FTC, we can define
+\[
+	g_2(x)=\int_a^x \frac{V(t)}{2c} dt \text{ and } f_2(x) = \int_x^a \frac{V(t)}{ 2c} dt 
+.\] 
+Therefore,
+\[
+	u_2(x.t) = f_2(x-ct) + g_2(x+ct) = \frac{1}{2c} \int_{x-ct}^{x+ct} \frac{V(t)}{2c}dt
+.\]
+
+Hence, the \allbold{general solution} is
+\[
+	u(x,t) = \frac{1}{2}U(x-ct) + \frac{1}{2}U(x+ct) + \frac{1}{2c} \int_{x-ct}^{x+ct} V(s) ds
+.\] 
+We can check it satisfies the ICs. When checking the second IC, we would need to apply the FTC using chain rule:
+\begin{align*}
+	\frac{1}{2c} \frac{d}{dt} \int_{x-ct}^{x+ct} V(s)ds &= \frac{1}{2c} \frac{d}{dt} \left(- \int_{a}^{x-ct} V(s)ds + \int_a^{x+ct} V(s) ds \right) \\
+							    &= \frac{1}{2c} (-V(x-ct) \cdot (-c) + V(x+ct) \cdot c) \\
+							    &= \frac{1}{2} (V(x-ct)+V(x+ct)) \\
+\end{align*}
+At $ t=0$, we obtain  $ \frac{\partial u}{\partial t} (x,0) =V(x)$.
+
+\begin{eg}[]
+Solve the PDE:
+\begin{equation*}
+\begin{cases}
+	\text{PDE: } \frac{\partial^2 u}{\partial { t}^2} =c^2 \frac{\partial^2 u}{\partial { x}^2}  & x \in \rr, t>0 \\
+	\text{ICs: } u(x,0)=0 , \frac{\partial u}{\partial t} (x,0)= \frac{2}{1+x^2} & x \in \rr \\
+\end{cases}
+\end{equation*}
+
+Apply the d'Alembert's formula we have
+\begin{align*}
+	u(x,t)&=0+\frac{1}{2c} \int_{x-ct}^{x+ct} \frac{2}{1+x^2} ds\\
+	      &= \frac{1}{c} [\arctan(x+ct) - \arctan(x-ct)] 
+\end{align*}
+Taking the limit as $ t \to \infty$, for each fixed $ x$,
+ \[
+	 \lim_{ t \to \infty} \frac{1}{c} [\arctan(x+ct) - \arctan(x-ct)] = \frac{1}{c}\left\{ \frac{\pi}{2}-\left(- \frac{\pi}{2} \right)  \right\} = \frac{\pi}{c} 
+.\]
+
+See lecture slides for figures. The top of the wave just flattens out.
+\end{eg}
+\end{document}

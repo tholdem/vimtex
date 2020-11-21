@@ -1,0 +1,84 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+Midterm 2 covers HW 5-8.
+
+\section{Rings}
+
+\begin{defn}[ring]
+Let $ R$ be a set and define two binary operations,  $ +_{ R}, \times_R $ as following:
+
+$\ \  \qquad  +_{ R} $ : $ R$ is an abelian group under  $ +_{ R} $.
+\begin{enumerate}[label=\arabic*)]
+	\item $ +_{ R} $ is a binary operation.
+	\item $ +_{ R} $ is associative.
+	\item $ +_{ R} $ has an identity, $ O_R$.
+	\item Everything element  $ r$ has an additive inverse,  $ -r$.
+	\item  $ +_{ R} $ is commutative.
+
+$ \times_R $: $ R$ is closed under an associative multiplication.
+	\item $ \times_R $ is a binary operation.
+	\item $ \times _R$ is associative.
+
+Axioms governing how the two operations interact.
+\item left distributivity law: $ $
+\[
+ a \times _R(b+_{ R}c ) = a\times _R b + a\times _R c
+.\] 
+\item right distributive law:
+	\[
+		(a+_{ R} b )\times _R c = a \times _R c +_{ R} b \times _R c  
+	.\] 
+\end{enumerate}
+\end{defn}
+\begin{eg}[]
+	$ (\zz, +_{ R}, \times _R) $ the ring of integers. This is a ring because we assume the axioms are true for addition and multiplication of complex numbers. The same goes for rational, real, and complex numbers.
+
+	Additional properties they have:
+	\begin{itemize}
+		\item commutative multiplication: "commutative ring".
+		\item multiplicative identity, $ I_R$, exists and $I_R = O_R$: "ring with identity".
+	\end{itemize}
+\end{eg}
+
+\begin{eg}[]
+$ 2\zz$, even integers under the usual operations. It is commutative but doesn't have multiplicative identity. Suppose $ I_R= 2k$, then $ 2k \times 2 \implies 4k= 2 \implies k=\frac{1}{2} \not\in 2\zz$. 
+\end{eg}
+
+\begin{eg}[]
+	$ (\zz_6, +_{ 6},\times _6 )$ is a ring (prove by quotient ring). A subset $ \{0,3\} $. 
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{c|c|c}
+			$ +_{ 6} $ & 0&3\\
+			\hline
+			0&0&3\\
+			\hline
+			3&3&0
+		\end{tabular}
+	\end{table}
+	\begin{table}[H]
+		\centering
+		\begin{tabular}{c|c|c}
+		 $ \times _6$ &0  &3\\
+		 \hline
+		 0&0&0\\
+		 \hline
+		 3&0&3
+		\end{tabular}
+	\end{table}
+	The subring is commutative and has an identity of $ 3$, even though the identity from the ring is not here.
+\end{eg}
+\begin{eg}[]
+	$ M_n( \rr)$ $ n \times n$ matrices with real entries under matrix addition and matrix multiplication. It is in fact a vector space of order $ n^2$. This is also a ring. So are $ M_n( \zz), M_n( \qq), M_n( \cc)$. 
+
+	Are they commutative? No for $ n\geq 2$. Use the usual counterexample.
+
+	Do they have an identity? Yes, $ I_n$.
+
+	\begin{note}[]
+		$ M_n(2 \zz)$: not commutative and no identity.
+	\end{note}
+\end{eg}
+\end{document}

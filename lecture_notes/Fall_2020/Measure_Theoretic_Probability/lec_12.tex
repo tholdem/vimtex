@@ -1,0 +1,140 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{intuition}
+Atom = "not splittable".
+\end{intuition}
+\begin{defn}[atom]
+	$ A$ is an  \allbold{atom} if $ P(A) >0$ and  $ B \subseteq A \implies P(B) = 0 \text{ or } P(B)=P(A) $. 
+\end{defn}
+
+\begin{claim}[]
+\[
+	X(\omega) = \sum_{ i= 1}^{ n} x_i I_{A_i}(\omega), A_1,\ldots,A_n \text{ partition } \Omega 
+.\] 
+\begin{enumerate}[label=\arabic*)]
+	\item $ E[X] = \sum_{ i= 1}^{ n} x_i P(A_i)$ is equivalent to the more familiar $ E[X]=\sum_x x P(X=x )$.
+		\begin{prf}
+		\begin{align*}
+			\sum_x P(X=x) &= \sum_x P(\{\omega: X(\omega)=x\} ) \\
+				      &= \sum_{ i= 1}^{ n} x_i P(\{\omega: X(\omega)=x_i\} ) \text{ by simple r.v.}  \\
+				      &= \sum_{ i= 1}^{ n} x_i P(A_i) \\
+		\end{align*}
+		\end{prf}
+	\item 
+~\begin{defn}[independent r.v.]
+	R.v.s $ X$ and  $ Y$ are independent if  $ \sigma(X)$ and $ \sigma(Y)$ are independent. That is, given any $ A \in \sigma(X)$ and $ B \in \sigma(Y)$, $ P(A \cap B) = P(A) \cdot  P(B)$.
+\end{defn}
+\item
+~\begin{thm}[]
+If $ X$ and  $ Y$ are independent, then
+ \[
+	 E[XY]=E[X] \cdot E[Y]
+.\] 
+\end{thm}
+\begin{prf}
+Use independence to separate the joint indicator variable and thus the double sum.
+
+We have $ X(\omega) = \sum_{ i= 1}^{ n} x_i I_{A_i}(\omega), Y(\omega)= \sum_{ j= 1}^{ m} y_j I_{B_j}(\omega)$. Then
+\[
+	XY(\omega)=X(\omega) \cdot Y(\omega)=\sum_{ i= 1}^{ n} \sum_{ j= 1}^{ m} x_i y_i I_{A_i \cap  B_j}^{(\omega)}
+.\]
+Note $ A_i = \{\omega:X(\omega) = x_i\} \in \sigma(X)$. Likewise $ B_j \in \sigma(Y)$. Since $ X,Y$ are independent,  $ \sigma(X), \sigma(Y)$ are independent by definition. So
+\[
+	P(A_i \cap  B_j) = P(A_i)P(B_j)
+.\] 
+Therefore,
+\begin{align*}
+	E[XY] &= \sum_{ i= 1}^{ n} \sum_{ j= 1}^{ m} x_i y_j P(A_i \cap B_j) \\
+	      &= \sum_{ i= 1}^{ n} x_i P(A_i) \sum_{ j= 1}^{ m} y_j P(B_j) \\
+	      &= E[X] E[Y]\\
+\end{align*}
+\end{prf}
+\item
+~\begin{thm}[]
+	If $ X=\sum_{ n= 1}^{\infty} X_n \ a.s.$, (\emph{i.e.}: $ P(\{\omega:X(\omega)=\sum_{ n= 1}^{\infty} X_n(\omega)\} ) =1$) and the partial sums of $ \sum_{ n= 1}^{\infty} X_n$ are uniformly bounded, then
+	\[
+		E[X]=E\left[ \sum_{ n= 1}^{\infty} X_n \right] = \sum_{ n= 1}^{\infty} E[X_n]
+	.\] 
+\end{thm}
+\begin{note}[]
+We can exchange sum and expected value in this case.
+\end{note}
+\begin{prf}
+	By linearly of $ E[X]$ for partial sums. Let $ S_n = \sum_{ i= 1}^{ n} X_i, S= \sum_{ n= 1}^{\infty} X_n$. Then $ S_n \xrightarrow{ a.s.} S $. By assumption, $ S_n$ are uniformly bounded. Thus, by previous theorem,
+	\begin{align*}
+		\lim_{ n \to \infty} E[S_n] &= E[S]\\
+		\lim_{ n \to \infty} E\left[ \sum_{ i= 1}^{ n} X_i \right] = \lim_{ n \to \infty} \sum_{ i= 1}^{ n} E[X_i] &= E\left[ \sum_{ n= 1}^{\infty} X_n \right] \text{ by finite sum}  \\
+		\sum_{ n= 1}^{\infty} E[X_n]&= E\left[ \sum_{ n= 1}^{\infty} X_n \right]  \\
+	\end{align*} 
+\end{prf}
+\item
+~\begin{thm}[]
+	Let $ g: \rr \to \rr$, then \[ g(X(\omega))= \sum_{ i= 1}^{ n} g(x_i) I_{A_i}(\omega)\] and \[E[g(X)] = \sum_{ i= 1}^{ n} g(x_i)P(A_i)\]
+\end{thm}
+\begin{note}[]
+$ g$ might not be injective, "non-unique representation". And distinct representations of a r.v. gives us the same expectation. It is because if $ A_i \cap  B_j \neq \O$, then $ x_i = y_j$.
+\end{note}
+
+~\begin{prf}
+We want to show 
+\[
+	\sum_{ i= 1}^{ n} x_i P(A_i) = \sum_{ j= 1}^{ m} y_i P(B_j)
+\]
+and we do not assume that $ x_i, y_j$ are distinct respectively.
+
+Since by assumption
+\[
+	X= \sum_{ i= 1}^{ n} x_i I_{A_i} = \sum_{ j= 1}^{ m} y_j I_{B_j}
+\] 
+Given $ \omega \in A_i \cap B_j$, $x_i = y_j$, so we must have $ x_i=y_j$ whenever $ A_i \cap B_j \neq \O$. Notice that since $ A_i, B_j$ form partitions of $ \Omega$,
+\begin{align*}
+	P(A_i) &= \sum_{ j= 1}^{ m} P(A_i \cap B_j)\\
+	P(B_j) &= \sum_{ i= 1}^{ n} P(A_i \cap B_j) \\
+\end{align*}
+Thus we have
+\begin{align*}
+	\sum_{ i= 1}^{ n} x_i P(A_i) &=\sum_{ i= 1}^{ n} x_i \sum_{ j= 1}^{ m} P(A_i \cap B_j) \\
+	&= \sum_{ i= 1}^{ n} \sum_{ j= 1}^{ m} x_i I_{A_i \cap B_j} \\
+	&= \sum_{ j= 1}^{ m} \sum_{ i= 1}^{ n} y_i I_{A_i \cap B_j}  \\
+	&= \sum_{ j= 1}^{ m} y_j P(B_j) \\
+\end{align*}
+\end{prf}
+\item
+~\begin{coro}[]
+	If $ X,Y$ are independent r.v.s, then  $ E[g(X)h(Y)]=E[g(X)] \cdot E[h(Y)]$
+\end{coro}
+\begin{note}[]
+	By (3) and (5).
+\end{note}
+\item $ \var[X] = E[X^2] - (E[X])^2$.
+~\begin{defn}[variance]
+\[
+	\sigma^2= \var[X] \coloneqq E[(X-\mu)^2]
+.\]
+\end{defn}
+
+\end{enumerate}
+\end{claim}
+
+
+\section{Inequalities}
+\begin{thm}[generalized Markov inequality]
+ $ X \geq 0$,  $ g(x)$ real-valued and non-negative,  $ c>0$, then
+		 \[
+			 P(g(X)\leq c) \leq \frac{E[g(X)]}{c }
+		.\]
+\end{thm}
+
+\begin{prf}
+\begin{align*}
+	E[g(X)]&= \sum_x g(x) \cdot P(A_i) \\
+	       &= \sum_x g(x) P(X=x) \\
+	       &= \sum_{\{x:g(x)\geq c\} } g(x) P(X=x) + \sum_{x: g(x) < c} g(x) P(X=x)\\
+	       &\geq   \sum_{\{x:g(x)\geq c\} } g(x) P(X=x) \text{ nonnegative 2nd term} \\
+	       &\geq  \sum_{\{x:g(x)\geq c\} } c \cdot  P(X=x)  \\
+	       &= c \cdot P(g(X) \geq c) \\
+\end{align*}
+\end{prf}
+\end{document}

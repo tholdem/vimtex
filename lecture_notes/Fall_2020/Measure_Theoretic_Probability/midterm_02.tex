@@ -1,0 +1,76 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Midterm 2}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+
+\begin{problem}[1]
+We wish to show inequality in both directions to prove equality.
+
+$(\geq)$: Since  $ f \geq 0$ is measurable, there exists a sequence of simple measurable functions $ (f_n)$ such that $ 0\leq f_n \nearrow f$. This means that given $ f_n, \omega$, $ f_n(\omega) \leq f(\omega)$.
+\begin{align*}
+	\int_{\Omega} f\ d \mu &= \int_{\Omega} \lim_{ n \to \infty} f_n\ d \mu \\
+			       &=  \lim_{ n \to \infty}\sum_i a_{n_i} \mu(A_{n_i}) \\
+                               &=  \limsup_{  n}  \sum_i a_{n_i} \mu(A_{n_i}) \\
+			       &\leq \limsup_{  n} \sum_i \left[ \inf_{\omega \in A_{n_i}} f(\omega)\right] \mu(A_{n_i})\\
+			       &\leq \sup \sum_i \left[ \inf_{\omega \in A_i} f(\omega) \right] \mu(A_i)  
+\end{align*}
+
+$ (\leq):$ Since the supremum of a set is always greater or equal to the supremum of its subset,
+ \begin{align*}
+	\int_{\Omega} f\ d \mu &= \sup_{0\leq s \leq f} s\ d \mu\\
+			       &= \sup \sum_i a_i \mu(A_i) \text{ where } a_i \leq f(w) \text{ for } \omega \in A_i \\
+			       &\geq \sup \sum_i \left[ \inf_{\omega \in A_i} f(\omega) \right]  \mu(A_i) \text{ since } \inf \text{ is a special case of }a_i   
+\end{align*}
+
+By inequality in both direction we show that they are equal.
+\end{problem}
+
+\begin{problem}[2]
+\begin{case}[1]
+$ f,g$ are simple. Then  let $ f= \sum_{ i= 1}^{ n} a_i I_{A_i}$ and $ g= \sum_{ j= 1}^{ m} b_j I_{B_j}$ where $ A_i, B_j$ are respectively disjoint partitions of $ \Omega$. Then
+\begin{align*}
+	gf &= \left( \sum_{ j= 1}^{ m} b_j I_{B_j} \right) \left( \sum_{ i= 1}^{ n} a_i I_{A_i} \right)  \\
+	&= \sum_{ j= 1}^{ m} \sum_{ i= 1}^{ n} b_j a_i I_{A_i \cap B_j}
+\end{align*}
+Note that if a given $\omega \not\in B_j$ or $ \omega \not\in A_i$, then the product $ b_j a_i I_{B_j} I_{A_i}$ will be zero. Thus the only terms remain are the ones with $ I_{A_i \cap B_j}$. Now consider
+\begin{align*}
+	\int_{\Omega} g\ d \nu &= \sum_{ j= 1}^{ m} b_j \nu(B_j) \\
+	&= \sum_{ j= 1}^{ m} b_j \int_{B_j} f d\ \mu \\
+	&= \sum_{ j= 1}^{ m} b_j \sum_{ i= 1}^{ n} a_{i} \mu(A_i \cap B_j) \\
+	&= \sum_{ j= 1}^{ m} \sum_{ i= 1}^{ n} b_j a_i \mu (A_i \cap B_j) \\
+	&= \int_{\Omega} gf\ d \mu
+\end{align*}
+\end{case}
+\begin{case}[2]
+	$ f,g$ are not simple. Since $ f,g \geq 0$ are measurable, there exists sequences of simple measurable functions $ (f_n), (g_m)$ such that  $0\leq f_n \nearrow f , 0\leq g_m \nearrow g$. By Case 1, we know that for each pair of $ f_n, g_m$, 
+	\[
+	\int_{\Omega} g_m \ d \nu = \int_{\Omega} g_m f_n \ d \mu
+	.\] 
+Taking $ n,m \to \infty$, by Lebesgue's Monotone Convergence Theorem,
+\begin{align*}
+	\lim_{ n,m \to \infty} \int_{\Omega} g_m d\ \nu &= \lim_{ n,m \to \infty} \int_{\Omega} g_m f_n \ d \mu\\
+	\int_{\Omega} g\ d\nu &= \int_{\Omega} gf\ d \mu \\
+\end{align*}
+\end{case}
+\end{problem}
+
+\begin{problem}[3]
+	$ (\implies)$: Suppose $ E(X) =0$, we want to show that  $ P(X=0)= 1$ by showing $ P((X=0)^{c})=0$. Since $ X\geq 0$, the complement of  $ X=0$ is  $ X>0$. Let  $ B = \{\omega: X(\omega) > 0\} $, it suffices to show that $ P(B) = 0$.
+
+	Note that since $ X\geq 0$, $ 0\leq X I_B \leq X$. Therefore,
+	\[
+		0 \leq \int X I_B\ dP \leq \int X\ dP = E(X) = 0
+	.\]
+	It follows that $ \int X I_B\ dP = \int_B X\ dP = 0$. Recall that  $ X(\omega) >0 \ \forall \ \omega \in B$, then it must be that $ P(B) = P(X>0) = 0$ as required.
+
+	$ (\impliedby)$: Suppose $ P(X=0)=1 \implies P(X > 0) = 0$. $ X=0$ is clearly a simple function where  $ X(\omega) = 0 \cdot I_{\Omega}$. 
+	\begin{align*}
+		E(X) &= \int X\ dP \\
+		     &= 0 \cdot  P(\Omega)\\
+		&= 0 \\
+	\end{align*}
+\end{problem}
+\end{document}

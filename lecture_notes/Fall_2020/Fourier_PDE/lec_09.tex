@@ -1,0 +1,123 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\newpage
+\section{Uniform Convergence}
+
+~\begin{defn}[Pointwise Convergence]
+	For every $ \epsilon >0$ and each $ x_0 \in [-L,L]$, there exists a positive, finite integer $ N_{ \epsilon}(x_0)$ such that if $ N \geq N_{ \epsilon}(x_0)$, then
+	\[
+		|S_N(x_0)-T(x_0)|< \epsilon
+	.\] 
+	where $ S_N(x_0)$ is the $ N$th partial sum of the Fourier series with  $ x=x_0$.
+\end{defn}
+\begin{defn}[Uniform Convergence]
+For every $ \epsilon > 0$, there exists a $ N_{ \epsilon} \in \nn$ such that 
+\[
+	|S_N(x)-T(x)|< \epsilon
+.\] 
+for all $ x \in [-L,L]$.
+\end{defn}
+
+\begin{note}[]
+~\begin{enumerate}[label=\alph*)]
+	\item Pointwise convergence implies $ \lim_{ N \to \infty} |S_N(x)-T(x)| =0$ for all $ x \in [-L,L]$.
+	\item Uniform convergence implies $ \lim_{ N \to \infty} \max_{-L\leq x \leq L} |S_N(x) - T(x)| = 0$.
+\end{enumerate}
+Uniform convergence is stronger and implies pointwise convergence. 
+\end{note}
+
+\begin{eg}[]
+	Suppose $ f_n(x) = \frac{x+2}{4n}$ for $ n \in \nn$ and $ x \in [-2,2]$. Then $ ( f_n(x))$ converges uniformly to $ h(x) =0 $. Note that  $ (f_n(x))$ is a sequence of constants for each fixed $ x_0 \in [-2,2]$.
+
+	To show that it is pointwise convergence, given $ x_0 \in [-2,2]$, we have
+	\[
+		\lim_{ n \to \infty} f_n(x_0) = \lim_{ n \to \infty} \frac{x_0+2}{n}=0 \implies \text{ pointwise convergence} 
+	.\] 
+
+	For uniform convergence, we observe that for any $ x \in [-2,2]$ the maximum vertical separation of $ f_n(x)$ from $ h(x)$ is  $ \frac{1}{n}$ for each $ n$ (because the maximum difference is achieved at $ x=2$), thus
+	 \[
+		 \lim_{ n \to \infty} \max_{-2\leq x \leq 2} |f_n(x)-h(x)| = \lim_{ n \to \infty} \frac{1}{n} = 0 \implies \text{ uniform convergence} 
+	.\] 
+\end{eg}
+
+\begin{eg}[]
+\begin{equation*}
+	g_n(x)
+\begin{cases}
+	nx \qquad & 0<x\leq \frac{1}{n}\\
+	2-nx \qquad & \frac{1}{n} < x \leq \frac{2}{n}\\
+	0 \qquad & \text{ for all other } x \in [-2,2] 
+\end{cases}
+\end{equation*}
+then $ g_n(x)$ converges pointwise but not uniformly.
+
+Pointwise: Clearly if $ x_0 \in [-2,0]$ then $\lim_{ n \to \infty} g_n(x_0)=0$. If $ x_0 \in (0,2]$ then for any $ N > \frac{2}{x_0}$, if $ n \geq N$, then  $ x_0 > \frac{2}{n}$ so $ x_0 \in (\frac{2}{n},2]$ so $ g_n(x_0) =0$ for all $ n\geq N$ so
+ \[
+	 \lim_{ n \to \infty} g_n(x_0) = 0 
+.\] 
+Note that $ N> \frac{2}{x_0}$ is obtained by reverse engineering on the scratch paper.
+
+Uniform: the maximum vertical separation of $ g_n(x)$ from $ h(x)$ is a fixed distance of 1 (at $ x=\frac{1}{n}$ ) for any choice of  $ n \geq 1$, thus
+ \[
+	 \lim_{ n \to \infty} \max_{x \in [-2,2]} |g_n(x) - h(x)| = \lim_{ n \to \infty}  1 \neq 0
+.\] 
+Hence it doesn't converge uniformly. 
+
+\begin{defn}[Absolute Convergence]
+	\item The $ \text{ F.S.} [ f]( x) $ is \allbold{absolutely convergent} if, for every $ \epsilon>0$, there exists an integer $ 0< M_{ \epsilon}< \infty$ such that
+		\[
+		0\leq \sum_{ n=M_{ \epsilon}+1}^{\infty} |a_n| + \sum_{ n=M_{ \epsilon}+1}^{\infty} |b_n| < \epsilon \qquad \text{ \emph{i.e.} the tail converges absolutely} 
+		.\] 
+\begin{note}[]
+~\begin{enumerate}[label=\arabic*)]
+	\item if $ \text{ F.S.} [ f]( x) $ is absolutely convergent then
+	\begin{align*}
+		0 &\leq |a_0| + \sum_{ n= 1}^{\infty} \left| a_n \cos \left( \frac{ n\pi x}{ L} \right)  \right| + \sum_{ n= 1}^{\infty} \left| b_n \sin \left( \frac{ n\pi x}{ L} \right)  \right| \\
+		  &\leq |a_0| + \sum_{ n= 1}^{\infty} |a_n| + \sum_{ n= 1}^{\infty} |b_n|\\
+		  &< \infty
+	\end{align*}
+	\item if $ \text{ F.S.} [ f]( x) $ is absolutely convergent then it is uniformly convergent.
+	\item if $ \text{ F.S.} [ f]( x) $ is uniformly convergent then it is pointwise convergent.
+	\item there exist series of functions which are uniformly convergent but not absolutely convergent.
+\end{enumerate}
+\end{note}
+\end{defn}
+
+\begin{thm}[Weierstrass M-test]
+	If $ (f_n(x))$ is a sequence of functions defined on a set $ E$ and  $ (M_n)$ is a sequence of non-negative numbers such that $ |f_n(x)|<M_n$ for all $ x \in E$ and $ n\geq 0$. Then $ \sum_{ n= 0}^{\infty} f_n(x)$ converges uniformly if $ \sum_{ n= 0}^{\infty} M_n$ converges.
+\end{thm}
+\end{eg}
+
+\begin{defn}[Gibbs Phenomenon]
+\begin{enumerate}[label=\alph*)]
+	\item "Gibbs phenomenon" is a persistent overestimation or underestimation of the value of any piece wise smooth function with a jump discontinuity.
+	\item It occurs in truncated Fourier series of functions with jump discontinuities and does NOT go away as the number of terms is increased.
+	\item As the number of terms used in increased, the location of the overshoot moves closer and closer to jump discontinuity without ever reaching it.
+	\item As the number of terms increases, the size of the overshoot approaches a limiting value, proportional to the magnitude of the jump discontinuity with a constant of proportionality that is universal.
+\end{enumerate}
+\end{defn}
+
+\begin{eg}[]
+\begin{equation*}
+	f(x)=
+\begin{cases}
+	0, \qquad & -\pi<x<0\\
+	\pi, \qquad &0\leq x \leq \pi
+\end{cases}
+\end{equation*}
+\[
+	\text{ F.S.} [ f]( x) = \frac{\pi}{2} + 2 \sum_{ n= 0}^{\infty} \frac{\sin[(2n+1)x]}{2n+1}
+.\] 
+
+The truncated form of the Fourier series has the form
+\[
+	\tilde{ f_M}( x) = \frac{\pi}{2} + 2\left( \sin(x) + \frac{\sin(3x)}{3} + \ldots + \frac{\sin[(2(M-2)+1)x]}{2(M-2)+1}\right)  
+.\]
+
+\end{eg}
+\begin{intuition}
+	Gibbs phenomenon is the result of the fact that points in the middle of the interval are converging faster than points at the endpoints/discontinuities, due to pointwise convergence.
+\end{intuition}
+\end{document}

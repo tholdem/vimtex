@@ -1,0 +1,59 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\subsection{Classification Theorem}
+
+It asserts that every second-order linear PDE with constant coefficients, where the unknown function has \emph{two} independent variables, can be transformed by a change of variables into exactly one of the following forms:
+\begin{enumerate}[label=\arabic*)]
+	\item generalized wave equation
+		\[
+			-c^2 u_{x x} + u_{tt} + \alpha u = f(x,t), c>0 \text{ (hyperbolic case)} 
+		\] 
+		since it's 2nd derivative minus 2nd derivative.
+	\item generalized Poisson/Laplace equation $ (t=y)$
+		 \[
+			 a^2 u_{x x}+ u_{tt} + \alpha u = g(x,t), a>0 \text{ (elliptic case)} 
+		.\] 
+	\item generalized heat equation
+		\[
+			-k^2 u_{x x} + u_{t} + \alpha u = h(x,t), k>0 \text{ (parabolic case)} 
+		.\]
+	\item
+		\[
+			u_{x x}+ cu=g(x,t), \text{ (degenerate case)} 
+		.\] 
+\end{enumerate}
+
+\newpage
+\section{Fourier Transform}
+
+\subsection{Complex Fourier Series}
+
+Recall by Euler's formula,
+\[
+\cos \left( \frac{ n\pi x}{ L} \right) =\frac{e^{   i n\pi x / L} + e^{ - i n\pi x / L} }{2 } \text{ and } \sin \left( \frac{ n\pi x}{ L} \right) = \frac{e^{   i n\pi x / L} -e^{ - i n\pi x / L} }{ 2i} 
+.\]
+
+Therefore, the F.S. becomes
+\begin{align*}
+	a_0 + \sum_{ n= 1}^{\infty} a_n \cos \left( \frac{ n\pi x}{ L} \right) + b_n \sin \left( \frac{ n\pi x}{ L} \right) &= a_0 + \sum_{ n= 1}^{\infty} \left( \frac{a_n}{2 }+ \frac{b_n}{2i } \right) e^{   i n\pi x / L} + \left( \frac{a_n}{2 } - \frac{b_n}{2i } \right)  e^{ - i n\pi x / L}  \\
+															    &= a_0 + \sum_{ n= 1}^{\infty} \left( \frac{a_n - i b_n}{2 } \right) e^{   i n\pi x / L} + \left( \frac{a_n + ib_n}{2 } \right) e^{ - i n\pi x / L}    \\
+															    &= a_0 + \sum_{ n= 1}^{\infty} c_n e^{   i n\pi x / L} + c_{-n} e^{ - i n\pi x / L}  \\
+\end{align*}
+
+\begin{notation}
+$c_{-n}$ denotes the coefficient of the exponential term with $-n$.
+\end{notation}
+If we let $ n=-m$, then by projection,
+\begin{align*}
+	c_{-n}=\frac{1}{2}(a_n+ib_n) &= \frac{1}{2} \left( \frac{1}{L}\int_{-L}^{L} f(x) \cos \left( \frac{ n\pi x}{ L} \right) dx + \frac{i}{L} \int_{-L}^{L} f(x) \sin \left( \frac{ n\pi x}{ L} \right) dx  \right)  \\
+				     &= \frac{1}{2} \left( \frac{1}{L} \int_{-L}^{L} f(x) \cos \left( \frac{ -m \pi x}{ L} \right) dx + \frac{i}{L} \int_{-L}^{L} f(x) \sin \left( \frac{ -m\pi x}{ L} \right) dx  \right)  \\
+				     &=  \frac{1}{2} \left( \frac{1}{L} \int_{-L}^{L} f(x) \cos \left( \frac{ m \pi x}{ L} \right) dx - \frac{i}{L} \int_{-L}^{L} f(x) \sin \left( \frac{ m\pi x}{ L} \right) dx  \right)   \\
+				     &= \frac{1}{2} (a_m-ib_m) = c_m \\
+\end{align*}
+Therefore, 
+\[
+\text{ F.S.} [ f]( x) = a_0+ \sum_{ n= 1}^{\infty} c_n e^{   i n\pi x / L} + \sum_{ m= -1}^{-\infty} c_m e^{   i n\pi x / L} =\sum_{ n= -\infty}^{\infty} c_n e^{   i n\pi x / L} 
+.\] 
+\end{document}

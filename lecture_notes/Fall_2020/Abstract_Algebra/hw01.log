@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.7.26)  28 AUG 2020 09:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020) (preloaded format=pdflatex 2020.7.26)  30 AUG 2020 20:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -830,20 +830,25 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 LaTeX Font Info:    Trying to load font information for U+stmry on input line 4.
  (/home/jaden/texlive/2020/texmf-dist/tex/latex/stmaryrd/Ustmry.fd) [1
 
-{/home/jaden/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./hw01.aux) ) 
+{/home/jaden/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 82--83
+
+ []
+
+[2] [3] [4] (./hw01.aux) ) 
 Here is how much of TeX's memory you used:
- 22317 strings out of 480906
- 444272 string characters out of 5907779
- 689146 words of memory out of 5000000
- 37427 multiletter control sequences out of 15000+600000
- 546468 words of font info for 70 fonts, out of 8000000 for 9000
+ 22329 strings out of 480906
+ 444471 string characters out of 5907779
+ 696146 words of memory out of 5000000
+ 37439 multiletter control sequences out of 15000+600000
+ 546560 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,5n,102p,815b,141s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/home/jaden/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on hw01.pdf (1 page, 78217 bytes).
+ 88i,11n,102p,815b,297s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/home/jaden/texlive/2020/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></home/jaden/texlive/2020/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on hw01.pdf (4 pages, 95776 bytes).
 PDF statistics:
- 44 PDF objects out of 1000 (max. 8388607)
- 32 compressed objects within 1 object stream
+ 57 PDF objects out of 1000 (max. 8388607)
+ 41 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

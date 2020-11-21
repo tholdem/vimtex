@@ -1,0 +1,86 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{intuition}
+	For linear map T, $ T$ is injective iff  $ \ker T= \{0\} $
+\end{intuition}
+
+
+\begin{thm}[]
+If $ \phi:G \to H$ homomorphism, then
+$ \phi$ is injective $ \iff \ker  \phi = \{e_G\} $
+\end{thm}
+
+\begin{prf}
+Let's prove the contrapositives:
+
+($ \impliedby$):If $ \ker \phi \neq \{e_G\} $, then there exists $ x \in G \setminus \{e_G\} $ such that $ \phi(x)=e_H$. Since $ e_G \neq x$ and  $ \phi(x) = \phi(e_G) =e_H$, this implies $ \phi$ is not injective.
+
+($ \implies$): We want to use the same idea from linear algebra. If $ \phi$ is not injective, then there exist $ x \neq y$ with  $ \phi(x)=\phi(y)$. Then
+\begin{align*}
+	\phi(x^{-1} y) &= \phi(x^{-1}) \phi(y) \\
+		       &= \phi(x)^{-1} \phi(y) \\
+		       &= e_H 
+\end{align*}
+However, $ x^{-1} y \neq e_G$ since $ x\neq y$. Hence,  $ e_G$ and  $ x^{-1}y$ are distinct elements of $ \ker \phi \implies \ker \neq \{e_G\} $.
+\end{prf}
+
+\begin{eg}[]
+Read differentiation example in textbook.
+\end{eg}
+
+\begin{eg}[]
+	$ \phi: \cc^* \to \rr*$, $ \phi(z)=|z|$. We claim this is a homomorphism. 
+	\[
+		\phi(z *_{ \cc} w) = |zw| = |z||w| = \phi(z) *_{ \rr} \phi(w)
+	.\]
+$ \im \phi = \rr^+$. This is a subgroup because it is the image of a known homomorphism!
+
+$ \ker \phi = U$, the unit circle $ \{z \in \cc^* : |z|=1\} $. Hence $ U$ is a normal subgroup of  $ \cc^* $. It follows from that the subgroup of an abelian group is normal. Or it's the kernel of a known homomorphism.
+\end{eg}
+
+\begin{note}[]
+	T/F: If $ H \leq G $ and  $ H$ is abelian, is  $ H$ a normal subgroup? NO, think  $ \{e, (1\ 2)\} \leq S_3 $.
+\end{note}
+
+\begin{notation}
+	$ \pi$ stands for surjective/projection. $ \iota$ stands for injective.
+\end{notation}
+\begin{eg}[]
+	$ \pi_1: G_1 \times G_2 \to G_1$, $ \pi((g_1,g_2))=g_1$. "Projection to first component".
+	\begin{align*}
+		\pi_1((x_1,x_2)*(y_1,y_2)) &= \pi_1((x_1*y_1,x_2*y_2)) \\
+					   &= (x_1*y_1) \\
+					   &= \phi((x_1,x_2)) \phi((y_1,y_2)) 
+	\end{align*}
+	$ \im \pi_1 = G_1$. 
+
+	$ \ker \pi_1  = \{(g_1,g_2): g_1=e_1\} $. $ K \trianglelefteq G_1\times G_2$.
+\end{eg}
+
+\section{Factor/Quotient Groups}
+\begin{note}[]
+	Quotient groups are NOT a special kind of subgroup. We try to find a group of cosets. See screenshot for the motivation. For some cases, if you call the inputs by different names, we obtain the same result.
+
+	Well-defined: the operation is not confused by picking different representations for the inputs.
+\end{note}
+
+Goal: $ H \leq G$, try to make the left cosets of  $ H $ in  $ G$ into a group. That is, $ (xH)*(yH) = xyH$. Here we should think of each coset as a single object.
+
+Problem: the result seems to depend on the representatives  $ x,y$ that were chosen. If $ x,x'$ in the same left coset, $ xH=x'H \iff h=x^{-1}x' \in H, x'=xh$. So $ xH=xhH$. Then
+\[
+	(xhH)*(yh'H) = xhyh'H
+.\] 
+We need $ xhyh'H $ and  $ xyH$ to be the representations of the same things for all $ x,y,h,h'$. Again this means
+\begin{align*}
+	xyH = xhyh'H &\iff (xy)^{-1} xhyh'H \in H\\
+	& \iff y^{-1}x^{-1}xhyh'H \in H \\
+	& \iff y^{-1}hyh' =h_0 \in H \\
+	& \iff y^{-1}hy = h_0(h')^{-1} \in H  
+\end{align*}
+Summary: this would work iff $ y^{-1}hy \in H$ for all $ h \in H, y \in G$.
+
+
+
+\end{document}

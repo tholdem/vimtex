@@ -1,0 +1,118 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{intuition}
+	If the rope is tight enough, \emph{i.e.} $ T_0$ is large, then there will be barely any oscillation. It's some sort of restorative force.
+\end{intuition} 
+
+Recall the slope of the string may be represented as $ \frac{\partial u}{\partial x} $ or $ \tan \theta$. 
+\[
+\tan \theta = \frac{\partial u}{\partial x} 
+.\]
+Thus
+\[
+\frac{\partial }{\partial x} \tan \theta = \frac{\partial }{\partial x} \cdot  \frac{\partial u}{\partial x} = \frac{\partial^2 u}{\partial { x}^2} 
+.\] 
+Then the PDE becomes
+\[
+\frac{\partial^2 u}{\partial { t}^2} = \frac{T_0}{\rho_0} \cdot  \frac{\partial^2 u}{\partial { x}^2} -g
+.\] 
+Assuming $ g=0$, let  $ c^2 = \frac{T_0}{\rho_0} = \frac{T_0}{\delta \cdot A} > 0$, then we obtain the 1D wave equation
+\begin{thm}[1D wave equation]
+\[
+\frac{\partial^2 u}{\partial { t}^2} = c^2 \frac{\partial^2 u}{\partial { x}^2} 
+.\]
+The more general version is
+\[
+	\frac{\partial^2 u}{\partial { t}^2} = c^2 \frac{\partial^2 u}{\partial { x}^2} - g + f(x,t)
+.\]
+
+\end{thm}
+
+The LHS is the vertical acceleration of string, and the RHS is the restoring force due to tension (- gravitational acceleration + acceleration from known external forces). 
+
+\subsection{initial conditions}
+Second order time derivative needs two ICs!
+
+Initial position: $ u(x,0)= U(x)$.
+
+Initial velocity:  $ \frac{\partial }{\partial t} u(x,0) = V(x)$.
+
+The boundary conditions are fixed: $ u(x,0)=u(x,L)=0$. 
+
+So we have the following:
+
+\begin{equation*}
+\begin{cases}
+	\text{PDE: } \frac{\partial^2 u}{\partial { t}^2} = c^2 \frac{\partial^2 u}{\partial { x}^2}  & 0<x<L, t>0 \\
+	\text{BCs: } u(0,t) = 0 = u(L,t) & t>0\\
+	\text{ICs: } u(x,0)=U(x), \frac{\partial u}{\partial t} (x,0) =V(x) & 0\leq x \leq L\\
+\end{cases}
+\end{equation*}
+
+In general, we assume that the solution has the form $ u(x,t) = \overline{u}(x) + w(x,t)$, where $ \overline{u}(x)$ is the steady state solution and $ w(x,t)$ is in the vector space of functions that satisfy the PDE and BCs.
+
+\begin{eg}[]
+Suppose
+\[
+\frac{\partial^2 u}{\partial { t}^2} = \frac{T_0}{\rho_0} \cdot \frac{\partial^2 u}{\partial { x}^2} - g
+.\] 
+with $ u(0,t)=0=u(L,t)$. Find the steady state position of the string.
+
+For steady state, $ \frac{\partial u}{\partial t} =0$, so $ \frac{\partial^2 u}{\partial { t}^2}=0 $, and
+\[
+	\frac{T_0}{\rho_0} \overline{u}''(x) - g=0 \implies \overline{u}(x) = \frac{\rho_0 g}{2 T_0 }x^2 + A x + B
+.\] 
+Then BC $ \overline{u}(0)=0$ implies $ B =0$. And the BC $ \overline{u}(L)=0$ implies
+\[
+	0=\overline{u}(L) = \frac{\rho_0 g}{2 T_0 } L^2 + A \cdot L \implies A = \frac{\rho_0 g}{2T_0 }L
+.\] 
+therefore the steady state solution becomes
+\[
+	\overline{u}(x) = \frac{\rho_0 g}{2 T_0 } \cdot x \cdot (x-L)
+.\] 
+Therefore, the graph is a parabola with minimum occurring when $ x=\frac{L}{2}$, then the minimum $ \overline{u}_{\min} = \overline{u}\left( \frac{L}{2} \right)  = \frac{\rho_0 g}{2 T_0 }L^2$. This is the sag in the center of the string due to gravity. 
+\end{eg}
+
+\begin{intuition}
+	Let's take a look at the units of $ c = \sqrt{\frac{T_0}{\rho_0}} $. 
+	\[
+		c = \sqrt{ \text{ mass} \cdot \text{ length} / \text{time}^2 \cdot \text{ length} / \text{ mass}    } = \text{ speed} 
+	.\] 
+So $ c$ should be some sort of speed. The only likely candidate seems to be the speed of propagation. 
+If that's true, then we can also calculate propagation time,
+\[
+\tau = \frac{L}{c} + \frac{L}{c} = \frac{2L}{c }
+.\] 
+
+Then frequency (cycles divided by time) follows:
+\[
+f = \text{ constant} \cdot  \frac{c}{L} = \text{ constant}\frac{1}{2 } \cdot \frac{1}{L} \cdot \sqrt{\frac{T_0}{\delta \cdot A}}   
+.\] 
+
+How can we increase the frequency?
+
+\begin{enumerate}[label=\arabic*)]
+	\item Decrease length $ L$.
+	\item Increase tension  $ T_0$.
+	\item Decrease density $ \delta$.
+	\item Increase area $ A$.
+\end{enumerate}
+They all match our intuition!
+
+\begin{note}[]
+Gravity doesn't change frequency according to this model!
+\end{note}
+\end{intuition}
+
+\subsection{Variations on the Wave Equation (optional)} 
+Transverse Motion: stiffness.
+
+Damped Motion: eventually return to stationary.
+
+Transverse Vibrations: 2D membrane (drum).
+
+Longitudinal Vibration: does not assume totally vertical motion.
+
+\end{document}

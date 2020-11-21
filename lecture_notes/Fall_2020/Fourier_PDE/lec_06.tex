@@ -1,0 +1,84 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{note}[]
+	Periodic extension requires the value at the end points be equal. Otherwise, the function would have two different outputs at the end points, which makes it not well-defined. A simple fix is to restrict the domain (remove one end point). 
+\end{note}
+
+\begin{defn}[generalized Fourier series]
+	Given $y=F(x)$, where  $-L\leq x \leq L$ for some positive real number  $L>0$, define the inner product
+	 \[
+		 \langle f(x),g(x) \rangle = \int_{ -L}^{ L}  f(x) g(x) dx  \text{ with norm } \norm{f}_2  
+	.\] 
+	We can show that the countably infinite set
+	\[
+		\left\{ 1,\cos\left( \frac{\pi x}{L} \right), \sin \left( \frac{\pi x}{L} \right), \ldots   \right\} 
+	.\] 
+	is a set of orthogonal functions with respect to the inner product given above. If we assume that 
+	\[
+		F(x) = a_0 + \sum_{ n=1}^{\infty} a_n + \cos\left( \frac{n\pi x}{L} \right) + \sin\left( \frac{n \pi x}{L} \right) 
+	.\] 
+	then, by the projection formula for finding coordinates, the corresponding Fourier coefficients are
+	\begin{align*}
+		a_0 &= \frac{\langle F(x),1 \rangle}{\norm{1}^2 } =\frac{1}{2L} \int_{ -L}^{ L} F(x) dx\\
+		a_n &= \frac{\langle F(x), \cos\left( \frac{n\pi x}{L} \right)  \rangle}{\norm{ \cos\left( \frac{n \pi x}{L} \right)}^2 } = \frac{1}{L} \int_{ -L}^{ L} F(x) \cos\left( \frac{n \pi x}{L} \right) dx\\
+		b_n &=  \frac{\langle F(x), \sin\left( \frac{n\pi x}{L} \right)  \rangle}{\norm{ \sin\left( \frac{n \pi x}{L} \right)}^2 } = \frac{1}{L} \int_{ -L}^{ L} F(x) \sin\left( \frac{n \pi x}{L} \right) dx
+	\end{align*}
+\end{defn}
+
+\begin{note}[]
+	The generalization was achieved using a change of variables: let $z = \frac{\pi x}{L}$. The $L^2$-inner product on $[-L,L]$ and on $-\pi,\pi$ only differ by  $\frac{L}{\pi}$.
+\end{note}
+
+
+\begin{itemize}
+	\item restrict domain
+	\item redefine the value at end point so that $F(L)=F(-L)$.
+\end{itemize}
+
+\begin{eg}[]
+	$F(x) = x, -L\leq x\leq L$. Redefine:
+	 \[
+		 F'(-L)=F'(L) = \frac{F(-L)+F(L)}{2} = \frac{-L+L}{2} = 0
+	.\] 
+\end{eg}
+
+\subsection{Convergence}
+
+~\begin{defn}[]
+	Suppose $f(x)$ and  $g(x)$ are defined on  $[-L,L]$, we say  $f(x)$ and  $g(x)$ are  \allbold{equivalent} or \allbold{equal almost everywhere} (denoted as $f(x) \sim g(x)$). If $f(x)=g(x)$ for all  $x \in (-L,L)$ except possibly at finite set of points $\{x_1,x_2,\ldots\} $ (in fact measure-zero sets) at which $f(x_i) \neq g(x_i)$ where $|f(x_i)|<\infty$ and $|g(x_i)|<\infty$ for $i\leq i \leq k$. 
+\end{defn}
+
+\begin{note}[]
+	If $f(x) \sim g(x)$ then  F.S. $[f](x) =$ F.S.$[g](x)$ but $f(x) \neq g(x)$. Hence the need for restriction.
+\end{note}
+
+~\begin{defn}[dense]
+	Let $A$ be a non-empty set and suppose  $B$ is a subset of  $A$. We say set  $B$ is  \allbold{dense} in $A$ if any point of  $a$ of  $A$ can be written as a limit of points from  $B$, that is, if for any  $a \in A$ there exists a sequence points $(b_n)$ from  $B$ s.t.  $\lim_{ n \to \infty} b_n=a$. 
+\end{defn}
+
+\begin{defn}[trigonometric polynomial]
+	A \allbold{trigonometric polynomial} is a finite sum of the form
+	\[
+		S_N = a_0 + \sum_{ n= 1}^{ N} a_n \cos\left( \frac{n\pi x}{L} \right)  + \sum_{ n= 1}^{ N} b_n \sin\left( \frac{n \pi x}{L} \right) 
+	.\] 
+\end{defn}
+\begin{note}[]
+ The Nth partial sum of a Fourier Series is a trigonometric polynomial.
+\end{note}
+
+\begin{prop}[]
+The set of trigonometric polynomials is dense in the set of continuous functions.
+\end{prop}
+
+\begin{intuition}
+	The analogy is that rational numbers are dense in real numbers.
+\end{intuition}
+
+\subsection{Periodicity}
+It "smooths" the bad end points or removable discontinuity. see lecture notes.\\
+
+
+
+\end{document}

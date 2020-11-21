@@ -1,0 +1,113 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{thm}[]
+Suppose $ S \subseteq  R$. $ S \leq R$ is a subring if
+ \begin{enumerate}[label=(\roman*)]
+	\item $ 0_R \in S$ or check $ S \neq \O$ if we use it in junction with the negation axiom.
+	\item Closed under $ +$.
+	\item Closed under  $ -$ or negation: if  $ a,b \in S$ then $ a-b \in S$. Or if $ a \in S$ then $ -a \in S$.
+	\item Closed under $ \times $: if $ a,b \in S$ then $ a \times b \in S$.
+\end{enumerate}
+\end{thm}
+\begin{note}[]
+	The first three proves that $ S$ is a subgroup.
+\end{note}
+
+\begin{eg}[integral domain]
+	$ \zz$ is an integral domain (but not a field). Having inverses doesn't mean an element is not a zero divisor.
+
+In a group, recall the cancellation laws: $ ab=ac \implies b=c, ba=ca\implies b=c$.
+
+In $ \zz$, if $ 3x=3y$, then  $ x=y$. If  $ ab=ac$, then  $ a=0$ or  $ b=c$.
+\end{eg}
+
+\begin{prf}
+Suppose $ ab=ac$. Then
+ \begin{align*}
+	ab-ac&= 0 \\
+	a(b-c)&= 0 \\
+	a=0 \text{ or } & b-c=0 \text{ since no zero divisors}\\  
+	a=0 \text{ or } &b=c 
+\end{align*}
+\end{prf}
+\begin{thm}[]
+If $ R$ is an integral domain and  $ ab=ac$, then  $ a=0$ or  $ b=c$. The other direction follows from commutativity.
+\end{thm}
+\begin{eg}[bad]
+	$ \zz_{12}$ is not an integral domain. It is commutative, has identity 1, but has zero divisors like $ 3\times 4=0$. In general, any composite (non-prime) order of $ \zz_n$ is not an integral domain.
+
+	Consider $ x^2-5x+6=0$ in $ \zz_{12}$. 2,3,6,11 are all solutions. 
+	\[
+		(6-2)(6-3)=4\times 3=0
+	.\] 
+So what are the zero divisors of $ \zz_{12}$?
+
+It's 2,3,4,6,8,9,10. It happens that the non-zero divisors 1,5,7,11 are units. Their inverses are themselves. They form a group isomorphic to $ V_4$. 
+
+\begin{prop}[]
+In $ \zz_n$, any nonzero element is either a zero divisor or a unit.
+\end{prop}
+\begin{note}[]
+In $ \zz$, this is not true. Units are $ \{\pm 1\} $ but there is no zero divisors.
+\end{note}
+
+\begin{prf}
+If $ a$ is a zero divisor then  $ ab=0$ for  $ a\neq 0, b\neq 0$.
+If  $ a$ is a unit, then there exists  $ c \in R: ac=ca=1$.
+\begin{align*}
+	ab&=0\\
+	(ca)b&= c0 \\
+	1b&= 0 \\
+	b &= 0 \\
+\end{align*}
+which is a contradiction.
+\end{prf}
+\end{eg}
+\begin{thm}[]
+	Any field is an integral domain.
+\end{thm}
+
+\begin{prf}
+	\begin{enumerate}[label=(\roman*)]
+		\item $ F$ is commutative by definition of field.
+		\item $ F$ has identity by definition of division ring.
+		\item  $ F$ has no zero divisors. Suppose  $ ab=0, a\neq 0, b\neq 0$. Then  $ a$ is a unit and cannot be a zero divisor.  Division ring forces all nonzero elements units.
+	\end{enumerate}
+\end{prf}
+
+Is every integral domain a field? No. $ \zz$.
+
+\begin{thm}[]
+	Every finite integral domain is a field.
+\end{thm}
+\begin{coro}[]
+	$ \zz_p$ is a field.
+\end{coro}
+\begin{intuition}[]
+Why is $ 3$ a unit in  $ \zz_7$?
+
+The function $ f_3: \zz_7 \to \zz_7, x\mapsto 3x \mod 7$ is injective. Thus $ f_3$ is surjective. Hence $ f_3(y)=1$ for some $ y$.
+\end{intuition}
+\begin{prf}
+We use the pigeonhole principle. If we have $ f:A \to B$, $ |A|=|B|=5$. Then  $ f$ injective  $ \iff$ f surjective.
+
+Let $ R = \{a_1=1,a_2,\ldots,a_n\} $. Let $ a \in R\setminus \{0\} $. We need to show $ a$ has a multiplicative inverse.
+
+Consider the sequence  $ \{aa_1,aa_2,\ldots,aa_n\} $. Suppose there is a repeat $ a a_i=a a_j$, by cancellation law (since $ a\neq 0$), $ a_i = a_j$. So no such repeat exists. Therefore, multiplication by $ a$ is injective, thus it's surjective, thus  $ ax=1$ holds for some  $ x$. 
+\end{prf}
+\begin{eg}[zero divisors in $ \zz_{12}$]
+Immediately we can say 2,3,4,6 are zero divisors because they are factors of 12.
+
+All multiples of these are zero divisors too. 8,9,10 are such multiples.
+
+Therefore, as long as $ \gcd ( a,n) \neq 1 $, $ a$ is a zero divisor.
+
+\begin{note}[]
+In $ \zz$, the gcd of $ a$ and $ b$ is of the form  $ ra+sb$ where  $ r,s \in \zz$.
+\end{note}
+
+So 5 is coprime to 12 means $ \gcd ( 5,12)=1 \implies 5r+12s=1$ in integers. Let $ r=5,s=-2$ so it works.
+\end{eg}
+\end{document}

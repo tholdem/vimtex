@@ -1,0 +1,70 @@
+\BOOKMARK [1][-]{section.2}{Review}{}% 1
+\BOOKMARK [2][-]{subsection.3}{2nd order ODE}{section.2}% 2
+\BOOKMARK [2][-]{subsection.4}{The complex plane}{section.2}% 3
+\BOOKMARK [2][-]{subsection.5}{Euler's formula}{section.2}% 4
+\BOOKMARK [1][-]{section.6}{Fourier Series and Orthogonal Vectors \(ch.1 + 2\)}{}% 5
+\BOOKMARK [2][-]{subsection.7}{Taylor vs Fourier}{section.6}% 6
+\BOOKMARK [1][-]{section.18}{Chapter 3}{}% 7
+\BOOKMARK [2][-]{subsection.22}{Convergence}{section.18}% 8
+\BOOKMARK [2][-]{subsection.23}{Periodicity}{section.18}% 9
+\BOOKMARK [1][-]{section.24}{Convergence Part 1}{}% 10
+\BOOKMARK [1][-]{section.37}{Convergence Part 2}{}% 11
+\BOOKMARK [1][-]{section.44}{Uniform Convergence}{}% 12
+\BOOKMARK [2][-]{subsection.59}{Integration and Differentiation of Fourier Series}{section.44}% 13
+\BOOKMARK [1][-]{section.62}{Derivation of the Heat Equation 1}{}% 14
+\BOOKMARK [2][-]{subsection.63}{Insulated Road}{section.62}% 15
+\BOOKMARK [2][-]{subsection.73}{Initial and Boundary Conditions}{section.62}% 16
+\BOOKMARK [2][-]{subsection.76}{Thermal Equilibrium}{section.62}% 17
+\BOOKMARK [2][-]{subsection.81}{Insulated Boundaries}{section.62}% 18
+\BOOKMARK [2][-]{subsection.82}{Heat Equation in 3D}{section.62}% 19
+\BOOKMARK [2][-]{subsection.86}{Boundary Heat Flux}{section.62}% 20
+\BOOKMARK [2][-]{subsection.87}{Steady State}{section.62}% 21
+\BOOKMARK [1][-]{section.88}{Solving the Heat Equation}{}% 22
+\BOOKMARK [2][-]{subsection.91}{Separation of Variables}{section.88}% 23
+\BOOKMARK [2][-]{subsection.98}{Interpret Solution}{section.88}% 24
+\BOOKMARK [1][-]{section.99}{Insulated Rods}{}% 25
+\BOOKMARK [2][-]{subsection.100}{Fourier Cosine Series}{section.99}% 26
+\BOOKMARK [1][-]{section.104}{Thin Circular Ring}{}% 27
+\BOOKMARK [1][-]{section.110}{Summary of Heat Equations}{}% 28
+\BOOKMARK [1][-]{section.115}{Motion of Stretched String}{}% 29
+\BOOKMARK [2][-]{subsection.116}{Assumptions}{section.115}% 30
+\BOOKMARK [2][-]{subsection.123}{Additional Assumptions}{section.115}% 31
+\BOOKMARK [2][-]{subsection.127}{Derivation}{section.115}% 32
+\BOOKMARK [2][-]{subsection.128}{Vertical Forces}{section.115}% 33
+\BOOKMARK [2][-]{subsection.129}{initial conditions}{section.115}% 34
+\BOOKMARK [2][-]{subsection.134}{Variations on the Wave Equation \(optional\)}{section.115}% 35
+\BOOKMARK [1][-]{section.135}{Solve A Wave Equation}{}% 36
+\BOOKMARK [2][-]{subsection.136}{Eigenvalue Problem}{section.135}% 37
+\BOOKMARK [2][-]{subsection.137}{Time-Domain Problem}{section.135}% 38
+\BOOKMARK [2][-]{subsection.138}{General Solution}{section.135}% 39
+\BOOKMARK [2][-]{subsection.139}{Convergence}{section.135}% 40
+\BOOKMARK [1][-]{section.140}{Motion of a guitar string}{}% 41
+\BOOKMARK [1][-]{section.141}{Supplement: The Sound of Music}{}% 42
+\BOOKMARK [2][-]{subsection.142}{Standing Waves}{section.141}% 43
+\BOOKMARK [2][-]{subsection.143}{Music Theory}{section.141}% 44
+\BOOKMARK [2][-]{subsection.144}{Fun Facts}{section.141}% 45
+\BOOKMARK [1][-]{section.145}{d'Alembert's solution to the wave equation}{}% 46
+\BOOKMARK [1][-]{section.150}{D'Alembert's Solution continued}{}% 47
+\BOOKMARK [1][-]{section.151}{Laplace's Equation and Solution}{}% 48
+\BOOKMARK [2][-]{subsection.155}{Rectangular Domain}{section.151}% 49
+\BOOKMARK [1][-]{section.159}{Laplace in Circular Geometry}{}% 50
+\BOOKMARK [2][-]{subsection.160}{different PDE domain}{section.159}% 51
+\BOOKMARK [2][-]{subsection.165}{separation of variables}{section.159}% 52
+\BOOKMARK [2][-]{subsection.166}{F-equation}{section.159}% 53
+\BOOKMARK [2][-]{subsection.167}{G-equation}{section.159}% 54
+\BOOKMARK [2][-]{subsection.168}{Mean Value Property}{section.159}% 55
+\BOOKMARK [2][-]{subsection.170}{Uniqueness of Solutions}{section.159}% 56
+\BOOKMARK [2][-]{subsection.172}{Classification Theorem}{section.159}% 57
+\BOOKMARK [1][-]{section.177}{Fourier Transform}{}% 58
+\BOOKMARK [2][-]{subsection.178}{Complex Fourier Series}{section.177}% 59
+\BOOKMARK [2][-]{subsection.179}{Orthogonality}{section.177}% 60
+\BOOKMARK [2][-]{subsection.180}{Integral Transform}{section.177}% 61
+\BOOKMARK [2][-]{subsection.181}{Fourier transform}{section.177}% 62
+\BOOKMARK [2][-]{subsection.188}{Notation}{section.177}% 63
+\BOOKMARK [1][-]{section.198}{Heat Equation on \040R}{}% 64
+\BOOKMARK [2][-]{subsection.205}{Asymptotic Behavior}{section.198}% 65
+\BOOKMARK [2][-]{subsection.206}{Large time estimate}{section.198}% 66
+\BOOKMARK [1][-]{section.207}{Finite Rod}{}% 67
+\BOOKMARK [1][-]{section.210}{Dispersive Waves}{}% 68
+\BOOKMARK [2][-]{subsection.218}{Group Velocity}{section.210}% 69
+\BOOKMARK [2][-]{subsection.219}{Deep Water Waves}{section.210}% 70

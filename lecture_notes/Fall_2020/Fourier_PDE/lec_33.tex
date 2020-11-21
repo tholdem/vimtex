@@ -1,0 +1,121 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\newpage
+\section{Heat Equation on $ \rr$}
+
+\begin{equation*}
+\begin{cases}
+	\text{PDE: } \frac{\partial u}{\partial t} = k \frac{\partial^2 u}{\partial { x}^2} & x \in \rr, t>0 \\
+	\text{"BCs": } u(x,t)< \infty  & \ \forall \ x \in \rr, t>0 \\
+	\text{ICs: } u(x,0)= U(x) & \text{ where } \int_{-\infty}^{\infty} |U(x)|dx = M < \infty   \\
+\end{cases}
+\end{equation*}
+
+Again PDE and BCs form a vector space so we can use separation of variables. Then we get
+
+\begin{equation*}
+\begin{cases}
+	F''(x)= \lambda F(x)\\
+	F(x) < \infty \ \forall \ x \in \rr, t>0\\
+\end{cases}
+\text{ and } G'(t) = \lambda k G(t)
+\end{equation*}
+\begin{note}[]
+This $ \lambda$ has opposite sign as the one we used before.
+\end{note}
+If $ \lambda >0$, the solutions are not bounded. If $ \lambda = 0$, we have $ F_0(x) = B$. If  $ \lambda < 0$, we get $ \lambda = -m^2$ for nonzero $ m \in \rr$. And
+\[
+F_n=A_m e^{imx} + B_m e^{-imx} \text{ for } m \in \rr 
+.\] 
+For the time domain problem,
+\[
+	G'(t) = \lambda k G(t) \implies G_m(t) = G(0) e^{-m^2 kt} \text{ for } m \in \rr 
+.\] 
+Thus, summing over all product solutions with real numbers $ m \in \rr$ yields
+\[
+	u(x,t) = \int_{-\infty}^{\infty} a_m e^{imx} e^{-m^2kt} d m + \int_{-\infty}^{\infty} b_m e^{-imx} e^{-m^2kt} d m  
+.\] 
+\begin{note}[]
+The complex exponential is oscillating whereas the real exponential is a time-decaying term.
+\end{note}
+Notice that the second integral is redundant, since we can just use a change of variable $ m=-p$ to get the same form. So
+ \[
+	 u(x,t) = \int_{-\infty}^{\infty} a_m e^{imx} e^{-m^2kt} d m  
+.\]
+To find $ a_m$, we use the IC:
+ \[
+	 U(x) = u(x,0) = \int_{-\infty}^{\infty} a_m e^{imx}d m \text{ and } U(x) = \int_{-\infty}^{\infty} \hat{ U}(m) e^{imx} d m \implies a_m = \hat{ U}(m)   
+\] 
+by form matching according to our theory. So we can use the Fourier transform as the coefficient. So the solution becomes
+\[
+	u(x,t) = \int_{-\infty}^{\infty} \hat{ U}(m) e^{imx}e^{-m^2kt} d m
+\]
+where
+\[
+	\hat{ U}(m) = \frac{1}{2\pi} \int_{-\infty}^{\infty} U(x) e^{-imx} dx 
+.\] 
+Note that $ \hat{ U}(0) = \frac{1}{2\pi} \int_{-\infty}^{\infty} U(x) dx$ which is the area under the IC curve divided by $ 2\pi$.  Intuitively this is like area divided by something like a length.
+
+$ \hat{ U}(x)$ is bounded because by boundedness of the integral of $ U(x)$
+\[
+	|\hat{ U}(m)| \leq \frac{1}{2\pi} \int_{-\infty}^{\infty} |U(x)| \cdot |e^{-imx}| dx = \frac{1}{2\pi} \int_{-\infty}^{\infty} |U(x)|dx \leq \frac{M}{2\pi}  
+.\] 
+
+\begin{remark}
+This is part of the \emph{Riemann-Lebesgue Lemma} for Fourier transform.  
+\end{remark}
+
+\begin{lem}[Riemann-Lebesgue for Fourier transform]
+	Suppose $ U(x)$ is defined on  $ -\infty<x<\infty$ and let
+	\[
+		\hat{ U}(m) = \mathcal{F}[U(x)] = \frac{1}{2\pi} \int_{-\infty}^{\infty} U(x) e^{-imx} dx, \ \forall \ m \in \rr 
+	.\] 
+	If $ \int_{-\infty}^{\infty} |U(x)| dx = M < \infty$, then
+	\begin{enumerate}[label=\arabic*)]
+		\item $ \hat{ U}(m)$ is bounded and $ \hat{ U}(m) \leq \frac{M}{2\pi}$.
+		\item $ \hat{ U}(m)$ is continuous for all real $ m$.
+		\item  $ \hat{ U}(m) \to 0$ as $ m \to \infty$.
+	\end{enumerate}
+\end{lem}
+\begin{note}[]
+	This is a special case. Intuitively if the IC is "well-behaved". then the Fourier transform is also well-behaved. Then we can truncate $ \hat{ U}(m)$ without much loss of information.
+\end{note}
+
+\begin{prf}
+~\begin{enumerate}[label=\arabic*)]
+	\item See previous.
+	\item Given real number  $ m_n$, define $ U_n(x) = U(x) e^{-im_n x}$ then $ \ \forall \ x \in r$, we have
+		\[
+			\lim_{ n \to \infty} U_n(x) = \lim_{ n \to \infty} U(x) e^{-im_n x} = U(x) e^{-imx}, |U_n(x)|\leq |U(x)| \ \forall \ n
+		.\] 
+		Thus by \emph{Lebesgue Dominated Convergence Theorem}, this result yields
+		\[
+		 \lim_{ n \to \infty} \int_{-\infty}^{\infty} U_n(x) dx = \int_{-\infty}^{\infty}  U(x) e^{-imx} dx \implies \lim_{ m_n \to m} \hat{ U}(m_n) = \hat{ U}(m) 
+		.\] 
+		Thus $ \hat{ U}(m)$ is continuous.
+	\item We will only prove 3 for the simple case that $ U(x)$ is the indicator function over the set  $ [-L,L]$:
+		 \begin{equation*}
+			 U(x)=
+		\begin{cases}
+			1, &\text{ if } x \in [-L,L] \\
+			0, & \text{ otherwise}\\ 
+		\end{cases}
+		\end{equation*}
+
+		Then
+		\begin{align*}
+			\left| \int_{-\infty}^{\infty} U(x) e^{-imx}  \right| &= \left| \int_{-L}^{L} e^{-imx}  \right|  \\
+			&= \left| \frac{e^{-imL} - e^{imL}}{ -im} \right|  \\
+			&\leq \frac{|i^{e^{-imL}}| + |i e^{imL}|}{|m|}  \\
+			&= \frac{2}{|m|} 
+		\end{align*}
+		By Squeeze Theorem, taking $ m \to \pm \infty$, this bound gives us
+		\[
+			\lim_{ m \to \pm \infty} \int_{-\infty}^{\infty} U(x) e^{-imx} dx = 0 \implies \hat{ U}(m) \to 0 \text{ as } m  \to \pm \infty  
+		.\] 
+		Note that this result can be extended to any function $ U(x)$ such that  $ \int_{-\infty}^{\infty} |U(x)|dx < \infty$. Such result is the \emph{Riemann-Lebesgue Theorem}.  
+\end{enumerate}
+\end{prf}
+\end{document}

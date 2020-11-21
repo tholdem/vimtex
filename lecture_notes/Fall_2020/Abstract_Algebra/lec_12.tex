@@ -1,0 +1,70 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{Orbits, Cycles, and the Alternating Groups}
+
+\begin{note}[equivalence relation]
+Reflexive: $ aRa$ for all  $ a \in S$.
+Symmetric: If $ aRb$ then  $ bRa$.
+Transitive: If  $ aRb$ and  $ bRc$ then  $ aRc$.
+\end{note}
+
+\begin{eg}[]
+\[
+	\sigma= \begin{pmatrix} 1&2&3&4&5&6&7&8\\3&8&6&7&4&1&5&2 \end{pmatrix} 
+.\] 
+See iPad for orbits.
+Orbits of $ \sigma$ (sets) are: $ \{1,3,6\},\{2,8\} ,\{4,5,7\}  $. They are disjoint, their union is the whole set, they are a partition of $ \{1,2,\ldots,8\} $.
+\end{eg}
+\begin{defn}[]
+	We define an equivalence relation on $ \{1,\ldots,8\} $. $ a\sim b$ if  $ b= \sigma^{n}(a)$ for some $n \in \zz$.
+\end{defn}
+
+\begin{claim}[]
+$ \sim$ is an equivalence relation.
+\end{claim}
+\begin{prf}
+	Reflexive: Take $ n=0$,  $ a = \sigma^{0}(a)$.\\
+	Symmetric: If $ b= \sigma^{n}(a)$ then $ a = \sigma^{-n}(b)$.\\
+	Transitive: If $ b = \sigma^{n}(a)$ and $ c= \sigma^{m}(b)$ then $ c= \sigma^{n+m}(a)$.
+\end{prf}
+
+\begin{notation}[cycles]
+	(1,3,6) or (1 3 6) means "1 maps to 3 which maps to 6, which maps back to 1". This is the same as (3 6 1) and (6 1 3). We prefer to use (1 3 6) where the smallest number to be in the front. This is called a cycle of length 3 or "3-cycle".
+\end{notation}
+
+\begin{eg}[other cycles of $ \sigma$]
+	(2 8) = (8 2) "2-cycle (transposition)" and (4 7 5) = (7 5 4) = (5 4 7) "3-cycle". 
+\end{eg}
+
+\begin{notation}
+	(4 7 5) means 
+	\[
+		\begin{pmatrix} 1&2&3&4&5&6&7&8\\1&2&3&7&4&6&5&8 \end{pmatrix} 
+	.\] 
+	So there is one orbit of length 3 and others are length 1. This permutation would be called "3-cycle". If a permutation has two orbits with more than one element, then it's not a cycle.
+\end{notation}
+\begin{eg}[]
+\[
+	\sigma = \begin{pmatrix} 1&2&3&4&5&6&7&8\\3&8&6&7&4&1&5&2 \end{pmatrix} = (1\ 3\ 6)(2\ 8)(4\ 7\ 5)
+.\]
+These are disjoint cycles (no elements are mentioned more than once). Any permutation can be written as a product of disjoint cycles.
+\end{eg}
+
+\begin{eg}[9.10]
+$ S_6$. Consider
+\[
+	(1\ 4\ 5\ 6)(2\ 1\ 5)=(1\ 6)(2\ 4\ 5 )(3)
+.\] 
+We start with the smallest number in the permutation and go from right to left. We trace the mapping until they form a cycle, then we close the parenthesis and move on to the next smallest number that hasn't been traced.
+\begin{note}[]
+Disjoint cycles commute.
+\end{note}
+
+\[
+	(2\ 1\ 5)(1\ 4\ 5\ 6) = (1\ 4\ 2)(3)(5\ 6)
+.\] 
+
+\end{eg}
+\end{document}

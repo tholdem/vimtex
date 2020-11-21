@@ -1,0 +1,89 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\begin{intuition}
+	The Fourier transform is basically the "Fourier coefficient" of the basis function for the integral.
+\end{intuition}
+
+\subsection{Notation}
+~\begin{enumerate}[label=\arabic*)]
+	\item 
+		\begin{align*}
+			\hat{ f}(m) = \lim_{ L \to \infty} \hat{ f}(m_n) = \lim_{ L \to \infty} \frac{L}{\pi} c_n &= \lim_{ L \to \infty} \frac{L}{\pi} \left( \frac{1}{2L} \int_{-L}^{L} f(x) e^{ - i n\pi x / L}   \right) \ dx \\
+														  &= \frac{1}{2\pi} \int_{-\infty}^{\infty} f(x) e^{   i m x }  \ dx  \\
+		\end{align*}
+		\begin{intuition}
+			This is sort of the projection formula, since $ 2\pi$ is the circumference of the unit circle.
+		\end{intuition}
+	\item 
+		~\begin{defn} 
+			Define the \allbold{Fourier transform} of $ f(x)$ to be  $ \hat{ f}(m) = \mathcal{F}[f](m)$ where
+		\[
+			\hat{ f}(m) = \mathcal{F}[f](m) = \frac{1}{2\pi } \int_{-\infty}^{\infty} f(x) e^{ -  i m x } \ \forall \ m \in \rr  
+		.\] 
+	where the kernel is $ K(x,m)=e^{-imx}$. 
+\end{defn}
+	\item 
+		~\begin{defn}
+		Define the \allbold{inverse Fourier transform} of $ \hat{ f}(m)$: $ f(x) = \mathcal{F}^{-1} [\hat{ f}](x)$,
+		\[
+			f(x) = \mathcal{F}^{-1} [\hat{ f}](x) = \int_{-\infty}^{\infty} \hat{ f}(m) e^{imx} dm \ \forall \ x \in \rr  
+		.\] 
+		where the kernel is $ \hat{ K}(m,x) = e^{imx}$.
+	        \end{defn}
+	\item Given $ \hat{ f}(m)$ then $ f(x) =\mathcal{F} ^{-1}[\hat{ f}]$ and given $ f(x)$ then  $ \hat{ f}(m) = \mathcal{F}[f]$.
+		\begin{intuition}
+			The Fourier transform represents a function $ f(x)$ in a new "coordinate system" using different eigenfunction basis. 
+		\end{intuition}
+\end{enumerate}
+
+Fun Facts:
+~\begin{enumerate}[label=\arabic*)]
+	\item If $ \int_{-\infty}^{\infty} |f(x)| dx = M<\infty $ then
+		\[
+			|\hat{ f}(m)|\leq \frac{1}{2\pi} \int_{-\infty}^{\infty} |f(x)| \cdot |e^{-imx}| dx = \frac{1}{2\pi} \int_{-\infty}^{\infty} |f(x)|dx = \frac{M}{2\pi}   
+		.\]
+	\item Note that
+		\[
+			\hat{ f}(0)= \frac{1}{2\pi} \int_{-\infty}^{\infty} f(x) dx  = \frac{1}{2\pi} \cdot [ \text{ area under the curve }f(x) ]
+		.\] 
+	\item If $ f(x)$ is real then  $ \hat{ f}(m)= \overline{\hat{ f}(m)}$.
+	\item If $ f(x)$ is even then  $ \hat{ f}(m)$ is even, likewise for odd.
+	\item The data $ f(x)$ is transformed to a representation  $ \hat{ f}(m)$ in the frequency domain.
+\end{enumerate}
+
+\begin{eg}[]
+Suppose
+\begin{equation*}
+	f(x)=
+\begin{cases}
+	A, & -L<x<L\\
+	\frac{A}{2}, & x=L \text{ or } x=-L\\
+	0, & \text{ else} 
+\end{cases}
+\end{equation*}
+Find the Fourier transform of $ f(x)$.
+
+ \begin{align*}
+	 \hat{ f}(m) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} f(x)e^{-imx} dx  \\
+	 &= \frac{1}{2\pi} \int_{-L}^{L} A e^{-imx} dx  \\
+	 &= \frac{A}{2\pi i m} (e^{imL} - e^{-imL}) \\
+	 &= \frac{A}{\pi m } \left( \frac{e^{imL}-e^{-imL}}{2i } \right) \\
+	 &= \frac{A}{\pi m } \sin(mL ) \\
+	 &= \frac{AL}{ \pi} \cdot \frac{\sin(mL )}{mL } \\
+\end{align*}
+Define the "sinc function" as $ \sinc = \frac{\sin z}{z }$, then
+\[
+	\hat{ f}(m) = \frac{AL}{\pi} \sinc(mL) = \mathcal{F}[f](m)
+.\] 
+Moreover, by applying inverse transform on both sides,
+\[
+	f(x) = \int_{-\infty}^{\infty} \frac{AL}{\pi } \sinc (mL) e^{imx} dm = \mathcal{F}^{-1}[\hat{ f}](x)
+.\] 
+\end{eg}
+
+\begin{notation}
+	Haberman textbook uses the negative exponential term for the transform, but they are equivalent by a change of variable. 
+\end{notation}
+\end{document}

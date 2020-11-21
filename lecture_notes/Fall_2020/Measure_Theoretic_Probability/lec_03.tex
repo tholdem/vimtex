@@ -1,0 +1,89 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\section{}
+\begin{lem}[1]
+	$\mathcal{M}$ is a field.
+\end{lem}
+\begin{prf}
+\begin{enumerate}[label=(\roman*)]
+	\item Since $\quad \forall E \subset \Omega$, 
+		 \begin{align*}
+			 P^* (\O \cap E) + P^* (\O^{c} \cap E) &= P^* (\O) + P^* (E) \\
+							       &= P^* (E) 
+		\end{align*}
+		So $\O \in \mathcal{M}$.
+	\item $A \in \mathcal{M} \implies A^{c} \in \mathcal{M}$ by the symmetry of the definition of $\mathcal{M}$.
+	\item Given $A_1,A_2 \in \mathcal{M}$. Want $A_1 \cup A_2 \in \mathcal{M}$. We can show that $A_1 \cap A_2 \in \mathcal{M}$.
+		\begin{align*}
+			& \quad  P^* ((A_1 \cap A_2) \cap E) + P^* ((A_1 \cap A_2)^{c} \cap E) \\
+			&= P^* (A_1 \cap A_2 \cap E) + P^* ((A_1 \cap E  \cap A_2^{c}) \\ 
+										      &\quad \cup (A_2 \cap E \cap A_1^{c}) \cup (A_1^{c} \cap A_2^{c} \cap E) ) \qquad \qquad \qquad   (1) \\
+	&\leq P^* (A_1 \cap A_2 \cap E) + P^* (A_1 \cap E \cap A_2^{c})\\
+	&\quad  + P^* (A_2 \cap E \cap A_1^{c}) + P^* (A_1^{c} \cap A_2^{c} \cap E) \\
+	&= A+B+C+D 
+		\end{align*}
+		\begin{align*}
+			A+B &= P^* (A_2 \cap (A_1 \cap E)) + P^* (A_2^{c} \cap (A_1 \cap E)) \\
+			    & \leq P^* (A_1 \cap E) \text{ since }  A_2 \in \mathcal{M} \\
+			C+D &= P^* (A_2 \cap (E \cap A_1^{c})) + P^* (A_2^{c} \cap (E \cap A_1^{c}))\\ 
+			    &\leq P^* (A_1^{c} \cap E) \\
+		\end{align*}
+		So $(1)\leq (A+B)+(C+D) \leq P^* (A_1 \cap E) + P^* (A_1^{c} \cap E) \leq P^* (E)$ since $A_1 \in \mathcal{M}$.
+\end{enumerate}
+\end{prf}
+\begin{lem}[2]
+Countable additivity holds for sets in $\mathcal{M}$.
+\end{lem}
+\begin{note}[]
+	$A_1,A_2,\ldots \in \mathcal{M}$, disjoint then $P^* (\bigcup_{n= 1}^{\infty} A_n)=\sum_{ n=1}^{\infty} P^* (A_n)$
+\end{note}
+\begin{prf}
+\begin{enumerate}[label=\arabic*)]
+	\item Prove finite additivity: given $A_1,A_2 \in \mathcal{M}$, disjoint, and $E \in \Omega$. Since $(E \cap A_1) \cup (E \cap A_2)$ are disjoint, $A_1 \cap [E \cap (A_1 \cup A_2)] = A_1 \cap E$. Also $A_2 \subset A^{c}$. 
+		\begin{align*}
+			P^* (E\cap (A_1 \cup A_2)) &= P^* (A_1 \cap [E \cap (A_1 \cap A_2)]) + P^* (A_1^{c} \cap [E \cap (A_1 \cup A_2)]) \\
+						  &=  P^* (A_1 \cap E) + P^* (A_2 \cap E)\\
+		\end{align*}
+	\item Countable additivity: $A_1, A_2\ldots \in \mathcal{M}$, disjoint
+		\begin{align*}
+			P^* (E \cap \bigcup_{n= 1}^{\infty} A_n) &= P^* (\bigcup_{n= 1}^{\infty} (E \cap A_n)) \\
+			&\leq \sum_{ n=1}^{\infty} P^* (E \cap A_n)
+		\end{align*}
+		On the other hand:
+		\begin{align*}
+			P^* \left(E\cap \left( \bigcup_{n= 1}^{\infty} A_n \right) \right) &\geq P^* \left( E \cap \bigcup_{n= 1}^{m} A_n \right) \qquad \text{by monotonicity} \\
+										&= \sum_{ n=1}^{m} P^* (E\cap A_n) \text{ by 1) above}  \\
+		\end{align*}
+		Let $n \to \infty$
+		$P^* (E \cap \bigcup_{n= 1}^{\infty} A_n) \geq \sum_{ n=1}^{\infty} P^* (E\cap A_n)$
+\end{enumerate}
+\end{prf}
+
+\begin{lem}[3]
+$\mathcal{M}$ is a $\sigma$-field.
+\end{lem}
+\begin{prf}
+We only need to show that it is closed under countable unions. Given $A_1,A_2,\ldots \in \mathcal{M}$. Let $A=\bigcup_{n= 1}^{\infty} A_n$. We want to show that $A \in \mathcal{M}$.
+
+Assume $A_1, A_2..$ are disjoint. If not write $A = A_1 \cup (A_2\setminus A_1) \cap \ldots$ which is a disjoint union.
+
+Let $B_m:= \bigcup_{n= 1}^{m} A_n$. Note that $B_m \in \mathcal{M}$ since $\mathcal{M}$ is a field. Notice $B_m \subset \bigcup_{n= 1}^{\infty} A_n = A \implies A^{c} \subset  B_m ^{c}$. So $\quad \forall \quad E \subset \Omega$,  
+\begin{align*}
+	P^* (E) &= P^* (B_m \cap E) + P^* (B_m^{c} \cap E)\\
+		&= P^* \left( \bigcup_{n= 1}^{m} (A_n \cap E)  \right) + P^* (B_m ^{c} \cap E) \\
+		&\geq \sum_{ n=1}^{m} P^* (A_n \cap E) + P^* (A^{c} \cap E)
+\end{align*}
+Let $m \to \infty$, 
+\begin{align*}
+	P^* (E) &\geq \sum_{ n=1}^{\infty} P^* (A_n \cap E) + P^* (A^{c} \cap E) \\
+		&= P^* \left( \bigcup_{n= 1}^{\infty} (A_n \cap E) \right) + P^* (A^{c} \cap E)  \\
+		&= P^* \left( \bigcup_{n= 1}^{\infty} A_n \cap E \right) + P^* (A^{c} \cap E) \\
+		&= P^* (A \cap E) + P^* (A^{c} \cap E)
+\end{align*}
+Hence $A \in \mathcal{M}$.
+\end{prf}
+
+Since $P(\Omega) =1$, by Lemma 5, $P^* (\Omega)=1$. Now we have $P^* (\O) = 0, P ^* (\Omega) =1, \O \subset  A \subset  \Omega \implies 0 \leq P^* (A) \leq 1$, and $P^*$ is countably additive on  $\mathcal{M}$. It follows that $P^*$ is a probability measure on  $\mathcal{M}$ and $P^*=P$ for set on  $\mathcal{F}_0 \subset \mathcal{M}$.
+\end{document}

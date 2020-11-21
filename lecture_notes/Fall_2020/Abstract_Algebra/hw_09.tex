@@ -1,0 +1,167 @@
+\documentclass[12pt]{article}
+\input{../preamble.tex}
+
+\begin{document}
+\centerline {\textsf{\textbf{\LARGE{Homework 9}}}}
+\centerline {Jaden Wang}
+\vspace{.15in}
+\begin{problem}[18.4]
+\[
+	20 \times_{26} (-8) = -160 \mod 26 = -4
+.\] 
+\end{problem}
+
+\begin{problem}[18.5]
+\[
+	(2,3)(3,5)= (2 \times_5 3, 3 \times_9 5) = (1,6)
+.\] 
+\end{problem}
+\begin{problem}[18.11]
+First let's show that $ R = \{a+b \sqrt{2}:a , b \in \zz \} $ is a ring. Take $ a+b\sqrt{2} $ and $ \c+d \sqrt{2} $ where $ a,b,c,d \in \zz$.
+
+Since the addition operation is the addition of complex numbers which is commutative and associative, we have
+\[
+	(a+b\sqrt{2} ) + (c+ d \sqrt{2} ) = (a+c) + (b+d) \sqrt{2} 
+.\] 
+Since $ a+c, b+d \in \zz$, $ (a+c)+(b+d) \sqrt{2} \in R $. So $ R$ is closed under addition.
+
+Since the identity of addition of complex numbers is 0, and $ 0= 0+0 \sqrt{2} \in R $, $ R$ contains the additive identity.
+
+Notice
+\[
+	(-a)+(-b) \sqrt{2} + a+b \sqrt{2} = a+b \sqrt{2} + (-a) + (-b)\sqrt{2} = (a-a) + (b-b) \sqrt{2} = 0 + 0 \sqrt{2} = 0 
+\]
+so $ (-a)+(-b)\sqrt{2} $ is its inverse. Since $(-a),(-b) \in \zz \implies (-a)+(-b) \sqrt{2}  \in R$. $ R$ is closed under inverses.
+
+Hence, we just showed that $ R$ is an abelian group under addition.
+
+Since the multiplication is the multiplication of complex numbers which is commutative, associative, and left and right distributive with addition, we have
+ \[
+	 (a+b\sqrt{2} )(c+d\sqrt{2} )=(ac+bc\sqrt{2}) + (ad\sqrt{2} + 2bd)=(ac+2bd)+(bc+ad)\sqrt{2}  
+.\] 
+Since $ ad+2bd, bc+ad \in \zz$, $ (ac+2bd)+(bc+ad)\sqrt{2} \in R $. So $ R$ is closed under associative multiplication.
+
+Therefore, by satisfying an abelian group under addition, closed under associative multiplication, and left and right distributive laws, $ R$ is a ring.
+
+Since multiplication is commutative, $ R$ is a commutative ring.
+
+Since the multiplicative identity is  $ 1$, and  $ 1 = 1 + 0\sqrt{2} \in R $, $ R$ contains the multiplicative identity.
+
+However,  $ R$ is not a field. Consider  $ (0+1 \sqrt{2} )$. Since
+\[
+	(0+1\sqrt{2} )(0+\frac{1}{2}\sqrt{2} )=(0+\frac{1}{2}\sqrt{2} )(0+1\sqrt{2} ) = 1
+,\] 
+$ 0+\frac{1}{2}\sqrt{2} $ is its multiplicative inverse. Yet $ 0+\frac{1}{2}\sqrt{2} \not\in R $. Thus $ 0+1\sqrt{2} \in R$ is not a unit and $ R$ is not a field.
+\end{problem}
+\begin{problem}[18.12]
+First let's show that $ R = \{a+b \sqrt{2}:a , b \in \qq \} $ is a ring. Take $ a+b\sqrt{2} $ and $ \c+d \sqrt{2} $ where $ a,b,c,d \in \qq$.
+
+Since the addition operation is the addition of complex numbers which is commutative and associative, we have
+\[
+	(a+b\sqrt{2} ) + (c+ d \sqrt{2} ) = (a+c) + (b+d) \sqrt{2} 
+.\] 
+Since $ a+c, b+d \in \qq$, $ (a+c)+(b+d) \sqrt{2} \in R $. So $ R$ is closed under addition.
+
+Since the identity of addition of complex numbers is 0, and $ 0= 0+0 \sqrt{2} \in R $, $ R$ contains the additive identity.
+
+Notice
+\[
+	(-a)+(-b) \sqrt{2} + a+b \sqrt{2} = a+b \sqrt{2} + (-a) + (-b)\sqrt{2} = (a-a) + (b-b) \sqrt{2} = 0 + 0 \sqrt{2} = 0 
+\]
+so $ (-a)+(-b)\sqrt{2} $ is its inverse. Since $(-a),(-b) \in \qq \implies (-a)+(-b) \sqrt{2}  \in R$. $ R$ is closed under inverses.
+
+Hence, we just showed that $ R$ is an abelian group under addition.
+
+Since the multiplication is the multiplication of complex numbers which is commutative, associative, and left and right distributive with addition, we have
+ \[
+	 (a+b\sqrt{2} )(c+d\sqrt{2} )=(ac+bc\sqrt{2}) + (ad\sqrt{2} + 2bd)=(ac+2bd)+(bc+ad)\sqrt{2}  
+.\] 
+Since $ ad+2bd, bc+ad \in \qq$, $ (ac+2bd)+(bc+ad)\sqrt{2} \in R $. So $ R$ is closed under associative multiplication.
+
+Therefore, by satisfying an abelian group under addition, closed under associative multiplication, and left and right distributive laws, $ R$ is a ring.
+
+Since multiplication is commutative, $ R$ is a commutative ring.
+
+Since the multiplicative identity is  $ 1$, and  $ 1 = 1 + 0\sqrt{2} \in R $, $ R$ contains the multiplicative identity.
+
+To show $ R$ is a field, consider  $ a+b\sqrt{2} \in R $, so $ a,b \in \qq$.
+\begin{case}[]
+$a\neq 0, b=0$, then clearly its inverse is  $ \frac{1}{a}+0\sqrt{2} \in R $.
+\end{case}
+\begin{case}[]
+$a=0, b\neq 0$, then clearly its inverse is $ \frac{1}{2b} \sqrt{2} \in R $.
+\end{case}
+\begin{case}[]
+	$ a\neq 0, b\neq 0$, then its inverse is  $ -\frac{a}{2b^2-a^2}+\frac{b}{2b^2-a^2} \sqrt{2} $, because $ a\neq b\sqrt{2} \ \forall \ a,b \in \qq \implies 2b^2-a^2 \neq 0 $ and 
+	\begin{align*}
+		&\qquad (a+b\sqrt{2} )\left( -\frac{a}{2b^2-a^2}+\frac{b}{2b^2-a^2} \sqrt{2} \right) \\
+		&=\left( -\frac{a^2}{2b^2-a^2} + \frac{2b^2}{2b^2-a^2} \right) +\left( \frac{ab}{2b^2-a^2} - \frac{ab}{2b^2-a^2}  \right)  \sqrt{2}   \\
+		&= \left( \frac{2b^2-a^2}{2b^2-a^2 } \right) + 0 \sqrt{2}   \\
+		&=  1\\
+	\end{align*}
+	The other direction follows from commutativity. Moreover, since rational numbers are closed under addition and multiplication, the two coefficients of the inverse are in $ \qq$ and thus the inverse is in $ R$.
+\begin{case}[]
+$ a=0, b=0$, then we get the zero element which we disregard.
+\end{case}
+Therefore, for all possible cases of $ a,b \in \qq$, we show that nonzero $ a+b\sqrt{2} $ is a unit, proving $ R$ is a field.
+\end{case}
+\end{problem}
+\begin{problem}[18.13]
+Given purely imaginary numbers $ ri,si$ where $ r,s \in \rr$. It is closed under addition:
+\[
+	ri + si = (r+s) i
+\] 
+where $ r+s \in \rr$. However, it is not closed under multiplication:
+\[
+1i \cdot 2i = 2i^2 = -2 
+\]
+which is not purely imaginary. Since it's not closed under multiplication, it is not a ring.
+\end{problem}
+\begin{problem}[18.15]
+	Let $ a,b\in \zz$, so $ (a,b)\in \zz\times \zz$. Since the identity of $ \zz\times \zz$ is $ (1,1)$, for $ (a,b)$ to be a unit, we need  $ (c,d) \in \zz\times \zz$ such that 
+	\begin{align*}
+		(a,b)(c,d)&=(1,1)\\
+		(ac,bd)&= (1,1) \\
+		ac=1&,bd=1  \\
+		c=\frac{1}{a} \in \zz &, d=\frac{1}{b} \in \zz, a,b\neq 0
+	\end{align*}
+	This means that $ a,b$ are divisors of  $ 1$, implying that $ a,b=\pm 1$. Therefore, the units are $(1,1),(-1,1),(-1,-1),(1,-1) $.
+\end{problem}
+
+\begin{problem}[18.17]
+	Taken $ a \in \qq \setminus \{0\}$, then $ \frac{1}{a} = a^{-1}= \in \qq$,  thus the units of $ \qq$ are $ \qq \setminus \{0\}$.
+\end{problem}
+\begin{problem}[18.18]
+Since direct product has elementwise operations, the units of $ \zz\times \qq\times \zz$ are simply the direct product of units of each set. By 18.15 and 18.17, the units are 
+\[
+	\{(a,b,c): a,c = \pm 1, b \in \qq\setminus \{0\}\}   
+.\] 
+\end{problem}
+\begin{problem}[18.23]
+	Recall that the only functions that satisfy injective group homomorphism from $ \zz \to \zz$ are $ \phi(x)=x$ and $ \phi(x)=-x$. Since ring homomorphism must satisfy group homomorphism, these two are our only candidates. For the identity map, it clearly still works, since
+	\[
+		\phi(a+b) = a+b = \phi(a)+\phi(b) \text{ and } \phi(ab)=ab=\phi(a)\phi(b) 
+	.\] 
+	But $ \phi(x)=-x$ no longer works:
+	\[
+		\phi(1 \times 2)=-(2)=-2\neq 2 =(-1)(-2) = \phi(1)\times \phi(2) 
+	.\]
+	So the only injective ring homomorphism $ \phi: \zz \to \zz$ is $ \phi(x)=x$.
+\end{problem}
+\begin{problem}[18.33]
+~\begin{enumerate}[label=\alph*)]
+	\item True. By definition.
+	\item False. $ 2\zz$ under usual $ +,\times $ has no multiplicative identity, yet is a ring.
+	\item False. $ \zz_2 $ is a ring, but the multiplicative identity $ 1$ is the only unit.
+	\item False.  $ \rr$ has infinite units and is a ring.
+	\item True. Consider $ \zz \subseteq \qq$, $ \zz$ is clearly a ring but not a field, and $ \qq$ is a field.
+	\item False. They govern how $ +,\times $ interact!
+	\item True. By definition.
+	\item True. We get closure and associativity of the definition of ring, and identity and inverses from the definition of field.
+	\item True. By definition.
+	\item True. By definition.
+
+\end{enumerate}
+\end{problem}
+\end{document}
+

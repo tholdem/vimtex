@@ -1,0 +1,79 @@
+\documentclass[class=article,crop=false]{standalone} 
+\input{../preamble.tex}
+
+\begin{document}
+\newpage
+\section{Motion of a guitar string}
+
+For a plucked guitar string at $ t=0$, the initial position, $ U(x)$, looks like either a sharp isosceles triangle or a hill-like smooth curve.
+
+In either case  $ U(x)$ is continuous and  $ U'(x)$ is piecewise continuous or smooth. Note that if the initial velocity is  $ V(x)=0$ then  $ B_n=0$. If the initial position is given by
+\begin{equation*}
+	U(x)=
+\begin{cases}
+	\frac{ax}{h}, &0<x\leq h\\
+	\frac{a(L-x)}{L-h }, & h<x<L\\
+\end{cases}
+\end{equation*}
+Then using integration by parts, we get
+\[
+	A_n = \frac{2a \sin(n\pi h /L)}{(n\pi)^2 \frac{h}{L} \frac{L-h}{L }}
+.\] 
+We can guess this converges because of $ n^2$ term on the denominator.
+
+So the position of the string is
+\[
+	u(x,t) = \sum_{ n= 1}^{\infty} \frac{2a}{\pi^2} \frac{L}{h} \frac{L}{L-h} \frac{\sin(n \pi h /L)  )}{n^2 } \cos \left( \frac{n\pi ct}{L } \right) \sin \left( \frac{ n\pi x}{ L} \right) 
+.\]
+
+I claim that this converges absolutely:
+\[
+	0\leq \sum_{ n= 1}^{\infty} | u(x,t)| \leq \sum_{ n= 1}^{\infty} \frac{M}{n^2}
+\]
+for some constant $ M>0$, so it converges absolutely. Hence it converges uniformly to a continuous function. But note
+ \[
+	 \frac{\partial^2 u}{\partial { x}^2} = \sum_{ n= 1}^{\infty} \frac{2a}{\pi^2} \frac{L}{h} \frac{L}{L-h} \frac{\sin(n \pi h /L)  )}{n^2 }  \cdot - \left( \frac{n \pi x}{L } \right) ^2 \cdot \cos \left( \frac{ n\pi c t}{ L} \right) \sin \left( \frac{ n\pi x}{ L} \right) 
+.\] 
+Notice $ n^2$ that helped achieving convergence got canceled! By divergence test (take n to infinity but the term doesn't go to zero), this doesn't converge. This is okay because in practice we always use a finite sum, so divergence is not a big concern.
+
+Thus, for each fixed $ N>0$, the partial sum of the formal solution,  $ S_N(x)$, will satisfy the PDE and BC and will approximate the initial condition as accurately as we wish.
+
+\section{Supplement: The Sound of Music}
+
+\begin{eg}[space and time waves]
+	For the general solution, if we fix a $ t$, then we get a space wave, which represents the physical position of the string at a specific time. If we fix a  $ x$, we get a time wave. which represents the evolution of each point of the string through time. 
+\end{eg}
+
+\subsection{Standing Waves}
+
+The vertical displacement is a linear combination of the simple product solutions.
+
+Each is called the "normal nodes of vibration" for $ n=1,2,\ldots$. And each mode has amplitude $ \sqrt{A_n^2+ B_n^2} $.
+
+The nth normal node is called the "nth harmonic".
+
+For each fixed $ t$, each node looks like a simple oscillation called a  \emph{standing wave}.
+
+Note that the period of each mode (in time) is $ \tau_n = 2\pi \cdot  \frac{L}{n \pi c} = \frac{2L}{ nc}$.
+
+So one cycle is completed every $ \tau_n$ thus the frequency is $ f= \frac{1}{\tau_n} = \frac{nc}{2L } = \frac{n}{\tau_1}$ for $ n=1,2,\ldots$
+
+The sound produced consists of the superposition of these infinite frequencies.
+
+\subsection{Music Theory}
+See slides. This is common sense. $ E_2 $ is 2 octaves above $ E_0$. 
+
+When we pluck guitar, at $ n=1$ we have the  \allbold{first harmonic} or the \emph{fundaemental mode:} $ A_1 \sin \left( \frac{ \pi x}{ L} \right) \cos \left( \frac{ \pi c t}{ L} \right)  $.
+
+Assume $ \omega_1  = 82.41 $Hz. We cannot mute fundamental harmonic because it has no inner stationary points. 
+
+At $ n=2$, the shape of the standing wave is determined by  $ \sin \left( \frac{ 2\pi x}{ L} \right) $, which has 1 inner stationary point (that never moves). Then the frequency is twice the fundamental harmonic. The amplitude is a quarter of the fundamental harmonic.
+
+Similarly, $ n=3$, it has 2 inner stationary points. So we can mute the third harmonic at $ h=\frac{L}{3}$ or $ \frac{2L}{3}$.
+
+\subsection{Fun Facts}
+\begin{itemize}
+	\item Each octave increase corresponds to a doubling of the frequency.
+	\item For every octave the frequency doubles per 12 notes then the frequency per note increases by a factor of $ 1.06$.
+\end{itemize}
+\end{document}
